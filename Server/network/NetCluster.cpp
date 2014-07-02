@@ -3,7 +3,6 @@
 #include "TimerTrigger.h"
 #include "ClientSession.hpp"
 #include "ServerSession.hpp"
-#include "MessageThread.h"
 
 Logger g_netLog;
 
@@ -28,7 +27,7 @@ namespace cpnet
 
 	ITimerTrigger* NetCluster::CreateTimerTrigger()
 	{
-		return new TimerTrigger(m_ioService);
+		return new TimerTrigger(m_ioService, m_strand);
 	}
 
 	void NetCluster::SetLogConf(const char* pLogProp)
@@ -49,17 +48,13 @@ namespace cpnet
 	{
 		for (uint32_t i=0; i<4; i++)
 		{
-			m_ioService.run();
+			boost::thread* pThread = new boost::thread(boost::bind(&BoostIoService::run, &m_ioService));
 		}
+		m_ioService.run();
 	}
 
 	void NetCluster::Stop()
 	{
-		MessageThread::GetInstance()->Stop();		// 结束线程运行
 		m_ioService.stop();
-		if (m_pMsgThread)
-		{
-			delete m_pMsgThread;
-		}
 	}
 }

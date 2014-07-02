@@ -1,5 +1,4 @@
 #include "Connection.h"
-#include "MessageThread.h"
 
 namespace cpnet
 {
@@ -86,8 +85,7 @@ namespace cpnet
 		{
 			try
 			{
-				boost::asio::async_write(m_sock,
-					boost::asio::buffer(m_msgQueue.front().data(), m_msgQueue.front().length()),
+				boost::asio::async_write(m_sock, boost::asio::buffer(m_msgQueue.front().data(), m_msgQueue.front().length()),
 					m_pStrand->wrap(
 						boost::bind(
 							&Connection::HandleSend,
@@ -113,8 +111,7 @@ namespace cpnet
 		{
 			try 
 			{
-				boost::asio::async_write(m_sock,
-					boost::asio::buffer(m_msgQueue.front().data(), m_msgQueue.front().length()),
+				boost::asio::async_write(m_sock, boost::asio::buffer(m_msgQueue.front().data(), m_msgQueue.front().length()),
 					m_pStrand->wrap(
 						boost::bind(
 							&Connection::HandleSend,
@@ -130,7 +127,6 @@ namespace cpnet
 			}
 		}
 	}
-
 
 	void Connection::HandleReadBody(const BoostErrCode& errCode, size_t nBytesTranfered)
 	{
@@ -154,8 +150,6 @@ namespace cpnet
 			return;
 		}
 
-		// to push the package into a blocked queue, pop it in other threads
-		//MessageThread::GetInstance()->Push(Package(shared_from_this(), string(m_pBuff, nBytesTranfered + m_nHeadLength), RECV_MSG, errCode));
 		recvCallBack(this, m_pBuff, nBytesTranfered + m_nHeadLength);
 
 		// reset recv handle
@@ -218,7 +212,6 @@ namespace cpnet
 		{
 			SetConnected(false);
 			m_sock.close();						// 先关闭连接
-			//MessageThread::GetInstance()->Push(Package(shared_from_this(), string(""), DISCONNECT_MSG, errCode));
 			disConnCallback(this, errCode);
 			return false;
 		}
@@ -235,7 +228,6 @@ namespace cpnet
 		if (boost::asio::error::connection_aborted == errCode)
 		{
 			SetConnected(false);
-			//MessageThread::GetInstance()->Push(Package(shared_from_this(), string(""), DISCONNECT_MSG, errCode));
 			disConnCallback(this, errCode);
 			return false;
 		}

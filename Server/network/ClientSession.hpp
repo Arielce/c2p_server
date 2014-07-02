@@ -6,7 +6,6 @@
 #include "Connection.h"
 #include "IMsgParser.h"
 #include "IMsgHandler.h"
-#include "MessageThread.h"
 #include "NetCluster.h"
 
 namespace cpnet
@@ -26,11 +25,13 @@ namespace cpnet
 			m_strIp = pServerIp;
 			m_uPort = uPort;
 			m_pConnection->SetMsgParser(m_pMsgParser);
+
 			// 设置上端的回调函数
 			m_pConnection->SetRecvCallback(boost::bind(&IMsgHandler::HandleRecv, m_pMsgHandler, _1, _2, _3));
 			m_pConnection->SetSendCallback(boost::bind(&IMsgHandler::HandleWrite, m_pMsgHandler, _1, _2));
 			m_pConnection->SetConnCallback(boost::bind(&IMsgHandler::HandleConnect, m_pMsgHandler, _1, _2));
 			m_pConnection->SetDisConnCallBack(boost::bind(&ClientSession::HandleDisconnect, this, _1, _2));
+			// 开始连接
 			DoReConnect();
 		}
 
@@ -89,7 +90,6 @@ namespace cpnet
 			}
 			m_pConnection->SetConnected(true);
 			m_pConnection->StartRead();
-			//MessageThread::GetInstance()->Push(Package(m_pConnection, string(""), CONNECT_MSG, err));
 			m_pMsgHandler->HandleConnect(m_pConnection.get(), err);
 		}
 
@@ -120,8 +120,8 @@ namespace cpnet
 		IMsgHandler* m_pMsgHandler;							// 消息处理对象
 		ITimerTrigger* m_pTimerTrigger;						// 定时器对象
 
-		uint32_t m_uHeadSize;
-		uint32_t m_uBufSize;
+		uint32_t m_uHeadSize;								// 消息头长度
+		uint32_t m_uBufSize;								// 缓冲区长度
 
 		// 回调函数
 		connFuncCallBack connCallback;

@@ -91,7 +91,6 @@ namespace cpnet
 			pConnection->SetConnected(true);
 			pConnection->StartRead();
 
-			//MessageThread::GetInstance()->Push(Package(pConnection, string(""), CONNECT_MSG, error));
 			m_pMsgHandler->HandleConnect(pConnection.get(), error);
 
 			Connection::pointer pNewConnection = Connection::Create(*m_pIoService, *m_pStrand, m_uHeadSize, m_uBufSize);

@@ -5,9 +5,6 @@
 #include "IMsgParser.h"
 #include "IConnection.h"
 
-//#define HEADER_LENGTH 12
-//#define BODY_LENGTH 4096
-
 /*
 	wrapper the ASIO connection
 */

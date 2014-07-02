@@ -87,13 +87,13 @@
     <ClInclude Include="..\network\IMsgParser.h" />
     <ClInclude Include="..\network\INetCluster.h" />
     <ClInclude Include="..\network\ITimerTrigger.h" />
-    <ClInclude Include="..\network\MessageThread.h" />
+    <ClInclude Include="..\network\MessageHeader.h" />
     <ClInclude Include="..\network\message_header.h" />
     <ClInclude Include="..\network\NetCluster.h" />
     <ClInclude Include="..\network\ServerSession.hpp" />
     <ClInclude Include="..\network\TimerTrigger.h" />
-    <ClInclude Include="..\network\typedef.h" />
     <ClInclude Include="..\network\Utility.h" />
+    <ClInclude Include="..\network\Uuid.h" />
     <ClInclude Include="..\protocol\DataProtocol.h" />
     <ClInclude Include="..\protocol\DataServer.pb.h" />
     <ClInclude Include="..\protocol\GameProtocol.h" />
@@ -112,9 +112,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\network\Connection.cpp" />
-    <ClCompile Include="..\network\MessageThread.cpp" />
     <ClCompile Include="..\network\NetCluster.cpp" />
     <ClCompile Include="..\network\Utility.cpp" />
+    <ClCompile Include="..\network\Uuid.cpp" />
     <ClCompile Include="..\protocol\DataServer.pb.cc" />
     <ClCompile Include="..\protocol\GameProtocol.pb.cc" />
     <ClCompile Include="..\protocol\LobbyProtocol.pb.cc" />

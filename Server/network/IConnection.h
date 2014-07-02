@@ -1,7 +1,7 @@
 #ifndef NETWORK_ICONNECTION_H
 #define NETWORK_ICONNECTION_H
 
-#include "typedef.h"
+#include "header.h"
 #include "IMsgParser.h"
 
 namespace cpnet

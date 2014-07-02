@@ -89,7 +89,6 @@
     <ClInclude Include="..\network\IMsgParser.h" />
     <ClInclude Include="..\network\INetCluster.h" />
     <ClInclude Include="..\network\ITimerTrigger.h" />
-    <ClInclude Include="..\network\MessageThread.h" />
     <ClInclude Include="..\network\MessageHeader.h" />
     <ClInclude Include="..\network\NetCluster.h" />
     <ClInclude Include="..\network\ServerSession.hpp" />
@@ -135,7 +134,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\network\Connection.cpp" />
-    <ClCompile Include="..\network\MessageThread.cpp" />
     <ClCompile Include="..\network\NetCluster.cpp" />
     <ClCompile Include="..\network\Utility.cpp" />
     <ClCompile Include="..\network\Uuid.cpp" />

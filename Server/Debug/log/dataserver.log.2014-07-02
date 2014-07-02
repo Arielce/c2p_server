@@ -1,0 +1,3 @@
+2014-07-02 10:38:57 e:\github\c2p_server\server\network\serversession.hpp:40 [4192] TRACE NETWORK - server listen start, ip=[127.0.0.1], port=[8600]
+2014-07-02 10:38:57 e:\github\c2p_server\server\dataserver\mysql.cpp:28 [4192] TRACE ALL_MSGS - mysql_options MYSQL_OPT_RECONNECT failed.
+2014-07-02 10:38:57 e:\github\c2p_server\server\dataserver\main.cpp:24 [4192] TRACE ALL_MSGS - dataserver start.

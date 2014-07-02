@@ -1,7 +1,6 @@
 #ifndef NETWORK_INETCLUSTER_H
 #define NETWORK_INETCLUSTER_H
 
-#include "typedef.h"
 /*
 	用来代表网络中的客户端，主动对服务器发起连接
 */

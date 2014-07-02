@@ -6,21 +6,12 @@
 #include <iostream>
 #include <boost/lexical_cast.hpp>
 
-//#include <log4cplus/helpers/loglog.h>
-//#include <log4cplus/helpers/stringhelper.h>
-//#include <log4cplus/ndc.h>
-//#include <log4cplus/consoleappender.h>
-//#include <log4cplus/layout.h>
-//#include <log4cplus/helpers/loglog.h>
-//#include <log4cplus/helpers/stringhelper.h>
-//#include <log4cplus/loggingmacros.h>
-
-
 #ifdef _MSC_VER
 #define _WIN32_WINNT 0x0501
 #endif
 
 #include "../network/INetCluster.h"
+#include "../network/IConnection.h"
 
 using namespace std;
 

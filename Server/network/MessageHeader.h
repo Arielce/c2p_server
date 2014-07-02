@@ -1,6 +1,8 @@
 #ifndef NETWORK_MESSAGEHEADER_H
 #define NETWORK_MESSAGEHEADER_H
 
+#include <stdint.h>
+
 namespace cpnet
 {
 	struct MessageHeader

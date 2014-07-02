@@ -36,7 +36,6 @@ namespace cpnet
 	private:
 		BoostIoService m_ioService;
 		BoostStrand m_strand;
-		boost::thread* m_pMsgThread;
 		string m_strLogProp;
 	};
 }
