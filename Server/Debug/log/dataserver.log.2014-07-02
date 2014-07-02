@@ -1,3 +1,4 @@
-2014-07-02 10:38:57 e:\github\c2p_server\server\network\serversession.hpp:40 [4192] TRACE NETWORK - server listen start, ip=[127.0.0.1], port=[8600]
-2014-07-02 10:38:57 e:\github\c2p_server\server\dataserver\mysql.cpp:28 [4192] TRACE ALL_MSGS - mysql_options MYSQL_OPT_RECONNECT failed.
-2014-07-02 10:38:57 e:\github\c2p_server\server\dataserver\main.cpp:24 [4192] TRACE ALL_MSGS - dataserver start.
+2014-07-02 17:13:26 e:\github\c2p_server\server\network\serversession.hpp:40 [6584] TRACE NETWORK - server listen start, ip=[127.0.0.1], port=[8600]
+2014-07-02 17:13:26 e:\github\c2p_server\server\dataserver\mysql.cpp:28 [6584] TRACE ALL_MSGS - mysql_options MYSQL_OPT_RECONNECT failed.
+2014-07-02 17:13:27 e:\github\c2p_server\server\dataserver\playerdatamng.cpp:25 [6584] ERROR ALL_MSGS - init mysql connection failed, mysql ip=[127.0.0.1], port=[3306], user=[root], pwd=[root], db=[game]
+2014-07-02 17:13:27 e:\github\c2p_server\server\dataserver\main.cpp:21 [6584] ERROR ALL_MSGS - dataServer init failed.
