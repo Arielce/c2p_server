@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<HeroRank>
+		<rank Rank="1" FragmentNum="10"/>
+		<rank Rank="2" FragmentNum="30"/>
+		<rank Rank="3" FragmentNum="50"/>
+		<rank Rank="4" FragmentNum="80"/>
+		<rank Rank="5" FragmentNum="100"/>
+	</HeroRank>
+
+	<HeroExp>
+		<exp level="1" exp="0" />
+		<exp level="2" exp="10" />
+		<exp level="3" exp="50" />
+		<exp level="4" exp="100" />
+		<exp level="5" exp="200" />
+		<exp level="6" exp="300" />
+		<exp level="7" exp="400" />
+		<exp level="8" exp="500" />
+		<exp level="9" exp="600" />
+		<exp level="10" exp="700" />
+		<exp level="11" exp="800" />
+		<exp level="12" exp="900" />
+		<exp level="13" exp="1000" />
+		<exp level="14" exp="1200" />
+		<exp level="15" exp="1400" />
+	</HeroExp>
+
+	<Heros>
+		<Hero Id="10001" InitRank="1" InitLevel="1"/>
+		<Hero Id="10002" InitRank="1" InitLevel="1"/>
+		<Hero Id="10003" InitRank="1" InitLevel="1"/>
+		<Hero Id="10004" InitRank="1" InitLevel="1"/>
+		<Hero Id="10005" InitRank="2" InitLevel="1"/>
+		<Hero Id="10006" InitRank="2" InitLevel="1"/>
+		<Hero Id="10007" InitRank="2" InitLevel="1"/>
+		<Hero Id="10008" InitRank="3" InitLevel="1"/>
+	</Heros>
+</root>

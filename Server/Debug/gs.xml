@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root version="1.0">
+  <!--gameserver监听端口-->
+	<HostServer type="1" id="1">
+	  <bind ip="192.168.1.34" port="8500" type="0"/>
+	</HostServer>
+
+  <!--连接datacenter的端口-->
+  <DataServer>
+    <connect ip="127.0.0.1" port="8600" type="0" />
+  </DataServer>
+
+   <!--连接lobbyserver的端口-->
+  <LobbyServer>
+    <connect ip="127.0.0.1" port="8700" type="0" />
+  </LobbyServer>
+</root>
+

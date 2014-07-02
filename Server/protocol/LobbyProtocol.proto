@@ -1,0 +1,14 @@
+package lobby;
+
+// gamegate向lobbyCenter请求注册
+message RequestRegGameServer
+{
+	optional uint32 gsId = 1;				// gameserver区号
+	optional uint32 gsType = 2;				// gameserver类型
+}
+
+// 返回gamegate注册请求
+message ResponseRegGameServer
+{
+	optional uint32 errCode = 1;			// 错误码
+}

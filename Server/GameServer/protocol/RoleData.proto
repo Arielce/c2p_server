@@ -1,0 +1,14 @@
+package roledata;
+
+// 角色基础数据
+message PBRoleBaseInfo
+{
+	optional uint32 userId = 1;			// 角色ID
+	optional string roleName = 2;		// 角色名
+	optional string ptName = 3;			// 账号名
+	optional uint32 level = 4;			// 等级
+	optional uint32 exp = 5;			// 角色经验
+	optional uint32 diamond = 6;		// 元宝（钻石）
+	optional uint32 gold = 7;			// 金币
+	optional uint32 vipLevel = 8;		// vip等级
+}

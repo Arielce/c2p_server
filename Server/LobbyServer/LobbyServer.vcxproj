@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{8A62165E-76DB-432D-B7EB-6519A03CBCE5}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>LobbyServer</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>D:\boost\boost_1_50_0;D:\Server\protobuf\include;D:\Server\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\boost\libs;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;LOG4CPLUS_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>tinyxml.lib;libprotobuf.lib;log4cplusD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\network\ClientSession.hpp" />
+    <ClInclude Include="..\network\Connection.h" />
+    <ClInclude Include="..\network\header.h" />
+    <ClInclude Include="..\network\IConnection.h" />
+    <ClInclude Include="..\network\IMsgHandler.h" />
+    <ClInclude Include="..\network\IMsgParser.h" />
+    <ClInclude Include="..\network\INetCluster.h" />
+    <ClInclude Include="..\network\ITimerTrigger.h" />
+    <ClInclude Include="..\network\MessageThread.h" />
+    <ClInclude Include="..\network\message_header.h" />
+    <ClInclude Include="..\network\NetCluster.h" />
+    <ClInclude Include="..\network\ServerSession.hpp" />
+    <ClInclude Include="..\network\TimerTrigger.h" />
+    <ClInclude Include="..\network\typedef.h" />
+    <ClInclude Include="..\network\Utility.h" />
+    <ClInclude Include="..\protocol\DataProtocol.h" />
+    <ClInclude Include="..\protocol\DataServer.pb.h" />
+    <ClInclude Include="..\protocol\GameProtocol.h" />
+    <ClInclude Include="..\protocol\GameProtocol.pb.h" />
+    <ClInclude Include="..\protocol\LobbyProtocol.h" />
+    <ClInclude Include="..\protocol\LobbyProtocol.pb.h" />
+    <ClInclude Include="..\protocol\RoleData.pb.h" />
+    <ClInclude Include="..\tinyxml\tinystr.h" />
+    <ClInclude Include="..\tinyxml\tinyxml.h" />
+    <ClInclude Include="ClientMsgHandler.h" />
+    <ClInclude Include="GameGroupMng.h" />
+    <ClInclude Include="GameServerHandler.h" />
+    <ClInclude Include="header.h" />
+    <ClInclude Include="LobbyServer.h" />
+    <ClInclude Include="ServerConfig.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\network\Connection.cpp" />
+    <ClCompile Include="..\network\MessageThread.cpp" />
+    <ClCompile Include="..\network\NetCluster.cpp" />
+    <ClCompile Include="..\network\Utility.cpp" />
+    <ClCompile Include="..\protocol\DataServer.pb.cc" />
+    <ClCompile Include="..\protocol\GameProtocol.pb.cc" />
+    <ClCompile Include="..\protocol\LobbyProtocol.pb.cc" />
+    <ClCompile Include="..\protocol\RoleData.pb.cc" />
+    <ClCompile Include="ClientMsgHandler.cpp" />
+    <ClCompile Include="GameGroupMng.cpp" />
+    <ClCompile Include="GameServerHandler.cpp" />
+    <ClCompile Include="LobbyServer.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="ServerConfig.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

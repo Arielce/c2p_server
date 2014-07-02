@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 被2012 () 使用XMLSpy v编辑的 (http://www.altova.com) by -->
+<root>
+	<Battles>
+		<Battle ID="100">
+			<gate ID="100001" NextID="100002" GateType="0" ExpGet="10" HeroExpGet="100" ApCost="6" TimeLimit="60" PrizePool="1001"/>
+			<gate ID="100002" NextID="100003" GateType="0" ExpGet="10" HeroExpGet="100" ApCost="6" TimeLimit="60" PrizePool="1002"/>
+			<gate ID="100003" NextID="101001" GateType="0" ExpGet="10" HeroExpGet="100" ApCost="6" TimeLimit="60" PrizePool="1003"/>
+		</Battle>
+
+		<Battle ID="101">
+			<gate ID="101001" NextID="101002" GateType="0" ExpGet="10" HeroExpGet="100" ApCost="6" TimeLimit="60" PrizePool="1004"/>
+			<gate ID="101002" NextID="101003" GateType="0" ExpGet="10" HeroExpGet="100" ApCost="6" TimeLimit="60" PrizePool="1005"/>
+			<gate ID="101003" NextID="0" GateType="0"  ExpGet="10" HeroExpGet="100" ApCost="6" TimeLimit="60"  PrizePool="0"/>
+		</Battle>
+	</Battles>
+</root>

@@ -1,0 +1,57 @@
+package gtod;
+import "RoleData.proto";
+
+// 请求创建角色
+message SRequestCreateRole
+{
+	optional string ptName = 1;				// 角色pt账号
+	optional string roleName = 2;			// 角色名
+}
+
+// 返回创建角色结果
+message SResponseCreateRole
+{
+	optional string ptName = 1;				// 角色pt账号
+	optional uint32 errCode = 2;			// 错误码
+}
+
+// 请求角色数据
+message SRequestRoleData
+{
+	optional string ptName = 1;							// 角色pt账号
+}
+
+// 返回角色数据
+message SResponseRoleData
+{
+	optional uint32 errCode = 1;						// 错误码
+	optional roledata.PBRoleTotalInfo roleData = 2;		// 玩家角色信息
+}
+
+// 请求保存数据
+message SRequestSaveRoleData
+{
+	optional string ptName = 1;							// 角色pt账号
+	optional roledata.PBRoleTotalInfo roleData = 2;		// 角色数据
+}
+
+// 保存数据结果
+message SResponseSaveRoleData
+{
+	optional string ptName = 1;							// 角色pt账号
+	optional uint32 errCode = 2;						// 错误码
+}
+
+// 请求角色数据版本号
+message SRequestRoleDataVersion
+{
+	optional string ptName = 1;							// 角色pt账号
+}
+
+// 返回角色数据版本号
+message SResponseRoleDataVersion
+{
+	optional string ptName = 1;							// 角色pt账号
+	optional uint32 dataVersion = 2;					// 数据版本
+	optional uint32 errCode = 3;						// 错误码
+}

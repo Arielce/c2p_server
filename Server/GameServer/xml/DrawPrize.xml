@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--关卡通关奖励池-->
+<root>
+	<PrizePools>
+		<PrizePool id="1">
+			<!--所有物品概率的总和100000-->
+			<prize id="10001" num="1" probability="10000"/>
+			<prize id="10002" num="2" probability="10000"/>
+			<prize id="10003" num="3" probability="10000"/>
+			<prize id="10004" num="4" probability="10000"/>
+			<prize id="10005" num="5" probability="10000"/>
+			<prize id="10006" num="6" probability="10000"/>
+			<prize id="10007" num="7" probability="10000"/>
+			<prize id="10008" num="8" probability="10000"/>
+			<prize id="10009" num="9" probability="10000"/>
+			<prize id="10010" num="10" probability="10000"/>
+		</PrizePool>
+
+		<PrizePool id="2">
+			<!--所有物品概率的总和100000-->
+			<prize id="10001" num="1" probability="10000"/>
+			<prize id="10002" num="2" probability="10000"/>
+			<prize id="10003" num="3" probability="10000"/>
+			<prize id="10004" num="4" probability="10000"/>
+			<prize id="10005" num="5" probability="10000"/>
+			<prize id="10006" num="6" probability="10000"/>
+			<prize id="10007" num="7" probability="10000"/>
+			<prize id="10008" num="8" probability="10000"/>
+			<prize id="10009" num="9" probability="10000"/>
+			<prize id="10010" num="10" probability="10000"/>
+		</PrizePool>
+	</PrizePools>
+
+	<DrawPrize>
+		<!-- drawType:抽奖类型 costType:抽奖消耗的类型 costNum:消耗的数量 drawTimes:抽奖次数 maxDrawTimes:最大可以抽奖次数 deadline:抽奖最终时间 poolId:奖池ID -->
+		<draw id="1" drawType="1" costType="1" costNum="100" drawTimes="1" maxDrawTimes="-1" deadline="0" poolId="1" />
+		<draw id="2" drawType="1" costType="1" costNum="900" drawTimes="10" maxDrawTimes="-1" deadline="0" poolId="1" />
+		<draw id="3" drawType="2" costType="1" costNum="100" drawTimes="1" maxDrawTimes="-1" deadline="0" poolId="2" />
+		<draw id="4" drawType="2" costType="1" costNum="900" drawTimes="10" maxDrawTimes="-1" deadline="0" poolId="2" />
+	</DrawPrize>
+</root>

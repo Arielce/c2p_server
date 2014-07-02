@@ -1,0 +1,7 @@
+package scmd;
+
+// 请求停止服务器
+message RequestStopServer
+{
+    optional uint32 serverId = 1;           // 服务器ID
+}

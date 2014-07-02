@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<!--消耗类物品-->
+	<HeroExpMedicine>
+		<!-- type 类型；value 数值 -->
+		<Medicine id="1" type="1" value="100"/>
+		<Medicine id="2" type="1" value="200"/>
+		<Medicine id="3" type="1" value="500"/>
+	</HeroExpMedicine>
+
+	<!--扫荡卷-->
+	<SweepTicket>
+		<ticket id="4" type="5" value="0"/>
+	</SweepTicket>
+
+	<!--卷轴类物品-->
+	<ScrollBook>
+		<scroll id="10" type="2" />
+		<scroll id="11" type="2" />
+	</ScrollBook>
+
+	<!--装备类物品-->
+	<Equips>
+		<Equip id="10001" type="3" levelLimit="2" strength="1" intelligence="1" agility="1" attack="2" hp="10" hpRecover="0" mpRecover="0"/>
+		<Equip id="10002" type="3" levelLimit="2" strength="1" intelligence="1" agility="1" attack="2" hp="10" hpRecover="0" mpRecover="0"/>
+		<Equip id="10003" type="3" levelLimit="2" strength="1" intelligence="1" agility="1" attack="2" hp="10" hpRecover="0" mpRecover="0"/>
+		<Equip id="10004" type="3" levelLimit="2" strength="1" intelligence="1" agility="1" attack="2" hp="10" hpRecover="0" mpRecover="0"/>
+		<Equip id="10005" type="3" levelLimit="2" strength="1" intelligence="1" agility="1" attack="2" hp="10" hpRecover="0" mpRecover="0"/>
+		<Equip id="10006" type="3" levelLimit="2" strength="1" intelligence="1" agility="1" attack="2" hp="10" hpRecover="0" mpRecover="0"/>
+		<Equip id="10007" type="3" levelLimit="2" strength="1" intelligence="1" agility="1" attack="2" hp="10" hpRecover="0" mpRecover="0"/>
+		<Equip id="10008" type="3" levelLimit="2" strength="1" intelligence="1" agility="1" attack="2" hp="10" hpRecover="0" mpRecover="0"/>
+		<Equip id="10009" type="3" levelLimit="2" strength="1" intelligence="1" agility="1" attack="2" hp="10" hpRecover="0" mpRecover="0"/>
+		<Equip id="10010" type="3" levelLimit="2" strength="1" intelligence="1" agility="1" attack="2" hp="10" hpRecover="0" mpRecover="0"/>
+	</Equips>
+</root>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<!--装备合成公式-->
+	<Equips>
+		<Equip id="10009" goldNeed="1000" srollId="10" EquipList="10002:2, 10003, 10004" />
+		<Equip id="10010" goldNeed="1000" srollId="10" EquipList="10002:2, 10003, 10004" />
+	</Equips>
+</root>

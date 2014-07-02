@@ -1,0 +1,171 @@
+package ctos;
+import "RoleData.proto";
+
+// 玩家请求区组列表
+message RequestGameGroups
+{
+	optional uint32 clientType = 1;		// 客户端类型(暂时没用)
+}
+
+// 区组列表
+message PBGameGroup
+{
+	optional string ip = 1;				// 区组IP
+	optional uint32 port = 2;			// 区组Port
+	optional uint32 index = 3;			// 区组号
+}
+
+// 服务器返回区组列表
+message ResponseGameGroups
+{
+	repeated PBGameGroup groups = 1;		// 区组列表
+}
+
+// 请求执行GM指令
+message RequestProcGMCommand
+{
+	optional uint32 userId = 1;				// 玩家ID
+	optional string command = 2;			// 指令
+}
+
+// 重连，或者首次进入游戏，验证Token
+message RequestVerifyToken
+{
+	optional string ptName = 1;				// 玩家PT
+	optional uint32 token = 2;				// 安全token
+}
+
+message ResponseVerifyToken
+{
+	optional uint32 errCode = 1;			// 错误码
+}
+
+// 请求创建角色
+message RequestCreateRole
+{
+	optional string ptName = 1;				// 角色pt账号
+	optional string roleName = 2;			// 角色名
+}
+
+// 返回创建角色结果
+message ResponseCreateRole
+{
+	optional uint32 errCode = 1;			// 错误码
+}
+
+// 请求角色数据
+message RequestRoleData
+{
+	optional string ptName = 1;				// 角色pt账号
+}
+
+// 返回角色数据
+message ResponseRoleData
+{
+	optional uint32 errCode = 1;						// 错误码
+	optional roledata.PBRoleTotalInfo roleData = 2;		// 玩家角色信息
+}
+
+// 玩家请求进入关卡
+message RequestEnterGate
+{
+	optional uint32 userId = 1;				// 玩家ID
+	optional uint32 gateId = 2;				// 关卡ID
+	repeated uint64 heros = 3;				// 进入关卡的英雄
+}
+
+// 返回请求进入关卡结果
+message ResponseEnterGate
+{
+	optional uint32 errCode = 1;			// 错误码
+}
+
+// 玩家请求关卡结果
+message RequestFinishGate
+{
+	optional uint32 userId = 1;				// 玩家ID
+	optional uint32 gateId = 2;				// 关卡ID
+	optional uint32 result = 3;				// 通关结果
+}
+
+// 返回请求关卡结果
+message ResponseFinishiGate
+{
+	optional uint32 errCode = 1;			// 错误码
+	optional uint32 expGet = 2;				// 玩家获到的经验
+	optional uint32 heroExpGet = 3;			// 英雄获到的经验
+}
+
+// 玩家请求给英雄穿装备
+message RequestHeroDressEquip
+{
+	optional uint32 userId = 1;				// 玩家ID
+	optional uint64 heroUUID = 2;			// 英雄UUID
+	optional uint32 equipId = 3;			// 装备ID
+}
+
+// 返回穿戴装备结果
+message ResponseHeroDressEquip
+{
+	optional uint32 errCode = 1;			// 错误码
+}
+
+// 给英雄升级别，（从绿到蓝）
+message RequestUpgradeHero
+{
+	optional uint32 userId = 1;				// 玩家ID
+	optional uint32 heroUUID = 2;			// 英雄UUID
+}
+
+// 返回英雄升级结果
+message ResponseUpgradeHero
+{
+	optional uint32 errCode = 1;			// 错误码
+}
+
+// 请求合成装备
+message RequestCompoundEquip
+{
+	optional uint32 userId = 1;				// 玩家ID
+	optional uint32 targetEquipId = 2;		// 目标装备ID
+}
+
+// 返回合成装备结果
+message ResponseCompoundEquip
+{
+	optional uint32 errCode = 1;			// 错误码
+}
+
+// 玩家请求抽奖列表
+message RequestDrawPrizeList
+{
+	optional uint32 userId = 1;				//  玩家ID
+}
+
+// 返回玩家抽奖列表
+message ResponseDrawPrizeList
+{
+	optional uint32 errCode = 1;			// 错误码
+	repeated uint32 drawList = 2;			// 抽奖列表ID 
+}
+
+// 玩家请求抽奖
+message RequestDrawPrize
+{
+	optional uint32 userId = 1;				// 玩家ID
+	optional uint32 drawId = 2;				// 抽奖目标ID
+}
+
+// 抽奖获取的奖品
+message PBDrawPrize
+{
+	optional uint32 prizeId = 1;			// 奖品ID
+	optional uint32 prizeNum = 2;			// 奖品数量
+}
+
+// 返回抽奖结果
+message ResponseDrawPrize
+{
+	optional uint32 errCode = 1;			// 错误码
+	repeated PBDrawPrize prizeList = 2;		// 奖品列表
+}

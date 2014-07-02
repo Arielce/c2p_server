@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<InitPlayerData>
+		<PlayerData Level="1" Exp="0" Ap="100" Gold="10000" Diamond="100" GateId="100001"/>
+		<Hero Hero1="10001" Hero2="10002" Hero3="10003"/>
+	</InitPlayerData>
+</root>

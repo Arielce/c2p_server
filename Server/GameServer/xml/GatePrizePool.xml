@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--关卡通关奖励池-->
+<root>
+	<GatePrizePool>
+		<!--所有物品的最大概率为10000-->
+		<pool id="1001" prize="10001:10000, 10002, 10003:5000" />
+		<pool id="1002" prize="10001" />
+		<pool id="1003" prize="10001:10000" />
+		<pool id="1004" prize="10001:10000, 10002:1000, 10003:5000" />
+	</GatePrizePool>
+</root>

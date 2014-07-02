@@ -1,0 +1,78 @@
+package roledata;
+
+// 玩家所有数据信息
+message PBRoleTotalInfo
+{
+	optional PBRoleBaseInfo baseInfo = 1;	// 玩家级别数据
+	optional PBRoleBag bagInfo = 2;			// 玩家包裹信息
+	// to add new data here
+}
+
+// 角色基础数据
+message PBRoleBaseInfo
+{
+	optional uint32 userId = 1;				// 角色ID
+	optional uint32 dataVersion = 2;		// 数据版本
+	optional string roleName = 3;			// 角色名
+	optional string ptName = 4;				// 账号名
+	optional uint32 level = 5;				// 等级
+	optional uint32 exp = 6;				// 角色经验
+	optional uint32 diamond = 7;			// 元宝（钻石）
+	optional uint32 gold = 8;				// 金币
+	optional uint32 vipLevel = 9;			// vip等级
+	optional PBHeroList heroList = 10;		// 英雄列表
+	optional PBBattleGateList battleGateList = 11;	// 关卡信息
+}
+
+// 玩家物品
+message PBEquip
+{
+	optional uint32 equipId = 1;			// 装备ID
+	optional uint32 equipNum = 3;			// 装备数量
+}
+
+// 英雄信息
+message PBHero
+{
+	optional uint32 heroId = 1;				// 英雄编号
+	optional uint64 heroUUID = 2;			// 英雄实例编号
+	optional uint32 level = 3;				// 等级
+	optional uint32 exp = 4;				// 等级
+	optional uint32 heroRank = 5;			// 英雄星级
+	optional uint32 upgradeLevel = 6;		// 进化级别
+	optional uint32 fragmentNum = 7;		// 碎片数量
+	repeated PBEquip equips = 8;			// 英雄装备
+}
+
+// 英雄列表
+message PBHeroList
+{
+	repeated PBHero heros = 1;				// 英雄列表
+}
+
+// 玩家包裹信息
+message PBRoleBag
+{
+	repeated PBEquip equips = 1;		// 装备
+}
+
+// 关卡信息
+message PBGateInfo
+{
+	optional uint32 gateId = 1;				// 关卡ID
+	optional uint32 gateStar = 2;			// 关卡得星
+	optional bool hasFight = 3;				// 是否战斗过
+}
+
+// 大关卡信息
+message PBBattleInfo
+{
+	optional uint32 battleId = 1;			// 大关卡ID
+	repeated PBGateInfo gates = 2;			// 玩家可以战斗的关卡列表
+}
+
+// 玩家可以战斗的所有关卡信息
+message PBBattleGateList
+{
+	repeated PBBattleInfo battleGates = 1;	// 可以战斗的关卡信息
+}

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 被2012 () 使用XMLSpy v编辑的 (http://www.altova.com) by -->
+<!-- 玩家角色升级表 -->
+<root>
+	<levelInfo>
+		<level ID="1" ExpNeed="600" MaxAp="80"/>
+		<level ID="2" ExpNeed="750" MaxAp="81"/>
+		<level ID="3" ExpNeed="960" MaxAp="82"/>
+		<level ID="4" ExpNeed="1240" MaxAp="83"/>
+		<level ID="5" ExpNeed="1600" MaxAp="84"/>
+		<level ID="6" ExpNeed="2050" MaxAp="85"/>
+		<level ID="7" ExpNeed="2600" MaxAp="86"/>
+		<level ID="8" ExpNeed="3260" MaxAp="87"/>
+		<level ID="9" ExpNeed="4040" MaxAp="88"/>
+		<level ID="10" ExpNeed="4950" MaxAp="89"/>
+		<level ID="11" ExpNeed="6000" MaxAp="90"/>
+		<level ID="12" ExpNeed="7200" MaxAp="91"/>
+		<level ID="13" ExpNeed="8560" MaxAp="92"/>
+		<level ID="14" ExpNeed="10090" MaxAp="93"/>
+		<level ID="15" ExpNeed="11800" MaxAp="94"/>
+		<level ID="16" ExpNeed="13700" MaxAp="95"/>
+		<level ID="17" ExpNeed="15800" MaxAp="96"/>
+		<level ID="18" ExpNeed="18110" MaxAp="97"/>
+		<level ID="19" ExpNeed="20640" MaxAp="98"/>
+		<level ID="20" ExpNeed="23400" MaxAp="99"/>
+	</levelInfo>
+</root>

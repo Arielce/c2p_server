@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--гЂал-->
+<root>
+	<UpgradeEquips>
+		<upgrade id="1" equips="10001, 10001, 10001, 10002, 10002, 10003" />
+		<upgrade id="2" equips="10001, 10001, 10001, 10002, 10002, 10003" />
+		<upgrade id="3" equips="10001, 10001, 10001, 10002, 10002, 10003" />
+		<upgrade id="4" equips="10001, 10001, 10001, 10002, 10002, 10003" />
+		<upgrade id="5" equips="10001, 10001, 10001, 10002, 10002, 10003" />
+		<upgrade id="6" equips="10001, 10001, 10001, 10002, 10002, 10003" />
+		<upgrade id="7" equips="10001, 10001, 10001, 10002, 10002, 10003" />
+		<upgrade id="8" equips="10001, 10001, 10001, 10002, 10002, 10003" />
+	</UpgradeEquips>
+
+	<HeroUpgrade>
+		<hero id="10001" upgrades="1,2,3,4,5,6,7" />
+		<hero id="10002" upgrades="1,2,3,4,5,6,7" />
+		<hero id="10003" upgrades="1,2,3,4,5,6,7" />
+		<hero id="10004" upgrades="1,2,3,4,5,6,7" />
+		<hero id="10005" upgrades="1,2,3,4,5,6,7" />
+	</HeroUpgrade>
+</root>

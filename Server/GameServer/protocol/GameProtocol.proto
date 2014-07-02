@@ -1,0 +1,12 @@
+package ctos;
+import "RoleData.proto";
+
+message RequestRoleData
+{
+	optional string ptName = 1;		// 角色pt账号
+}
+
+message ResponseRoleData
+{
+	optional roledata.PBRoleBaseInfo roleData = 1;		// 玩家角色信息
+}
