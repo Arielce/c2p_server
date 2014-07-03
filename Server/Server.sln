@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DataServer", "DataServer\Da
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LobbyServer", "LobbyServer\LobbyServer.vcxproj", "{8A62165E-76DB-432D-B7EB-6519A03CBCE5}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestNetwork", "TestNetwork\TestNetwork.vcxproj", "{40DBDC82-F37E-464C-8CCC-B7331E8B0C8B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -25,11 +27,12 @@ Global
 		{8A62165E-76DB-432D-B7EB-6519A03CBCE5}.Debug|Win32.Build.0 = Debug|Win32
 		{8A62165E-76DB-432D-B7EB-6519A03CBCE5}.Release|Win32.ActiveCfg = Release|Win32
 		{8A62165E-76DB-432D-B7EB-6519A03CBCE5}.Release|Win32.Build.0 = Release|Win32
+		{40DBDC82-F37E-464C-8CCC-B7331E8B0C8B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{40DBDC82-F37E-464C-8CCC-B7331E8B0C8B}.Debug|Win32.Build.0 = Debug|Win32
+		{40DBDC82-F37E-464C-8CCC-B7331E8B0C8B}.Release|Win32.ActiveCfg = Release|Win32
+		{40DBDC82-F37E-464C-8CCC-B7331E8B0C8B}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(Performance) = preSolution
-		HasPerformanceSessions = true
 	EndGlobalSection
 EndGlobal

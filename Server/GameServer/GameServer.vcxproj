@@ -41,8 +41,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>D:\boost\boost_1_50_0;D:\Server\protobuf\include;D:\Server\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\boost\libs;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\boost\boost_1_50_0;..\protobuf\include;..\include;D:\boost_1_50_0;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\boost\libs;D:\boost\boost_1_52_0\bin\vc11\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
