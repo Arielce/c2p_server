@@ -202,7 +202,7 @@ void PlayerMng::ProcReq(IConnection* pConn, MessageHeader* pMsgHeader)
 			_RequestCreateRole(pConn, pMsgHeader);
 		}
 		break;
-	case ID_REQ_RequestRoleData:
+	case ID_REQ_RequestRoleData:			// 请求角色数据
 		{
 			_RequestRoleData(pConn, pMsgHeader);
 		}
