@@ -5,3 +5,16 @@ message RequestStopServer
 {
     optional uint32 serverId = 1;           // 服务器ID
 }
+
+// 请求重载配置文件
+message RequestReloadConf
+{
+	optional uint32 serverId = 1;			// 服务器ID
+	optional string confFile = 2;			// 配置文件名
+}
+
+// 重载配置结果
+message ResponseReloadConf
+{
+	optional uint32 errCode = 1;			// 错误码
+}

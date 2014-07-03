@@ -130,6 +130,7 @@
     <ClInclude Include="redis\anet.h" />
     <ClInclude Include="redis\fmacros.h" />
     <ClInclude Include="redis\redisclient.h" />
+    <ClInclude Include="ReloadConfigure.h" />
     <ClInclude Include="ServerConfig.h" />
     <ClInclude Include="ServerStatus.h" />
   </ItemGroup>
@@ -160,6 +161,7 @@
     <ClCompile Include="PlayerDataGetter.cpp" />
     <ClCompile Include="PlayerMng.cpp" />
     <ClCompile Include="redis\anet.cpp" />
+    <ClCompile Include="ReloadConfigure.cpp" />
     <ClCompile Include="ServerConfig.cpp" />
     <ClCompile Include="ServerStatus.cpp" />
   </ItemGroup>

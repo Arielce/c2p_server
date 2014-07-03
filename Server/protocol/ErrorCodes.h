@@ -9,6 +9,9 @@ enum
 {
 	ERROR_OP_SUCCESS			= 0,		// 成功
 
+	// 系统类错误
+	ERROR_RELOAD_CONFIGURE_FAIL,			// 重载配置失败
+
 	// 角色类错误
 	ERROR_PTNAME_HAS_CREATE_ROLE,			// 已经创建过角色了
 	ERROR_ROLENAME_EXIST,					// 角色名已经存在

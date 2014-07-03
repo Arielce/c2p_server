@@ -223,7 +223,7 @@ bool GateChecker::IsGateValid(Player* pPlayer, uint32_t uGateId)
 {
 	if (!pPlayer->CanEnterGate(uGateId))
 	{
-		cout << "player " << pPlayer->RoleName() << " cannot enter gate id=" << uGateId << endl;
+		ERRORLOG("player " << pPlayer->RoleName() << " cannot enter gate id=" << uGateId);
 		return false;
 	}
 	return true;

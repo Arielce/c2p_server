@@ -3,12 +3,9 @@
 #include "CmdHandler.h"
 #include "ClientHandler.h"
 #include "DsHandler.h"
-#include "PlayerMng.h"
 #include "LobbyHandler.h"
-#include "GateController.h"
-#include "HeroMng.h"
-#include "GoodsMng.h"
-#include "DrawPrizeMng.h"
+#include "ReloadConfigure.h"
+#include "PlayerMng.h"
 
 bool GameServer::Init(const char* pConfPath)
 {
@@ -86,7 +83,8 @@ bool GameServer::InitServerApp()
 	{
 		return false;
 	}
-	m_pNetCluster->SetLogConf("./log.properties");
+	m_pNetCluster->SetLogConf("./net.properties");
+	m_pNetCluster->SetNetThreadNum(4);
 	if (!m_pNetCluster->Init())
 	{
 		return false;
@@ -102,7 +100,7 @@ bool GameServer::InitServerApp()
 	ClientMsgParser* clientMsgParser = new ClientMsgParser;
 	m_pServerSession->SetMsgParser(clientMsgParser);
 	m_pServerSession->SetMsgHandler(clientHandler);
-	m_pServerSession->SetBufSize(12, 4096);
+	m_pServerSession->SetBufSize(12, 40960);
 	m_pServerSession->Listen(gpServerConfig->GetGsBindIp(), gpServerConfig->GetGsBindPort());
 	return true;
 }
@@ -119,7 +117,7 @@ bool GameServer::InitCmdListen()
 	ClientMsgParser* pClientMsgParser = new ClientMsgParser();
 	m_pCmdSession->SetMsgParser(pClientMsgParser);
 	m_pCmdSession->SetMsgHandler(pCmdHandler);
-	m_pCmdSession->SetBufSize(12, 4096);
+	m_pCmdSession->SetBufSize(12, 40960);
 	m_pCmdSession->Listen(gpServerConfig->GetCmdIp(), gpServerConfig->GetCmdPort());
 	return true;
 }
@@ -136,7 +134,7 @@ bool GameServer::InitDataServer()
 	ClientMsgParser* clientMsgParser = new ClientMsgParser;
 	m_pDsSession->SetMsgParser(clientMsgParser);
 	m_pDsSession->SetMsgHandler(pDsHandler);
-	m_pDsSession->SetBufSize(12, 4096);
+	m_pDsSession->SetBufSize(12, 40960);
 
 	m_pDsSession->Connect(gpServerConfig->GetDsIp(), gpServerConfig->GetDsPort());
 	g_pDsSession = m_pDsSession;
@@ -155,7 +153,7 @@ bool GameServer::InitLobbyServer()
 	ClientMsgParser* clientMsgParser = new ClientMsgParser;
 	m_pLobbySession->SetMsgParser(clientMsgParser);
 	m_pLobbySession->SetMsgHandler(pLobbyHandler);
-	m_pLobbySession->SetBufSize(12, 4096);
+	m_pLobbySession->SetBufSize(12, 40960);
 
 	m_pLobbySession->Connect(gpServerConfig->GetLobbyIp(), gpServerConfig->GetLobbyPort());
 	g_pLobbySession = m_pLobbySession;
@@ -176,42 +174,10 @@ bool GameServer::InitTimerTrigger()
 
 bool GameServer::InitLoadConf()
 {
-	if (!gpPlayerMng->LoadPlayerInitConf())				// InitPlayerData.xml
+	ConfigureReloador reloador;
+	if (!reloador.ReloadConf())
 	{
 		return false;
 	}
-	if (!gpPlayerMng->LoadPlayerLevelConf())			// PlayerLevel.xml
-	{
-		return false;
-	}
-	if (!gpGoodsMng->LoadGoodsConf())					// Goods.xml
-	{
-		return false;
-	}
-	if (!gpGoodsMng->LoadEquipCompound())				// EquipCompound.xml
-	{
-		return false;
-	}
-	if (!gpGateController->LoadBattleGateConf())		// BattleGate.xml
-	{
-		return false;
-	}
-	if (!gpGateController->LoadGatePrizePool())			// GatePrizePool.xml
-	{
-		return false;
-	}
-	if (!gpHeroMng->LoadHeroConf())						// Hero.xml
-	{
-		return false;
-	}
-	if (!gpHeroMng->LoadHeroUpgrade())					// HeroUpgrade.xml
-	{
-		return false;
-	}
-	if (!gpDrawPrizeMng->LoadDrawPrzieConf())			// DrawPrize.xml
-	{
-		return false;
-	}
-
 	return true;
 }

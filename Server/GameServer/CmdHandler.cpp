@@ -2,7 +2,9 @@
 #include "../protocol/ServerCmd.pb.h"
 #include "../network/Utility.h"
 #include "../protocol/CmdProtocol.h"
+#include "../protocol/ErrorCodes.h"
 #include "GameServer.h"
+#include "ReloadConfigure.h"
 
 void CmdHandler::HandleConnect(IConnection* pConn, const BoostErrCode& error)
 {
@@ -39,7 +41,7 @@ void CmdHandler::HandleRecv(IConnection* pConn, const char* pBuf, uint32_t uLen)
 	MessageHeader* pMsgHeader = (MessageHeader*)pBuf;
 	switch (pMsgHeader->uMsgCmd)
 	{
-	case ID_REQ_RequestStop:
+	case ID_REQ_RequestStop:									// 请求停止服务器
 		{
 			scmd::RequestStopServer stopServerReq;
 			stopServerReq.ParseFromString(GetProtoData(pMsgHeader));
@@ -52,8 +54,38 @@ void CmdHandler::HandleRecv(IConnection* pConn, const char* pBuf, uint32_t uLen)
 			}
 		}
 		break;
+	case ID_REQ_RequestReloadConf:								// 热加载配置
+		{
+			scmd::RequestReloadConf reloadConfReq;
+			reloadConfReq.ParseFromString(GetProtoData(pMsgHeader));
+		
+			_ReloadConfigure(pConn, reloadConfReq.conffile());			// 重载配置文件
+		}
+		break;
 	default:
 		break;
 	}
 }
 
+void CmdHandler::_ReloadConfigure(IConnection* pConn, const string& strFileName)
+{
+	scmd::ResponseReloadConf reloadConfAck;
+	ConfigureReloador reloader;
+	const char* pFileName = NULL;
+	if (strFileName != "")
+	{
+		pFileName = strFileName.c_str();
+	}
+	
+	reloadConfAck.set_errcode(ERROR_OP_SUCCESS);
+	if (!reloader.ReloadConf(pFileName))
+	{
+		reloadConfAck.set_errcode(ERROR_RELOAD_CONFIGURE_FAIL);
+	}
+
+	string strMessage;
+	BuildResponseProto<scmd::ResponseReloadConf>(reloadConfAck, strMessage, ID_REQ_RequestReloadConf);
+
+	pConn->SendMsg(strMessage.c_str(), strMessage.size());
+	return;
+}

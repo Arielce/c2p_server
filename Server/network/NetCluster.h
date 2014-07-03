@@ -25,6 +25,7 @@ namespace cpnet
 		}
 
 	public:
+		virtual void SetNetThreadNum(uint32_t uThreadNum);
 		virtual IClientSession* CreateClientSession();
 		virtual IServerSession* CreateServerSession();
 		virtual ITimerTrigger* CreateTimerTrigger();
@@ -36,6 +37,8 @@ namespace cpnet
 	private:
 		BoostIoService m_ioService;
 		BoostStrand m_strand;
+
+		uint32_t m_uThreadNum;
 		string m_strLogProp;
 	};
 }

@@ -33,6 +33,8 @@ void protobuf_AssignDesc_ServerCmd_2eproto();
 void protobuf_ShutdownFile_ServerCmd_2eproto();
 
 class RequestStopServer;
+class RequestReloadConf;
+class ResponseReloadConf;
 
 // ===================================================================
 
@@ -116,6 +118,184 @@ class RequestStopServer : public ::google::protobuf::Message {
   void InitAsDefaultInstance();
   static RequestStopServer* default_instance_;
 };
+// -------------------------------------------------------------------
+
+class RequestReloadConf : public ::google::protobuf::Message {
+ public:
+  RequestReloadConf();
+  virtual ~RequestReloadConf();
+  
+  RequestReloadConf(const RequestReloadConf& from);
+  
+  inline RequestReloadConf& operator=(const RequestReloadConf& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const RequestReloadConf& default_instance();
+  
+  void Swap(RequestReloadConf* other);
+  
+  // implements Message ----------------------------------------------
+  
+  RequestReloadConf* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const RequestReloadConf& from);
+  void MergeFrom(const RequestReloadConf& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // optional uint32 serverId = 1;
+  inline bool has_serverid() const;
+  inline void clear_serverid();
+  static const int kServerIdFieldNumber = 1;
+  inline ::google::protobuf::uint32 serverid() const;
+  inline void set_serverid(::google::protobuf::uint32 value);
+  
+  // optional string confFile = 2;
+  inline bool has_conffile() const;
+  inline void clear_conffile();
+  static const int kConfFileFieldNumber = 2;
+  inline const ::std::string& conffile() const;
+  inline void set_conffile(const ::std::string& value);
+  inline void set_conffile(const char* value);
+  inline void set_conffile(const char* value, size_t size);
+  inline ::std::string* mutable_conffile();
+  inline ::std::string* release_conffile();
+  
+  // @@protoc_insertion_point(class_scope:scmd.RequestReloadConf)
+ private:
+  inline void set_has_serverid();
+  inline void clear_has_serverid();
+  inline void set_has_conffile();
+  inline void clear_has_conffile();
+  
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  
+  ::std::string* conffile_;
+  ::google::protobuf::uint32 serverid_;
+  
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
+  
+  friend void  protobuf_AddDesc_ServerCmd_2eproto();
+  friend void protobuf_AssignDesc_ServerCmd_2eproto();
+  friend void protobuf_ShutdownFile_ServerCmd_2eproto();
+  
+  void InitAsDefaultInstance();
+  static RequestReloadConf* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class ResponseReloadConf : public ::google::protobuf::Message {
+ public:
+  ResponseReloadConf();
+  virtual ~ResponseReloadConf();
+  
+  ResponseReloadConf(const ResponseReloadConf& from);
+  
+  inline ResponseReloadConf& operator=(const ResponseReloadConf& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const ResponseReloadConf& default_instance();
+  
+  void Swap(ResponseReloadConf* other);
+  
+  // implements Message ----------------------------------------------
+  
+  ResponseReloadConf* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const ResponseReloadConf& from);
+  void MergeFrom(const ResponseReloadConf& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // optional uint32 errCode = 1;
+  inline bool has_errcode() const;
+  inline void clear_errcode();
+  static const int kErrCodeFieldNumber = 1;
+  inline ::google::protobuf::uint32 errcode() const;
+  inline void set_errcode(::google::protobuf::uint32 value);
+  
+  // @@protoc_insertion_point(class_scope:scmd.ResponseReloadConf)
+ private:
+  inline void set_has_errcode();
+  inline void clear_has_errcode();
+  
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  
+  ::google::protobuf::uint32 errcode_;
+  
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+  
+  friend void  protobuf_AddDesc_ServerCmd_2eproto();
+  friend void protobuf_AssignDesc_ServerCmd_2eproto();
+  friend void protobuf_ShutdownFile_ServerCmd_2eproto();
+  
+  void InitAsDefaultInstance();
+  static ResponseReloadConf* default_instance_;
+};
 // ===================================================================
 
 
@@ -143,6 +323,116 @@ inline ::google::protobuf::uint32 RequestStopServer::serverid() const {
 inline void RequestStopServer::set_serverid(::google::protobuf::uint32 value) {
   set_has_serverid();
   serverid_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// RequestReloadConf
+
+// optional uint32 serverId = 1;
+inline bool RequestReloadConf::has_serverid() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void RequestReloadConf::set_has_serverid() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void RequestReloadConf::clear_has_serverid() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void RequestReloadConf::clear_serverid() {
+  serverid_ = 0u;
+  clear_has_serverid();
+}
+inline ::google::protobuf::uint32 RequestReloadConf::serverid() const {
+  return serverid_;
+}
+inline void RequestReloadConf::set_serverid(::google::protobuf::uint32 value) {
+  set_has_serverid();
+  serverid_ = value;
+}
+
+// optional string confFile = 2;
+inline bool RequestReloadConf::has_conffile() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void RequestReloadConf::set_has_conffile() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void RequestReloadConf::clear_has_conffile() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void RequestReloadConf::clear_conffile() {
+  if (conffile_ != &::google::protobuf::internal::kEmptyString) {
+    conffile_->clear();
+  }
+  clear_has_conffile();
+}
+inline const ::std::string& RequestReloadConf::conffile() const {
+  return *conffile_;
+}
+inline void RequestReloadConf::set_conffile(const ::std::string& value) {
+  set_has_conffile();
+  if (conffile_ == &::google::protobuf::internal::kEmptyString) {
+    conffile_ = new ::std::string;
+  }
+  conffile_->assign(value);
+}
+inline void RequestReloadConf::set_conffile(const char* value) {
+  set_has_conffile();
+  if (conffile_ == &::google::protobuf::internal::kEmptyString) {
+    conffile_ = new ::std::string;
+  }
+  conffile_->assign(value);
+}
+inline void RequestReloadConf::set_conffile(const char* value, size_t size) {
+  set_has_conffile();
+  if (conffile_ == &::google::protobuf::internal::kEmptyString) {
+    conffile_ = new ::std::string;
+  }
+  conffile_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* RequestReloadConf::mutable_conffile() {
+  set_has_conffile();
+  if (conffile_ == &::google::protobuf::internal::kEmptyString) {
+    conffile_ = new ::std::string;
+  }
+  return conffile_;
+}
+inline ::std::string* RequestReloadConf::release_conffile() {
+  clear_has_conffile();
+  if (conffile_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
+  } else {
+    ::std::string* temp = conffile_;
+    conffile_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
+}
+
+// -------------------------------------------------------------------
+
+// ResponseReloadConf
+
+// optional uint32 errCode = 1;
+inline bool ResponseReloadConf::has_errcode() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void ResponseReloadConf::set_has_errcode() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void ResponseReloadConf::clear_has_errcode() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void ResponseReloadConf::clear_errcode() {
+  errcode_ = 0u;
+  clear_has_errcode();
+}
+inline ::google::protobuf::uint32 ResponseReloadConf::errcode() const {
+  return errcode_;
+}
+inline void ResponseReloadConf::set_errcode(::google::protobuf::uint32 value) {
+  set_has_errcode();
+  errcode_ = value;
 }
 
 

@@ -10,7 +10,6 @@ using namespace log4cplus;
 using namespace log4cplus::helpers;
 
 Logger g_gsLog = Logger::getInstance(LOG4CPLUS_TEXT("ALL_MSGS"));
-//Logger g_clientLog = Logger::getInstance(LOG4CPLUS_TEXT("CLIENTLOG"));
 IClientSession* g_pDsSession = NULL;
 IClientSession* g_pLobbySession = NULL;
 

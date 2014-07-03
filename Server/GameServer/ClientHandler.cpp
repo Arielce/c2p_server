@@ -45,6 +45,11 @@ void ClientHandler::HandleRecv(IConnection* pConn, const char* pBuf, uint32_t uL
 	MessageHeader* pMsgHeader = (MessageHeader*)pBuf;
 	switch (pMsgHeader->uMsgCmd)
 	{
+	case ID_REQ_Test_PingPong:										// 测试使用的ping-pong协议, 简单的将数据包返回
+		{
+			pConn->SendMsg(pBuf, uLen);
+		}
+		break;
 	case ID_REQ_RequestProcGMCommand:								// 请求执行GM指令
 		{
 			_RequestGMCommand(pConn, pMsgHeader);

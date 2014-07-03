@@ -162,7 +162,7 @@ void Player::_SerializeRoleBaseInfo(roledata::PBRoleBaseInfo& roleBaseInfo)
 			map<uint32_t, GateInfo>::iterator findGateIt = m_gateMap.find(*gateIt);
 			if (findGateIt == m_gateMap.end())
 			{
-				cout << "cannot find gate id=" << *gateIt << "in map";
+				ERRORLOG("cannot find gate id=" << *gateIt << "in map");
 				continue;
 			}
 			GateInfo& gate = findGateIt->second;

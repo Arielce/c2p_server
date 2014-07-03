@@ -37,6 +37,7 @@ namespace cpnet
 	class INetCluster
 	{
 	public:
+		virtual void SetNetThreadNum(uint32_t uThreadNum) = 0;
 		virtual IClientSession* CreateClientSession() = 0;
 		virtual IServerSession* CreateServerSession() = 0;
 		virtual ITimerTrigger* CreateTimerTrigger() = 0;

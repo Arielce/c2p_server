@@ -1,4 +1,4 @@
-#include "../network/header.h"
+#include "header.h"
 #include "ServerConfig.h"
 
 bool ServerConfig::LoadServerConf(const char* pFilePath)
@@ -17,7 +17,7 @@ bool ServerConfig::LoadServerConf(const char* pFilePath)
 	TiXmlElement* pHostServer = pRoot->FirstChildElement("HostServer");
 	if (!pHostServer)
 	{
-		cout << "cannot find host server" << endl;
+		ERRORLOG("cannot find host server");
 		return false;
 	}
 
@@ -25,7 +25,8 @@ bool ServerConfig::LoadServerConf(const char* pFilePath)
 	if (pServerId)
 	{
 		m_nServerId = boost::lexical_cast<int>(pServerId);
-		cout << m_nServerId << endl;
+		cout << "ServerId=" << m_nServerId << endl;
+		ERRORLOG("ServerId=" << m_nServerId);
 	}
 
 	TiXmlElement* pServer = pHostServer->FirstChildElement("bind");
@@ -70,7 +71,7 @@ bool ServerConfig::LoadServerConf(const char* pFilePath)
 	TiXmlElement* pDataServer = pRoot->FirstChildElement("DataServer");
 	if (!pDataServer)
 	{
-		cout << "cannot find DataServer" << endl;
+		ERRORLOG("cannot find DataServer");
 		return false;
 	}
 
@@ -94,7 +95,7 @@ bool ServerConfig::LoadServerConf(const char* pFilePath)
 	TiXmlElement* pLobbyServer = pRoot->FirstChildElement("LobbyServer");
 	if (!pLobbyServer)
 	{
-		cout << "cannot find LobbyServer" << endl;
+		ERRORLOG("cannot find LobbyServer");
 		return false;
 	}
 

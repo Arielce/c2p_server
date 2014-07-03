@@ -8,6 +8,9 @@
 enum 
 {
 	// ======================客户端请求信息========================
+	// 测试使用的ping-pong协议
+	ID_REQ_Test_PingPong			= 0x0001,
+
 	// 登录注册相关协议
 	ID_REQ_Lobby_RequestGameGroups	= 0x0100,		// 用户请求区组列表
 

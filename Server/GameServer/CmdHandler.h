@@ -33,6 +33,9 @@ public:
 	void HandleRecv(IConnection* pConn, const char* pBuf, uint32_t uLen);
 
 private:
+	void _ReloadConfigure(IConnection* pConn, const string& strFileName);
+
+private:
 	GameServer* m_pGameServer;
 };
 

@@ -457,8 +457,16 @@ void PlayerMng::_RequestCreateRole(IConnection* pConn, MessageHeader* pMsgHeader
 	{
 		return;
 	}
+
 	ctos::RequestCreateRole createRoleReq;
 	createRoleReq.ParseFromString(GetProtoData(pMsgHeader));
+
+	// 判断此链接是否已经被其他玩家使用了（同一个链接只支持一个玩家）
+	if (m_clientConnMng.IsConnectionUsed(createRoleReq.ptname(), pConn))
+	{
+		TRACELOG("the connection has already been used by other player.");
+		return;
+	}
 
 	gtod::SRequestCreateRole sCreateRoleReq;
 	sCreateRoleReq.set_ptname(createRoleReq.ptname());

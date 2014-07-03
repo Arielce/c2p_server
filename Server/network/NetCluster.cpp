@@ -13,6 +13,11 @@ namespace cpnet
 		return NetCluster::GetInstance();
 	}
 
+	void NetCluster::SetNetThreadNum(uint32_t uThreadNum)
+	{
+		m_uThreadNum = uThreadNum;
+	}
+
 	IClientSession* NetCluster::CreateClientSession()
 	{
 		ClientSession::pointer pClientSession = ClientSession::Create(m_ioService, m_strand);
@@ -46,7 +51,7 @@ namespace cpnet
 
 	void NetCluster::Run()
 	{
-		for (uint32_t i=0; i<4; i++)
+		for (uint32_t i=0; i<m_uThreadNum; i++)
 		{
 			boost::thread* pThread = new boost::thread(boost::bind(&BoostIoService::run, &m_ioService));
 		}

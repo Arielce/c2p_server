@@ -146,7 +146,7 @@ namespace cpnet
 
 		if (nMsgSize != nBytesTranfered)
 		{
-			cout << "the message is lager than the buf capacity" << endl;
+			ERROR_NET("the message is lager than the buf capacity");
 			return;
 		}
 
@@ -208,30 +208,28 @@ namespace cpnet
 	// 检查错误码，是否有错误
 	bool Connection::CheckErrCode(const BoostErrCode& errCode)
 	{
-		if (boost::asio::error::eof == errCode || boost::asio::error::connection_reset == errCode)
+		if (!errCode)
+		{
+			return true;
+		}
+		if (boost::asio::error::eof == errCode || boost::asio::error::connection_reset == errCode || boost::asio::error::connection_aborted == errCode)
 		{
 			SetConnected(false);
 			m_sock.close();						// 先关闭连接
 			disConnCallback(this, errCode);
 			return false;
 		}
-		if (boost::asio::error::connection_refused == errCode)
+		else if (boost::asio::error::connection_refused == errCode)			// 连接被拒绝
 		{
 			ERROR_NET("connect refused.");
 			return false;
 		}
-		if (boost::asio::error::bad_descriptor == errCode)
+		else if (boost::asio::error::bad_descriptor == errCode)
 		{
 			ERROR_NET("bad descriptor");
 			return false;
 		}
-		if (boost::asio::error::connection_aborted == errCode)
-		{
-			SetConnected(false);
-			disConnCallback(this, errCode);
-			return false;
-		}
-		if (errCode)
+		else
 		{
 			ERROR_NET("error code=[" << errCode << "]");
 			return false;

@@ -1,5 +1,6 @@
 #include "LobbyHandler.h"
 #include "ServerConfig.h"
+#include "header.h"
 #include "../protocol/LobbyProtocol.h"
 #include "../protocol/LobbyProtocol.pb.h"
 #include "../network/Utility.h"
@@ -7,7 +8,6 @@
 void LobbyHandler::HandleConnect(IConnection* pConnection, const boost::system::error_code& error)
 {
 	cout << "connect LobbyServer success" << endl;
-	//cout << pConnection->GetRemoteIp() << endl;
 	lobby::RequestRegGameServer gameSeverReg;
 	gameSeverReg.set_gsid(gpServerConfig->GetServerId());
 
@@ -25,8 +25,8 @@ void LobbyHandler::HandleWrite(const boost::system::error_code& error, size_t by
 {
 	if (error)
 	{
-		cout << "error" << endl;
-		cout << "error:" << boost::system::system_error(error).what() << endl;
+		ERRORLOG("error");
+		ERRORLOG("error:" << boost::system::system_error(error).what());
 	}
 }
 
