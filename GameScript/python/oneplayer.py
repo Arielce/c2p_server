@@ -7,7 +7,7 @@ import ClientProtocol
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  
 #sock.connect(('192.168.20.134', 8500))
 sock.connect(('192.168.1.34', 8500))
-count = 2
+count = 1
 
 #short_body = 'hello asio'
 #middle_body = 'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz'
@@ -15,6 +15,8 @@ count = 2
 #body = long_body
 while True:
     roleDataAck = ClientProtocol.RequestRoleData(sock, 'test' + str(count))
+    count += 1
     print roleDataAck
+    time.sleep(1)
     
 sock.close()  
