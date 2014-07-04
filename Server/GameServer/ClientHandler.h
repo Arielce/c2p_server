@@ -34,7 +34,7 @@ public:
 class ClientHandler : public IMsgHandler
 {
 public:
-	void HandleConnect(IConnection* pConn, const BoostErrCode& error);
+	void HandleConnect(IConnection* pConn);
 
 	void HandleDisconnect(IConnection* pConn, const BoostErrCode& error);
 

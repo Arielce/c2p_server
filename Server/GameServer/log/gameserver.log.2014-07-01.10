@@ -1,6 +1,0 @@
-2014-07-01 11:47:11 d:\server\network\serversession.hpp:40 [4496] TRACE NETWORK - server listen start, ip=[192.168.1.34], port=[8500]
-2014-07-01 11:47:11 d:\server\network\serversession.hpp:40 [4496] TRACE NETWORK - server listen start, ip=[192.168.1.34], port=[8501]
-2014-07-01 11:47:11 d:\server\gameserver\main.cpp:31 [4496] TRACE ALL_MSGS - SERVER START
-2014-07-01 11:47:11 d:\server\gameserver\dshandler.cpp:12 [3692] TRACE ALL_MSGS - connect datasever success
-2014-07-01 11:47:17 d:\server\gameserver\cmdhandler.cpp:11 [3692] TRACE ALL_MSGS - command client 192.168.1.34 connect 
-2014-07-01 11:47:26 d:\server\gameserver\main.cpp:33 [4496] TRACE ALL_MSGS - SERVER END!!!!!!!!!!!

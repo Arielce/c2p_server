@@ -38,25 +38,24 @@ namespace cpnet
 				delete[] m_pBuff;
 			}
 		}
+
+		void Start();
+
 		virtual bool IsConnected();
 		virtual const char* GetRemoteIp();
 		virtual uint32_t GetRemotePort();
-		virtual void SetRecvCallback(const recvFuncCallBack& _recvCallBack);
-		virtual void SetSendCallback(const sendFuncCallBack& _sendCallBack);
-
 		void SetConnected(bool bFlag);
-		void SetConnCallback(const connFuncCallBack& _connCallback);
-		void SetDisConnCallBack(const disConnFuncCallBack& _disConnCallback);
+
 		void SetMsgParser(IMsgParser* pMsgParser);
+		void SetMsgHandler(IMsgHandler* pMsgHandler);
 
 		BoostSocket& socket();
 		void GetRemoteInfo();
-		void StartRead();
 		void ShutDown();
 		void SendMsg(const void* pData, uint32_t uLen);
 	private:
 		Connection(BoostIoService& ioService, BoostStrand& strand, size_t nHeadLength, size_t nBufLength) : 
-			m_pStrand(NULL), m_sock(ioService), m_bConnect(false), m_pMsgParser(NULL), m_nHeadLength(nHeadLength), m_nBufLength(nBufLength), m_uRemotePort(0), m_bGetRemoteInfo(false)
+			m_pStrand(NULL), m_sock(ioService), m_bConnect(false), m_pMsgParser(NULL), m_nHeadLength(nHeadLength), m_nBufLength(nBufLength), m_uRemotePort(0), m_bGetRemoteInfo(false), m_nHasTransffered(0)
 		{
 			m_pStrand = &strand;
 			// to use memory pool later
@@ -69,8 +68,7 @@ namespace cpnet
 
 		// the async_write call back
 		void HandleSend(const boost::system::error_code& error, std::size_t bytes_transferred);
-		void HandleReadBody(const BoostErrCode& errCode, size_t nBytesTranfered);
-		void HandleReadHeader(const BoostErrCode& errCode, size_t nBytesTranfered);
+		void HandleRead(const BoostErrCode& errCode, size_t nBytesTranfered);
 		void SetAsyncHandler();
 
 		// 检查错误码，是否有错误
@@ -81,15 +79,14 @@ namespace cpnet
 		BoostSocket m_sock;								// the connection socket
 		bool m_bConnect;								// 是否已经连接
 		char* m_pBuff;
-		recvFuncCallBack recvCallBack;
-		sendFuncCallBack sendCallBack;
-		connFuncCallBack connCallback;
-		disConnFuncCallBack disConnCallback;
+		
 		IMsgParser* m_pMsgParser;
+		IMsgHandler* m_pMsgHandler;
 		deque<string> m_msgQueue;
 
 		size_t m_nHeadLength;							// 消息头的大小
 		size_t m_nBufLength;							// 接收缓冲区的大小
+		size_t m_nHasTransffered;
 
 		string m_strRemoteIp;
 		uint32_t m_uRemotePort;

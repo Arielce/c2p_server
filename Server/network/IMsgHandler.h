@@ -9,7 +9,7 @@ namespace cpnet
 	class IMsgHandler
 	{
 	public:
-		virtual void HandleConnect(IConnection* pConn, const BoostErrCode& error) = 0;
+		virtual void HandleConnect(IConnection* pConn) = 0;
 
 		virtual void HandleDisconnect(IConnection* pConn, const BoostErrCode& error) = 0;
 

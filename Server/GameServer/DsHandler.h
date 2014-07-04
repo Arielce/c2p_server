@@ -17,7 +17,7 @@
 class DsHandler : public IMsgHandler
 {
 public:
-	void HandleConnect(IConnection* pConnection, const boost::system::error_code& error);
+	void HandleConnect(IConnection* pConnection);
 
 	void HandleDisconnect(IConnection* pConn, const BoostErrCode& error);
 

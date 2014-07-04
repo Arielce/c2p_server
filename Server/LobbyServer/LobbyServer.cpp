@@ -61,8 +61,6 @@ bool LobbyServer::InitServerApp()
 
 	m_pServerSession->Listen(gpServerConfig->GetBindIp(), gpServerConfig->GetListenPort());
 
-
-
 	m_pClientSession = m_pNetCluster->CreateServerSession();
 	if (!m_pClientSession)
 	{

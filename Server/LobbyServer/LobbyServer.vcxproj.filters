@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="protocol">
+      <UniqueIdentifier>{66960aab-1100-42e5-9d11-c6a02643f2ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="network">
+      <UniqueIdentifier>{fae1a56c-113e-46a2-bcbf-96cc7ce50032}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tinyxml">
+      <UniqueIdentifier>{1fc3f0f8-3573-4fd5-b2aa-e91eae1463e6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\tinyxml\tinystr.h">
+      <Filter>tinyxml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\tinyxml\tinyxml.h">
+      <Filter>tinyxml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\protocol\RoleData.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\protocol\GameProtocol.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\protocol\GameProtocol.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\protocol\DataServer.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\protocol\DataProtocol.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerConfig.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LobbyServer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="header.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="GameServerHandler.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\protocol\LobbyProtocol.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\protocol\LobbyProtocol.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="GameGroupMng.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientMsgHandler.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\network\ClientSession.hpp">
+      <Filter>network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\network\Connection.h">
+      <Filter>network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\network\header.h">
+      <Filter>network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\network\IConnection.h">
+      <Filter>network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\network\IMsgHandler.h">
+      <Filter>network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\network\IMsgParser.h">
+      <Filter>network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\network\INetCluster.h">
+      <Filter>network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\network\ITimerTrigger.h">
+      <Filter>network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\network\message_header.h">
+      <Filter>network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\network\NetCluster.h">
+      <Filter>network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\network\ServerSession.hpp">
+      <Filter>network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\network\TimerTrigger.h">
+      <Filter>network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\network\Utility.h">
+      <Filter>network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\network\MessageHeader.h">
+      <Filter>network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\network\Uuid.h">
+      <Filter>network</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\protocol\RoleData.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\GameProtocol.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\DataServer.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerConfig.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="LobbyServer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="GameServerHandler.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\LobbyProtocol.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="GameGroupMng.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientMsgHandler.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\network\Connection.cpp">
+      <Filter>network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\network\NetCluster.cpp">
+      <Filter>network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\network\Utility.cpp">
+      <Filter>network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\network\Uuid.cpp">
+      <Filter>network</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

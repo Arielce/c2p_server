@@ -2,6 +2,15 @@
 
 namespace cpnet
 {
+	void Connection::Start()
+	{
+		GetRemoteInfo();
+		SetConnected(true);
+		SetAsyncHandler();
+
+		m_pStrand->dispatch(boost::bind(&IMsgHandler::HandleConnect, m_pMsgHandler, this));
+
+	}
 	bool Connection::IsConnected()
 	{
 		return m_bConnect;
@@ -23,11 +32,6 @@ namespace cpnet
 		}
 	}
 
-	void Connection::StartRead()
-	{
-		SetAsyncHandler();
-	}
-
 	void Connection::ShutDown()
 	{
 		m_sock.shutdown(boost::asio::socket_base::shutdown_both);
@@ -43,32 +47,19 @@ namespace cpnet
 		return m_uRemotePort;
 	}
 
-	void Connection::SetRecvCallback(const recvFuncCallBack& _recvCallBack)
-	{
-		recvCallBack = _recvCallBack;
-	}
-	void Connection::SetSendCallback(const sendFuncCallBack& _sendCallBack)
-	{
-		sendCallBack = _sendCallBack;
-	}
-
 	void Connection::SetConnected(bool bFlag)
 	{
 		m_bConnect = bFlag;
 	}
 
-	void Connection::SetConnCallback(const connFuncCallBack& _connCallback)
-	{
-		connCallback = _connCallback;
-	}
-	void Connection::SetDisConnCallBack(const disConnFuncCallBack& _disConnCallback)
-	{
-		disConnCallback = _disConnCallback;
-	}
-
 	void Connection::SetMsgParser(IMsgParser* pMsgParser)
 	{
 		m_pMsgParser = pMsgParser;
+	}
+
+	void Connection::SetMsgHandler(IMsgHandler* pMsgHandler)
+	{
+		m_pMsgHandler = pMsgHandler;
 	}
 
 	BoostSocket& Connection::socket()
@@ -128,65 +119,56 @@ namespace cpnet
 		}
 	}
 
-	void Connection::HandleReadBody(const BoostErrCode& errCode, size_t nBytesTranfered)
+	void Connection::HandleRead(const BoostErrCode& errCode, size_t nBytesTranfered)
 	{
-		if (!CheckErrCode(errCode))
+		if (errCode)
 		{
+			CheckErrCode(errCode);
+			return;
+		}
+		
+		// 主要针对半包和粘包进行处理
+		m_nHasTransffered += nBytesTranfered;											// 算出当前已经传输了的数据量
+		if (m_nHasTransffered < m_nHeadLength)											// 没有数据包头大, 继续接收数据
+		{
+			SetAsyncHandler();
 			return;
 		}
 
-		size_t nMsgSize = m_pMsgParser->CheckMsgBody(m_pBuff, nBytesTranfered + m_nHeadLength);
-		if (nMsgSize < m_nHeadLength)
+		// 计算出整个数据包的大小
+		size_t nBodySize = m_pMsgParser->CheckMsgHeader(m_pBuff, m_nHasTransffered);
+
+		if (nBodySize > m_nBufLength)													// 数据包头比整个buf还要大
 		{
-			ERROR_NET("message size is too small, message size =[" << nMsgSize << "]");
+			ERROR_NET("message size is too large, message size =[" << nBodySize << "]");
 			m_sock.close();
 			return;
 		}
-		nMsgSize -= m_nHeadLength;
 
-		if (nMsgSize != nBytesTranfered)
+		size_t nHasUsedBuf = 0;							// 已经使用了的数据长度
+		while (m_nHasTransffered >= nBodySize)											// 必须确保数据包长度的完整性
 		{
-			ERROR_NET("the message is lager than the buf capacity");
-			return;
+			m_pMsgHandler->HandleRecv(this, m_pBuff, nBodySize);
+			m_nHasTransffered -= nBodySize;												// 减少已经收到的数据量
+			nHasUsedBuf += nBodySize;													// 计算缓冲区中已经被使用的buf长度
+
+			// 如果一次收到了多个数据包
+			if (m_nHasTransffered >= m_nHeadLength)										// 如果剩下的数据长度够一个包头的大小，
+			{
+				nBodySize = m_pMsgParser->CheckMsgHeader(m_pBuff + nHasUsedBuf, m_nHasTransffered);
+			}
+			else
+			{
+				break;
+			}
 		}
 
-		recvCallBack(this, m_pBuff, nBytesTranfered + m_nHeadLength);
+		if (m_nHasTransffered)					// 还有剩余的数据，进行buf的移动
+		{
+			memmove(m_pBuff, m_pBuff + nHasUsedBuf, m_nHasTransffered);
+		}
 
-		// reset recv handle
 		SetAsyncHandler();
-	}
-
-	void Connection::HandleReadHeader(const BoostErrCode& errCode, size_t nBytesTranfered)
-	{
-		if (!CheckErrCode(errCode))
-		{
-			return;
-		}
-		if (nBytesTranfered < m_nHeadLength)
-		{
-			return;
-		}
-
-		GetRemoteInfo();
-
-		size_t nBodySize = m_pMsgParser->CheckMsgHeader(m_pBuff, nBytesTranfered);
-		if (nBodySize + m_nHeadLength >= m_nBufLength || nBodySize < m_nHeadLength)
-		{
-			ERROR_NET("body size is too large or too small, body size =[" << nBodySize << "]");
-			m_sock.close();
-			return;
-		}
-		try
-		{
-			boost::asio::async_read(
-				m_sock, 
-				boost::asio::buffer(m_pBuff + m_nHeadLength, nBodySize - m_nHeadLength), 
-				m_pStrand->wrap(boost::bind(&Connection::HandleReadBody, shared_from_this(), boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred)));
-		}
-		catch(boost::system::system_error& err)
-		{
-			ERROR_NET("reve message body exception, error=" << err.what());
-		}
 	}
 
 	void Connection::SetAsyncHandler()
@@ -194,10 +176,11 @@ namespace cpnet
 		// set read call back function
 		try
 		{
-			boost::asio::async_read(
-				m_sock, 
-				boost::asio::buffer(m_pBuff, m_nHeadLength), 
-				m_pStrand->wrap(boost::bind(&Connection::HandleReadHeader, shared_from_this(), boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred)));
+			m_sock.async_read_some(boost::asio::buffer(m_pBuff + m_nHasTransffered, m_nBufLength),
+				m_pStrand->wrap(
+				boost::bind(&Connection::HandleRead, shared_from_this(),
+				boost::asio::placeholders::error,
+				boost::asio::placeholders::bytes_transferred)));
 		}
 		catch(boost::system::system_error& err)
 		{
@@ -216,7 +199,7 @@ namespace cpnet
 		{
 			SetConnected(false);
 			m_sock.close();						// 先关闭连接
-			disConnCallback(this, errCode);
+			m_pMsgHandler->HandleDisconnect(this, errCode);
 			return false;
 		}
 		else if (boost::asio::error::connection_refused == errCode)			// 连接被拒绝

@@ -61,7 +61,7 @@ namespace cpnet
 
 	typedef boost::function<void(cpnet::IConnection*, const char*, int)> recvFuncCallBack;			// the recv call back 
 	typedef boost::function<void(const BoostErrCode&, std::size_t)> sendFuncCallBack;				// the send call back 
-	typedef boost::function<void(cpnet::IConnection*, const BoostErrCode&)> connFuncCallBack;		// connection call back
+	typedef boost::function<void(cpnet::IConnection*)> connFuncCallBack;							// connection call back
 	typedef boost::function<void(cpnet::IConnection*, const BoostErrCode&)> disConnFuncCallBack;	// disconnection call back
 	typedef boost::function<void(cpnet::IConnection*, const BoostErrCode&)> acceptFuncCallBack;		// accept call back
 	typedef boost::function<void(const boost::system::error_code&)> TriggerCallback;				// trigger call back

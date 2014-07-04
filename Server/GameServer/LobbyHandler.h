@@ -12,7 +12,7 @@ using namespace cpnet;
 class LobbyHandler : public IMsgHandler
 {
 public:
-	void HandleConnect(IConnection* pConnection, const boost::system::error_code& error);
+	void HandleConnect(IConnection* pConnections);
 
 	void HandleDisconnect(IConnection* pConn, const BoostErrCode& error);
 

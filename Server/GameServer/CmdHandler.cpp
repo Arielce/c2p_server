@@ -6,16 +6,9 @@
 #include "GameServer.h"
 #include "ReloadConfigure.h"
 
-void CmdHandler::HandleConnect(IConnection* pConn, const BoostErrCode& error)
+void CmdHandler::HandleConnect(IConnection* pConn)
 {
-	if (!error)
-	{
-		TRACELOG("command client " << pConn->GetRemoteIp() << " connect ");
-	}
-	else
-	{
-		TRACELOG("command client connect error, err=[" << error.message() << "]");
-	}
+	TRACELOG("command client " << pConn->GetRemoteIp() << " connect ");
 }
 
 void CmdHandler::HandleDisconnect(IConnection* pConn, const BoostErrCode& error)

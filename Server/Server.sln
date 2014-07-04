@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LobbyServer", "LobbyServer\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestNetwork", "TestNetwork\TestNetwork.vcxproj", "{40DBDC82-F37E-464C-8CCC-B7331E8B0C8B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestEchoServer", "TestEchoServer\TestEchoServer.vcxproj", "{022D65A0-3307-46F5-A5B6-F50DC7005F06}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -31,6 +33,10 @@ Global
 		{40DBDC82-F37E-464C-8CCC-B7331E8B0C8B}.Debug|Win32.Build.0 = Debug|Win32
 		{40DBDC82-F37E-464C-8CCC-B7331E8B0C8B}.Release|Win32.ActiveCfg = Release|Win32
 		{40DBDC82-F37E-464C-8CCC-B7331E8B0C8B}.Release|Win32.Build.0 = Release|Win32
+		{022D65A0-3307-46F5-A5B6-F50DC7005F06}.Debug|Win32.ActiveCfg = Debug|Win32
+		{022D65A0-3307-46F5-A5B6-F50DC7005F06}.Debug|Win32.Build.0 = Debug|Win32
+		{022D65A0-3307-46F5-A5B6-F50DC7005F06}.Release|Win32.ActiveCfg = Release|Win32
+		{022D65A0-3307-46F5-A5B6-F50DC7005F06}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

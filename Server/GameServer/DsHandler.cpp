@@ -6,7 +6,7 @@
 #include "PlayerMng.h"
 
 
-void DsHandler::HandleConnect(IConnection* pConnection, const boost::system::error_code& error)
+void DsHandler::HandleConnect(IConnection* pConnection)
 {
 	cout << "connect datasever success" << endl;
 	TRACELOG("connect datasever success");

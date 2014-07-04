@@ -8,7 +8,7 @@ import ClientProtocol
 
 count_lock = thread.allocate_lock()
 
-count = 100000
+count = 1
 def run():
     global count
     print "thread start"

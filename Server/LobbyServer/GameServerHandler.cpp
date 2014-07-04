@@ -21,7 +21,7 @@ void GameServerHandler::SetGroupMng(GameGroupMng* pGroupMng)
 	m_pGameGroupMng = pGroupMng;
 }
 
-void GameServerHandler::HandleConnect(IConnection* pConn, const BoostErrCode& error)
+void GameServerHandler::HandleConnect(IConnection* pConn)
 {
 	cout << "gs connect:" << pConn->GetRemoteIp() << ":" << pConn->GetRemotePort() << endl;
 }

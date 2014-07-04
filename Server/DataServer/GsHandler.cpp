@@ -13,7 +13,7 @@ GsHandler::GsHandler(DataServer* pDataServer) : m_pDataServer(pDataServer)
 
 }
 
-void GsHandler::HandleConnect(IConnection* pConn, const BoostErrCode& error)
+void GsHandler::HandleConnect(IConnection* pConn)
 {
 	cout << "gs connect:" << pConn->GetRemoteIp() << ":" << pConn->GetRemotePort() << endl;
 	TRACELOG("gs connect:" << pConn->GetRemoteIp() << ":" << pConn->GetRemotePort());

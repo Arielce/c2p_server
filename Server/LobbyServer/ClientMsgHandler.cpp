@@ -13,7 +13,7 @@ void ClientMsgHandler::SetGroupMng(GameGroupMng* pGroupMng)
 }
 
 
-void ClientMsgHandler::HandleConnect(IConnection* pConn, const BoostErrCode& error)
+void ClientMsgHandler::HandleConnect(IConnection* pConn)
 {
 	cout << "gs connect:" << pConn->GetRemoteIp() << ":" << pConn->GetRemotePort() << endl;
 }
@@ -42,7 +42,7 @@ void ClientMsgHandler::HandleRecv(IConnection* pConn, const char* pBuf, uint32_t
 	MessageHeader* pMsgHeader = (MessageHeader*)pBuf;
 	switch (pMsgHeader->uMsgCmd)
 	{
-	case ID_REQ_RequestGameGroup:
+	case ID_REQ_RequestGameGroup:				// 请求游戏区组
 		{
 
 		}

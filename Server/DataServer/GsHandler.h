@@ -37,7 +37,7 @@ class GsHandler : public IMsgHandler
 {
 public:
 	GsHandler(DataServer* pDataServer);
-	void HandleConnect(IConnection* pConn, const BoostErrCode& error);
+	void HandleConnect(IConnection* pConn);
 
 	void HandleDisconnect(IConnection* pConn, const BoostErrCode& error);
 

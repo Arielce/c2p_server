@@ -83,18 +83,11 @@ namespace cpnet
 
 			// 设置回调函数，以及消息处理接口
 			pConnection->SetMsgParser(m_pMsgParser);
-			pConnection->SetRecvCallback(boost::bind(&IMsgHandler::HandleRecv, m_pMsgHandler, _1, _2, _3));
-			pConnection->SetSendCallback(boost::bind(&IMsgHandler::HandleWrite, m_pMsgHandler, _1, _2));
-			pConnection->SetConnCallback(boost::bind(&IMsgHandler::HandleConnect, m_pMsgHandler, _1, _2));
-			pConnection->SetDisConnCallBack(boost::bind(&IMsgHandler::HandleDisconnect, m_pMsgHandler, _1, _2));
-			pConnection->GetRemoteInfo();
-			pConnection->SetConnected(true);
-			pConnection->StartRead();
-
-			m_pMsgHandler->HandleConnect(pConnection.get(), error);
+			pConnection->SetMsgHandler(m_pMsgHandler);
+			pConnection->Start();
 
 			Connection::pointer pNewConnection = Connection::Create(*m_pIoService, *m_pStrand, m_uHeadSize, m_uBufSize);
-			m_acceptor.async_accept(pNewConnection->socket(), m_pStrand->wrap(boost::bind(&ServerSession::HandleAccept, this, pNewConnection, boost::asio::placeholders::error)));
+			m_acceptor.async_accept(pNewConnection->socket(), boost::bind(&ServerSession::HandleAccept, this, pNewConnection, boost::asio::placeholders::error));
 		}
 
 	private:

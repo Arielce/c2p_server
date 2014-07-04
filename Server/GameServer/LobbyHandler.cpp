@@ -5,7 +5,7 @@
 #include "../protocol/LobbyProtocol.pb.h"
 #include "../network/Utility.h"
 
-void LobbyHandler::HandleConnect(IConnection* pConnection, const boost::system::error_code& error)
+void LobbyHandler::HandleConnect(IConnection* pConnection)
 {
 	cout << "connect LobbyServer success" << endl;
 	lobby::RequestRegGameServer gameSeverReg;

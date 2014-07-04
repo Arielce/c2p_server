@@ -24,7 +24,7 @@ public:
 		m_pGameServer = pGameServer;
 	}
 public:
-	void HandleConnect(IConnection* pConn, const BoostErrCode& error);
+	void HandleConnect(IConnection* pConn);
 
 	void HandleDisconnect(IConnection* pConn, const BoostErrCode& error);
 

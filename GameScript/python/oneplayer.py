@@ -7,7 +7,7 @@ import ClientProtocol
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  
 #sock.connect(('192.168.20.134', 8500))
 sock.connect(('192.168.1.34', 8500))
-count = 1
+count = 2
 
 #short_body = 'hello asio'
 #middle_body = 'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz'

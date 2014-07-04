@@ -25,12 +25,8 @@ namespace cpnet
 			m_strIp = pServerIp;
 			m_uPort = uPort;
 			m_pConnection->SetMsgParser(m_pMsgParser);
-
-			// 设置上端的回调函数
-			m_pConnection->SetRecvCallback(boost::bind(&IMsgHandler::HandleRecv, m_pMsgHandler, _1, _2, _3));
-			m_pConnection->SetSendCallback(boost::bind(&IMsgHandler::HandleWrite, m_pMsgHandler, _1, _2));
-			m_pConnection->SetConnCallback(boost::bind(&IMsgHandler::HandleConnect, m_pMsgHandler, _1, _2));
-			m_pConnection->SetDisConnCallBack(boost::bind(&ClientSession::HandleDisconnect, this, _1, _2));
+			m_pConnection->SetMsgHandler(m_pMsgHandler);
+		
 			// 开始连接
 			DoReConnect();
 		}
@@ -88,9 +84,7 @@ namespace cpnet
 				OnTimerConnect();
 				return;
 			}
-			m_pConnection->SetConnected(true);
-			m_pConnection->StartRead();
-			m_pMsgHandler->HandleConnect(m_pConnection.get(), err);
+			m_pConnection->Start();
 		}
 
 		void HandleDisconnect(IConnection* pConnection, const BoostErrCode& err)
@@ -122,12 +116,6 @@ namespace cpnet
 
 		uint32_t m_uHeadSize;								// 消息头长度
 		uint32_t m_uBufSize;								// 缓冲区长度
-
-		// 回调函数
-		connFuncCallBack connCallback;
-		disConnFuncCallBack disconnCallback;
-		recvFuncCallBack recvCallback;
-		sendFuncCallBack sendCallback;
 
 		string m_strIp;										// 连接目标的IP
 		uint32_t m_uPort;									// 连接目标的端口

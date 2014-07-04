@@ -9,16 +9,9 @@
 #include "GoodsMng.h"
 #include "DrawPrizeMng.h"
 
-void ClientHandler::HandleConnect(IConnection* pConn, const BoostErrCode& error)
+void ClientHandler::HandleConnect(IConnection* pConn)
 {
-	if (!error)
-	{
-		TRACELOG("client " << pConn->GetRemoteIp() << " connect ");
-	}
-	else
-	{
-		TRACELOG("client connect error, err=[" << error.message() << "]");
-	}
+	TRACELOG("client connect ip=[" << pConn->GetRemoteIp() << "], port=[" << pConn->GetRemotePort() << "]");
 }
 
 void ClientHandler::HandleDisconnect(IConnection* pConn, const BoostErrCode& error)

@@ -57,7 +57,6 @@ Icon
 *.sdf
 *.tlog
 *.idb
-*.filters
 *.log.*
 log/*
 log\*
@@ -68,3 +67,4 @@ Server/Server.opensdf
 Server/Debug/log/dataserver.log.2014-07-02
 Server/Debug/log/dataserver.log.2014-07-02
 Server/Server.opensdf
+*.opensdf
