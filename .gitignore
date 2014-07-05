@@ -58,6 +58,7 @@ Icon
 *.tlog
 *.idb
 *.log.*
+*.pyc
 log/*
 log\*
 *.unsuccessfulbuild

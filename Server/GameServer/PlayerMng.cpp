@@ -194,17 +194,38 @@ void PlayerMng::ProcReq(IConnection* pConn, MessageHeader* pMsgHeader)
 	{
 	case ID_REQ_RequestVerifyToken:			// 请求验证token
 		{
-			_RequestVerifyToken(pConn, pMsgHeader);
+			try
+			{
+				_RequestVerifyToken(pConn, pMsgHeader);
+			}
+			catch (google::protobuf::FatalException fe)
+			{
+				ERRORLOG("protobuf excetpion error=[" << fe.message() << "]");
+			}
 		}
 		break;
 	case ID_REQ_RequestCreateRole:			// 请求创建角色
 		{
-			_RequestCreateRole(pConn, pMsgHeader);
+			try
+			{
+				_RequestCreateRole(pConn, pMsgHeader);
+			}
+			catch (google::protobuf::FatalException fe)
+			{
+				ERRORLOG("protobuf excetpion error=[" << fe.message() << "]");
+			}
 		}
 		break;
 	case ID_REQ_RequestRoleData:			// 请求角色数据
 		{
-			_RequestRoleData(pConn, pMsgHeader);
+			try
+			{
+				_RequestRoleData(pConn, pMsgHeader);
+			}
+			catch (google::protobuf::FatalException fe)
+			{
+				ERRORLOG("protobuf excetpion error=[" << fe.message() << "]");
+			}	
 		}
 		break;
 	default:

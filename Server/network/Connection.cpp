@@ -6,7 +6,7 @@ namespace cpnet
 	{
 		GetRemoteInfo();
 		SetConnected(true);
-		SetAsyncHandler();
+		StartRead();
 
 		m_pStrand->dispatch(boost::bind(&IMsgHandler::HandleConnect, m_pMsgHandler, this));
 
@@ -69,7 +69,7 @@ namespace cpnet
 
 	void Connection::SendMsg(const void* pData, uint32_t uLen)
 	{
-		boost::lock_guard<boost::mutex> lock(m_mutex);
+		//boost::lock_guard<boost::mutex> lock(m_mutex);
 		bool bWriteInProcess = !m_msgQueue.empty();		
 		m_msgQueue.push_back(string((char*)pData, uLen));
 		if (!bWriteInProcess)								// 如果当前发送队列没有消息正在发送，就直接调用异步发送接口，否则只是将发送消息加入队列
@@ -96,7 +96,7 @@ namespace cpnet
 	// the async_write call back
 	void Connection::HandleSend(const boost::system::error_code& error, std::size_t bytes_transferred) 
 	{
-		boost::lock_guard<boost::mutex> lock(m_mutex);		// 为了保证发送功能是线程安全的
+		//boost::lock_guard<boost::mutex> lock(m_mutex);		// 为了保证发送功能是线程安全的
 		m_msgQueue.pop_front();
 		if (!m_msgQueue.empty())
 		{
@@ -131,14 +131,14 @@ namespace cpnet
 		m_nHasTransffered += nBytesTranfered;											// 算出当前已经传输了的数据量
 		if (m_nHasTransffered < m_nHeadLength)											// 没有数据包头大, 继续接收数据
 		{
-			SetAsyncHandler();
+			StartRead();
 			return;
 		}
 
 		// 计算出整个数据包的大小
 		size_t nBodySize = m_pMsgParser->CheckMsgHeader(m_pBuff, m_nHasTransffered);
 
-		if (nBodySize > m_nBufLength)													// 数据包头比整个buf还要大
+		if (nBodySize > m_nBufLength)														// 数据包头比整个buf还要大
 		{
 			ERROR_NET("message size is too large, message size =[" << nBodySize << "]");
 			m_sock.close();
@@ -148,7 +148,7 @@ namespace cpnet
 		size_t nHasUsedBuf = 0;							// 已经使用了的数据长度
 		while (m_nHasTransffered >= nBodySize)											// 必须确保数据包长度的完整性
 		{
-			m_pMsgHandler->HandleRecv(this, m_pBuff, nBodySize);
+			m_pMsgHandler->HandleRecv(this, m_pBuff + nHasUsedBuf, nBodySize);
 			m_nHasTransffered -= nBodySize;												// 减少已经收到的数据量
 			nHasUsedBuf += nBodySize;													// 计算缓冲区中已经被使用的buf长度
 
@@ -163,20 +163,20 @@ namespace cpnet
 			}
 		}
 
-		if (m_nHasTransffered)					// 还有剩余的数据，进行buf的移动
+		if (m_nHasTransffered && nHasUsedBuf)					// 还有剩余的数据，进行buf的移动
 		{
 			memmove(m_pBuff, m_pBuff + nHasUsedBuf, m_nHasTransffered);
 		}
 
-		SetAsyncHandler();
+		StartRead();
 	}
 
-	void Connection::SetAsyncHandler()
+	void Connection::StartRead()
 	{
 		// set read call back function
 		try
 		{
-			m_sock.async_read_some(boost::asio::buffer(m_pBuff + m_nHasTransffered, m_nBufLength),
+			m_sock.async_read_some(boost::asio::buffer(m_pBuff + m_nHasTransffered, m_nBufLength - m_nHasTransffered),
 				m_pStrand->wrap(
 				boost::bind(&Connection::HandleRead, shared_from_this(),
 				boost::asio::placeholders::error,

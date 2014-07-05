@@ -69,7 +69,7 @@ namespace cpnet
 		// the async_write call back
 		void HandleSend(const boost::system::error_code& error, std::size_t bytes_transferred);
 		void HandleRead(const BoostErrCode& errCode, size_t nBytesTranfered);
-		void SetAsyncHandler();
+		void StartRead();
 
 		// ¼ì²é´íÎóÂë£¬ÊÇ·ñÓĞ´íÎó
 		bool CheckErrCode(const BoostErrCode& errCode);

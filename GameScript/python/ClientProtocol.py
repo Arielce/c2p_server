@@ -10,7 +10,7 @@ def RequestStopServer(sock, serverId):
     stopServerReq = ServerCmd_pb2.RequestStopServer()
     stopServerReq.serverId = serverId
     body = stopServerReq.SerializeToString()
-    header = struct.pack('iii', 12+len(body), 0xA001, 0)
+    header = struct.pack('iii', 12+len(body), 0xA001, 0xA1B2C3D4)
     sock.send(header+body)
 
 # 请求重载配置
@@ -19,7 +19,7 @@ def RequestReload(sock, fileName):
     reloadReq.confFile = fileName
     
     body = reloadReq.SerializeToString()
-    header = struct.pack('iii', 12+len(body), 0xA002, 0)
+    header = struct.pack('iiI', 12+len(body), 0xA002, 0xA1B2C3D4)
     sock.send(header+body)
     pbstr = sock.recv(1024)
     reloadAck = ServerCmd_pb2.ResponseReloadConf()
@@ -35,7 +35,7 @@ def RequestCreateRole(sock, ptname, rolename):
     createRoleReq.ptName = ptname
     createRoleReq.roleName = rolename
     body = createRoleReq.SerializeToString()
-    header = struct.pack('iii', 12+len(body), 0x1001, 0)
+    header = struct.pack('iiI', 12+len(body), 0x1001, 0xA1B2C3D4)
     sock.send(header+body)
 
 # 请求角色数据
@@ -43,7 +43,7 @@ def RequestRoleData(sock, ptname):
     roleDataReq = GameProtocol_pb2.RequestRoleData()
     roleDataReq.ptName = ptname
     body = roleDataReq.SerializeToString()
-    header = struct.pack('iii', 12+len(body), 0x1002, 0)
+    header = struct.pack('iiI', 12+len(body), 0x1002, 0xA1B2C3D4)
     sock.send(header+body)
     pbstr = sock.recv(1024)
     roleDataAck = GameProtocol_pb2.ResponseRoleData()
@@ -60,7 +60,7 @@ def RequestVerifyToken(sock, ptname, token):
     verifyTokenReq.token = token
     
     body = verifyTokenReq.SerializeToString()
-    header = struct.pack('iii', 12+len(body), 0x0901, 0)
+    header = struct.pack('iiI', 12+len(body), 0x0901, 0xA1B2C3D4)
     sock.send(header+body)
     pbstr = sock.recv(1024)
     verifyTokenAck = GameProtocol_pb2.ResponseVerifyToken()
@@ -75,7 +75,7 @@ def RequestDrawList(sock, userId):
     drawListReq = GameProtocol_pb2.RequestDrawPrizeList()
     drawListReq.userId = userId
     body = drawListReq.SerializeToString()
-    header = struct.pack('iii', 12+len(body), 0x1300, 0)
+    header = struct.pack('iiI', 12+len(body), 0x1300, 0xA1B2C3D4)
     sock.send(header+body)
    
     pbstr = sock.recv(1024)
@@ -93,7 +93,7 @@ def RequestDrawPrize(sock, userId, drawId):
     drawPrizeReq.userId = userId
     drawPrizeReq.drawId = drawId
     body = drawPrizeReq.SerializeToString()
-    header = struct.pack('iii', 12+len(body), 0x1301, 0)
+    header = struct.pack('iiI', 12+len(body), 0x1301, 0)
     sock.send(header+body)
    
     pbstr = sock.recv(1024)

@@ -54,23 +54,45 @@ void DataThread::Run()
 		{
 		case ID_SREQ_SRequestCreateRole:				// 请求创建角色数据
 			{
-				gtod::SRequestCreateRole createRoleReq;
-				createRoleReq.ParseFromString(GetProtoData(pMsgHeader));
-				m_playerDataMng.CreateRole(createRoleReq.ptname(), createRoleReq.rolename());
+				try
+				{
+					gtod::SRequestCreateRole createRoleReq;
+					createRoleReq.ParseFromString(GetProtoData(pMsgHeader));
+					m_playerDataMng.CreateRole(createRoleReq.ptname(), createRoleReq.rolename());
+				}
+				catch (google::protobuf::FatalException fe)
+				{
+					ERRORLOG("protobuf excetpion error=[" << fe.message() << "]");
+				}
 			}
 			break;
 		case ID_SREQ_SRequestGetRoleData:				// 请求角色数据
 			{
-				gtod::SRequestRoleData roleDataReq;
-				roleDataReq.ParseFromString(GetProtoData(pMsgHeader));
-				m_playerDataMng.GetPlayerData(roleDataReq.ptname());
+				try
+				{
+					gtod::SRequestRoleData roleDataReq;
+					roleDataReq.ParseFromString(GetProtoData(pMsgHeader));
+					m_playerDataMng.GetPlayerData(roleDataReq.ptname());
+
+				}
+				catch (google::protobuf::FatalException fe)
+				{
+					ERRORLOG("protobuf excetpion error=[" << fe.message() << "]");
+				}
 			}
 			break;
 		case ID_SREQ_SRequestSaveRoleData:				// 获取角色数据
 			{
-				gtod::SRequestSaveRoleData saveRoleData;
-				saveRoleData.ParseFromString(GetProtoData(pMsgHeader));
-				m_playerDataMng.SavePlayerData(saveRoleData.ptname(), saveRoleData.roledata());
+				try
+				{
+					gtod::SRequestSaveRoleData saveRoleData;
+					saveRoleData.ParseFromString(GetProtoData(pMsgHeader));
+					m_playerDataMng.SavePlayerData(saveRoleData.ptname(), saveRoleData.roledata());
+				}
+				catch (google::protobuf::FatalException fe)
+				{
+					ERRORLOG("protobuf excetpion error=[" << fe.message() << "]");
+				}
 			}
 			break;
 		case ID_SREQ_SRequestRoleDataVersion:			// 获取角色数据版本

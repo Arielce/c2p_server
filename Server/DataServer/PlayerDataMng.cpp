@@ -143,85 +143,99 @@ void PlayerDataMng::GetPlayerData(const string& strPtName)
 
 bool PlayerDataMng::CreateNewPlayer(const string& strPtName, const string& strRoleName)
 {
-	roledata::PBRoleBaseInfo roleBaseInfo;
-	roleBaseInfo.set_ptname(strPtName);
-	roleBaseInfo.set_rolename(strRoleName);
-
-	string strRoleData;
-	roleBaseInfo.SerializeToString(&strRoleData);
-
-	string strPrint;
-	google::protobuf::TextFormat::PrintToString(roleBaseInfo, &strPrint);
-	TRACELOG("create role proto:" << endl << strPrint);
-
-	int nEscapeLen = mysql_real_escape_string(m_sqlConn.Mysql(), m_escapeBuf, strRoleData.c_str(), strRoleData.size());
-	string strInsertSql = "insert into playerinfo(areaid, ptname, rolename, playerbase) values(" + m_strAreaId + ", '" + strPtName + "', '" + strRoleName + "', '" + string(m_escapeBuf, nEscapeLen) + "')";
-	
-	if (!m_sqlConn.Execute(strInsertSql.c_str()))
+	try
 	{
-		ERRORLOG("execute sql failed. error=[" << m_sqlConn.GetErrInfo() << "]");
-		return false;
-	}
+		roledata::PBRoleBaseInfo roleBaseInfo;
+		roleBaseInfo.set_ptname(strPtName);
+		roleBaseInfo.set_rolename(strRoleName);
 
-	// 从mysql中查出玩家的ID
-	CRecordSet record;
-	string strQueryId = "select *from playerinfo where ptname='" + strPtName +  "' and areaid=" + m_strAreaId;
-	if (!m_sqlConn.Execute(strQueryId.c_str(), record))
+		string strRoleData;
+		roleBaseInfo.SerializeToString(&strRoleData);
+
+		string strPrint;
+		google::protobuf::TextFormat::PrintToString(roleBaseInfo, &strPrint);
+		TRACELOG("create role proto:" << endl << strPrint);
+
+		int nEscapeLen = mysql_real_escape_string(m_sqlConn.Mysql(), m_escapeBuf, strRoleData.c_str(), strRoleData.size());
+		string strInsertSql = "insert into playerinfo(areaid, ptname, rolename, playerbase) values(" + m_strAreaId + ", '" + strPtName + "', '" + strRoleName + "', '" + string(m_escapeBuf, nEscapeLen) + "')";
+
+		if (!m_sqlConn.Execute(strInsertSql.c_str()))
+		{
+			ERRORLOG("execute sql failed. error=[" << m_sqlConn.GetErrInfo() << "]");
+			return false;
+		}
+
+		// 从mysql中查出玩家的ID
+		CRecordSet record;
+		string strQueryId = "select *from playerinfo where ptname='" + strPtName +  "' and areaid=" + m_strAreaId;
+		if (!m_sqlConn.Execute(strQueryId.c_str(), record))
+		{
+			ERRORLOG("execute sql failed. error=[" << m_sqlConn.GetErrInfo() << "]");
+			return false;
+		}
+		MYSQL_ROW row;
+		record.FetchRow(row);
+		if (!row)				// 没有记录
+		{
+			ERRORLOG("cannot find the player id in mysql, pt name=[" << strPtName << "]");
+			return false;
+		}
+
+		uint32_t uUserId = boost::lexical_cast<uint32_t>(row[0]);
+		roleBaseInfo.set_userid(uUserId);
+
+		TRACELOG("Create Player data, id=[" << uUserId << "], pt name=[" << strPtName << "]");
+	}
+	catch (google::protobuf::FatalException fe)
 	{
-		ERRORLOG("execute sql failed. error=[" << m_sqlConn.GetErrInfo() << "]");
-		return false;
+		ERRORLOG("protobuf excetpion error=[" << fe.message() << "]");
 	}
-	MYSQL_ROW row;
-	record.FetchRow(row);
-	if (!row)				// 没有记录
-	{
-		ERRORLOG("cannot find the player id in mysql, pt name=[" << strPtName << "]");
-		return false;
-	}
-
-	uint32_t uUserId = boost::lexical_cast<uint32_t>(row[0]);
-	roleBaseInfo.set_userid(uUserId);
-
-	TRACELOG("Create Player data, id=[" << uUserId << "], pt name=[" << strPtName << "]");
 
 	return true;
 }
 
 void PlayerDataMng::SavePlayerData(const string& strPtName, const roledata::PBRoleTotalInfo& roleTotalInfo)
 {
-	string strPrint;
-	google::protobuf::TextFormat::PrintToString(roleTotalInfo, &strPrint);
-	TRACELOG("save roledata proto:" << endl << strPrint);
-
-	const roledata::PBRoleBaseInfo& roleBaseInfo = roleTotalInfo.baseinfo();
-	string strRoleData;
-	roleBaseInfo.SerializeToString(&strRoleData);
-
-	const roledata::PBRoleBag& roleBag = roleTotalInfo.baginfo();
-	string strRoleBag;
-	roleBag.SerializeToString(&strRoleBag);
-
-	int nEscapeLen = mysql_real_escape_string(m_sqlConn.Mysql(), m_escapeBuf, strRoleData.c_str(), strRoleData.size());
-	string strPlayerBase = string(m_escapeBuf, nEscapeLen);
-
-	nEscapeLen = mysql_real_escape_string(m_sqlConn.Mysql(), m_escapeBuf, strRoleBag.c_str(), strRoleBag.size());
-	string strPlayerBag = string(m_escapeBuf, nEscapeLen);
-
-	string strSaveDataSql = "update playerinfo set level=" + boost::lexical_cast<string>(roleBaseInfo.level()) 
-		+ ", dataversion=" + boost::lexical_cast<string>(roleBaseInfo.dataversion())
-		+ ", exp=" + boost::lexical_cast<string>(roleBaseInfo.exp())
-		+ ", gold=" + boost::lexical_cast<string>(roleBaseInfo.gold())
-		+ ", diamond=" + boost::lexical_cast<string>(roleBaseInfo.diamond())
-		+ ", playerbase='" + strPlayerBase + "'"
-		+ ", playerbag='" + strPlayerBag + "' where ptname='" + strPtName +  "' and areaid=" + m_strAreaId;
-
-	TRACELOG("Save Player data, id=[" << roleBaseInfo.userid() << "], pt name=[" << strPtName << "]");
-
-	//boost::timer timer;
-	if (!m_sqlConn.Execute(strSaveDataSql.c_str()))
+	try
 	{
-		ERRORLOG("execute sql failed. error=[" << m_sqlConn.GetErrInfo() << "]");
-		return;
+		string strPrint;
+		google::protobuf::TextFormat::PrintToString(roleTotalInfo, &strPrint);
+		TRACELOG("save roledata proto:" << endl << strPrint);
+
+		const roledata::PBRoleBaseInfo& roleBaseInfo = roleTotalInfo.baseinfo();
+		string strRoleData;
+		roleBaseInfo.SerializeToString(&strRoleData);
+
+		const roledata::PBRoleBag& roleBag = roleTotalInfo.baginfo();
+		string strRoleBag;
+		roleBag.SerializeToString(&strRoleBag);
+
+		int nEscapeLen = mysql_real_escape_string(m_sqlConn.Mysql(), m_escapeBuf, strRoleData.c_str(), strRoleData.size());
+		string strPlayerBase = string(m_escapeBuf, nEscapeLen);
+
+		nEscapeLen = mysql_real_escape_string(m_sqlConn.Mysql(), m_escapeBuf, strRoleBag.c_str(), strRoleBag.size());
+		string strPlayerBag = string(m_escapeBuf, nEscapeLen);
+
+		string strSaveDataSql = "update playerinfo set level=" + boost::lexical_cast<string>(roleBaseInfo.level()) 
+			+ ", dataversion=" + boost::lexical_cast<string>(roleBaseInfo.dataversion())
+			+ ", exp=" + boost::lexical_cast<string>(roleBaseInfo.exp())
+			+ ", gold=" + boost::lexical_cast<string>(roleBaseInfo.gold())
+			+ ", diamond=" + boost::lexical_cast<string>(roleBaseInfo.diamond())
+			+ ", playerbase='" + strPlayerBase + "'"
+			+ ", playerbag='" + strPlayerBag + "' where ptname='" + strPtName +  "' and areaid=" + m_strAreaId;
+
+		TRACELOG("Save Player data, id=[" << roleBaseInfo.userid() << "], pt name=[" << strPtName << "]");
+
+		//boost::timer timer;
+		if (!m_sqlConn.Execute(strSaveDataSql.c_str()))
+		{
+			ERRORLOG("execute sql failed. error=[" << m_sqlConn.GetErrInfo() << "]");
+			return;
+		}
+	}
+	catch (google::protobuf::FatalException fe)
+	{
+		ERRORLOG("protobuf excetpion error=[" << fe.message() << "]");
 	}
 
 	//TRACELOG("save sql, time cost=[" << timer.elapsed() << "]");
