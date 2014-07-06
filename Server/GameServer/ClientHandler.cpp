@@ -11,7 +11,7 @@
 
 void ClientHandler::HandleConnect(IConnection* pConn)
 {
-	TRACELOG("client connect ip=[" << pConn->GetRemoteIp() << "], port=[" << pConn->GetRemotePort() << "]");
+	TRACELOG("client connect=[" << pConn << "] ip=[" << pConn->GetRemoteIp() << "], port=[" << pConn->GetRemotePort() << "]");
 }
 
 void ClientHandler::HandleDisconnect(IConnection* pConn, const BoostErrCode& error)

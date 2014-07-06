@@ -332,7 +332,7 @@ void PlayerMng::GetPlayerData(IConnection* pConnection, const string& strPtName)
 	// 判断此链接是否已经被其他玩家使用了（同一个链接只支持一个玩家）
 	if (m_clientConnMng.IsConnectionUsed(strPtName, pConnection))
 	{
-		TRACELOG("the connection has already been used by other player.");
+		TRACELOG("the connection has already been used by other player, ptname=[" << strPtName << "]");
 		return;
 	}
 
@@ -394,9 +394,14 @@ void PlayerMng::AchievePlayerData(const roledata::PBRoleTotalInfo& roleData, con
 	}
 	
 	IConnection* pClientConn = pPlayer->GetPlayerConnection();
-	if (!pClientConn || !pClientConn->IsConnected())
+	if (!pClientConn)
 	{
-		ERRORLOG("player client connection is error.");
+		ERRORLOG("player client connection is NULL.");
+		return;
+	}
+	if (!pClientConn->IsConnected())
+	{
+		ERRORLOG("player client connection=[" << pClientConn <<"] is disconnect.");
 		return;
 	}
 	pPlayer->GetRoleTotalInfo(roleData);
@@ -518,6 +523,8 @@ void PlayerMng::_RequestRoleData(IConnection* pConn, MessageHeader* pMsgHeader)
 {
 	ctos::RequestRoleData roleDataReq;
 	roleDataReq.ParseFromString(GetProtoData(pMsgHeader));
+
+	TRACELOG("ptname=[" << roleDataReq.ptname() << "] request role data.");
 
 	if (roleDataReq.ptname() == "")
 	{

@@ -68,15 +68,17 @@ void PlayerDataMng::CreateRole(const string& strPtName, const string& strRoleNam
 	}
 	else
 	{
+		CRecordSet queryRecord;			// 两个查询语句不能用一个record对象，否则有查询结果没被释放掉
 		// 检查rolename是否已经使用过了
 		string strQueryRole = "select rolename from playerinfo where rolename='" + strRoleName + "' and areaid=" + m_strAreaId;
-		if (!m_sqlConn.Execute(strSql.c_str(), record))
+		if (!m_sqlConn.Execute(strSql.c_str(), queryRecord))
 		{
 			ERRORLOG("execute sql=[" << strSql << "] failed. error=[" << m_sqlConn.GetErrInfo() << "]");
 			return;
 		}
-		record.FetchRow(row);
-		if (row)						// 此角色名已经存在
+		MYSQL_ROW queryRow;
+		record.FetchRow(queryRow);
+		if (queryRow)						// 此角色名已经存在
 		{
 			createRoleAck.set_errcode(ERROR_ROLENAME_EXIST);
 		}
