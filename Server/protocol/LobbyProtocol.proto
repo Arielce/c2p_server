@@ -5,9 +5,10 @@ message RequestRegGameServer
 {
 	optional uint32 gsId = 1;				// gameserver区号
 	optional uint32 gsType = 2;				// gameserver类型
+	optional uint32 port = 3;				// 端口
 }
 
-// 返回gamegate注册请求
+// 返回gameserver注册请求
 message ResponseRegGameServer
 {
 	optional uint32 errCode = 1;			// 错误码

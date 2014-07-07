@@ -33,7 +33,7 @@ def run():
 
 def doTest():
     i = 0
-    while i < 10:
+    while i < 1:
         i = i + 1
         print "create new thread"
         try:

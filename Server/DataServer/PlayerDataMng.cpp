@@ -77,7 +77,7 @@ void PlayerDataMng::CreateRole(const string& strPtName, const string& strRoleNam
 			return;
 		}
 		MYSQL_ROW queryRow;
-		record.FetchRow(queryRow);
+		queryRecord.FetchRow(queryRow);
 		if (queryRow)						// 此角色名已经存在
 		{
 			createRoleAck.set_errcode(ERROR_ROLENAME_EXIST);

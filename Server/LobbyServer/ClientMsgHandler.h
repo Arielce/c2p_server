@@ -27,6 +27,9 @@ public:
 	void HandleRecv(IConnection* pConn, const char* pBuf, uint32_t nLen);
 
 private:
+	void _RequestGameGroup(IConnection* pConn, MessageHeader* pMsgHeader);
+
+private:
 	GameGroupMng* m_pGameGroupMng;
 };
 

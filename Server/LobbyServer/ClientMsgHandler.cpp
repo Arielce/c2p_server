@@ -1,6 +1,9 @@
 #include "ClientMsgHandler.h"
 #include "../protocol/LobbyProtocol.h"
 #include "../protocol/LobbyProtocol.pb.h"
+#include "../protocol/GameProtocol.pb.h"
+#include "../protocol/GameProtocol.h"
+#include "GameGroupMng.h"
 
 ClientMsgHandler::ClientMsgHandler() 
 {
@@ -44,10 +47,40 @@ void ClientMsgHandler::HandleRecv(IConnection* pConn, const char* pBuf, uint32_t
 	{
 	case ID_REQ_RequestGameGroup:				// 请求游戏区组
 		{
-
+			_RequestGameGroup(pConn, pMsgHeader);
 		}
 		break;
 	default:
 		break;
 	}
+}
+
+// 请求区组列表
+void ClientMsgHandler::_RequestGameGroup(IConnection* pConn, MessageHeader* pMsgHeader)
+{
+	if (!pConn || !pMsgHeader)
+	{
+		return;
+	}
+
+	ctos::ResponseGameGroups gameGroupAck;
+	vector<GroupInfo> groupVec;
+
+	m_pGameGroupMng->GetGameGroups(groupVec);
+
+	vector<GroupInfo>::iterator groupIt = groupVec.begin();
+	vector<GroupInfo>::iterator groupItEnd = groupVec.end();
+	for (; groupIt != groupItEnd; groupIt++)
+	{
+		const GroupInfo& groupInfo = *groupIt;
+		ctos::PBGameGroup* pGameGroup = gameGroupAck.add_groups();
+		pGameGroup->set_ip(groupInfo.strIp);
+		pGameGroup->set_port(groupInfo.nPort);
+	}
+
+	string strMessage;
+	BuildResponseProto<ctos::ResponseGameGroups>(gameGroupAck, strMessage, ID_ACK_Lobby_ResponseGameGroups);
+	pConn->SendMsg(strMessage.c_str(), strMessage.size());
+
+	return;
 }

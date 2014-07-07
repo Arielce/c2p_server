@@ -67,10 +67,12 @@ bool LobbyServer::InitServerApp()
 		return false;
 	}
 
+	// 初始化客户端
 	ClientMsgHandler* pClientHandler = new ClientMsgHandler();
 	pClientHandler->SetGroupMng(pGameGroupMng);
 	m_pClientSession->SetMsgParser(gsMsgParser);
 	m_pClientSession->SetMsgHandler(pClientHandler);	
+	m_pClientSession->SetBufSize(12, 4096);
 
 	m_pClientSession->Listen(gpServerConfig->GetClientBindIp(), gpServerConfig->GetClientListenPort());
 

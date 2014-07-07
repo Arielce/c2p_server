@@ -19,6 +19,7 @@
 #include <log4cplus/loggingmacros.h>
 #include <iostream>
 #include <boost/lexical_cast.hpp>
+#include <boost/assert.hpp>
 #include <google/protobuf/text_format.h>
 
 #include "../network/INetCluster.h"

@@ -29,6 +29,22 @@ def RequestReload(sock, fileName):
         print e
     return reloadAck
 
+# 请求区组列表
+def RequestGameGroup(sock):
+    gameGroupReq = GameProtocol_pb2.RequestGameGroups()
+    gameGroupReq.clientType = 0
+    body = gameGroupReq.SerializeToString()
+    header = struct.pack('iiI', 12+len(body), 0x0100, 0xA1B2C3D4)
+    sock.send(header+body)
+    
+    pbstr = sock.recv(1024)
+    gameGroupAck = GameProtocol_pb2.ResponseGameGroups()
+    try:
+        gameGroupAck.ParseFromString(str(pbstr[12:]))           
+    except Exception as e:
+        print e
+    return gameGroupAck
+
 # 请求创建角色
 def RequestCreateRole(sock, ptname, rolename):
     createRoleReq = GameProtocol_pb2.RequestCreateRole()
