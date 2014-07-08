@@ -43,6 +43,9 @@ enum
 	ID_REQ_RequestDrawPrize,						// 请求抽奖
 
 	// ======================服务器消息返回==========================
+	// 登录注册相关协议
+	ID_ACK_Lobby_ResponseGameGroups	= 0x0100,		// 用户请求区组列表
+
 	// 请求执行GM指令
 	ID_ACK_ResponseProcGMCommand	= 0x0900,		// 请求执行GM指令
 	ID_ACK_ResponseVerifyToken,						// 验证token

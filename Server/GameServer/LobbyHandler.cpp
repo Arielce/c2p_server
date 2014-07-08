@@ -30,8 +30,28 @@ void LobbyHandler::HandleWrite(const boost::system::error_code& error, size_t by
 	}
 }
 
-void LobbyHandler::HandleRecv(IConnection* pConn, const char* pBuf, uint32_t nLen)
+void LobbyHandler::HandleRecv(IConnection* pConn, const char* pBuf, uint32_t uLen)
 {
-	
+	if (!pBuf || !uLen)
+	{
+		return;
+	}
+	MessageHeader* pMsgHeader = (MessageHeader*)pBuf;
+	if (!pMsgHeader)
+	{
+		return;
+	}
+	switch (pMsgHeader->uMsgCmd)
+	{
+	case ID_SACK_SResponseGsReg:
+		{
+			lobby::ResponseRegGameServer regGameServerAck;
+			regGameServerAck.ParseFromString(GetProtoData(pMsgHeader));
+			TRACELOG("register gameserver to lobbyserver, errorCode=[" << regGameServerAck.errcode() << "]");
+		}
+		break;
+	default:
+		break;
+	}
 }
  

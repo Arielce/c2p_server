@@ -19,11 +19,13 @@ void ClientMsgHandler::SetGroupMng(GameGroupMng* pGroupMng)
 void ClientMsgHandler::HandleConnect(IConnection* pConn)
 {
 	cout << "gs connect:" << pConn->GetRemoteIp() << ":" << pConn->GetRemotePort() << endl;
+	TRACELOG("gs connect:" << pConn->GetRemoteIp() << ":" << pConn->GetRemotePort());
 }
 
 void ClientMsgHandler::HandleDisconnect(IConnection* pConn, const BoostErrCode& error)
 {
 	cout << "gs " << pConn->GetRemoteIp() << ":" << pConn->GetRemotePort() << " disconnect" << endl;
+	TRACELOG("gs " << pConn->GetRemoteIp() << ":" << pConn->GetRemotePort() << " disconnect");
 }
 
 void ClientMsgHandler::HandleWrite(const boost::system::error_code& error, size_t bytes_transferred) 

@@ -2,9 +2,10 @@
 #include "header.h"
 #include "LobbyServer.h"
 
-
 using namespace std;
 IConnection* g_pGsConnection = NULL;
+Logger g_lobbyLog = Logger::getInstance(LOG4CPLUS_TEXT("ALL_MSGS"));
+Logger g_clientLog = Logger::getInstance(LOG4CPLUS_TEXT("client"));
 
 int main(int argc, char* argv[])
 {
@@ -17,9 +18,10 @@ int main(int argc, char* argv[])
 
 	if (!lobbyServer.Init(pInitConfPath))
 	{
-		cout << "lobbyServer init failed." << endl;
+		ERRORLOG("lobbyServer init failed.");
 		return 1;
 	}
+	TRACE_CLIENT("test client");
 	lobbyServer.Start();
 
 	return 0;

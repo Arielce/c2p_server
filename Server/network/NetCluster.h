@@ -29,7 +29,6 @@ namespace cpnet
 		virtual IClientSession* CreateClientSession();
 		virtual IServerSession* CreateServerSession();
 		virtual ITimerTrigger* CreateTimerTrigger();
-		virtual void SetLogConf(const char* pLogProp);
 		virtual bool Init();
 		virtual void Run();
 		virtual void Stop();

@@ -23,8 +23,8 @@ bool LobbyServer::Init(const char* pConfPath)
 
 bool LobbyServer::InitLog4cpp()
 {
-	//PropertyConfigurator::doConfigure(LOG4CPLUS_TEXT("./log.properties"));
-	//Logger root = Logger::getRoot();
+	PropertyConfigurator::doConfigure(LOG4CPLUS_TEXT("./lobby.properties"));
+	Logger root = Logger::getRoot();
 
 	return true;
 }

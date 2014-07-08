@@ -18,7 +18,7 @@ public:
 
 	void HandleWrite(const boost::system::error_code& error, size_t bytes_transferred);
 
-	void HandleRecv(IConnection* pConn, const char* pBuf, uint32_t nLen);
+	void HandleRecv(IConnection* pConn, const char* pBuf, uint32_t uLen);
 };
 
 

@@ -35,16 +35,8 @@ namespace cpnet
 		return new TimerTrigger(m_ioService, m_strand);
 	}
 
-	void NetCluster::SetLogConf(const char* pLogProp)
-	{
-		m_strLogProp = pLogProp;
-	}
-
 	bool NetCluster::Init()
 	{
-		PropertyConfigurator::doConfigure(LOG4CPLUS_TEXT(m_strLogProp.c_str()));
-		Logger root = Logger::getRoot();
-
 		g_netLog = Logger::getInstance(LOG4CPLUS_TEXT("NETWORK"));
 		return true;
 	}

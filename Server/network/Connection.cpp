@@ -62,6 +62,12 @@ namespace cpnet
 		m_pMsgHandler = pMsgHandler;
 	}
 
+	void Connection::SetDisconnCallback(const disConnFuncCallBack& _disConnCallback)
+	{
+		disconnCallback = _disConnCallback;
+		m_bForClientSession = true;
+	}
+
 	BoostSocket& Connection::socket()
 	{
 		return m_sock;
@@ -78,7 +84,7 @@ namespace cpnet
 			{
 				boost::asio::async_write(m_sock, boost::asio::buffer(m_msgQueue.front().data(), m_msgQueue.front().length()),
 					m_pStrand->wrap(
-						boost::bind(
+							boost::bind(
 							&Connection::HandleSend,
 							shared_from_this(),
 							boost::asio::placeholders::error,
@@ -199,7 +205,15 @@ namespace cpnet
 		{
 			SetConnected(false);
 			m_sock.close();						// 先关闭连接
-			m_pMsgHandler->HandleDisconnect(this, errCode);
+			if (m_bForClientSession)
+			{
+				disconnCallback(this, errCode);
+			}
+			else
+			{
+				m_pMsgHandler->HandleDisconnect(this, errCode);
+			}
+			
 			return false;
 		}
 		else if (boost::asio::error::connection_refused == errCode)			// 连接被拒绝

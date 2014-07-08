@@ -25,6 +25,7 @@ void GameGroupMng::GameServerDisconnect(IConnection* pGsConnection)
 	return;
 }
 
+// gameserver注册
 bool GameGroupMng::RegGameServer(IConnection* pGsConnection, int nGroupId)
 {
 	if (!pGsConnection)
@@ -44,6 +45,7 @@ bool GameGroupMng::RegGameServer(IConnection* pGsConnection, int nGroupId)
 	return true;
 }
 
+// 获取gameserver区组列表
 void GameGroupMng::GetGameGroups(vector<GroupInfo>& groupVec)
 {
 	map<int, GroupInfo>::iterator groupIt = m_groupMap.begin();

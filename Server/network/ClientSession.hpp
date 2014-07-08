@@ -18,14 +18,17 @@ namespace cpnet
 		{
 			return pointer(new ClientSession(ioService, strand));
 		}
-
+		
+		// 连接指定服务器
 		virtual void Connect(const char* pServerIp, uint32_t uPort)
 		{
-			m_pConnection = Connection::Create(*m_pIoService, *m_pStrand, m_uHeadSize, m_uBufSize);
 			m_strIp = pServerIp;
 			m_uPort = uPort;
+
+			m_pConnection = Connection::Create(*m_pIoService, *m_pStrand, m_uHeadSize, m_uBufSize);
 			m_pConnection->SetMsgParser(m_pMsgParser);
 			m_pConnection->SetMsgHandler(m_pMsgHandler);
+			m_pConnection->SetDisconnCallback(boost::bind(&ClientSession::HandleDisconnect, this, _1, _2));
 		
 			// 开始连接
 			DoReConnect();
@@ -89,6 +92,7 @@ namespace cpnet
 
 		void HandleDisconnect(IConnection* pConnection, const BoostErrCode& err)
 		{
+			m_pMsgHandler->HandleDisconnect(pConnection, err);
 			OnTimerConnect();	
 		}
 

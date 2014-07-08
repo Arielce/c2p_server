@@ -83,7 +83,7 @@ bool GameServer::InitServerApp()
 	{
 		return false;
 	}
-	m_pNetCluster->SetLogConf("./net.properties");
+	//m_pNetCluster->SetLogConf("./log.properties");
 	m_pNetCluster->SetNetThreadNum(4);
 	if (!m_pNetCluster->Init())
 	{

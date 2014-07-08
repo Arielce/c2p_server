@@ -48,6 +48,7 @@ namespace cpnet
 
 		void SetMsgParser(IMsgParser* pMsgParser);
 		void SetMsgHandler(IMsgHandler* pMsgHandler);
+		void SetDisconnCallback(const disConnFuncCallBack& disConnCallback);
 
 		BoostSocket& socket();
 		void GetRemoteInfo();
@@ -55,7 +56,8 @@ namespace cpnet
 		void SendMsg(const void* pData, uint32_t uLen);
 	private:
 		Connection(BoostIoService& ioService, BoostStrand& strand, size_t nHeadLength, size_t nBufLength) : 
-			m_pStrand(NULL), m_sock(ioService), m_bConnect(false), m_pMsgParser(NULL), m_nHeadLength(nHeadLength), m_nBufLength(nBufLength), m_uRemotePort(0), m_bGetRemoteInfo(false), m_nHasTransffered(0)
+			m_pStrand(NULL), m_sock(ioService), m_bConnect(false), m_pMsgParser(NULL), m_nHeadLength(nHeadLength), m_nBufLength(nBufLength), m_uRemotePort(0), m_bGetRemoteInfo(false), m_nHasTransffered(0), 
+			m_bForClientSession(false)
 		{
 			m_pStrand = &strand;
 			// to use memory pool later
@@ -91,6 +93,9 @@ namespace cpnet
 		string m_strRemoteIp;
 		uint32_t m_uRemotePort;
 		bool m_bGetRemoteInfo;
+
+		bool m_bForClientSession;						// 作为客户端的连接
+		disConnFuncCallBack disconnCallback;			// 断开连接的回调，只有m_bForClientSession为true的时候才使用
 
 		boost::mutex m_mutex;
 	};

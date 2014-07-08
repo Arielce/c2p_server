@@ -15,12 +15,16 @@
 
 using namespace std;
 
-#define TRACELOG(logEvent)	LOG4CPLUS_TRACE(g_gsLog, logEvent)
-#define CTRACELOG(logEvent)	LOG4CPLUS_TRACE(g_clientLog, logEvent)
-#define DEBUGLOG(logEvent)	LOG4CPLUS_DEBUG(g_gsLog, logEvent)
-#define INFOLOG(logEvent)	LOG4CPLUS_INFO(g_gsLog, logEvent)
-#define WARNLOG(logEvent)	LOG4CPLUS_WARN(g_gsLog, logEvent)
-#define ERRORLOG(logEvent)	LOG4CPLUS_ERROR(g_gsLog, logEvent)
-#define FATALLOG(logEvent)	LOG4CPLUS_FATAL(g_gsLog, logEvent)
+extern Logger g_lobbyLog;
+extern Logger g_clientLog;
+
+#define TRACELOG(logEvent)	LOG4CPLUS_TRACE(g_lobbyLog, logEvent)
+#define DEBUGLOG(logEvent)	LOG4CPLUS_DEBUG(g_lobbyLog, logEvent)
+#define INFOLOG(logEvent)	LOG4CPLUS_INFO(g_lobbyLog, logEvent)
+#define WARNLOG(logEvent)	LOG4CPLUS_WARN(g_lobbyLog, logEvent)
+#define ERRORLOG(logEvent)	LOG4CPLUS_ERROR(g_lobbyLog, logEvent)
+#define FATALLOG(logEvent)	LOG4CPLUS_FATAL(g_lobbyLog, logEvent)
+
+#define TRACE_CLIENT(logEvent) LOG4CPLUS_TRACE(g_clientLog, logEvent)
 
 #endif
