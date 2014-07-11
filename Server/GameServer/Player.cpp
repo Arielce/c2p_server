@@ -4,7 +4,7 @@
 #include "../network/Uuid.h"
 #include "HeroMng.h"
 
-Player::Player() : m_state(PLAYER_OFFLINE), m_pClientConn(NULL), m_uSecureToken(0), m_bHasVerifyToken(false), m_uID(0), m_uLevel(0), m_uExp(0), m_uGold(0), m_uDiamond(0), m_bDataReady(false)
+Player::Player() : m_state(PLAYER_OFFLINE), m_pClientConn(NULL), m_uSecureToken(0), m_bHasVerifyFromServer(false), m_bHasVerifyToken(false), m_uID(0), m_uLevel(0), m_uExp(0), m_uGold(0), m_uDiamond(0), m_bDataReady(false)
 {
 
 }
@@ -186,6 +186,11 @@ void Player::_SerializeRoleBagInfo(roledata::PBRoleBag& roleBag)
 		pPBEquip->set_equipid(goods.uId);
 		pPBEquip->set_equipnum(goods.uNum);
 	}
+}
+
+bool Player::HasVerifyFromServer()
+{
+	return m_bHasVerifyFromServer;
 }
 
 bool Player::HasVerified(IConnection* pConnection)

@@ -11,7 +11,7 @@ from google.protobuf import descriptor_pb2
 DESCRIPTOR = descriptor.FileDescriptor(
   name='LobbyProtocol.proto',
   package='lobby',
-  serialized_pb='\n\x13LobbyProtocol.proto\x12\x05lobby\"4\n\x14RequestRegGameServer\x12\x0c\n\x04gsId\x18\x01 \x01(\r\x12\x0e\n\x06gsType\x18\x02 \x01(\r\"(\n\x15ResponseRegGameServer\x12\x0f\n\x07\x65rrCode\x18\x01 \x01(\r')
+  serialized_pb='\n\x13LobbyProtocol.proto\x12\x05lobby\"B\n\x14RequestRegGameServer\x12\x0c\n\x04gsId\x18\x01 \x01(\r\x12\x0e\n\x06gsType\x18\x02 \x01(\r\x12\x0c\n\x04port\x18\x03 \x01(\r\"(\n\x15ResponseRegGameServer\x12\x0f\n\x07\x65rrCode\x18\x01 \x01(\r')
 
 
 
@@ -37,6 +37,13 @@ _REQUESTREGGAMESERVER = descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    descriptor.FieldDescriptor(
+      name='port', full_name='lobby.RequestRegGameServer.port', index=2,
+      number=3, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -47,7 +54,7 @@ _REQUESTREGGAMESERVER = descriptor.Descriptor(
   is_extendable=False,
   extension_ranges=[],
   serialized_start=30,
-  serialized_end=82,
+  serialized_end=96,
 )
 
 
@@ -74,8 +81,8 @@ _RESPONSEREGGAMESERVER = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=84,
-  serialized_end=124,
+  serialized_start=98,
+  serialized_end=138,
 )
 
 DESCRIPTOR.message_types_by_name['RequestRegGameServer'] = _REQUESTREGGAMESERVER

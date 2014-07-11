@@ -62,6 +62,17 @@ public:
 	{
 		return m_strRedisIp.c_str();
 	}
+
+	uint32_t GetLoginPort()
+	{
+		return m_nLoginPort;
+	}
+
+	const char* GetLoginIp()
+	{
+		return m_szLoginIp;
+	}
+
 	uint32_t GetRedisPort()
 	{
 		return m_nRedisPort;
@@ -89,6 +100,8 @@ private:
 	char m_szDsIp[32];
 	uint32_t m_nLobbyPort;
 	char m_szLobbyIp[32];
+	uint32_t m_nLoginPort;
+	char m_szLoginIp[32];
 
 	string m_strRedisIp;
 	uint32_t m_nRedisPort;

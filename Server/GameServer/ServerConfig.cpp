@@ -115,6 +115,30 @@ bool ServerConfig::LoadServerConf(const char* pFilePath)
 		m_nLobbyPort = boost::lexical_cast<int>(pLobbyServerPort);
 	}
 
+	// loginserveragent
+	TiXmlElement* pLoginAgent = pRoot->FirstChildElement("LoginServerAgent");
+	if (!pLoginAgent)
+	{
+		ERRORLOG("cannot find LoginServerAgent");
+		return false;
+	}
+
+	TiXmlElement* pLoginAgentConn = pLoginAgent->FirstChildElement("connect");
+	if (!pLoginAgentConn)
+	{
+		return false;
+	}
+	const char* pLoginAgentIp = pLoginAgentConn->Attribute("ip");
+	const char* pLoginAgentPort = pLoginAgentConn->Attribute("port");
+	if (pLoginAgentIp)
+	{
+		memcpy(m_szLoginIp, pLoginAgentIp, strlen(pLoginAgentIp));
+	}
+	if (pLoginAgentPort)
+	{
+		m_nLoginPort = boost::lexical_cast<int>(pLoginAgentPort);
+	}
+
 	// redis
 	TiXmlElement* pRedisServer = pRoot->FirstChildElement("Redis");
 	if (!pRedisServer)

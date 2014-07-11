@@ -40,6 +40,28 @@ message ResponseVerifyToken
 	optional uint32 errCode = 1;			// 错误码
 }
 
+// 请求可用名字列表
+message RequestRoleNameList
+{
+	optional uint32 listNum = 1;			// 需要的名称列表
+}
+
+message ResponseRoleNameList
+{
+	repeated string nameList = 1;			// 可用名字列表
+}
+
+// 请求检查名字是否可用
+message RequestCheckNameValid
+{
+	optional string roleName = 1;			// 角色名字
+}
+
+message ResponseCheckNameValid
+{
+	optional uint32 errCode = 1;			// 错误码
+}
+
 // 请求创建角色
 message RequestCreateRole
 {

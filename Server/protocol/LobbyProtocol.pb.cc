@@ -34,9 +34,10 @@ void protobuf_AssignDesc_LobbyProtocol_2eproto() {
       "LobbyProtocol.proto");
   GOOGLE_CHECK(file != NULL);
   RequestRegGameServer_descriptor_ = file->message_type(0);
-  static const int RequestRegGameServer_offsets_[2] = {
+  static const int RequestRegGameServer_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RequestRegGameServer, gsid_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RequestRegGameServer, gstype_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RequestRegGameServer, port_),
   };
   RequestRegGameServer_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -98,10 +99,10 @@ void protobuf_AddDesc_LobbyProtocol_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\023LobbyProtocol.proto\022\005lobby\"4\n\024RequestR"
+    "\n\023LobbyProtocol.proto\022\005lobby\"B\n\024RequestR"
     "egGameServer\022\014\n\004gsId\030\001 \001(\r\022\016\n\006gsType\030\002 \001"
-    "(\r\"(\n\025ResponseRegGameServer\022\017\n\007errCode\030\001"
-    " \001(\r", 124);
+    "(\r\022\014\n\004port\030\003 \001(\r\"(\n\025ResponseRegGameServe"
+    "r\022\017\n\007errCode\030\001 \001(\r", 138);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "LobbyProtocol.proto", &protobuf_RegisterTypes);
   RequestRegGameServer::default_instance_ = new RequestRegGameServer();
@@ -124,6 +125,7 @@ struct StaticDescriptorInitializer_LobbyProtocol_2eproto {
 #ifndef _MSC_VER
 const int RequestRegGameServer::kGsIdFieldNumber;
 const int RequestRegGameServer::kGsTypeFieldNumber;
+const int RequestRegGameServer::kPortFieldNumber;
 #endif  // !_MSC_VER
 
 RequestRegGameServer::RequestRegGameServer()
@@ -144,6 +146,7 @@ void RequestRegGameServer::SharedCtor() {
   _cached_size_ = 0;
   gsid_ = 0u;
   gstype_ = 0u;
+  port_ = 0u;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -180,6 +183,7 @@ void RequestRegGameServer::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     gsid_ = 0u;
     gstype_ = 0u;
+    port_ = 0u;
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
@@ -218,6 +222,22 @@ bool RequestRegGameServer::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
+        if (input->ExpectTag(24)) goto parse_port;
+        break;
+      }
+      
+      // optional uint32 port = 3;
+      case 3: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_port:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &port_)));
+          set_has_port();
+        } else {
+          goto handle_uninterpreted;
+        }
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -250,6 +270,11 @@ void RequestRegGameServer::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(2, this->gstype(), output);
   }
   
+  // optional uint32 port = 3;
+  if (has_port()) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(3, this->port(), output);
+  }
+  
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -266,6 +291,11 @@ void RequestRegGameServer::SerializeWithCachedSizes(
   // optional uint32 gsType = 2;
   if (has_gstype()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(2, this->gstype(), target);
+  }
+  
+  // optional uint32 port = 3;
+  if (has_port()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(3, this->port(), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -291,6 +321,13 @@ int RequestRegGameServer::ByteSize() const {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::UInt32Size(
           this->gstype());
+    }
+    
+    // optional uint32 port = 3;
+    if (has_port()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::UInt32Size(
+          this->port());
     }
     
   }
@@ -326,6 +363,9 @@ void RequestRegGameServer::MergeFrom(const RequestRegGameServer& from) {
     if (from.has_gstype()) {
       set_gstype(from.gstype());
     }
+    if (from.has_port()) {
+      set_port(from.port());
+    }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
@@ -351,6 +391,7 @@ void RequestRegGameServer::Swap(RequestRegGameServer* other) {
   if (other != this) {
     std::swap(gsid_, other->gsid_);
     std::swap(gstype_, other->gstype_);
+    std::swap(port_, other->port_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

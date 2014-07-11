@@ -6,6 +6,8 @@
 #include "../network/Utility.h"
 #include "../protocol/GameProtocol.h"
 #include "../protocol/ErrorCodes.h"
+#include "../protocol/LoginProtocol.h"
+#include "../protocol/LoginProtocol.pb.h"
 #include "ServerConfig.h"
 #include "KeyGen.h"
 
@@ -454,7 +456,7 @@ void PlayerMng::_RequestVerifyToken(IConnection* pConn, MessageHeader* pMsgHeade
 	Player* pPlayer = GetPlayer(verifyTokenReq.ptname());
 	if (!pPlayer)
 	{
-		ERRORLOG("verify token cannot find player pt name=[" << verifyTokenReq.ptname() << "]");
+		_SendVerifyToken(verifyTokenReq.ptname(), verifyTokenReq.token());
 		return;
 	}
 
@@ -631,5 +633,21 @@ void PlayerMng::AddPlayerExp(uint32_t uExpAdd, uint32_t uCurLevel, uint32_t uCur
 	uCurExp += uExpAdd;
 	uNewExp = uCurExp;
 
+	return;
+}
+
+void PlayerMng::_SendVerifyToken(string strPtName, uint32_t uToken)
+{
+	if (!g_pLoginAgentSession)
+	{
+		return;
+	}
+	login::SRequestVerifyToken verifyTokenSreq;
+	verifyTokenSreq.set_ptname(strPtName);
+	verifyTokenSreq.set_token(boost::lexical_cast<string>(uToken));
+
+	string strMessage;
+	BuildResponseProto<login::SRequestVerifyToken>(verifyTokenSreq, strMessage, ID_SREQ_SRequestVerifyToken);
+	g_pLoginAgentSession->SendMsg(strMessage.c_str(), strMessage.size());
 	return;
 }

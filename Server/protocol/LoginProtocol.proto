@@ -1,0 +1,15 @@
+package login;
+
+// gameserver向LoginServerAgent验证token
+message SRequestVerifyToken
+{
+	optional string ptName = 1;				// 账号名
+	optional string token = 2;				// 需要验证的token
+}
+
+// 返回token验证结果
+message SResponseVerifyToken
+{
+	optional string ptName = 1;				// 账号名
+	optional uint32 errCode = 2;			// 错误码
+}

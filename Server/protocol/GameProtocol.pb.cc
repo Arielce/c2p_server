@@ -35,6 +35,18 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* ResponseVerifyToken_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   ResponseVerifyToken_reflection_ = NULL;
+const ::google::protobuf::Descriptor* RequestRoleNameList_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  RequestRoleNameList_reflection_ = NULL;
+const ::google::protobuf::Descriptor* ResponseRoleNameList_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  ResponseRoleNameList_reflection_ = NULL;
+const ::google::protobuf::Descriptor* RequestCheckNameValid_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  RequestCheckNameValid_reflection_ = NULL;
+const ::google::protobuf::Descriptor* ResponseCheckNameValid_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  ResponseCheckNameValid_reflection_ = NULL;
 const ::google::protobuf::Descriptor* RequestCreateRole_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   RequestCreateRole_reflection_ = NULL;
@@ -196,7 +208,67 @@ void protobuf_AssignDesc_GameProtocol_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(ResponseVerifyToken));
-  RequestCreateRole_descriptor_ = file->message_type(6);
+  RequestRoleNameList_descriptor_ = file->message_type(6);
+  static const int RequestRoleNameList_offsets_[1] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RequestRoleNameList, listnum_),
+  };
+  RequestRoleNameList_reflection_ =
+    new ::google::protobuf::internal::GeneratedMessageReflection(
+      RequestRoleNameList_descriptor_,
+      RequestRoleNameList::default_instance_,
+      RequestRoleNameList_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RequestRoleNameList, _has_bits_[0]),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RequestRoleNameList, _unknown_fields_),
+      -1,
+      ::google::protobuf::DescriptorPool::generated_pool(),
+      ::google::protobuf::MessageFactory::generated_factory(),
+      sizeof(RequestRoleNameList));
+  ResponseRoleNameList_descriptor_ = file->message_type(7);
+  static const int ResponseRoleNameList_offsets_[1] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ResponseRoleNameList, namelist_),
+  };
+  ResponseRoleNameList_reflection_ =
+    new ::google::protobuf::internal::GeneratedMessageReflection(
+      ResponseRoleNameList_descriptor_,
+      ResponseRoleNameList::default_instance_,
+      ResponseRoleNameList_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ResponseRoleNameList, _has_bits_[0]),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ResponseRoleNameList, _unknown_fields_),
+      -1,
+      ::google::protobuf::DescriptorPool::generated_pool(),
+      ::google::protobuf::MessageFactory::generated_factory(),
+      sizeof(ResponseRoleNameList));
+  RequestCheckNameValid_descriptor_ = file->message_type(8);
+  static const int RequestCheckNameValid_offsets_[1] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RequestCheckNameValid, rolename_),
+  };
+  RequestCheckNameValid_reflection_ =
+    new ::google::protobuf::internal::GeneratedMessageReflection(
+      RequestCheckNameValid_descriptor_,
+      RequestCheckNameValid::default_instance_,
+      RequestCheckNameValid_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RequestCheckNameValid, _has_bits_[0]),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RequestCheckNameValid, _unknown_fields_),
+      -1,
+      ::google::protobuf::DescriptorPool::generated_pool(),
+      ::google::protobuf::MessageFactory::generated_factory(),
+      sizeof(RequestCheckNameValid));
+  ResponseCheckNameValid_descriptor_ = file->message_type(9);
+  static const int ResponseCheckNameValid_offsets_[1] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ResponseCheckNameValid, errcode_),
+  };
+  ResponseCheckNameValid_reflection_ =
+    new ::google::protobuf::internal::GeneratedMessageReflection(
+      ResponseCheckNameValid_descriptor_,
+      ResponseCheckNameValid::default_instance_,
+      ResponseCheckNameValid_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ResponseCheckNameValid, _has_bits_[0]),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ResponseCheckNameValid, _unknown_fields_),
+      -1,
+      ::google::protobuf::DescriptorPool::generated_pool(),
+      ::google::protobuf::MessageFactory::generated_factory(),
+      sizeof(ResponseCheckNameValid));
+  RequestCreateRole_descriptor_ = file->message_type(10);
   static const int RequestCreateRole_offsets_[2] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RequestCreateRole, ptname_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RequestCreateRole, rolename_),
@@ -212,7 +284,7 @@ void protobuf_AssignDesc_GameProtocol_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(RequestCreateRole));
-  ResponseCreateRole_descriptor_ = file->message_type(7);
+  ResponseCreateRole_descriptor_ = file->message_type(11);
   static const int ResponseCreateRole_offsets_[1] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ResponseCreateRole, errcode_),
   };
@@ -227,7 +299,7 @@ void protobuf_AssignDesc_GameProtocol_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(ResponseCreateRole));
-  RequestRoleData_descriptor_ = file->message_type(8);
+  RequestRoleData_descriptor_ = file->message_type(12);
   static const int RequestRoleData_offsets_[1] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RequestRoleData, ptname_),
   };
@@ -242,7 +314,7 @@ void protobuf_AssignDesc_GameProtocol_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(RequestRoleData));
-  ResponseRoleData_descriptor_ = file->message_type(9);
+  ResponseRoleData_descriptor_ = file->message_type(13);
   static const int ResponseRoleData_offsets_[2] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ResponseRoleData, errcode_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ResponseRoleData, roledata_),
@@ -258,7 +330,7 @@ void protobuf_AssignDesc_GameProtocol_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(ResponseRoleData));
-  RequestEnterGate_descriptor_ = file->message_type(10);
+  RequestEnterGate_descriptor_ = file->message_type(14);
   static const int RequestEnterGate_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RequestEnterGate, userid_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RequestEnterGate, gateid_),
@@ -275,7 +347,7 @@ void protobuf_AssignDesc_GameProtocol_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(RequestEnterGate));
-  ResponseEnterGate_descriptor_ = file->message_type(11);
+  ResponseEnterGate_descriptor_ = file->message_type(15);
   static const int ResponseEnterGate_offsets_[1] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ResponseEnterGate, errcode_),
   };
@@ -290,7 +362,7 @@ void protobuf_AssignDesc_GameProtocol_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(ResponseEnterGate));
-  RequestFinishGate_descriptor_ = file->message_type(12);
+  RequestFinishGate_descriptor_ = file->message_type(16);
   static const int RequestFinishGate_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RequestFinishGate, userid_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RequestFinishGate, gateid_),
@@ -307,7 +379,7 @@ void protobuf_AssignDesc_GameProtocol_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(RequestFinishGate));
-  ResponseFinishiGate_descriptor_ = file->message_type(13);
+  ResponseFinishiGate_descriptor_ = file->message_type(17);
   static const int ResponseFinishiGate_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ResponseFinishiGate, errcode_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ResponseFinishiGate, expget_),
@@ -324,7 +396,7 @@ void protobuf_AssignDesc_GameProtocol_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(ResponseFinishiGate));
-  RequestHeroDressEquip_descriptor_ = file->message_type(14);
+  RequestHeroDressEquip_descriptor_ = file->message_type(18);
   static const int RequestHeroDressEquip_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RequestHeroDressEquip, userid_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RequestHeroDressEquip, herouuid_),
@@ -341,7 +413,7 @@ void protobuf_AssignDesc_GameProtocol_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(RequestHeroDressEquip));
-  ResponseHeroDressEquip_descriptor_ = file->message_type(15);
+  ResponseHeroDressEquip_descriptor_ = file->message_type(19);
   static const int ResponseHeroDressEquip_offsets_[1] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ResponseHeroDressEquip, errcode_),
   };
@@ -356,7 +428,7 @@ void protobuf_AssignDesc_GameProtocol_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(ResponseHeroDressEquip));
-  RequestUpgradeHero_descriptor_ = file->message_type(16);
+  RequestUpgradeHero_descriptor_ = file->message_type(20);
   static const int RequestUpgradeHero_offsets_[2] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RequestUpgradeHero, userid_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RequestUpgradeHero, herouuid_),
@@ -372,7 +444,7 @@ void protobuf_AssignDesc_GameProtocol_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(RequestUpgradeHero));
-  ResponseUpgradeHero_descriptor_ = file->message_type(17);
+  ResponseUpgradeHero_descriptor_ = file->message_type(21);
   static const int ResponseUpgradeHero_offsets_[1] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ResponseUpgradeHero, errcode_),
   };
@@ -387,7 +459,7 @@ void protobuf_AssignDesc_GameProtocol_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(ResponseUpgradeHero));
-  RequestCompoundEquip_descriptor_ = file->message_type(18);
+  RequestCompoundEquip_descriptor_ = file->message_type(22);
   static const int RequestCompoundEquip_offsets_[2] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RequestCompoundEquip, userid_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RequestCompoundEquip, targetequipid_),
@@ -403,7 +475,7 @@ void protobuf_AssignDesc_GameProtocol_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(RequestCompoundEquip));
-  ResponseCompoundEquip_descriptor_ = file->message_type(19);
+  ResponseCompoundEquip_descriptor_ = file->message_type(23);
   static const int ResponseCompoundEquip_offsets_[1] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ResponseCompoundEquip, errcode_),
   };
@@ -418,7 +490,7 @@ void protobuf_AssignDesc_GameProtocol_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(ResponseCompoundEquip));
-  RequestDrawPrizeList_descriptor_ = file->message_type(20);
+  RequestDrawPrizeList_descriptor_ = file->message_type(24);
   static const int RequestDrawPrizeList_offsets_[1] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RequestDrawPrizeList, userid_),
   };
@@ -433,7 +505,7 @@ void protobuf_AssignDesc_GameProtocol_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(RequestDrawPrizeList));
-  ResponseDrawPrizeList_descriptor_ = file->message_type(21);
+  ResponseDrawPrizeList_descriptor_ = file->message_type(25);
   static const int ResponseDrawPrizeList_offsets_[2] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ResponseDrawPrizeList, errcode_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ResponseDrawPrizeList, drawlist_),
@@ -449,7 +521,7 @@ void protobuf_AssignDesc_GameProtocol_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(ResponseDrawPrizeList));
-  RequestDrawPrize_descriptor_ = file->message_type(22);
+  RequestDrawPrize_descriptor_ = file->message_type(26);
   static const int RequestDrawPrize_offsets_[2] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RequestDrawPrize, userid_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RequestDrawPrize, drawid_),
@@ -465,7 +537,7 @@ void protobuf_AssignDesc_GameProtocol_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(RequestDrawPrize));
-  PBDrawPrize_descriptor_ = file->message_type(23);
+  PBDrawPrize_descriptor_ = file->message_type(27);
   static const int PBDrawPrize_offsets_[2] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PBDrawPrize, prizeid_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PBDrawPrize, prizenum_),
@@ -481,7 +553,7 @@ void protobuf_AssignDesc_GameProtocol_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(PBDrawPrize));
-  ResponseDrawPrize_descriptor_ = file->message_type(24);
+  ResponseDrawPrize_descriptor_ = file->message_type(28);
   static const int ResponseDrawPrize_offsets_[2] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ResponseDrawPrize, errcode_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ResponseDrawPrize, prizelist_),
@@ -521,6 +593,14 @@ void protobuf_RegisterTypes(const ::std::string&) {
     RequestVerifyToken_descriptor_, &RequestVerifyToken::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     ResponseVerifyToken_descriptor_, &ResponseVerifyToken::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+    RequestRoleNameList_descriptor_, &RequestRoleNameList::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+    ResponseRoleNameList_descriptor_, &ResponseRoleNameList::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+    RequestCheckNameValid_descriptor_, &RequestCheckNameValid::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+    ResponseCheckNameValid_descriptor_, &ResponseCheckNameValid::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     RequestCreateRole_descriptor_, &RequestCreateRole::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
@@ -576,6 +656,14 @@ void protobuf_ShutdownFile_GameProtocol_2eproto() {
   delete RequestVerifyToken_reflection_;
   delete ResponseVerifyToken::default_instance_;
   delete ResponseVerifyToken_reflection_;
+  delete RequestRoleNameList::default_instance_;
+  delete RequestRoleNameList_reflection_;
+  delete ResponseRoleNameList::default_instance_;
+  delete ResponseRoleNameList_reflection_;
+  delete RequestCheckNameValid::default_instance_;
+  delete RequestCheckNameValid_reflection_;
+  delete ResponseCheckNameValid::default_instance_;
+  delete ResponseCheckNameValid_reflection_;
   delete RequestCreateRole::default_instance_;
   delete RequestCreateRole_reflection_;
   delete ResponseCreateRole::default_instance_;
@@ -632,34 +720,38 @@ void protobuf_AddDesc_GameProtocol_2eproto() {
     "RequestProcGMCommand\022\016\n\006userId\030\001 \001(\r\022\017\n\007"
     "command\030\002 \001(\t\"3\n\022RequestVerifyToken\022\016\n\006p"
     "tName\030\001 \001(\t\022\r\n\005token\030\002 \001(\r\"&\n\023ResponseVe"
-    "rifyToken\022\017\n\007errCode\030\001 \001(\r\"5\n\021RequestCre"
-    "ateRole\022\016\n\006ptName\030\001 \001(\t\022\020\n\010roleName\030\002 \001("
-    "\t\"%\n\022ResponseCreateRole\022\017\n\007errCode\030\001 \001(\r"
-    "\"!\n\017RequestRoleData\022\016\n\006ptName\030\001 \001(\t\"P\n\020R"
-    "esponseRoleData\022\017\n\007errCode\030\001 \001(\r\022+\n\010role"
-    "Data\030\002 \001(\0132\031.roledata.PBRoleTotalInfo\"A\n"
-    "\020RequestEnterGate\022\016\n\006userId\030\001 \001(\r\022\016\n\006gat"
-    "eId\030\002 \001(\r\022\r\n\005heros\030\003 \003(\004\"$\n\021ResponseEnte"
-    "rGate\022\017\n\007errCode\030\001 \001(\r\"C\n\021RequestFinishG"
-    "ate\022\016\n\006userId\030\001 \001(\r\022\016\n\006gateId\030\002 \001(\r\022\016\n\006r"
-    "esult\030\003 \001(\r\"J\n\023ResponseFinishiGate\022\017\n\007er"
-    "rCode\030\001 \001(\r\022\016\n\006expGet\030\002 \001(\r\022\022\n\nheroExpGe"
-    "t\030\003 \001(\r\"J\n\025RequestHeroDressEquip\022\016\n\006user"
-    "Id\030\001 \001(\r\022\020\n\010heroUUID\030\002 \001(\004\022\017\n\007equipId\030\003 "
-    "\001(\r\")\n\026ResponseHeroDressEquip\022\017\n\007errCode"
-    "\030\001 \001(\r\"6\n\022RequestUpgradeHero\022\016\n\006userId\030\001"
-    " \001(\r\022\020\n\010heroUUID\030\002 \001(\r\"&\n\023ResponseUpgrad"
-    "eHero\022\017\n\007errCode\030\001 \001(\r\"=\n\024RequestCompoun"
-    "dEquip\022\016\n\006userId\030\001 \001(\r\022\025\n\rtargetEquipId\030"
-    "\002 \001(\r\"(\n\025ResponseCompoundEquip\022\017\n\007errCod"
-    "e\030\001 \001(\r\"&\n\024RequestDrawPrizeList\022\016\n\006userI"
-    "d\030\001 \001(\r\":\n\025ResponseDrawPrizeList\022\017\n\007errC"
-    "ode\030\001 \001(\r\022\020\n\010drawList\030\002 \003(\r\"2\n\020RequestDr"
-    "awPrize\022\016\n\006userId\030\001 \001(\r\022\016\n\006drawId\030\002 \001(\r\""
-    "0\n\013PBDrawPrize\022\017\n\007prizeId\030\001 \001(\r\022\020\n\010prize"
-    "Num\030\002 \001(\r\"J\n\021ResponseDrawPrize\022\017\n\007errCod"
-    "e\030\001 \001(\r\022$\n\tprizeList\030\002 \003(\0132\021.ctos.PBDraw"
-    "Prize", 1405);
+    "rifyToken\022\017\n\007errCode\030\001 \001(\r\"&\n\023RequestRol"
+    "eNameList\022\017\n\007listNum\030\001 \001(\r\"(\n\024ResponseRo"
+    "leNameList\022\020\n\010nameList\030\001 \003(\t\")\n\025RequestC"
+    "heckNameValid\022\020\n\010roleName\030\001 \001(\t\")\n\026Respo"
+    "nseCheckNameValid\022\017\n\007errCode\030\001 \001(\r\"5\n\021Re"
+    "questCreateRole\022\016\n\006ptName\030\001 \001(\t\022\020\n\010roleN"
+    "ame\030\002 \001(\t\"%\n\022ResponseCreateRole\022\017\n\007errCo"
+    "de\030\001 \001(\r\"!\n\017RequestRoleData\022\016\n\006ptName\030\001 "
+    "\001(\t\"P\n\020ResponseRoleData\022\017\n\007errCode\030\001 \001(\r"
+    "\022+\n\010roleData\030\002 \001(\0132\031.roledata.PBRoleTota"
+    "lInfo\"A\n\020RequestEnterGate\022\016\n\006userId\030\001 \001("
+    "\r\022\016\n\006gateId\030\002 \001(\r\022\r\n\005heros\030\003 \003(\004\"$\n\021Resp"
+    "onseEnterGate\022\017\n\007errCode\030\001 \001(\r\"C\n\021Reques"
+    "tFinishGate\022\016\n\006userId\030\001 \001(\r\022\016\n\006gateId\030\002 "
+    "\001(\r\022\016\n\006result\030\003 \001(\r\"J\n\023ResponseFinishiGa"
+    "te\022\017\n\007errCode\030\001 \001(\r\022\016\n\006expGet\030\002 \001(\r\022\022\n\nh"
+    "eroExpGet\030\003 \001(\r\"J\n\025RequestHeroDressEquip"
+    "\022\016\n\006userId\030\001 \001(\r\022\020\n\010heroUUID\030\002 \001(\004\022\017\n\007eq"
+    "uipId\030\003 \001(\r\")\n\026ResponseHeroDressEquip\022\017\n"
+    "\007errCode\030\001 \001(\r\"6\n\022RequestUpgradeHero\022\016\n\006"
+    "userId\030\001 \001(\r\022\020\n\010heroUUID\030\002 \001(\r\"&\n\023Respon"
+    "seUpgradeHero\022\017\n\007errCode\030\001 \001(\r\"=\n\024Reques"
+    "tCompoundEquip\022\016\n\006userId\030\001 \001(\r\022\025\n\rtarget"
+    "EquipId\030\002 \001(\r\"(\n\025ResponseCompoundEquip\022\017"
+    "\n\007errCode\030\001 \001(\r\"&\n\024RequestDrawPrizeList\022"
+    "\016\n\006userId\030\001 \001(\r\":\n\025ResponseDrawPrizeList"
+    "\022\017\n\007errCode\030\001 \001(\r\022\020\n\010drawList\030\002 \003(\r\"2\n\020R"
+    "equestDrawPrize\022\016\n\006userId\030\001 \001(\r\022\016\n\006drawI"
+    "d\030\002 \001(\r\"0\n\013PBDrawPrize\022\017\n\007prizeId\030\001 \001(\r\022"
+    "\020\n\010prizeNum\030\002 \001(\r\"J\n\021ResponseDrawPrize\022\017"
+    "\n\007errCode\030\001 \001(\r\022$\n\tprizeList\030\002 \003(\0132\021.cto"
+    "s.PBDrawPrize", 1573);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "GameProtocol.proto", &protobuf_RegisterTypes);
   RequestGameGroups::default_instance_ = new RequestGameGroups();
@@ -668,6 +760,10 @@ void protobuf_AddDesc_GameProtocol_2eproto() {
   RequestProcGMCommand::default_instance_ = new RequestProcGMCommand();
   RequestVerifyToken::default_instance_ = new RequestVerifyToken();
   ResponseVerifyToken::default_instance_ = new ResponseVerifyToken();
+  RequestRoleNameList::default_instance_ = new RequestRoleNameList();
+  ResponseRoleNameList::default_instance_ = new ResponseRoleNameList();
+  RequestCheckNameValid::default_instance_ = new RequestCheckNameValid();
+  ResponseCheckNameValid::default_instance_ = new ResponseCheckNameValid();
   RequestCreateRole::default_instance_ = new RequestCreateRole();
   ResponseCreateRole::default_instance_ = new ResponseCreateRole();
   RequestRoleData::default_instance_ = new RequestRoleData();
@@ -693,6 +789,10 @@ void protobuf_AddDesc_GameProtocol_2eproto() {
   RequestProcGMCommand::default_instance_->InitAsDefaultInstance();
   RequestVerifyToken::default_instance_->InitAsDefaultInstance();
   ResponseVerifyToken::default_instance_->InitAsDefaultInstance();
+  RequestRoleNameList::default_instance_->InitAsDefaultInstance();
+  ResponseRoleNameList::default_instance_->InitAsDefaultInstance();
+  RequestCheckNameValid::default_instance_->InitAsDefaultInstance();
+  ResponseCheckNameValid::default_instance_->InitAsDefaultInstance();
   RequestCreateRole::default_instance_->InitAsDefaultInstance();
   ResponseCreateRole::default_instance_->InitAsDefaultInstance();
   RequestRoleData::default_instance_->InitAsDefaultInstance();
@@ -2167,6 +2267,853 @@ void ResponseVerifyToken::Swap(ResponseVerifyToken* other) {
   ::google::protobuf::Metadata metadata;
   metadata.descriptor = ResponseVerifyToken_descriptor_;
   metadata.reflection = ResponseVerifyToken_reflection_;
+  return metadata;
+}
+
+
+// ===================================================================
+
+#ifndef _MSC_VER
+const int RequestRoleNameList::kListNumFieldNumber;
+#endif  // !_MSC_VER
+
+RequestRoleNameList::RequestRoleNameList()
+  : ::google::protobuf::Message() {
+  SharedCtor();
+}
+
+void RequestRoleNameList::InitAsDefaultInstance() {
+}
+
+RequestRoleNameList::RequestRoleNameList(const RequestRoleNameList& from)
+  : ::google::protobuf::Message() {
+  SharedCtor();
+  MergeFrom(from);
+}
+
+void RequestRoleNameList::SharedCtor() {
+  _cached_size_ = 0;
+  listnum_ = 0u;
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+}
+
+RequestRoleNameList::~RequestRoleNameList() {
+  SharedDtor();
+}
+
+void RequestRoleNameList::SharedDtor() {
+  if (this != default_instance_) {
+  }
+}
+
+void RequestRoleNameList::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* RequestRoleNameList::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return RequestRoleNameList_descriptor_;
+}
+
+const RequestRoleNameList& RequestRoleNameList::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_GameProtocol_2eproto();  return *default_instance_;
+}
+
+RequestRoleNameList* RequestRoleNameList::default_instance_ = NULL;
+
+RequestRoleNameList* RequestRoleNameList::New() const {
+  return new RequestRoleNameList;
+}
+
+void RequestRoleNameList::Clear() {
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    listnum_ = 0u;
+  }
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+  mutable_unknown_fields()->Clear();
+}
+
+bool RequestRoleNameList::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!(EXPRESSION)) return false
+  ::google::protobuf::uint32 tag;
+  while ((tag = input->ReadTag()) != 0) {
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // optional uint32 listNum = 1;
+      case 1: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &listnum_)));
+          set_has_listnum();
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectAtEnd()) return true;
+        break;
+      }
+      
+      default: {
+      handle_uninterpreted:
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          return true;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+  return true;
+#undef DO_
+}
+
+void RequestRoleNameList::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // optional uint32 listNum = 1;
+  if (has_listnum()) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->listnum(), output);
+  }
+  
+  if (!unknown_fields().empty()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        unknown_fields(), output);
+  }
+}
+
+::google::protobuf::uint8* RequestRoleNameList::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // optional uint32 listNum = 1;
+  if (has_listnum()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(1, this->listnum(), target);
+  }
+  
+  if (!unknown_fields().empty()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        unknown_fields(), target);
+  }
+  return target;
+}
+
+int RequestRoleNameList::ByteSize() const {
+  int total_size = 0;
+  
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    // optional uint32 listNum = 1;
+    if (has_listnum()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::UInt32Size(
+          this->listnum());
+    }
+    
+  }
+  if (!unknown_fields().empty()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        unknown_fields());
+  }
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void RequestRoleNameList::MergeFrom(const ::google::protobuf::Message& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  const RequestRoleNameList* source =
+    ::google::protobuf::internal::dynamic_cast_if_available<const RequestRoleNameList*>(
+      &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
+}
+
+void RequestRoleNameList::MergeFrom(const RequestRoleNameList& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    if (from.has_listnum()) {
+      set_listnum(from.listnum());
+    }
+  }
+  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
+}
+
+void RequestRoleNameList::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void RequestRoleNameList::CopyFrom(const RequestRoleNameList& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool RequestRoleNameList::IsInitialized() const {
+  
+  return true;
+}
+
+void RequestRoleNameList::Swap(RequestRoleNameList* other) {
+  if (other != this) {
+    std::swap(listnum_, other->listnum_);
+    std::swap(_has_bits_[0], other->_has_bits_[0]);
+    _unknown_fields_.Swap(&other->_unknown_fields_);
+    std::swap(_cached_size_, other->_cached_size_);
+  }
+}
+
+::google::protobuf::Metadata RequestRoleNameList::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = RequestRoleNameList_descriptor_;
+  metadata.reflection = RequestRoleNameList_reflection_;
+  return metadata;
+}
+
+
+// ===================================================================
+
+#ifndef _MSC_VER
+const int ResponseRoleNameList::kNameListFieldNumber;
+#endif  // !_MSC_VER
+
+ResponseRoleNameList::ResponseRoleNameList()
+  : ::google::protobuf::Message() {
+  SharedCtor();
+}
+
+void ResponseRoleNameList::InitAsDefaultInstance() {
+}
+
+ResponseRoleNameList::ResponseRoleNameList(const ResponseRoleNameList& from)
+  : ::google::protobuf::Message() {
+  SharedCtor();
+  MergeFrom(from);
+}
+
+void ResponseRoleNameList::SharedCtor() {
+  _cached_size_ = 0;
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+}
+
+ResponseRoleNameList::~ResponseRoleNameList() {
+  SharedDtor();
+}
+
+void ResponseRoleNameList::SharedDtor() {
+  if (this != default_instance_) {
+  }
+}
+
+void ResponseRoleNameList::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* ResponseRoleNameList::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return ResponseRoleNameList_descriptor_;
+}
+
+const ResponseRoleNameList& ResponseRoleNameList::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_GameProtocol_2eproto();  return *default_instance_;
+}
+
+ResponseRoleNameList* ResponseRoleNameList::default_instance_ = NULL;
+
+ResponseRoleNameList* ResponseRoleNameList::New() const {
+  return new ResponseRoleNameList;
+}
+
+void ResponseRoleNameList::Clear() {
+  namelist_.Clear();
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+  mutable_unknown_fields()->Clear();
+}
+
+bool ResponseRoleNameList::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!(EXPRESSION)) return false
+  ::google::protobuf::uint32 tag;
+  while ((tag = input->ReadTag()) != 0) {
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // repeated string nameList = 1;
+      case 1: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+         parse_nameList:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->add_namelist()));
+          ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+            this->namelist(0).data(), this->namelist(0).length(),
+            ::google::protobuf::internal::WireFormat::PARSE);
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(10)) goto parse_nameList;
+        if (input->ExpectAtEnd()) return true;
+        break;
+      }
+      
+      default: {
+      handle_uninterpreted:
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          return true;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+  return true;
+#undef DO_
+}
+
+void ResponseRoleNameList::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // repeated string nameList = 1;
+  for (int i = 0; i < this->namelist_size(); i++) {
+  ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+    this->namelist(i).data(), this->namelist(i).length(),
+    ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      1, this->namelist(i), output);
+  }
+  
+  if (!unknown_fields().empty()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        unknown_fields(), output);
+  }
+}
+
+::google::protobuf::uint8* ResponseRoleNameList::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // repeated string nameList = 1;
+  for (int i = 0; i < this->namelist_size(); i++) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->namelist(i).data(), this->namelist(i).length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteStringToArray(1, this->namelist(i), target);
+  }
+  
+  if (!unknown_fields().empty()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        unknown_fields(), target);
+  }
+  return target;
+}
+
+int ResponseRoleNameList::ByteSize() const {
+  int total_size = 0;
+  
+  // repeated string nameList = 1;
+  total_size += 1 * this->namelist_size();
+  for (int i = 0; i < this->namelist_size(); i++) {
+    total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+      this->namelist(i));
+  }
+  
+  if (!unknown_fields().empty()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        unknown_fields());
+  }
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void ResponseRoleNameList::MergeFrom(const ::google::protobuf::Message& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  const ResponseRoleNameList* source =
+    ::google::protobuf::internal::dynamic_cast_if_available<const ResponseRoleNameList*>(
+      &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
+}
+
+void ResponseRoleNameList::MergeFrom(const ResponseRoleNameList& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  namelist_.MergeFrom(from.namelist_);
+  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
+}
+
+void ResponseRoleNameList::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void ResponseRoleNameList::CopyFrom(const ResponseRoleNameList& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ResponseRoleNameList::IsInitialized() const {
+  
+  return true;
+}
+
+void ResponseRoleNameList::Swap(ResponseRoleNameList* other) {
+  if (other != this) {
+    namelist_.Swap(&other->namelist_);
+    std::swap(_has_bits_[0], other->_has_bits_[0]);
+    _unknown_fields_.Swap(&other->_unknown_fields_);
+    std::swap(_cached_size_, other->_cached_size_);
+  }
+}
+
+::google::protobuf::Metadata ResponseRoleNameList::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = ResponseRoleNameList_descriptor_;
+  metadata.reflection = ResponseRoleNameList_reflection_;
+  return metadata;
+}
+
+
+// ===================================================================
+
+#ifndef _MSC_VER
+const int RequestCheckNameValid::kRoleNameFieldNumber;
+#endif  // !_MSC_VER
+
+RequestCheckNameValid::RequestCheckNameValid()
+  : ::google::protobuf::Message() {
+  SharedCtor();
+}
+
+void RequestCheckNameValid::InitAsDefaultInstance() {
+}
+
+RequestCheckNameValid::RequestCheckNameValid(const RequestCheckNameValid& from)
+  : ::google::protobuf::Message() {
+  SharedCtor();
+  MergeFrom(from);
+}
+
+void RequestCheckNameValid::SharedCtor() {
+  _cached_size_ = 0;
+  rolename_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+}
+
+RequestCheckNameValid::~RequestCheckNameValid() {
+  SharedDtor();
+}
+
+void RequestCheckNameValid::SharedDtor() {
+  if (rolename_ != &::google::protobuf::internal::kEmptyString) {
+    delete rolename_;
+  }
+  if (this != default_instance_) {
+  }
+}
+
+void RequestCheckNameValid::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* RequestCheckNameValid::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return RequestCheckNameValid_descriptor_;
+}
+
+const RequestCheckNameValid& RequestCheckNameValid::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_GameProtocol_2eproto();  return *default_instance_;
+}
+
+RequestCheckNameValid* RequestCheckNameValid::default_instance_ = NULL;
+
+RequestCheckNameValid* RequestCheckNameValid::New() const {
+  return new RequestCheckNameValid;
+}
+
+void RequestCheckNameValid::Clear() {
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    if (has_rolename()) {
+      if (rolename_ != &::google::protobuf::internal::kEmptyString) {
+        rolename_->clear();
+      }
+    }
+  }
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+  mutable_unknown_fields()->Clear();
+}
+
+bool RequestCheckNameValid::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!(EXPRESSION)) return false
+  ::google::protobuf::uint32 tag;
+  while ((tag = input->ReadTag()) != 0) {
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // optional string roleName = 1;
+      case 1: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_rolename()));
+          ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+            this->rolename().data(), this->rolename().length(),
+            ::google::protobuf::internal::WireFormat::PARSE);
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectAtEnd()) return true;
+        break;
+      }
+      
+      default: {
+      handle_uninterpreted:
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          return true;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+  return true;
+#undef DO_
+}
+
+void RequestCheckNameValid::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // optional string roleName = 1;
+  if (has_rolename()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->rolename().data(), this->rolename().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      1, this->rolename(), output);
+  }
+  
+  if (!unknown_fields().empty()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        unknown_fields(), output);
+  }
+}
+
+::google::protobuf::uint8* RequestCheckNameValid::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // optional string roleName = 1;
+  if (has_rolename()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->rolename().data(), this->rolename().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        1, this->rolename(), target);
+  }
+  
+  if (!unknown_fields().empty()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        unknown_fields(), target);
+  }
+  return target;
+}
+
+int RequestCheckNameValid::ByteSize() const {
+  int total_size = 0;
+  
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    // optional string roleName = 1;
+    if (has_rolename()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->rolename());
+    }
+    
+  }
+  if (!unknown_fields().empty()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        unknown_fields());
+  }
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void RequestCheckNameValid::MergeFrom(const ::google::protobuf::Message& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  const RequestCheckNameValid* source =
+    ::google::protobuf::internal::dynamic_cast_if_available<const RequestCheckNameValid*>(
+      &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
+}
+
+void RequestCheckNameValid::MergeFrom(const RequestCheckNameValid& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    if (from.has_rolename()) {
+      set_rolename(from.rolename());
+    }
+  }
+  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
+}
+
+void RequestCheckNameValid::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void RequestCheckNameValid::CopyFrom(const RequestCheckNameValid& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool RequestCheckNameValid::IsInitialized() const {
+  
+  return true;
+}
+
+void RequestCheckNameValid::Swap(RequestCheckNameValid* other) {
+  if (other != this) {
+    std::swap(rolename_, other->rolename_);
+    std::swap(_has_bits_[0], other->_has_bits_[0]);
+    _unknown_fields_.Swap(&other->_unknown_fields_);
+    std::swap(_cached_size_, other->_cached_size_);
+  }
+}
+
+::google::protobuf::Metadata RequestCheckNameValid::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = RequestCheckNameValid_descriptor_;
+  metadata.reflection = RequestCheckNameValid_reflection_;
+  return metadata;
+}
+
+
+// ===================================================================
+
+#ifndef _MSC_VER
+const int ResponseCheckNameValid::kErrCodeFieldNumber;
+#endif  // !_MSC_VER
+
+ResponseCheckNameValid::ResponseCheckNameValid()
+  : ::google::protobuf::Message() {
+  SharedCtor();
+}
+
+void ResponseCheckNameValid::InitAsDefaultInstance() {
+}
+
+ResponseCheckNameValid::ResponseCheckNameValid(const ResponseCheckNameValid& from)
+  : ::google::protobuf::Message() {
+  SharedCtor();
+  MergeFrom(from);
+}
+
+void ResponseCheckNameValid::SharedCtor() {
+  _cached_size_ = 0;
+  errcode_ = 0u;
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+}
+
+ResponseCheckNameValid::~ResponseCheckNameValid() {
+  SharedDtor();
+}
+
+void ResponseCheckNameValid::SharedDtor() {
+  if (this != default_instance_) {
+  }
+}
+
+void ResponseCheckNameValid::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* ResponseCheckNameValid::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return ResponseCheckNameValid_descriptor_;
+}
+
+const ResponseCheckNameValid& ResponseCheckNameValid::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_GameProtocol_2eproto();  return *default_instance_;
+}
+
+ResponseCheckNameValid* ResponseCheckNameValid::default_instance_ = NULL;
+
+ResponseCheckNameValid* ResponseCheckNameValid::New() const {
+  return new ResponseCheckNameValid;
+}
+
+void ResponseCheckNameValid::Clear() {
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    errcode_ = 0u;
+  }
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+  mutable_unknown_fields()->Clear();
+}
+
+bool ResponseCheckNameValid::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!(EXPRESSION)) return false
+  ::google::protobuf::uint32 tag;
+  while ((tag = input->ReadTag()) != 0) {
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // optional uint32 errCode = 1;
+      case 1: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &errcode_)));
+          set_has_errcode();
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectAtEnd()) return true;
+        break;
+      }
+      
+      default: {
+      handle_uninterpreted:
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          return true;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+  return true;
+#undef DO_
+}
+
+void ResponseCheckNameValid::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // optional uint32 errCode = 1;
+  if (has_errcode()) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->errcode(), output);
+  }
+  
+  if (!unknown_fields().empty()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        unknown_fields(), output);
+  }
+}
+
+::google::protobuf::uint8* ResponseCheckNameValid::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // optional uint32 errCode = 1;
+  if (has_errcode()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(1, this->errcode(), target);
+  }
+  
+  if (!unknown_fields().empty()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        unknown_fields(), target);
+  }
+  return target;
+}
+
+int ResponseCheckNameValid::ByteSize() const {
+  int total_size = 0;
+  
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    // optional uint32 errCode = 1;
+    if (has_errcode()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::UInt32Size(
+          this->errcode());
+    }
+    
+  }
+  if (!unknown_fields().empty()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        unknown_fields());
+  }
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void ResponseCheckNameValid::MergeFrom(const ::google::protobuf::Message& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  const ResponseCheckNameValid* source =
+    ::google::protobuf::internal::dynamic_cast_if_available<const ResponseCheckNameValid*>(
+      &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
+}
+
+void ResponseCheckNameValid::MergeFrom(const ResponseCheckNameValid& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    if (from.has_errcode()) {
+      set_errcode(from.errcode());
+    }
+  }
+  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
+}
+
+void ResponseCheckNameValid::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void ResponseCheckNameValid::CopyFrom(const ResponseCheckNameValid& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ResponseCheckNameValid::IsInitialized() const {
+  
+  return true;
+}
+
+void ResponseCheckNameValid::Swap(ResponseCheckNameValid* other) {
+  if (other != this) {
+    std::swap(errcode_, other->errcode_);
+    std::swap(_has_bits_[0], other->_has_bits_[0]);
+    _unknown_fields_.Swap(&other->_unknown_fields_);
+    std::swap(_cached_size_, other->_cached_size_);
+  }
+}
+
+::google::protobuf::Metadata ResponseCheckNameValid::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = ResponseCheckNameValid_descriptor_;
+  metadata.reflection = ResponseCheckNameValid_reflection_;
   return metadata;
 }
 

@@ -180,6 +180,12 @@
     <ClInclude Include="ReloadConfigure.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="LoginAgentHandler.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\protocol\LoginProtocol.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -268,6 +274,12 @@
     </ClCompile>
     <ClCompile Include="ReloadConfigure.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="LoginAgentHandler.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\LoginProtocol.pb.cc">
+      <Filter>protocol</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

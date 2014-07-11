@@ -39,6 +39,10 @@ class ResponseGameGroups;
 class RequestProcGMCommand;
 class RequestVerifyToken;
 class ResponseVerifyToken;
+class RequestRoleNameList;
+class ResponseRoleNameList;
+class RequestCheckNameValid;
+class ResponseCheckNameValid;
 class RequestCreateRole;
 class ResponseCreateRole;
 class RequestRoleData;
@@ -605,6 +609,345 @@ class ResponseVerifyToken : public ::google::protobuf::Message {
   
   void InitAsDefaultInstance();
   static ResponseVerifyToken* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class RequestRoleNameList : public ::google::protobuf::Message {
+ public:
+  RequestRoleNameList();
+  virtual ~RequestRoleNameList();
+  
+  RequestRoleNameList(const RequestRoleNameList& from);
+  
+  inline RequestRoleNameList& operator=(const RequestRoleNameList& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const RequestRoleNameList& default_instance();
+  
+  void Swap(RequestRoleNameList* other);
+  
+  // implements Message ----------------------------------------------
+  
+  RequestRoleNameList* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const RequestRoleNameList& from);
+  void MergeFrom(const RequestRoleNameList& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // optional uint32 listNum = 1;
+  inline bool has_listnum() const;
+  inline void clear_listnum();
+  static const int kListNumFieldNumber = 1;
+  inline ::google::protobuf::uint32 listnum() const;
+  inline void set_listnum(::google::protobuf::uint32 value);
+  
+  // @@protoc_insertion_point(class_scope:ctos.RequestRoleNameList)
+ private:
+  inline void set_has_listnum();
+  inline void clear_has_listnum();
+  
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  
+  ::google::protobuf::uint32 listnum_;
+  
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+  
+  friend void  protobuf_AddDesc_GameProtocol_2eproto();
+  friend void protobuf_AssignDesc_GameProtocol_2eproto();
+  friend void protobuf_ShutdownFile_GameProtocol_2eproto();
+  
+  void InitAsDefaultInstance();
+  static RequestRoleNameList* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class ResponseRoleNameList : public ::google::protobuf::Message {
+ public:
+  ResponseRoleNameList();
+  virtual ~ResponseRoleNameList();
+  
+  ResponseRoleNameList(const ResponseRoleNameList& from);
+  
+  inline ResponseRoleNameList& operator=(const ResponseRoleNameList& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const ResponseRoleNameList& default_instance();
+  
+  void Swap(ResponseRoleNameList* other);
+  
+  // implements Message ----------------------------------------------
+  
+  ResponseRoleNameList* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const ResponseRoleNameList& from);
+  void MergeFrom(const ResponseRoleNameList& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // repeated string nameList = 1;
+  inline int namelist_size() const;
+  inline void clear_namelist();
+  static const int kNameListFieldNumber = 1;
+  inline const ::std::string& namelist(int index) const;
+  inline ::std::string* mutable_namelist(int index);
+  inline void set_namelist(int index, const ::std::string& value);
+  inline void set_namelist(int index, const char* value);
+  inline void set_namelist(int index, const char* value, size_t size);
+  inline ::std::string* add_namelist();
+  inline void add_namelist(const ::std::string& value);
+  inline void add_namelist(const char* value);
+  inline void add_namelist(const char* value, size_t size);
+  inline const ::google::protobuf::RepeatedPtrField< ::std::string>& namelist() const;
+  inline ::google::protobuf::RepeatedPtrField< ::std::string>* mutable_namelist();
+  
+  // @@protoc_insertion_point(class_scope:ctos.ResponseRoleNameList)
+ private:
+  
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  
+  ::google::protobuf::RepeatedPtrField< ::std::string> namelist_;
+  
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+  
+  friend void  protobuf_AddDesc_GameProtocol_2eproto();
+  friend void protobuf_AssignDesc_GameProtocol_2eproto();
+  friend void protobuf_ShutdownFile_GameProtocol_2eproto();
+  
+  void InitAsDefaultInstance();
+  static ResponseRoleNameList* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class RequestCheckNameValid : public ::google::protobuf::Message {
+ public:
+  RequestCheckNameValid();
+  virtual ~RequestCheckNameValid();
+  
+  RequestCheckNameValid(const RequestCheckNameValid& from);
+  
+  inline RequestCheckNameValid& operator=(const RequestCheckNameValid& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const RequestCheckNameValid& default_instance();
+  
+  void Swap(RequestCheckNameValid* other);
+  
+  // implements Message ----------------------------------------------
+  
+  RequestCheckNameValid* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const RequestCheckNameValid& from);
+  void MergeFrom(const RequestCheckNameValid& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // optional string roleName = 1;
+  inline bool has_rolename() const;
+  inline void clear_rolename();
+  static const int kRoleNameFieldNumber = 1;
+  inline const ::std::string& rolename() const;
+  inline void set_rolename(const ::std::string& value);
+  inline void set_rolename(const char* value);
+  inline void set_rolename(const char* value, size_t size);
+  inline ::std::string* mutable_rolename();
+  inline ::std::string* release_rolename();
+  
+  // @@protoc_insertion_point(class_scope:ctos.RequestCheckNameValid)
+ private:
+  inline void set_has_rolename();
+  inline void clear_has_rolename();
+  
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  
+  ::std::string* rolename_;
+  
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+  
+  friend void  protobuf_AddDesc_GameProtocol_2eproto();
+  friend void protobuf_AssignDesc_GameProtocol_2eproto();
+  friend void protobuf_ShutdownFile_GameProtocol_2eproto();
+  
+  void InitAsDefaultInstance();
+  static RequestCheckNameValid* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class ResponseCheckNameValid : public ::google::protobuf::Message {
+ public:
+  ResponseCheckNameValid();
+  virtual ~ResponseCheckNameValid();
+  
+  ResponseCheckNameValid(const ResponseCheckNameValid& from);
+  
+  inline ResponseCheckNameValid& operator=(const ResponseCheckNameValid& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const ResponseCheckNameValid& default_instance();
+  
+  void Swap(ResponseCheckNameValid* other);
+  
+  // implements Message ----------------------------------------------
+  
+  ResponseCheckNameValid* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const ResponseCheckNameValid& from);
+  void MergeFrom(const ResponseCheckNameValid& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // optional uint32 errCode = 1;
+  inline bool has_errcode() const;
+  inline void clear_errcode();
+  static const int kErrCodeFieldNumber = 1;
+  inline ::google::protobuf::uint32 errcode() const;
+  inline void set_errcode(::google::protobuf::uint32 value);
+  
+  // @@protoc_insertion_point(class_scope:ctos.ResponseCheckNameValid)
+ private:
+  inline void set_has_errcode();
+  inline void clear_has_errcode();
+  
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  
+  ::google::protobuf::uint32 errcode_;
+  
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+  
+  friend void  protobuf_AddDesc_GameProtocol_2eproto();
+  friend void protobuf_AssignDesc_GameProtocol_2eproto();
+  friend void protobuf_ShutdownFile_GameProtocol_2eproto();
+  
+  void InitAsDefaultInstance();
+  static ResponseCheckNameValid* default_instance_;
 };
 // -------------------------------------------------------------------
 
@@ -2700,6 +3043,168 @@ inline ::google::protobuf::uint32 ResponseVerifyToken::errcode() const {
   return errcode_;
 }
 inline void ResponseVerifyToken::set_errcode(::google::protobuf::uint32 value) {
+  set_has_errcode();
+  errcode_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// RequestRoleNameList
+
+// optional uint32 listNum = 1;
+inline bool RequestRoleNameList::has_listnum() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void RequestRoleNameList::set_has_listnum() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void RequestRoleNameList::clear_has_listnum() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void RequestRoleNameList::clear_listnum() {
+  listnum_ = 0u;
+  clear_has_listnum();
+}
+inline ::google::protobuf::uint32 RequestRoleNameList::listnum() const {
+  return listnum_;
+}
+inline void RequestRoleNameList::set_listnum(::google::protobuf::uint32 value) {
+  set_has_listnum();
+  listnum_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// ResponseRoleNameList
+
+// repeated string nameList = 1;
+inline int ResponseRoleNameList::namelist_size() const {
+  return namelist_.size();
+}
+inline void ResponseRoleNameList::clear_namelist() {
+  namelist_.Clear();
+}
+inline const ::std::string& ResponseRoleNameList::namelist(int index) const {
+  return namelist_.Get(index);
+}
+inline ::std::string* ResponseRoleNameList::mutable_namelist(int index) {
+  return namelist_.Mutable(index);
+}
+inline void ResponseRoleNameList::set_namelist(int index, const ::std::string& value) {
+  namelist_.Mutable(index)->assign(value);
+}
+inline void ResponseRoleNameList::set_namelist(int index, const char* value) {
+  namelist_.Mutable(index)->assign(value);
+}
+inline void ResponseRoleNameList::set_namelist(int index, const char* value, size_t size) {
+  namelist_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* ResponseRoleNameList::add_namelist() {
+  return namelist_.Add();
+}
+inline void ResponseRoleNameList::add_namelist(const ::std::string& value) {
+  namelist_.Add()->assign(value);
+}
+inline void ResponseRoleNameList::add_namelist(const char* value) {
+  namelist_.Add()->assign(value);
+}
+inline void ResponseRoleNameList::add_namelist(const char* value, size_t size) {
+  namelist_.Add()->assign(reinterpret_cast<const char*>(value), size);
+}
+inline const ::google::protobuf::RepeatedPtrField< ::std::string>&
+ResponseRoleNameList::namelist() const {
+  return namelist_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::std::string>*
+ResponseRoleNameList::mutable_namelist() {
+  return &namelist_;
+}
+
+// -------------------------------------------------------------------
+
+// RequestCheckNameValid
+
+// optional string roleName = 1;
+inline bool RequestCheckNameValid::has_rolename() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void RequestCheckNameValid::set_has_rolename() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void RequestCheckNameValid::clear_has_rolename() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void RequestCheckNameValid::clear_rolename() {
+  if (rolename_ != &::google::protobuf::internal::kEmptyString) {
+    rolename_->clear();
+  }
+  clear_has_rolename();
+}
+inline const ::std::string& RequestCheckNameValid::rolename() const {
+  return *rolename_;
+}
+inline void RequestCheckNameValid::set_rolename(const ::std::string& value) {
+  set_has_rolename();
+  if (rolename_ == &::google::protobuf::internal::kEmptyString) {
+    rolename_ = new ::std::string;
+  }
+  rolename_->assign(value);
+}
+inline void RequestCheckNameValid::set_rolename(const char* value) {
+  set_has_rolename();
+  if (rolename_ == &::google::protobuf::internal::kEmptyString) {
+    rolename_ = new ::std::string;
+  }
+  rolename_->assign(value);
+}
+inline void RequestCheckNameValid::set_rolename(const char* value, size_t size) {
+  set_has_rolename();
+  if (rolename_ == &::google::protobuf::internal::kEmptyString) {
+    rolename_ = new ::std::string;
+  }
+  rolename_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* RequestCheckNameValid::mutable_rolename() {
+  set_has_rolename();
+  if (rolename_ == &::google::protobuf::internal::kEmptyString) {
+    rolename_ = new ::std::string;
+  }
+  return rolename_;
+}
+inline ::std::string* RequestCheckNameValid::release_rolename() {
+  clear_has_rolename();
+  if (rolename_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
+  } else {
+    ::std::string* temp = rolename_;
+    rolename_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
+}
+
+// -------------------------------------------------------------------
+
+// ResponseCheckNameValid
+
+// optional uint32 errCode = 1;
+inline bool ResponseCheckNameValid::has_errcode() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void ResponseCheckNameValid::set_has_errcode() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void ResponseCheckNameValid::clear_has_errcode() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void ResponseCheckNameValid::clear_errcode() {
+  errcode_ = 0u;
+  clear_has_errcode();
+}
+inline ::google::protobuf::uint32 ResponseCheckNameValid::errcode() const {
+  return errcode_;
+}
+inline void ResponseCheckNameValid::set_errcode(::google::protobuf::uint32 value) {
   set_has_errcode();
   errcode_ = value;
 }

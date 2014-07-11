@@ -86,6 +86,7 @@ private:
 	void _SendPlayerDataToClient(IConnection* pConn, const roledata::PBRoleTotalInfo& roleData);			// 将角色数据发送给客户端
 	void _SaveRoleData(Player* pPlayer);																	// 保存玩家数据
 	void _DeletePlayer(Player* pPlayer);
+	void _SendVerifyToken(string strPtName, uint32_t uToken);
 
 private:
 	map<string, Player*> m_playerInfoMap;									// PTName对应内存对象

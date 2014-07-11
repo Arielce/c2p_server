@@ -105,6 +105,7 @@
     <ClInclude Include="..\protocol\GameProtocol.pb.h" />
     <ClInclude Include="..\protocol\LobbyProtocol.h" />
     <ClInclude Include="..\protocol\LobbyProtocol.pb.h" />
+    <ClInclude Include="..\protocol\LoginProtocol.pb.h" />
     <ClInclude Include="..\protocol\RoleData.pb.h" />
     <ClInclude Include="..\protocol\ServerCmd.pb.h" />
     <ClInclude Include="..\tinyxml\tinystr.h" />
@@ -125,6 +126,7 @@
     <ClInclude Include="HeroMng.h" />
     <ClInclude Include="KeyGen.h" />
     <ClInclude Include="LobbyHandler.h" />
+    <ClInclude Include="LoginAgentHandler.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerDataGetter.h" />
     <ClInclude Include="PlayerMng.h" />
@@ -143,6 +145,7 @@
     <ClCompile Include="..\protocol\DataServer.pb.cc" />
     <ClCompile Include="..\protocol\GameProtocol.pb.cc" />
     <ClCompile Include="..\protocol\LobbyProtocol.pb.cc" />
+    <ClCompile Include="..\protocol\LoginProtocol.pb.cc" />
     <ClCompile Include="..\protocol\RoleData.pb.cc" />
     <ClCompile Include="..\protocol\ServerCmd.pb.cc" />
     <ClCompile Include="ClientConnectionMng.cpp" />
@@ -157,6 +160,7 @@
     <ClCompile Include="GoodsMng.cpp" />
     <ClCompile Include="HeroMng.cpp" />
     <ClCompile Include="LobbyHandler.cpp" />
+    <ClCompile Include="LoginAgentHandler.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerDataGetter.cpp" />

@@ -19,6 +19,11 @@
   <LobbyServer>
     <connect ip="127.0.0.1" port="8700" type="0" />
   </LobbyServer>
+  
+   <!--连接loginserveragent的端口-->
+  <LoginServerAgent>
+    <connect ip="127.0.0.1" port="9100" type="0" />
+  </LoginServerAgent>
 
   <Redis>
 	<connect ip="127.0.0.1" port="6379" index="0" />

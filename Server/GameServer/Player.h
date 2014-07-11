@@ -79,9 +79,10 @@ public:
 
 	void SerializeToPB(roledata::PBRoleTotalInfo& roleTotalInfo);
 	void GetRoleTotalInfo(const roledata::PBRoleTotalInfo& roleTotalInfo);
-
+	
+	bool HasVerifyFromServer();														// 是否已经从Server验证过Token了
 	bool HasVerified(IConnection* pConnection);										// 是否已经验证过
-	bool VerifyToken(uint32_t uToken);
+	bool VerifyToken(uint32_t uToken);												// 验证Token
 
 	void SendMsg(const void* pData, uint32_t uLen);
 
@@ -140,6 +141,7 @@ private:
 
 	uint32_t m_uDataVersion;								// 玩家数据版本
 	uint32_t m_uSecureToken;								// 安全Token（玩家在每次重连服务器的时候，都需要验证一次token，防止有玩家使用其他玩家的数据）
+	bool m_bHasVerifyFromServer;							// 是否已经从server验证过Token
 	bool m_bHasVerifyToken;									// 是否已经验证了token，每次断开连接的时候，置为false
 	uint32_t m_uID;											// 玩家ID
 	string m_strRoleName;									// 角色名

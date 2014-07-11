@@ -105,20 +105,30 @@ class RequestRegGameServer : public ::google::protobuf::Message {
   inline ::google::protobuf::uint32 gstype() const;
   inline void set_gstype(::google::protobuf::uint32 value);
   
+  // optional uint32 port = 3;
+  inline bool has_port() const;
+  inline void clear_port();
+  static const int kPortFieldNumber = 3;
+  inline ::google::protobuf::uint32 port() const;
+  inline void set_port(::google::protobuf::uint32 value);
+  
   // @@protoc_insertion_point(class_scope:lobby.RequestRegGameServer)
  private:
   inline void set_has_gsid();
   inline void clear_has_gsid();
   inline void set_has_gstype();
   inline void clear_has_gstype();
+  inline void set_has_port();
+  inline void clear_has_port();
   
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
   ::google::protobuf::uint32 gsid_;
   ::google::protobuf::uint32 gstype_;
+  ::google::protobuf::uint32 port_;
   
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
   
   friend void  protobuf_AddDesc_LobbyProtocol_2eproto();
   friend void protobuf_AssignDesc_LobbyProtocol_2eproto();
@@ -258,6 +268,28 @@ inline ::google::protobuf::uint32 RequestRegGameServer::gstype() const {
 inline void RequestRegGameServer::set_gstype(::google::protobuf::uint32 value) {
   set_has_gstype();
   gstype_ = value;
+}
+
+// optional uint32 port = 3;
+inline bool RequestRegGameServer::has_port() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void RequestRegGameServer::set_has_port() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void RequestRegGameServer::clear_has_port() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void RequestRegGameServer::clear_port() {
+  port_ = 0u;
+  clear_has_port();
+}
+inline ::google::protobuf::uint32 RequestRegGameServer::port() const {
+  return port_;
+}
+inline void RequestRegGameServer::set_port(::google::protobuf::uint32 value) {
+  set_has_port();
+  port_ = value;
 }
 
 // -------------------------------------------------------------------

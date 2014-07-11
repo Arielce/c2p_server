@@ -6,6 +6,7 @@
 #include "LobbyHandler.h"
 #include "ReloadConfigure.h"
 #include "PlayerMng.h"
+#include "LoginAgentHandler.h"
 
 bool GameServer::Init(const char* pConfPath)
 {
@@ -36,6 +37,11 @@ bool GameServer::Init(const char* pConfPath)
 	if (!InitLobbyServer())
 	{
 		TRACELOG("init lobby server failed.");
+		return false;
+	}
+	if (!InitLoginServerAgent())
+	{
+		TRACELOG("init login server agent failed.");
 		return false;
 	}
 	if (!InitTimerTrigger())
@@ -157,6 +163,25 @@ bool GameServer::InitLobbyServer()
 
 	m_pLobbySession->Connect(gpServerConfig->GetLobbyIp(), gpServerConfig->GetLobbyPort());
 	g_pLobbySession = m_pLobbySession;
+	return true;
+}
+
+bool GameServer::InitLoginServerAgent()
+{
+	m_pLoginAgentSession = m_pNetCluster->CreateClientSession();
+	if (!m_pLoginAgentSession)
+	{
+		return false;
+	}
+
+	LoginAgentHandler* pLoginHandler = new LoginAgentHandler;
+	ClientMsgParser* pClientMsgParser = new ClientMsgParser;
+	m_pLoginAgentSession->SetMsgParser(pClientMsgParser);
+	m_pLoginAgentSession->SetMsgHandler(pLoginHandler);
+	m_pLoginAgentSession->SetBufSize(12, 40960);
+
+	m_pLoginAgentSession->Connect(gpServerConfig->GetLoginIp(), gpServerConfig->GetLoginPort());
+	g_pLoginAgentSession = m_pLoginAgentSession;
 	return true;
 }
 
