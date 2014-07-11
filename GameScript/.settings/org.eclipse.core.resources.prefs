@@ -5,4 +5,5 @@ encoding//python/SendPackageTwoPart.py=cp936
 encoding//python/SendTowPkgOnce.py=cp936
 encoding//python/StopServer.py=cp936
 encoding//python/TestDrawPrize.py=cp936
+encoding//python/VerifyToken.py=cp936
 encoding//python/multithread.py=UTF-8

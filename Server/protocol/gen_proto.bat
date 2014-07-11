@@ -10,11 +10,13 @@
 .\protoc.exe DataServer.proto --python_out=./python/
 .\protoc.exe LobbyProtocol.proto --python_out=./python/
 .\protoc.exe ServerCmd.proto --python_out=./python/
+.\protoc.exe LoginProtocol.proto --python_out=./python/
 
 .\protoc.exe GameProtocol.proto --java_out=./java/
 .\protoc.exe RoleData.proto --java_out=./java/
 .\protoc.exe DataServer.proto --java_out=./java/
 .\protoc.exe LobbyProtocol.proto --java_out=./java/
 .\protoc.exe ServerCmd.proto --java_out=./java/
+.\protoc.exe LoginProtocol.proto --java_out=./java/
 
 pause()

@@ -8,7 +8,9 @@ import org.jboss.netty.channel.SimpleChannelHandler;
 
 import com.httpclient.HttpClient;
 
-import lobby.*;
+import login.*;
+import login.LoginProtocol;
+
 import com.httpclient.*;
 
 public class GameServerHandler extends SimpleChannelHandler{
@@ -30,10 +32,8 @@ public class GameServerHandler extends SimpleChannelHandler{
     	byte[] protoBytes = new byte[bytes.length - 12];
     	messageBuf.getBytes(12, protoBytes);				// 去除包头部分，获取包体部分的bytes
     	
-    	LobbyProtocol.RequestRegGameServer gameServerReq = LobbyProtocol.RequestRegGameServer.parseFrom(protoBytes);
-    	System.out.println("gameserver id=" + gameServerReq.getGsId());
-    	
-    	httpClient.query("/verify?ptname=test&token=487128819");
+    	LoginProtocol.SRequestVerifyToken verifyTokenReq = LoginProtocol.SRequestVerifyToken.parseFrom(protoBytes);
+    	httpClient.query("/verify?ptname=" + verifyTokenReq.getPtName() + "&token=" + verifyTokenReq.getToken());
     	
     	return;
     }
