@@ -64,3 +64,8 @@ log\*
 *.unsuccessfulbuild
 *.lastbuildstate
 *.opensdf
+
+
+
+# java 
+*.class

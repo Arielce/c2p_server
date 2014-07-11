@@ -46,6 +46,7 @@ extern Logger g_clientLog;
 
 extern IClientSession* g_pDsSession;
 extern IClientSession* g_pLobbySession;
+extern IClientSession* g_pLoginAgentSession;
 
 #define TRACELOG(logEvent)	LOG4CPLUS_TRACE(g_gsLog, logEvent)
 #define DEBUGLOG(logEvent)	LOG4CPLUS_DEBUG(g_gsLog, logEvent)

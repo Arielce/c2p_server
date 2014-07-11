@@ -12,6 +12,7 @@ using namespace log4cplus::helpers;
 Logger g_gsLog = Logger::getInstance(LOG4CPLUS_TEXT("ALL_MSGS"));
 IClientSession* g_pDsSession = NULL;
 IClientSession* g_pLobbySession = NULL;
+IClientSession* g_pLoginAgentSession = NULL;
 
 int main(int argc, char* argv[])
 {

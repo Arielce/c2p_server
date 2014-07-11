@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="lib" path="D:/eclipse_workspace/TestNetty/netty-3.5.0.Final/jar/netty-3.5.0.Final.jar" sourcepath="D:/eclipse_workspace/TestNetty/netty-3.5.0.Final/jar/netty-3.5.0.Final-sources.jar"/>
+	<classpathentry kind="lib" path="D:/eclipse_workspace/TestNetty/netty-3.5.0.Final/jar/netty-3.5.0.Final-sources.jar"/>
+	<classpathentry kind="lib" path="D:/eclipse_workspace/LoginServerSim/jar/mysql-connector-java-5.1.23-bin.jar"/>
+	<classpathentry kind="lib" path="D:/eclipse_workspace/LoginServerSim/jar/org.eclipse.jetty.util.jar"/>
+	<classpathentry kind="lib" path="D:/eclipse_workspace/LoginServerSim/jar/json-lib-2.4-jdk15.jar" sourcepath="D:/eclipse_workspace/LoginServerSim/jar/json-lib-2.4-jdk15-sources.jar"/>
+	<classpathentry kind="lib" path="D:/eclipse_workspace/LoginServerSim/jar/json-lib-2.4-jdk15-sources.jar"/>
+	<classpathentry kind="lib" path="D:/eclipse_workspace/LoginServerSim/jar/json_depend/commons-beanutils-1.9.2.jar"/>
+	<classpathentry kind="lib" path="D:/eclipse_workspace/LoginServerSim/jar/json_depend/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="D:/eclipse_workspace/LoginServerSim/jar/json_depend/commons-lang-2.5.jar"/>
+	<classpathentry kind="lib" path="D:/eclipse_workspace/LoginServerSim/jar/json_depend/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="D:/eclipse_workspace/LoginServerSim/jar/json_depend/ezmorph-1.0.6.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
