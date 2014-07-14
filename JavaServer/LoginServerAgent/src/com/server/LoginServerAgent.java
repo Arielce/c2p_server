@@ -63,11 +63,11 @@ public class LoginServerAgent {
 	}
 	
 	private class GsMssageDecode extends FrameDecoder {
-
+		final private int nMessageHeader = 12;
 		@Override
 		protected Object decode(ChannelHandlerContext ctx, Channel channel,
 				ChannelBuffer buffer) throws Exception {
-			if (buffer.readableBytes() < 12) {
+			if (buffer.readableBytes() < nMessageHeader) {
 				return null;
 			}
 			

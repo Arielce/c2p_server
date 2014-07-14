@@ -5,6 +5,7 @@
 #include "../protocol/RoleData.pb.h"
 #include "../network/IConnection.h"
 #include "Goods.h"
+#include "Hero.h"
 using namespace cpnet;
 
 enum PLAYER_STATE 
@@ -14,29 +15,6 @@ enum PLAYER_STATE
 	PLAYER_AFK = 3,				// 睡眠
 	PLAYER_OFFLINE = 4,			// 离线
 };
-
-// 英雄信息
-typedef struct tagHero
-{
-	uint32_t uHeroId;
-	uint64_t uHeroUUID;
-	uint32_t uLevel;
-	uint32_t uExp;
-	uint32_t uHeroRank;
-	uint32_t uUpgradeLevel;
-	uint32_t uFragmentNum;
-	vector<Goods> equipList;
-
-	tagHero() : uHeroId(0), uHeroUUID(0), uLevel(0), uExp(0), uHeroRank(0), uUpgradeLevel(0), uFragmentNum(0)
-	{
-	}
-	void DressEquip(uint32_t uEquipId)
-	{
-		Goods goods;
-		goods.uId = uEquipId;
-		equipList.push_back(goods);
-	}
-}Hero;
 
 // 关卡信息
 typedef struct tagGateInfo
