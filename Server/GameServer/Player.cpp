@@ -128,19 +128,20 @@ void Player::_SerializeRoleBaseInfo(roledata::PBRoleBaseInfo& roleBaseInfo)
 	{
 		Hero& hero = heroIt->second;
 		roledata::PBHero* pPBHero = pHeroList->add_heros();
-		pPBHero->set_heroid(hero.uHeroId);
-		pPBHero->set_herouuid(hero.uHeroUUID);
-		pPBHero->set_level(hero.uLevel);
-		pPBHero->set_exp(hero.uExp);
-		pPBHero->set_herorank(hero.uHeroRank);
-		pPBHero->set_upgradelevel(hero.uUpgradeLevel);
-		pPBHero->set_fragmentnum(hero.uFragmentNum);
+		pPBHero->set_heroid(hero.GetHeroId());
+		pPBHero->set_herouuid(hero.GetHeroUUID());
+		pPBHero->set_level(hero.GetLevel());
+		pPBHero->set_exp(hero.GetExp());
+		pPBHero->set_herorank(hero.GetHeroRank());
+		pPBHero->set_upgradelevel(hero.GetUpgradeLevel());
+		pPBHero->set_fragmentnum(hero.GetFragmentNum());
 
-		size_t nEquipNum = hero.equipList.size();
+		const vector<Goods> equipList = hero.GetEquipList();
+		size_t nEquipNum = equipList.size();
 		for (size_t i=0; i<nEquipNum; i++)
 		{
-			pPBHero->add_equips()->set_equipid(hero.equipList[i].uId);
-			pPBHero->add_equips()->set_equipnum(hero.equipList[i].uNum);
+			pPBHero->add_equips()->set_equipid(equipList[i].uId);
+			pPBHero->add_equips()->set_equipnum(equipList[i].uNum);
 		}
 	}
 
@@ -271,13 +272,13 @@ void Player::_ParseRoleBaseInfo(const roledata::PBRoleBaseInfo& roleBaseInfo)
 	{
 		Hero hero;
 		const roledata::PBHero& pbHero = heroList.heros(i);
-		hero.uHeroId		= pbHero.heroid();
-		hero.uHeroUUID		= pbHero.herouuid();
-		hero.uLevel			= pbHero.level();
-		hero.uExp			= pbHero.exp();
-		hero.uHeroRank		= pbHero.herorank();
-		hero.uUpgradeLevel	= pbHero.upgradelevel();
-		hero.uFragmentNum	= pbHero.fragmentnum();
+		hero.SetHeroId(pbHero.heroid());
+		hero.SetHeroUUID(pbHero.herouuid());
+		hero.SetLevel(pbHero.level());
+		hero.SetExp(pbHero.exp());
+		hero.SetHeroRank(pbHero.herorank());
+		hero.SetUpgradeLevel(pbHero.upgradelevel());
+		hero.SetFragmentNum(pbHero.fragmentnum());
 		
 		uint32_t uEquipNum = pbHero.equips_size();
 		for (uint32_t n=0; n<uEquipNum; n++)
@@ -286,9 +287,9 @@ void Player::_ParseRoleBaseInfo(const roledata::PBRoleBaseInfo& roleBaseInfo)
 			Goods equip;
 			equip.uId = pbEquip.equipid();
 			equip.uNum = pbEquip.equipnum();
-			hero.equipList.push_back(equip);
+			hero.GetMutableEquipList().push_back(equip);
 		}
-		m_roleHeroMap.insert(make_pair(hero.uHeroUUID, hero));
+		m_roleHeroMap.insert(make_pair(hero.GetHeroUUID(), hero));
 	}
 
 	// 解析玩家关卡信息
@@ -566,12 +567,12 @@ void Player::AddHero(uint32_t uHeroId, uint32_t uHeroRank/* =1 */, uint32_t uHer
 	GenUUID uuidGen;
 
 	Hero hero;
-	hero.uHeroId = uHeroId;
-	hero.uHeroUUID = uuidGen.generate();
-	hero.uLevel = uHeroLevel;
-	hero.uHeroRank = uHeroRank;
+	hero.SetHeroId(uHeroId);
+	hero.SetHeroUUID(uuidGen.generate());
+	hero.SetLevel(uHeroLevel);
+	hero.SetHeroRank(uHeroRank);
 
-	m_roleHeroMap.insert(make_pair(hero.uHeroUUID, hero));
+	m_roleHeroMap.insert(make_pair(hero.GetHeroUUID(), hero));
 	return;
 }
 

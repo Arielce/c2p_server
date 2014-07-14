@@ -123,6 +123,7 @@
     <ClInclude Include="Goods.h" />
     <ClInclude Include="GoodsMng.h" />
     <ClInclude Include="header.h" />
+    <ClInclude Include="Hero.h" />
     <ClInclude Include="HeroMng.h" />
     <ClInclude Include="KeyGen.h" />
     <ClInclude Include="LobbyHandler.h" />
@@ -158,6 +159,7 @@
     <ClCompile Include="GateController.cpp" />
     <ClCompile Include="GMCommand.cpp" />
     <ClCompile Include="GoodsMng.cpp" />
+    <ClCompile Include="Hero.cpp" />
     <ClCompile Include="HeroMng.cpp" />
     <ClCompile Include="LobbyHandler.cpp" />
     <ClCompile Include="LoginAgentHandler.cpp" />

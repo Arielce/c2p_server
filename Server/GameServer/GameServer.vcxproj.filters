@@ -186,6 +186,9 @@
     <ClInclude Include="..\protocol\LoginProtocol.pb.h">
       <Filter>protocol</Filter>
     </ClInclude>
+    <ClInclude Include="Hero.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -280,6 +283,9 @@
     </ClCompile>
     <ClCompile Include="..\protocol\LoginProtocol.pb.cc">
       <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="Hero.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

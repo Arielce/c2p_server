@@ -320,7 +320,11 @@ void GateAchieve::GivePrize(Player* pPlayer, uint32_t uGateId, int32_t nResult, 
 		Hero hero;
 		if (pPlayer->GetHero(*heroIt, hero))
 		{
-			gpHeroMng->AddHeroExp(gateConf.uHeroExpGet, hero.uLevel, hero.uExp, hero.uLevel, hero.uExp);
+			uint32_t uNewLevel = hero.GetLevel();
+			uint32_t uNewExp = hero.GetExp();
+			gpHeroMng->AddHeroExp(gateConf.uHeroExpGet, hero.GetLevel(), hero.GetExp(), uNewLevel, uNewExp);
+			hero.SetLevel(uNewLevel);
+			hero.SetExp(uNewExp);
 		}
 	}
 

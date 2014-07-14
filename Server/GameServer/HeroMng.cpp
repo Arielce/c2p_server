@@ -1,5 +1,6 @@
 #include "HeroMng.h"
 #include "Player.h"
+#include "Hero.h"
 #include "GoodsMng.h"
 #include "../network/Utility.h"
 #include "../protocol/ErrorCodes.h"
@@ -298,7 +299,7 @@ int32_t HeroMng::HeroDressEquip(Player* pPlayer, uint64_t uHeroUUID, uint32_t uE
 		return ERROR_HERO_NOT_EXIST;
 	}
 
-	if (hero.uLevel < equipProp.uLevelLimit)
+	if (hero.GetLevel() < equipProp.uLevelLimit)
 	{
 		return ERROR_HERO_LEVEL_NOT_ENOUGH;
 	}
@@ -321,7 +322,7 @@ int32_t HeroMng::HeroUpgrade(Player* pPlayer, uint64_t uHeroUUID)
 
 	// 检查英雄当前级别升级需要的装备是否齐全
 	HeroUpgrades heroUpgrade;
-	if (!GetHeroUpgradeConf(hero.uHeroId, heroUpgrade))
+	if (!GetHeroUpgradeConf(hero.GetHeroId(), heroUpgrade))
 	{
 		return ERROR_HERO_NOT_EXIST;
 	}
@@ -330,8 +331,8 @@ int32_t HeroMng::HeroUpgrade(Player* pPlayer, uint64_t uHeroUUID)
 	vector<uint32_t>::iterator upgradeEquipItEnd = heroUpgrade.upgradeList.end();
 	for (; upgradeEquipIt != upgradeEquipItEnd; upgradeEquipIt++)
 	{
-		vector<Goods>::iterator heroEquipIt = hero.equipList.begin();
-		vector<Goods>::iterator heroEquipItEnd = hero.equipList.end();
+		vector<Goods>::const_iterator heroEquipIt = hero.GetEquipList().begin();
+		vector<Goods>::const_iterator heroEquipItEnd = hero.GetEquipList().end();
 		bool bFind = false;
 		for (; heroEquipIt != heroEquipItEnd; heroEquipIt++)
 		{
