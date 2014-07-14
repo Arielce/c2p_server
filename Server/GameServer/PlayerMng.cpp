@@ -45,6 +45,19 @@ void PlayerMng::OnTimer(const BoostErrCode& errCode)
 	return;
 }
 
+Player* PlayerMng::_InitPlayerInfo(string strPtName, IConnection* pConn)
+{
+	Player* pPlayer = CreatePlayer();
+	if (!pPlayer)
+	{
+		return NULL;
+	}
+	pPlayer->SetPtName(strPtName);
+	m_clientConnMng.SetPlayerConnection(pPlayer, pConn);				// 保存玩家对应的网络连接
+	m_playerInfoMap.insert(make_pair(strPtName, pPlayer));				// 保存玩家pt名和玩家的对应关系
+	return pPlayer;
+}
+
 void PlayerMng::_SaveOnlinePlayer(uint32_t uFlag)
 {
 	bool bStopServer = false;
@@ -230,6 +243,11 @@ void PlayerMng::ProcReq(IConnection* pConn, MessageHeader* pMsgHeader)
 			}	
 		}
 		break;
+	case ID_SACK_SRequestVerifyToken:		// 验证Token结果返回
+		{
+			_SResponseVerifyToken(pConn, pMsgHeader);
+		}
+		break;
 	default:
 		break;
 	}
@@ -363,18 +381,21 @@ void PlayerMng::GetPlayerData(IConnection* pConnection, const string& strPtName)
 	if (!pPlayer)
 	{
 		// 玩家数据不在内存中
-		pPlayer = CreatePlayer();
-		pPlayer->SetPtName(strPtName);
+		pPlayer = _InitPlayerInfo(strPtName, pConnection);
 	}
-	m_clientConnMng.SetPlayerConnection(pPlayer, pConnection);
-
+	else 
+	{
+		// 更新玩家数据
+		m_clientConnMng.SetPlayerConnection(pPlayer, pConnection);
+		m_playerInfoMap.insert(make_pair(strPtName, pPlayer));
+	}
+	
 	if (pPlayer->State() == PLAYER_FETCHING_DATA)			// 玩家正在取数据中
 	{
 		TRACELOG("player rolename=[" << strPtName << "] is in state PLAYER_FETCHING_DATA");
 		return;
 	}
-
-	m_playerInfoMap.insert(make_pair(strPtName, pPlayer));
+	
 	m_playerDataGetter.GetPlayerData(pPlayer);									// 从其他途径获取玩家数据(redis, 或者mysql)
 	return;
 }
@@ -438,7 +459,7 @@ void PlayerMng::_SendPlayerDataToClient(IConnection* pClientConn, const roledata
 }
 
 /* 
-	请求验证token
+	请求验证token : 玩家在登陆之后进入游戏，或者断开连接进入游戏时需要进行Token验证
 	PS：玩家在每次网络链接断开后，重连的时候，都需要验证token，主要有2个原因
 	(1) 保证对玩家进行操作的是受过安全校验的
 	(2) 保证玩家使用的是新的网络连接
@@ -456,10 +477,21 @@ void PlayerMng::_RequestVerifyToken(IConnection* pConn, MessageHeader* pMsgHeade
 	Player* pPlayer = GetPlayer(verifyTokenReq.ptname());
 	if (!pPlayer)
 	{
+		// 玩家数据不在内存中
+		pPlayer = _InitPlayerInfo(verifyTokenReq.ptname(), pConn);
+		pPlayer->SetToken(verifyTokenReq.token());
+		_SendVerifyToken(verifyTokenReq.ptname(), verifyTokenReq.token());
+		return;
+	}
+	if (!verifyTokenReq.reconnect())				// 如果不是重新连接的Token验证（说明就是再次登陆的token验证）
+	{
+		pPlayer->SetToken(verifyTokenReq.token());	// 更新Token
+		pPlayer->SetPlayerConnection(pConn);
 		_SendVerifyToken(verifyTokenReq.ptname(), verifyTokenReq.token());
 		return;
 	}
 
+	// 玩家重新连接的Token验证
 	ctos::ResponseVerifyToken verifyTokenAck;
 	if (!pPlayer->VerifyToken(verifyTokenReq.token()))
 	{
@@ -505,11 +537,14 @@ void PlayerMng::_RequestCreateRole(IConnection* pConn, MessageHeader* pMsgHeader
 	if (!pPlayer)
 	{
 		// 玩家数据不在内存中
-		pPlayer = CreatePlayer();
-		pPlayer->SetPtName(createRoleReq.ptname());
+		pPlayer = _InitPlayerInfo(createRoleReq.ptname(), pConn);
 	}
-	m_clientConnMng.SetPlayerConnection(pPlayer, pConn);
-	m_playerInfoMap.insert(make_pair(createRoleReq.ptname(), pPlayer));
+	else
+	{
+		// 更新玩家数据
+		m_clientConnMng.SetPlayerConnection(pPlayer, pConn);
+		m_playerInfoMap.insert(make_pair(createRoleReq.ptname(), pPlayer));
+	}
 
 	// 发送消息
 	string strMessage;
@@ -536,6 +571,35 @@ void PlayerMng::_RequestRoleData(IConnection* pConn, MessageHeader* pMsgHeader)
 
 	// 获取角色数据
 	GetPlayerData(pConn, roleDataReq.ptname());
+}
+
+void PlayerMng::_SResponseVerifyToken(IConnection* pConn, MessageHeader* pMsgHeader)
+{
+	login::SResponseVerifyToken verifyTokenResponse;
+	verifyTokenResponse.ParseFromString(GetProtoData(pMsgHeader));
+	TRACELOG("verify token response, ptname=[" << verifyTokenResponse.ptname() << "], ret=[" << verifyTokenResponse.errcode() << "] request role data.");
+
+	Player* pPlayer = GetPlayer(verifyTokenResponse.ptname());
+	if (!pPlayer)
+	{
+		ERRORLOG("verify token response, cannot find player ptname=[" << verifyTokenResponse.ptname() << "]");
+		return;
+	}
+
+	ctos::ResponseVerifyToken verifyTokenAck;
+	if (verifyTokenResponse.errcode() != ERROR_OP_SUCCESS)				// 验证Token失败
+	{
+		verifyTokenAck.set_errcode(verifyTokenResponse.errcode());
+	}
+	else
+	{
+		pPlayer->SetHasVerifyFromServer();								// 设置已经从服务器验证过Token
+	}
+
+	string strMessage;
+	BuildRequestProto<ctos::ResponseVerifyToken>(verifyTokenAck, strMessage, ID_ACK_ResponseVerifyToken);
+	pPlayer->SendMsg(strMessage.c_str(), strMessage.size());
+	return;
 }
 
 // 保存玩家数据
@@ -636,6 +700,7 @@ void PlayerMng::AddPlayerExp(uint32_t uExpAdd, uint32_t uCurLevel, uint32_t uCur
 	return;
 }
 
+// 发送验证Token
 void PlayerMng::_SendVerifyToken(string strPtName, uint32_t uToken)
 {
 	if (!g_pLoginAgentSession)

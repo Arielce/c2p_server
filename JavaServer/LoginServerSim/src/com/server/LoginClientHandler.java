@@ -98,8 +98,8 @@ public class LoginClientHandler extends SimpleChannelUpstreamHandler{
 		Channel ch = e.getChannel();
 		// Write the initial line and the header.
 		ch.write(response);
-		ch.disconnect();
-		ch.close();
+		//ch.disconnect();
+		//ch.close();
 	}
 
 	@Override
@@ -188,6 +188,7 @@ public class LoginClientHandler extends SimpleChannelUpstreamHandler{
 		
 		String strRetString = "";	
 		Map<String, String> map = new LinkedHashMap<String, String>();  
+		map.put("user", strPtName);
 		
 		if (bRet) {			// 用户已经存在
 			map.put("verify", "success");

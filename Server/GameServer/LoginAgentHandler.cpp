@@ -4,8 +4,10 @@
 #include "header.h"
 #include "../protocol/LobbyProtocol.h"
 #include "../protocol/LobbyProtocol.pb.h"
+#include "../protocol/LoginProtocol.h"
 #include "../network/IConnection.h"
 #include "../network/Utility.h"
+#include "PlayerMng.h"
 
 void LoginAgentHandler::HandleConnect(IConnection* pConnection)
 {
@@ -37,9 +39,14 @@ void LoginAgentHandler::HandleRecv(IConnection* pConn, const char* pBuf, uint32_
 	{
 		return;
 	}
-	//switch (pMsgHeader->uMsgCmd)
-	//{
-	//default:
-	//	break;
-	//}
+	switch (pMsgHeader->uMsgCmd)
+	{
+	case ID_SACK_SRequestVerifyToken:
+		{
+			gpPlayerMng->ProcReq(pConn, pMsgHeader);
+		}
+		break;
+	default:
+		break;
+	}
 }

@@ -1828,6 +1828,10 @@ public final class GameProtocol {
     // optional uint32 token = 2;
     boolean hasToken();
     int getToken();
+    
+    // optional bool reconnect = 3;
+    boolean hasReconnect();
+    boolean getReconnect();
   }
   public static final class RequestVerifyToken extends
       com.google.protobuf.GeneratedMessage
@@ -1900,9 +1904,20 @@ public final class GameProtocol {
       return token_;
     }
     
+    // optional bool reconnect = 3;
+    public static final int RECONNECT_FIELD_NUMBER = 3;
+    private boolean reconnect_;
+    public boolean hasReconnect() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public boolean getReconnect() {
+      return reconnect_;
+    }
+    
     private void initFields() {
       ptName_ = "";
       token_ = 0;
+      reconnect_ = false;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -1922,6 +1937,9 @@ public final class GameProtocol {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeUInt32(2, token_);
       }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeBool(3, reconnect_);
+      }
       getUnknownFields().writeTo(output);
     }
     
@@ -1938,6 +1956,10 @@ public final class GameProtocol {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(2, token_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(3, reconnect_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -2067,6 +2089,8 @@ public final class GameProtocol {
         bitField0_ = (bitField0_ & ~0x00000001);
         token_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
+        reconnect_ = false;
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
       
@@ -2113,6 +2137,10 @@ public final class GameProtocol {
           to_bitField0_ |= 0x00000002;
         }
         result.token_ = token_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.reconnect_ = reconnect_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -2134,6 +2162,9 @@ public final class GameProtocol {
         }
         if (other.hasToken()) {
           setToken(other.getToken());
+        }
+        if (other.hasReconnect()) {
+          setReconnect(other.getReconnect());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -2174,6 +2205,11 @@ public final class GameProtocol {
             case 16: {
               bitField0_ |= 0x00000002;
               token_ = input.readUInt32();
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000004;
+              reconnect_ = input.readBool();
               break;
             }
           }
@@ -2235,6 +2271,27 @@ public final class GameProtocol {
       public Builder clearToken() {
         bitField0_ = (bitField0_ & ~0x00000002);
         token_ = 0;
+        onChanged();
+        return this;
+      }
+      
+      // optional bool reconnect = 3;
+      private boolean reconnect_ ;
+      public boolean hasReconnect() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public boolean getReconnect() {
+        return reconnect_;
+      }
+      public Builder setReconnect(boolean value) {
+        bitField0_ |= 0x00000004;
+        reconnect_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearReconnect() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        reconnect_ = false;
         onChanged();
         return this;
       }
@@ -12037,40 +12094,40 @@ public final class GameProtocol {
       " \001(\r\022\r\n\005index\030\003 \001(\r\"7\n\022ResponseGameGroup" +
       "s\022!\n\006groups\030\001 \003(\0132\021.ctos.PBGameGroup\"7\n\024" +
       "RequestProcGMCommand\022\016\n\006userId\030\001 \001(\r\022\017\n\007" +
-      "command\030\002 \001(\t\"3\n\022RequestVerifyToken\022\016\n\006p" +
-      "tName\030\001 \001(\t\022\r\n\005token\030\002 \001(\r\"&\n\023ResponseVe" +
-      "rifyToken\022\017\n\007errCode\030\001 \001(\r\"&\n\023RequestRol" +
-      "eNameList\022\017\n\007listNum\030\001 \001(\r\"(\n\024ResponseRo",
-      "leNameList\022\020\n\010nameList\030\001 \003(\t\")\n\025RequestC" +
-      "heckNameValid\022\020\n\010roleName\030\001 \001(\t\")\n\026Respo" +
-      "nseCheckNameValid\022\017\n\007errCode\030\001 \001(\r\"5\n\021Re" +
-      "questCreateRole\022\016\n\006ptName\030\001 \001(\t\022\020\n\010roleN" +
-      "ame\030\002 \001(\t\"%\n\022ResponseCreateRole\022\017\n\007errCo" +
-      "de\030\001 \001(\r\"!\n\017RequestRoleData\022\016\n\006ptName\030\001 " +
-      "\001(\t\"P\n\020ResponseRoleData\022\017\n\007errCode\030\001 \001(\r" +
-      "\022+\n\010roleData\030\002 \001(\0132\031.roledata.PBRoleTota" +
-      "lInfo\"A\n\020RequestEnterGate\022\016\n\006userId\030\001 \001(" +
-      "\r\022\016\n\006gateId\030\002 \001(\r\022\r\n\005heros\030\003 \003(\004\"$\n\021Resp",
-      "onseEnterGate\022\017\n\007errCode\030\001 \001(\r\"C\n\021Reques" +
-      "tFinishGate\022\016\n\006userId\030\001 \001(\r\022\016\n\006gateId\030\002 " +
-      "\001(\r\022\016\n\006result\030\003 \001(\r\"J\n\023ResponseFinishiGa" +
-      "te\022\017\n\007errCode\030\001 \001(\r\022\016\n\006expGet\030\002 \001(\r\022\022\n\nh" +
-      "eroExpGet\030\003 \001(\r\"J\n\025RequestHeroDressEquip" +
-      "\022\016\n\006userId\030\001 \001(\r\022\020\n\010heroUUID\030\002 \001(\004\022\017\n\007eq" +
-      "uipId\030\003 \001(\r\")\n\026ResponseHeroDressEquip\022\017\n" +
-      "\007errCode\030\001 \001(\r\"6\n\022RequestUpgradeHero\022\016\n\006" +
-      "userId\030\001 \001(\r\022\020\n\010heroUUID\030\002 \001(\r\"&\n\023Respon" +
-      "seUpgradeHero\022\017\n\007errCode\030\001 \001(\r\"=\n\024Reques",
-      "tCompoundEquip\022\016\n\006userId\030\001 \001(\r\022\025\n\rtarget" +
-      "EquipId\030\002 \001(\r\"(\n\025ResponseCompoundEquip\022\017" +
-      "\n\007errCode\030\001 \001(\r\"&\n\024RequestDrawPrizeList\022" +
-      "\016\n\006userId\030\001 \001(\r\":\n\025ResponseDrawPrizeList" +
-      "\022\017\n\007errCode\030\001 \001(\r\022\020\n\010drawList\030\002 \003(\r\"2\n\020R" +
-      "equestDrawPrize\022\016\n\006userId\030\001 \001(\r\022\016\n\006drawI" +
-      "d\030\002 \001(\r\"0\n\013PBDrawPrize\022\017\n\007prizeId\030\001 \001(\r\022" +
-      "\020\n\010prizeNum\030\002 \001(\r\"J\n\021ResponseDrawPrize\022\017" +
-      "\n\007errCode\030\001 \001(\r\022$\n\tprizeList\030\002 \003(\0132\021.cto" +
-      "s.PBDrawPrize"
+      "command\030\002 \001(\t\"F\n\022RequestVerifyToken\022\016\n\006p" +
+      "tName\030\001 \001(\t\022\r\n\005token\030\002 \001(\r\022\021\n\treconnect\030" +
+      "\003 \001(\010\"&\n\023ResponseVerifyToken\022\017\n\007errCode\030" +
+      "\001 \001(\r\"&\n\023RequestRoleNameList\022\017\n\007listNum\030",
+      "\001 \001(\r\"(\n\024ResponseRoleNameList\022\020\n\010nameLis" +
+      "t\030\001 \003(\t\")\n\025RequestCheckNameValid\022\020\n\010role" +
+      "Name\030\001 \001(\t\")\n\026ResponseCheckNameValid\022\017\n\007" +
+      "errCode\030\001 \001(\r\"5\n\021RequestCreateRole\022\016\n\006pt" +
+      "Name\030\001 \001(\t\022\020\n\010roleName\030\002 \001(\t\"%\n\022Response" +
+      "CreateRole\022\017\n\007errCode\030\001 \001(\r\"!\n\017RequestRo" +
+      "leData\022\016\n\006ptName\030\001 \001(\t\"P\n\020ResponseRoleDa" +
+      "ta\022\017\n\007errCode\030\001 \001(\r\022+\n\010roleData\030\002 \001(\0132\031." +
+      "roledata.PBRoleTotalInfo\"A\n\020RequestEnter" +
+      "Gate\022\016\n\006userId\030\001 \001(\r\022\016\n\006gateId\030\002 \001(\r\022\r\n\005",
+      "heros\030\003 \003(\004\"$\n\021ResponseEnterGate\022\017\n\007errC" +
+      "ode\030\001 \001(\r\"C\n\021RequestFinishGate\022\016\n\006userId" +
+      "\030\001 \001(\r\022\016\n\006gateId\030\002 \001(\r\022\016\n\006result\030\003 \001(\r\"J" +
+      "\n\023ResponseFinishiGate\022\017\n\007errCode\030\001 \001(\r\022\016" +
+      "\n\006expGet\030\002 \001(\r\022\022\n\nheroExpGet\030\003 \001(\r\"J\n\025Re" +
+      "questHeroDressEquip\022\016\n\006userId\030\001 \001(\r\022\020\n\010h" +
+      "eroUUID\030\002 \001(\004\022\017\n\007equipId\030\003 \001(\r\")\n\026Respon" +
+      "seHeroDressEquip\022\017\n\007errCode\030\001 \001(\r\"6\n\022Req" +
+      "uestUpgradeHero\022\016\n\006userId\030\001 \001(\r\022\020\n\010heroU" +
+      "UID\030\002 \001(\r\"&\n\023ResponseUpgradeHero\022\017\n\007errC",
+      "ode\030\001 \001(\r\"=\n\024RequestCompoundEquip\022\016\n\006use" +
+      "rId\030\001 \001(\r\022\025\n\rtargetEquipId\030\002 \001(\r\"(\n\025Resp" +
+      "onseCompoundEquip\022\017\n\007errCode\030\001 \001(\r\"&\n\024Re" +
+      "questDrawPrizeList\022\016\n\006userId\030\001 \001(\r\":\n\025Re" +
+      "sponseDrawPrizeList\022\017\n\007errCode\030\001 \001(\r\022\020\n\010" +
+      "drawList\030\002 \003(\r\"2\n\020RequestDrawPrize\022\016\n\006us" +
+      "erId\030\001 \001(\r\022\016\n\006drawId\030\002 \001(\r\"0\n\013PBDrawPriz" +
+      "e\022\017\n\007prizeId\030\001 \001(\r\022\020\n\010prizeNum\030\002 \001(\r\"J\n\021" +
+      "ResponseDrawPrize\022\017\n\007errCode\030\001 \001(\r\022$\n\tpr" +
+      "izeList\030\002 \003(\0132\021.ctos.PBDrawPrize"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -12114,7 +12171,7 @@ public final class GameProtocol {
           internal_static_ctos_RequestVerifyToken_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_ctos_RequestVerifyToken_descriptor,
-              new java.lang.String[] { "PtName", "Token", },
+              new java.lang.String[] { "PtName", "Token", "Reconnect", },
               ctos.GameProtocol.RequestVerifyToken.class,
               ctos.GameProtocol.RequestVerifyToken.Builder.class);
           internal_static_ctos_ResponseVerifyToken_descriptor =

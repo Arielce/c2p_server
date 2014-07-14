@@ -80,8 +80,10 @@ public:
 	void SerializeToPB(roledata::PBRoleTotalInfo& roleTotalInfo);
 	void GetRoleTotalInfo(const roledata::PBRoleTotalInfo& roleTotalInfo);
 	
+	void SetHasVerifyFromServer();													// 设置已经从服务器
 	bool HasVerifyFromServer();														// 是否已经从Server验证过Token了
 	bool HasVerified(IConnection* pConnection);										// 是否已经验证过
+	void SetToken(uint32_t uToken);													// 设置Token
 	bool VerifyToken(uint32_t uToken);												// 验证Token
 
 	void SendMsg(const void* pData, uint32_t uLen);

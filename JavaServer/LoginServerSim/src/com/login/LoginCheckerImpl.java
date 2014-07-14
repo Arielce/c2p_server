@@ -25,7 +25,6 @@ public class LoginCheckerImpl implements ILoginChecker {
 				return nToken;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -35,7 +34,7 @@ public class LoginCheckerImpl implements ILoginChecker {
 	@Override
 	public boolean ChangePwd(String strPtName, String strPasswd,
 			String strNewPasswd) {
-		// TODO Auto-generated method stub
+		// TODO
 		return false;
 	}
 
@@ -52,7 +51,7 @@ public class LoginCheckerImpl implements ILoginChecker {
 	// Éú³Étoken
 	private int genToken() {
 		Random random = new Random();
-		int rand = random.nextInt();
+		int rand = random.nextInt(1000000);
 		return rand;
 	}
 }

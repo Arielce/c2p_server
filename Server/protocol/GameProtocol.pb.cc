@@ -178,9 +178,10 @@ void protobuf_AssignDesc_GameProtocol_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(RequestProcGMCommand));
   RequestVerifyToken_descriptor_ = file->message_type(4);
-  static const int RequestVerifyToken_offsets_[2] = {
+  static const int RequestVerifyToken_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RequestVerifyToken, ptname_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RequestVerifyToken, token_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RequestVerifyToken, reconnect_),
   };
   RequestVerifyToken_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -718,40 +719,40 @@ void protobuf_AddDesc_GameProtocol_2eproto() {
     " \001(\r\022\r\n\005index\030\003 \001(\r\"7\n\022ResponseGameGroup"
     "s\022!\n\006groups\030\001 \003(\0132\021.ctos.PBGameGroup\"7\n\024"
     "RequestProcGMCommand\022\016\n\006userId\030\001 \001(\r\022\017\n\007"
-    "command\030\002 \001(\t\"3\n\022RequestVerifyToken\022\016\n\006p"
-    "tName\030\001 \001(\t\022\r\n\005token\030\002 \001(\r\"&\n\023ResponseVe"
-    "rifyToken\022\017\n\007errCode\030\001 \001(\r\"&\n\023RequestRol"
-    "eNameList\022\017\n\007listNum\030\001 \001(\r\"(\n\024ResponseRo"
-    "leNameList\022\020\n\010nameList\030\001 \003(\t\")\n\025RequestC"
-    "heckNameValid\022\020\n\010roleName\030\001 \001(\t\")\n\026Respo"
-    "nseCheckNameValid\022\017\n\007errCode\030\001 \001(\r\"5\n\021Re"
-    "questCreateRole\022\016\n\006ptName\030\001 \001(\t\022\020\n\010roleN"
-    "ame\030\002 \001(\t\"%\n\022ResponseCreateRole\022\017\n\007errCo"
-    "de\030\001 \001(\r\"!\n\017RequestRoleData\022\016\n\006ptName\030\001 "
-    "\001(\t\"P\n\020ResponseRoleData\022\017\n\007errCode\030\001 \001(\r"
-    "\022+\n\010roleData\030\002 \001(\0132\031.roledata.PBRoleTota"
-    "lInfo\"A\n\020RequestEnterGate\022\016\n\006userId\030\001 \001("
-    "\r\022\016\n\006gateId\030\002 \001(\r\022\r\n\005heros\030\003 \003(\004\"$\n\021Resp"
-    "onseEnterGate\022\017\n\007errCode\030\001 \001(\r\"C\n\021Reques"
-    "tFinishGate\022\016\n\006userId\030\001 \001(\r\022\016\n\006gateId\030\002 "
-    "\001(\r\022\016\n\006result\030\003 \001(\r\"J\n\023ResponseFinishiGa"
-    "te\022\017\n\007errCode\030\001 \001(\r\022\016\n\006expGet\030\002 \001(\r\022\022\n\nh"
-    "eroExpGet\030\003 \001(\r\"J\n\025RequestHeroDressEquip"
-    "\022\016\n\006userId\030\001 \001(\r\022\020\n\010heroUUID\030\002 \001(\004\022\017\n\007eq"
-    "uipId\030\003 \001(\r\")\n\026ResponseHeroDressEquip\022\017\n"
-    "\007errCode\030\001 \001(\r\"6\n\022RequestUpgradeHero\022\016\n\006"
-    "userId\030\001 \001(\r\022\020\n\010heroUUID\030\002 \001(\r\"&\n\023Respon"
-    "seUpgradeHero\022\017\n\007errCode\030\001 \001(\r\"=\n\024Reques"
-    "tCompoundEquip\022\016\n\006userId\030\001 \001(\r\022\025\n\rtarget"
-    "EquipId\030\002 \001(\r\"(\n\025ResponseCompoundEquip\022\017"
-    "\n\007errCode\030\001 \001(\r\"&\n\024RequestDrawPrizeList\022"
-    "\016\n\006userId\030\001 \001(\r\":\n\025ResponseDrawPrizeList"
-    "\022\017\n\007errCode\030\001 \001(\r\022\020\n\010drawList\030\002 \003(\r\"2\n\020R"
-    "equestDrawPrize\022\016\n\006userId\030\001 \001(\r\022\016\n\006drawI"
-    "d\030\002 \001(\r\"0\n\013PBDrawPrize\022\017\n\007prizeId\030\001 \001(\r\022"
-    "\020\n\010prizeNum\030\002 \001(\r\"J\n\021ResponseDrawPrize\022\017"
-    "\n\007errCode\030\001 \001(\r\022$\n\tprizeList\030\002 \003(\0132\021.cto"
-    "s.PBDrawPrize", 1573);
+    "command\030\002 \001(\t\"F\n\022RequestVerifyToken\022\016\n\006p"
+    "tName\030\001 \001(\t\022\r\n\005token\030\002 \001(\r\022\021\n\treconnect\030"
+    "\003 \001(\010\"&\n\023ResponseVerifyToken\022\017\n\007errCode\030"
+    "\001 \001(\r\"&\n\023RequestRoleNameList\022\017\n\007listNum\030"
+    "\001 \001(\r\"(\n\024ResponseRoleNameList\022\020\n\010nameLis"
+    "t\030\001 \003(\t\")\n\025RequestCheckNameValid\022\020\n\010role"
+    "Name\030\001 \001(\t\")\n\026ResponseCheckNameValid\022\017\n\007"
+    "errCode\030\001 \001(\r\"5\n\021RequestCreateRole\022\016\n\006pt"
+    "Name\030\001 \001(\t\022\020\n\010roleName\030\002 \001(\t\"%\n\022Response"
+    "CreateRole\022\017\n\007errCode\030\001 \001(\r\"!\n\017RequestRo"
+    "leData\022\016\n\006ptName\030\001 \001(\t\"P\n\020ResponseRoleDa"
+    "ta\022\017\n\007errCode\030\001 \001(\r\022+\n\010roleData\030\002 \001(\0132\031."
+    "roledata.PBRoleTotalInfo\"A\n\020RequestEnter"
+    "Gate\022\016\n\006userId\030\001 \001(\r\022\016\n\006gateId\030\002 \001(\r\022\r\n\005"
+    "heros\030\003 \003(\004\"$\n\021ResponseEnterGate\022\017\n\007errC"
+    "ode\030\001 \001(\r\"C\n\021RequestFinishGate\022\016\n\006userId"
+    "\030\001 \001(\r\022\016\n\006gateId\030\002 \001(\r\022\016\n\006result\030\003 \001(\r\"J"
+    "\n\023ResponseFinishiGate\022\017\n\007errCode\030\001 \001(\r\022\016"
+    "\n\006expGet\030\002 \001(\r\022\022\n\nheroExpGet\030\003 \001(\r\"J\n\025Re"
+    "questHeroDressEquip\022\016\n\006userId\030\001 \001(\r\022\020\n\010h"
+    "eroUUID\030\002 \001(\004\022\017\n\007equipId\030\003 \001(\r\")\n\026Respon"
+    "seHeroDressEquip\022\017\n\007errCode\030\001 \001(\r\"6\n\022Req"
+    "uestUpgradeHero\022\016\n\006userId\030\001 \001(\r\022\020\n\010heroU"
+    "UID\030\002 \001(\r\"&\n\023ResponseUpgradeHero\022\017\n\007errC"
+    "ode\030\001 \001(\r\"=\n\024RequestCompoundEquip\022\016\n\006use"
+    "rId\030\001 \001(\r\022\025\n\rtargetEquipId\030\002 \001(\r\"(\n\025Resp"
+    "onseCompoundEquip\022\017\n\007errCode\030\001 \001(\r\"&\n\024Re"
+    "questDrawPrizeList\022\016\n\006userId\030\001 \001(\r\":\n\025Re"
+    "sponseDrawPrizeList\022\017\n\007errCode\030\001 \001(\r\022\020\n\010"
+    "drawList\030\002 \003(\r\"2\n\020RequestDrawPrize\022\016\n\006us"
+    "erId\030\001 \001(\r\022\016\n\006drawId\030\002 \001(\r\"0\n\013PBDrawPriz"
+    "e\022\017\n\007prizeId\030\001 \001(\r\022\020\n\010prizeNum\030\002 \001(\r\"J\n\021"
+    "ResponseDrawPrize\022\017\n\007errCode\030\001 \001(\r\022$\n\tpr"
+    "izeList\030\002 \003(\0132\021.ctos.PBDrawPrize", 1592);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "GameProtocol.proto", &protobuf_RegisterTypes);
   RequestGameGroups::default_instance_ = new RequestGameGroups();
@@ -1805,6 +1806,7 @@ void RequestProcGMCommand::Swap(RequestProcGMCommand* other) {
 #ifndef _MSC_VER
 const int RequestVerifyToken::kPtNameFieldNumber;
 const int RequestVerifyToken::kTokenFieldNumber;
+const int RequestVerifyToken::kReconnectFieldNumber;
 #endif  // !_MSC_VER
 
 RequestVerifyToken::RequestVerifyToken()
@@ -1825,6 +1827,7 @@ void RequestVerifyToken::SharedCtor() {
   _cached_size_ = 0;
   ptname_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   token_ = 0u;
+  reconnect_ = false;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -1868,6 +1871,7 @@ void RequestVerifyToken::Clear() {
       }
     }
     token_ = 0u;
+    reconnect_ = false;
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
@@ -1907,6 +1911,22 @@ bool RequestVerifyToken::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
+        if (input->ExpectTag(24)) goto parse_reconnect;
+        break;
+      }
+      
+      // optional bool reconnect = 3;
+      case 3: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_reconnect:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &reconnect_)));
+          set_has_reconnect();
+        } else {
+          goto handle_uninterpreted;
+        }
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -1943,6 +1963,11 @@ void RequestVerifyToken::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(2, this->token(), output);
   }
   
+  // optional bool reconnect = 3;
+  if (has_reconnect()) {
+    ::google::protobuf::internal::WireFormatLite::WriteBool(3, this->reconnect(), output);
+  }
+  
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -1964,6 +1989,11 @@ void RequestVerifyToken::SerializeWithCachedSizes(
   // optional uint32 token = 2;
   if (has_token()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(2, this->token(), target);
+  }
+  
+  // optional bool reconnect = 3;
+  if (has_reconnect()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(3, this->reconnect(), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -1989,6 +2019,11 @@ int RequestVerifyToken::ByteSize() const {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::UInt32Size(
           this->token());
+    }
+    
+    // optional bool reconnect = 3;
+    if (has_reconnect()) {
+      total_size += 1 + 1;
     }
     
   }
@@ -2024,6 +2059,9 @@ void RequestVerifyToken::MergeFrom(const RequestVerifyToken& from) {
     if (from.has_token()) {
       set_token(from.token());
     }
+    if (from.has_reconnect()) {
+      set_reconnect(from.reconnect());
+    }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
@@ -2049,6 +2087,7 @@ void RequestVerifyToken::Swap(RequestVerifyToken* other) {
   if (other != this) {
     std::swap(ptname_, other->ptname_);
     std::swap(token_, other->token_);
+    std::swap(reconnect_, other->reconnect_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

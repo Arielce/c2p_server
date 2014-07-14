@@ -144,6 +144,12 @@ namespace cpnet
 		// 计算出整个数据包的大小
 		size_t nBodySize = m_pMsgParser->CheckMsgHeader(m_pBuff, m_nHasTransffered);
 
+		if (nBodySize < m_nHeadLength)
+		{
+			ERROR_NET("message size is too small, message size =[" << nBodySize << "]");
+			m_sock.close();
+			return;
+		}
 		if (nBodySize > m_nBufLength)														// 数据包头比整个buf还要大
 		{
 			ERROR_NET("message size is too large, message size =[" << nBodySize << "]");

@@ -33,6 +33,7 @@ message RequestVerifyToken
 {
 	optional string ptName = 1;				// 玩家PT
 	optional uint32 token = 2;				// 安全token
+	optional bool reconnect = 3;			// 是否是重新连接的Token验证，如果不是就说明是再次登录的Token验证
 }
 
 message ResponseVerifyToken

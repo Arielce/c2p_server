@@ -506,20 +506,30 @@ class RequestVerifyToken : public ::google::protobuf::Message {
   inline ::google::protobuf::uint32 token() const;
   inline void set_token(::google::protobuf::uint32 value);
   
+  // optional bool reconnect = 3;
+  inline bool has_reconnect() const;
+  inline void clear_reconnect();
+  static const int kReconnectFieldNumber = 3;
+  inline bool reconnect() const;
+  inline void set_reconnect(bool value);
+  
   // @@protoc_insertion_point(class_scope:ctos.RequestVerifyToken)
  private:
   inline void set_has_ptname();
   inline void clear_has_ptname();
   inline void set_has_token();
   inline void clear_has_token();
+  inline void set_has_reconnect();
+  inline void clear_has_reconnect();
   
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
   ::std::string* ptname_;
   ::google::protobuf::uint32 token_;
+  bool reconnect_;
   
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
   
   friend void  protobuf_AddDesc_GameProtocol_2eproto();
   friend void protobuf_AssignDesc_GameProtocol_2eproto();
@@ -3019,6 +3029,28 @@ inline ::google::protobuf::uint32 RequestVerifyToken::token() const {
 inline void RequestVerifyToken::set_token(::google::protobuf::uint32 value) {
   set_has_token();
   token_ = value;
+}
+
+// optional bool reconnect = 3;
+inline bool RequestVerifyToken::has_reconnect() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void RequestVerifyToken::set_has_reconnect() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void RequestVerifyToken::clear_has_reconnect() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void RequestVerifyToken::clear_reconnect() {
+  reconnect_ = false;
+  clear_has_reconnect();
+}
+inline bool RequestVerifyToken::reconnect() const {
+  return reconnect_;
+}
+inline void RequestVerifyToken::set_reconnect(bool value) {
+  set_has_reconnect();
+  reconnect_ = value;
 }
 
 // -------------------------------------------------------------------

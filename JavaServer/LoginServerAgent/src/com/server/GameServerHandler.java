@@ -33,6 +33,7 @@ public class GameServerHandler extends SimpleChannelHandler{
     	messageBuf.getBytes(12, protoBytes);				// 去除包头部分，获取包体部分的bytes
     	
     	LoginProtocol.SRequestVerifyToken verifyTokenReq = LoginProtocol.SRequestVerifyToken.parseFrom(protoBytes);
+    	httpClient.SetVerifyInfo(verifyTokenReq.getPtName(), ctx.getChannel());
     	httpClient.query("/verify?ptname=" + verifyTokenReq.getPtName() + "&token=" + verifyTokenReq.getToken());
     	
     	return;

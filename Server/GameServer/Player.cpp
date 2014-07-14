@@ -188,6 +188,11 @@ void Player::_SerializeRoleBagInfo(roledata::PBRoleBag& roleBag)
 	}
 }
 
+void Player::SetHasVerifyFromServer()
+{
+	m_bHasVerifyFromServer = true;
+}
+
 bool Player::HasVerifyFromServer()
 {
 	return m_bHasVerifyFromServer;
@@ -202,9 +207,14 @@ bool Player::HasVerified(IConnection* pConnection)
 	return true;
 }
 
+void Player::SetToken(uint32_t uToken)
+{
+	m_uSecureToken = uToken;
+}
+
 bool Player::VerifyToken(uint32_t uToken)
 {
-	if (uToken != m_uSecureToken)
+	if (uToken != m_uSecureToken || !HasVerifyFromServer())
 	{
 		return false;
 	}

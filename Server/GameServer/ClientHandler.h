@@ -14,7 +14,7 @@ class ClientMsgParser : public IMsgParser
 public:
 	virtual size_t CheckMsgHeader(void* pMsg, size_t nBytesTransfered)
 	{
-		uint16_t* pMsgSize = (uint16_t*)pMsg;
+		uint32_t* pMsgSize = (uint32_t*)pMsg;
 		uint32_t* pMagicCode = (uint32_t*)((char*)pMsg + 8);
 		if (*pMagicCode != 0xA1B2C3D4)
 		{
@@ -24,7 +24,7 @@ public:
 	}
 	virtual size_t CheckMsgBody(void* pMsg, size_t nBytesTransfered)
 	{
-		uint16_t* pMsgSize = (uint16_t*)pMsg;
+		uint32_t* pMsgSize = (uint32_t*)pMsg;
 		if (*pMsgSize >= nBytesTransfered)
 		{
 			return *pMsgSize;

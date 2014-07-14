@@ -78,11 +78,13 @@ private:
 	void _RequestVerifyToken(IConnection* pConn, MessageHeader* pMsgHeader);
 	void _RequestCreateRole(IConnection* pConn, MessageHeader* pMsgHeader);
 	void _RequestRoleData(IConnection* pConn, MessageHeader* pMsgHeader);
+	void _SResponseVerifyToken(IConnection* pConn, MessageHeader* pMsgHeader);
 
 private:
 	PlayerMng();
 
-	void _SaveOnlinePlayer(uint32_t uFlag=0);
+	Player* _InitPlayerInfo(string strPtName, IConnection* pConn);											// 初始化玩家在内存中的数据
+	void _SaveOnlinePlayer(uint32_t uFlag=0);																// 保存在线玩家
 	void _SendPlayerDataToClient(IConnection* pConn, const roledata::PBRoleTotalInfo& roleData);			// 将角色数据发送给客户端
 	void _SaveRoleData(Player* pPlayer);																	// 保存玩家数据
 	void _DeletePlayer(Player* pPlayer);
