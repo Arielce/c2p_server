@@ -44,9 +44,9 @@ using namespace log4cplus::helpers;
 extern Logger g_gsLog;
 extern Logger g_clientLog;
 
-extern IClientSession* g_pDsSession;
-extern IClientSession* g_pLobbySession;
-extern IClientSession* g_pLoginAgentSession;
+extern IClientSession* g_pDsSession;					// 和DataServer连接的对象
+extern IClientSession* g_pLobbySession;					// 和LobbyServer连接的对象
+extern IClientSession* g_pLoginAgentSession;			// 和LoginAgent连接的对象
 
 #define TRACELOG(logEvent)	LOG4CPLUS_TRACE(g_gsLog, logEvent)
 #define DEBUGLOG(logEvent)	LOG4CPLUS_DEBUG(g_gsLog, logEvent)

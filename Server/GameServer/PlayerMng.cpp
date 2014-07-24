@@ -11,6 +11,60 @@
 #include "ServerConfig.h"
 #include "KeyGen.h"
 
+
+TokenVerifyMng::TokenVerifyMng()
+{
+
+}
+
+TokenVerifyMng::~TokenVerifyMng()
+{
+
+}
+
+bool TokenVerifyMng::VerifyToken(Player* pPlayer, uint32_t uToken, bool bReconnect/* =true */)
+{
+	if (!pPlayer)
+	{
+		return false;
+	}
+
+	// 不是重连需要的Token验证
+	if (!bReconnect)
+	{
+		pPlayer->SetToken(uToken);
+		_SendVerifyToken(pPlayer->PtName(), uToken);
+		return true;
+	}
+
+	bool bRet = pPlayer->VerifyToken(uToken);
+	return bRet;
+}
+
+void TokenVerifyMng::ServerVerifyBack(Player* pPlayer, uint32_t uErrorCode)
+{
+	pPlayer->SetHasVerifyFromServer();								// 设置已经从服务器验证过Token
+}
+
+void TokenVerifyMng::_SendVerifyToken(string strPtName, uint32_t uToken)
+{
+	if (!g_pLoginAgentSession)
+	{
+		return;
+	}
+	login::SRequestVerifyToken verifyTokenSreq;
+	verifyTokenSreq.set_ptname(strPtName);
+	verifyTokenSreq.set_token(boost::lexical_cast<string>(uToken));
+
+	string strMessage;
+	BuildResponseProto<login::SRequestVerifyToken>(verifyTokenSreq, strMessage, ID_SREQ_SRequestVerifyToken);
+	g_pLoginAgentSession->SendMsg(strMessage.c_str(), strMessage.size());
+	return;
+
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 PlayerMng::PlayerMng()
 {
 #ifndef _MSC_VER
@@ -61,7 +115,7 @@ Player* PlayerMng::_InitPlayerInfo(string strPtName, IConnection* pConn)
 void PlayerMng::_SaveOnlinePlayer(uint32_t uFlag)
 {
 	bool bStopServer = false;
-	if (uFlag & 0x1)
+	if (uFlag & 0x1)													// 判断是否为停机保存
 	{
 		bStopServer = true;
 	}
@@ -77,7 +131,7 @@ void PlayerMng::_SaveOnlinePlayer(uint32_t uFlag)
 			continue;
 		}
 
-		if (pPlayer->PlayerLeaveTimes() < 1000 && !bStopServer)							// 玩家没有离开太长时间
+		if (pPlayer->PlayerLeaveTimes() < 1000 && !bStopServer)							// 玩家没有离开太长时间，并且不是停止服务器
 		{
 			playerIt++;
 			continue;
@@ -243,7 +297,7 @@ void PlayerMng::ProcReq(IConnection* pConn, MessageHeader* pMsgHeader)
 			}	
 		}
 		break;
-	case ID_SACK_SRequestVerifyToken:		// 验证Token结果返回
+	case ID_SACK_SResponseVerifyToken:		// 验证Token结果返回
 		{
 			_SResponseVerifyToken(pConn, pMsgHeader);
 		}
@@ -251,6 +305,22 @@ void PlayerMng::ProcReq(IConnection* pConn, MessageHeader* pMsgHeader)
 	default:
 		break;
 	}
+}
+
+Player* PlayerMng::GetValidPlayer(uint32_t uUserId, IConnection* pConnection)
+{
+	Player* pPlayer = gpPlayerMng->GetPlayer(uUserId);
+	if (!pPlayer)
+	{
+		ERRORLOG("request enter gate, cannot find user id=[" << uUserId << "] in players");
+		return NULL;
+	}
+	if (!pPlayer->HasVerified(pConnection))
+	{
+		ERRORLOG("this connection has never been verified");
+		return NULL;
+	}
+	return pPlayer;
 }
 
 void PlayerMng::CreateRoleResult(const string& strPtName, int32_t nErrCode)
@@ -479,21 +549,19 @@ void PlayerMng::_RequestVerifyToken(IConnection* pConn, MessageHeader* pMsgHeade
 	{
 		// 玩家数据不在内存中
 		pPlayer = _InitPlayerInfo(verifyTokenReq.ptname(), pConn);
-		pPlayer->SetToken(verifyTokenReq.token());
-		_SendVerifyToken(verifyTokenReq.ptname(), verifyTokenReq.token());
+		m_tokenVerifyMng.VerifyToken(pPlayer, verifyTokenReq.token(), false);
 		return;
 	}
 	if (!verifyTokenReq.reconnect())				// 如果不是重新连接的Token验证（说明就是再次登陆的token验证）
 	{
-		pPlayer->SetToken(verifyTokenReq.token());	// 更新Token
 		pPlayer->SetPlayerConnection(pConn);
-		_SendVerifyToken(verifyTokenReq.ptname(), verifyTokenReq.token());
+		m_tokenVerifyMng.VerifyToken(pPlayer, verifyTokenReq.token(), false);
 		return;
 	}
 
 	// 玩家重新连接的Token验证
 	ctos::ResponseVerifyToken verifyTokenAck;
-	if (!pPlayer->VerifyToken(verifyTokenReq.token()))
+	if (!m_tokenVerifyMng.VerifyToken(pPlayer, verifyTokenReq.token()))
 	{
 		TRACELOG("verify token failed, token=[" << verifyTokenReq.token());
 		verifyTokenAck.set_errcode(ERROR_VERIFY_TOKEN_FAIL);
@@ -593,7 +661,7 @@ void PlayerMng::_SResponseVerifyToken(IConnection* pConn, MessageHeader* pMsgHea
 	}
 	else
 	{
-		pPlayer->SetHasVerifyFromServer();								// 设置已经从服务器验证过Token
+		m_tokenVerifyMng.ServerVerifyBack(pPlayer, verifyTokenResponse.errcode());
 	}
 
 	string strMessage;
@@ -700,19 +768,3 @@ void PlayerMng::AddPlayerExp(uint32_t uExpAdd, uint32_t uCurLevel, uint32_t uCur
 	return;
 }
 
-// 发送验证Token
-void PlayerMng::_SendVerifyToken(string strPtName, uint32_t uToken)
-{
-	if (!g_pLoginAgentSession)
-	{
-		return;
-	}
-	login::SRequestVerifyToken verifyTokenSreq;
-	verifyTokenSreq.set_ptname(strPtName);
-	verifyTokenSreq.set_token(boost::lexical_cast<string>(uToken));
-
-	string strMessage;
-	BuildResponseProto<login::SRequestVerifyToken>(verifyTokenSreq, strMessage, ID_SREQ_SRequestVerifyToken);
-	g_pLoginAgentSession->SendMsg(strMessage.c_str(), strMessage.size());
-	return;
-}

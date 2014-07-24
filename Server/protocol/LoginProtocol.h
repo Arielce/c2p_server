@@ -13,7 +13,7 @@ enum
 
 	// ======================服务器消息返回==========================
 	// 进入游戏相关协议
-	ID_SACK_SRequestVerifyToken	= 0xA100,				// 返回Token验证结果
+	ID_SACK_SResponseVerifyToken	= 0xA100,				// 返回Token验证结果
 };
 
 #endif

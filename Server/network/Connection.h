@@ -64,6 +64,7 @@ namespace cpnet
 			m_pBuff = new char[m_nBufLength];
 			if (!m_pBuff)
 			{
+				FATAL_NET("cannot malloc any more!!!");
 				exit(1);				// ³ÌÐòÍË³ö
 			}
 		}

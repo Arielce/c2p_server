@@ -41,7 +41,7 @@ void LoginAgentHandler::HandleRecv(IConnection* pConn, const char* pBuf, uint32_
 	}
 	switch (pMsgHeader->uMsgCmd)
 	{
-	case ID_SACK_SRequestVerifyToken:
+	case ID_SACK_SResponseVerifyToken:
 		{
 			gpPlayerMng->ProcReq(pConn, pMsgHeader);
 		}

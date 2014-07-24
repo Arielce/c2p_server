@@ -19,7 +19,7 @@ void GMCommand::ProcGMCommand(const string& strCommand)
 			return;
 		}
 
-		uint32_t uGoodsNum = 1;
+		uint32_t uGoodsNum = 1;				// 默认添加一个
 		if (cmdVec.size() == 4)
 		{
 			uGoodsNum = boost::lexical_cast<uint32_t>(cmdVec[3]);

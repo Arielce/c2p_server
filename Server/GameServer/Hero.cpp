@@ -1,5 +1,6 @@
 #include "Hero.h"
 
+// Ó¢ÐÛ´©´÷×°±¸
 void Hero::DressEquip(uint32_t uEquipId)
 {
 	Goods goods;

@@ -33,6 +33,7 @@ void ClientHandler::HandleRecv(IConnection* pConn, const char* pBuf, uint32_t uL
 	if (!pBuf || uLen == 0)
 	{
 		ERRORLOG("message error");
+		return;
 	}
 	
 	MessageHeader* pMsgHeader = (MessageHeader*)pBuf;
@@ -91,6 +92,7 @@ void ClientHandler::HandleRecv(IConnection* pConn, const char* pBuf, uint32_t uL
 		}
 		break;
 	default:
+		ERRORLOG("unknown client msg command=[" << hex << pMsgHeader->uMsgCmd << endl);
 		break;
 	}
 }
@@ -105,17 +107,13 @@ void ClientHandler::_RequestGMCommand(IConnection* pConn, MessageHeader* pMsgHea
 	ctos::RequestProcGMCommand gmCommandReq;
 	gmCommandReq.ParseFromString(GetProtoData(pMsgHeader));
 
-	Player* pPlayer = gpPlayerMng->GetPlayer(gmCommandReq.userid());
+	Player* pPlayer = gpPlayerMng->GetValidPlayer(gmCommandReq.userid(), pConn);
 	if (!pPlayer)
 	{
-		ERRORLOG("request enter gate, cannot find user id=[" << gmCommandReq.userid() << "] in players");
+		ERRORLOG("request enter gate, cannot find valid user id=[" << gmCommandReq.userid() << "] in players");
 		return;
 	}
-	if (!pPlayer->HasVerified(pConn))
-	{
-		ERRORLOG("this connection has never been verified");
-		return;
-	}
+	
 	// to do 检查执行命令的玩家是否有此权限
 
 	GMCommand gmCommand;
@@ -134,15 +132,10 @@ void ClientHandler::_RequestEnterGate(IConnection* pConn, MessageHeader* pMsgHea
 	ctos::RequestEnterGate enterGateReq;
 	enterGateReq.ParseFromString(GetProtoData(pMsgHeader));
 
-	Player* pPlayer = gpPlayerMng->GetPlayer(enterGateReq.userid());
+	Player* pPlayer = gpPlayerMng->GetValidPlayer(enterGateReq.userid(), pConn);
 	if (!pPlayer)
 	{
 		ERRORLOG("request enter gate, cannot find user id=[" << enterGateReq.userid() << "] in players");
-		return;
-	}
-	if (!pPlayer->HasVerified(pConn))
-	{
-		ERRORLOG("this connection has never been verified");
 		return;
 	}
 
@@ -167,17 +160,13 @@ void ClientHandler::_RequestFinishGate(IConnection* pConn, MessageHeader* pMsgHe
 	ctos::RequestFinishGate finishGateReq;
 	finishGateReq.ParseFromString(GetProtoData(pMsgHeader));
 
-	Player* pPlayer = gpPlayerMng->GetPlayer(finishGateReq.userid());
+	Player* pPlayer = gpPlayerMng->GetValidPlayer(finishGateReq.userid(), pConn);
 	if (!pPlayer)
 	{
 		ERRORLOG("cannot find user id=" << finishGateReq.userid() << "in players");
 		return;
 	}
-	if (!pPlayer->HasVerified(pConn))
-	{
-		ERRORLOG("this connection has never been verified");
-		return;
-	}
+
 	gpGateController->FinishGate(pPlayer, finishGateReq.gateid(), finishGateReq.result());
 	return;
 }
@@ -193,18 +182,13 @@ void ClientHandler::_RequestHeroDressEquip(IConnection* pConn, MessageHeader* pM
 	ctos::RequestHeroDressEquip dressEquipReq;
 	dressEquipReq.ParseFromString(GetProtoData(pMsgHeader));
 
-	Player* pPlayer = gpPlayerMng->GetPlayer(dressEquipReq.userid());
+	Player* pPlayer = gpPlayerMng->GetValidPlayer(dressEquipReq.userid(), pConn);
 	if (!pPlayer)
 	{
 		ERRORLOG("cannot find user id=[" << dressEquipReq.userid() << "]");
 		return;
 	}
-	if (!pPlayer->HasVerified(pConn))
-	{
-		ERRORLOG("this connection has never been verified");
-		return;
-	}
-
+	
 	int32_t nErrCode = gpHeroMng->HeroDressEquip(pPlayer, dressEquipReq.herouuid(), dressEquipReq.equipid());
 
 	ctos::ResponseHeroDressEquip dressEquipAck;
@@ -226,15 +210,10 @@ void ClientHandler::_RequestHeroUpgrade(IConnection* pConn, MessageHeader* pMsgH
 	ctos::RequestUpgradeHero upgradeHeroReq;
 	upgradeHeroReq.ParseFromString(GetProtoData(pMsgHeader));
 
-	Player* pPlayer = gpPlayerMng->GetPlayer(upgradeHeroReq.userid());
+	Player* pPlayer = gpPlayerMng->GetValidPlayer(upgradeHeroReq.userid(), pConn);
 	if (!pPlayer)
 	{
 		ERRORLOG("cannot find user id=[" << upgradeHeroReq.userid() << "]");
-		return;
-	}
-	if (!pPlayer->HasVerified(pConn))
-	{
-		ERRORLOG("this connection has never been verified");
 		return;
 	}
 
@@ -259,17 +238,13 @@ void ClientHandler::_RequestCompoundEquip(IConnection* pConn, MessageHeader* pMs
 	ctos::RequestCompoundEquip compoundEquipReq;
 	compoundEquipReq.ParseFromString(GetProtoData(pMsgHeader));
 
-	Player* pPlayer = gpPlayerMng->GetPlayer(compoundEquipReq.userid());
+	Player* pPlayer = gpPlayerMng->GetValidPlayer(compoundEquipReq.userid(), pConn);
 	if (!pPlayer)
 	{
 		ERRORLOG("cannot find user id=[" << compoundEquipReq.userid() << "]");
 		return;
 	}
-	if (!pPlayer->HasVerified(pConn))
-	{
-		ERRORLOG("this connection has never been verified");
-		return;
-	}
+
 	int32_t nErrCode = gpGoodsMng->CompoundEquip(pPlayer, compoundEquipReq.targetequipid());
 	return;
 }
@@ -284,16 +259,10 @@ void ClientHandler::_RequestDrawPrizeList(IConnection* pConn, MessageHeader* pMs
 	ctos::RequestDrawPrizeList prizeListReq;
 	prizeListReq.ParseFromString(GetProtoData(pMsgHeader));
 
-	Player* pPlayer = gpPlayerMng->GetPlayer(prizeListReq.userid());
+	Player* pPlayer = gpPlayerMng->GetValidPlayer(prizeListReq.userid(), pConn);
 	if (!pPlayer)
 	{
 		ERRORLOG("cannot find user id=[" << prizeListReq.userid() << "]");
-		return;
-	}
-
-	if (!pPlayer->HasVerified(pConn))
-	{
-		ERRORLOG("this connection has never been verified");
 		return;
 	}
 
@@ -324,16 +293,10 @@ void ClientHandler::_RequestDrawPrize(IConnection* pConn, MessageHeader* pMsgHea
 	ctos::RequestDrawPrize drawPrizeReq;
 	drawPrizeReq.ParseFromString(GetProtoData(pMsgHeader));
 
-	Player* pPlayer = gpPlayerMng->GetPlayer(drawPrizeReq.userid());
+	Player* pPlayer = gpPlayerMng->GetValidPlayer(drawPrizeReq.userid(), pConn);
 	if (!pPlayer)
 	{
 		ERRORLOG("cannot find user id=[" << drawPrizeReq.userid() << "]");
-		return;
-	}
-
-	if (!pPlayer->HasVerified(pConn))
-	{
-		ERRORLOG("this connection has never been verified");
 		return;
 	}
 

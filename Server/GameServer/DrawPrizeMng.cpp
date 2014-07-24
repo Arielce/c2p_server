@@ -50,7 +50,7 @@ bool DrawPrizeMng::LoadDrawPrzieConf()
 			DrawPrizePool::PrizeConf prizeConf;
 			prizeConf.uPrizeId	= boost::lexical_cast<uint32_t>(pPrize->Attribute("id"));
 			prizeConf.uPrizeNum = boost::lexical_cast<uint32_t>(pPrize->Attribute("num"));
-			prizeConf.uProbability = boost::lexical_cast<uint32_t>(pPrize->Attribute("probability")) + uPreProb;
+			prizeConf.uProbability = boost::lexical_cast<uint32_t>(pPrize->Attribute("probability")) + uPreProb;	// 计算累计的概率
 			uPreProb = prizeConf.uProbability;
 			prizePool.prizeVec.push_back(prizeConf);
 

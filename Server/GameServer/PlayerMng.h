@@ -38,6 +38,24 @@ typedef struct tagPlayerLevelConf
 	}
 }PlayerLevelConf;
 
+/*
+	负责管理玩家的Token认证信息
+*/
+class TokenVerifyMng
+{
+public:
+	TokenVerifyMng();
+	~TokenVerifyMng();
+
+	// 验证玩家Token
+	bool VerifyToken(Player* pPlayer, uint32_t uToken, bool bReconnect=true);
+	// 从服务器验证Token的结果返回
+	void ServerVerifyBack(Player* pPlayer, uint32_t uErrorCode);
+
+private:
+	void _SendVerifyToken(string strPtName, uint32_t uToken);
+};
+
 class PlayerMng
 {
 public:
@@ -57,6 +75,8 @@ public:
 	bool LoadPlayerLevelConf();
 
 	uint32_t GetOnlinePlayerNum();													// 获取在线人数
+	
+	Player* GetValidPlayer(uint32_t uUserId, IConnection* pConnection);			// 判断此玩家是否有效
 
 	void CreateRoleResult(const string& strPtName, int32_t nErrCode);
 	void AddPlayerExp(uint32_t uExpAdd, uint32_t uCurLevel, uint32_t uCurExp, uint32_t& uNewLevel, uint32_t& uNewExp);		// 给玩家增加指定经验
@@ -88,21 +108,22 @@ private:
 	void _SendPlayerDataToClient(IConnection* pConn, const roledata::PBRoleTotalInfo& roleData);			// 将角色数据发送给客户端
 	void _SaveRoleData(Player* pPlayer);																	// 保存玩家数据
 	void _DeletePlayer(Player* pPlayer);
-	void _SendVerifyToken(string strPtName, uint32_t uToken);
+	
 
 private:
 	map<string, Player*> m_playerInfoMap;									// PTName对应内存对象
 	map<uint32_t, Player*> m_playerIdMap;									// ID对应内存对象
+	map<uint32_t, PlayerLevelConf> m_playerLevelMap;						// 玩家等级对应的配置信息
 
 #ifndef _MSC_VER
 	redis::client* m_pRedisClient;
 #endif
 
 private:
-	PlayerDataGetter m_playerDataGetter;
-	PlayerInitData m_playerInitData;
-	ClientConnectionMng m_clientConnMng;
-	map<uint32_t, PlayerLevelConf> m_playerLevelMap;
+	PlayerDataGetter m_playerDataGetter;									// 玩家数据获取
+	PlayerInitData m_playerInitData;										// 玩家初始化数据
+	ClientConnectionMng m_clientConnMng;									// 负责玩家网络连接管理
+	TokenVerifyMng m_tokenVerifyMng;										// 负责处理玩家Token认证
 };
 
 #define gpPlayerMng PlayerMng::GetInstance()
