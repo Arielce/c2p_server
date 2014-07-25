@@ -42,6 +42,10 @@ public class TableOperator {
 	
 	// ×¢²áÕËºÅ
 	public boolean RegisterPt(String strPtName, String strPasswd, String strEmail) throws SQLException {
+		if (IsPtExist(strPtName)) {
+			System.out.println("ptname=" + strPtName + " is already exist");
+			return false;
+		}
 		String strRegSqlString = "insert into ptinfo(ptname, passwd, email) values('" + strPtName + "', '" + strPasswd + "', '" + strEmail + "')";
 		PreparedStatement statement = null;
 		

@@ -221,6 +221,10 @@ GateChecker::~GateChecker()
 
 bool GateChecker::IsGateValid(Player* pPlayer, uint32_t uGateId)
 {
+	if (!pPlayer)
+	{
+		return false;
+	}
 	if (!pPlayer->CanEnterGate(uGateId))
 	{
 		ERRORLOG("player " << pPlayer->RoleName() << " cannot enter gate id=" << uGateId);
@@ -244,11 +248,13 @@ bool GateChecker::IsHerosValid(Player* pPlayer, const vector<uint64_t>& heroList
 	return true;
 }
 
+// 进入关卡
 void GateChecker::EnterGate(Player* pPlayer, uint32_t uGateId, const vector<uint64_t>& heroList)
 {
 	_RecordEnterGate(pPlayer, uGateId, heroList);
 }
 
+// 判断是否有进入关卡记录
 bool GateChecker::HasGateRecord(Player* pPlayer, uint32_t uGateId)
 {
 	map<string, GateRecord>::iterator gateIt = m_enterRecordMap.find(pPlayer->RoleName());
@@ -265,6 +271,7 @@ bool GateChecker::HasGateRecord(Player* pPlayer, uint32_t uGateId)
 	return true;
 }
 
+// 获取英雄列表
 const vector<uint64_t>& GateChecker::GetHeroList(Player* pPlayer)
 {
 	map<string, GateRecord>::iterator gateIt = m_enterRecordMap.find(pPlayer->RoleName());

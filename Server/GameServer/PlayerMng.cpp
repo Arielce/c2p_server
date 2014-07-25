@@ -34,6 +34,7 @@ bool TokenVerifyMng::VerifyToken(Player* pPlayer, uint32_t uToken, bool bReconne
 	{
 		pPlayer->SetToken(uToken);
 		_SendVerifyToken(pPlayer->PtName(), uToken);
+		TRACELOG("ptname=[" << pPlayer->PtName() << "] verify token to server, token=[" << uToken << "]");
 		return true;
 	}
 
@@ -543,6 +544,7 @@ void PlayerMng::_RequestVerifyToken(IConnection* pConn, MessageHeader* pMsgHeade
 
 	ctos::RequestVerifyToken verifyTokenReq;
 	verifyTokenReq.ParseFromString(GetProtoData(pMsgHeader));
+	TRACELOG("ptname=[" << verifyTokenReq.ptname() << "] request verify token, token=[" << verifyTokenReq.token() << "]");
 
 	Player* pPlayer = GetPlayer(verifyTokenReq.ptname());
 	if (!pPlayer)
@@ -645,7 +647,7 @@ void PlayerMng::_SResponseVerifyToken(IConnection* pConn, MessageHeader* pMsgHea
 {
 	login::SResponseVerifyToken verifyTokenResponse;
 	verifyTokenResponse.ParseFromString(GetProtoData(pMsgHeader));
-	TRACELOG("verify token response, ptname=[" << verifyTokenResponse.ptname() << "], ret=[" << verifyTokenResponse.errcode() << "] request role data.");
+	TRACELOG("verify token response, ptname=[" << verifyTokenResponse.ptname() << "], ret=[" << verifyTokenResponse.errcode() << "].");
 
 	Player* pPlayer = GetPlayer(verifyTokenResponse.ptname());
 	if (!pPlayer)

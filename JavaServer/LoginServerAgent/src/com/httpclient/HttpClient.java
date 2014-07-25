@@ -128,7 +128,7 @@ public class HttpClient {
         		verifyTokenBuild.setErrCode(1);
         	}
         	
-        	LoginProtocol.SResponseVerifyToken verifyAck =verifyTokenBuild.build(); 
+        	LoginProtocol.SResponseVerifyToken verifyAck = verifyTokenBuild.build(); 
         	byte[] verifyTokenBytes = verifyAck.toByteArray();
         	
         	MessageHeader messageHeader = new MessageHeader();

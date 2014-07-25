@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <root version="1.0">
   <!--gameserver监听端口-->
 	<HostServer type="1" id="1">
-	  <bind ip="192.168.1.34" port="8500" type="0"/>
+	  <bind ip="192.168.1.134" port="8500" type="0"/>
 	</HostServer>
 
   <!--命令监听端口-->
   <CmdListen>
-	 <bind ip="192.168.1.34" port="8501" type="0" />
+	 <bind ip="192.168.1.134" port="8501" type="0" />
   </CmdListen>
 
   <!--连接datacenter的端口-->

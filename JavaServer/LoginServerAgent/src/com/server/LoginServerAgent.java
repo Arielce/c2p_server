@@ -80,6 +80,5 @@ public class LoginServerAgent {
 			
 			return buffer.readBytes(nMessageSize);
 		}
-		
 	}
 }
