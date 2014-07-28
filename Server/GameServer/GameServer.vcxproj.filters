@@ -189,6 +189,9 @@
     <ClInclude Include="Hero.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="PrizeMng.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -285,6 +288,9 @@
       <Filter>protocol</Filter>
     </ClCompile>
     <ClCompile Include="Hero.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="PrizeMng.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

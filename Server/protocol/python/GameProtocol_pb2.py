@@ -12,7 +12,7 @@ import RoleData_pb2
 DESCRIPTOR = descriptor.FileDescriptor(
   name='GameProtocol.proto',
   package='ctos',
-  serialized_pb='\n\x12GameProtocol.proto\x12\x04\x63tos\x1a\x0eRoleData.proto\"\'\n\x11RequestGameGroups\x12\x12\n\nclientType\x18\x01 \x01(\r\"6\n\x0bPBGameGroup\x12\n\n\x02ip\x18\x01 \x01(\t\x12\x0c\n\x04port\x18\x02 \x01(\r\x12\r\n\x05index\x18\x03 \x01(\r\"7\n\x12ResponseGameGroups\x12!\n\x06groups\x18\x01 \x03(\x0b\x32\x11.ctos.PBGameGroup\"7\n\x14RequestProcGMCommand\x12\x0e\n\x06userId\x18\x01 \x01(\r\x12\x0f\n\x07\x63ommand\x18\x02 \x01(\t\"F\n\x12RequestVerifyToken\x12\x0e\n\x06ptName\x18\x01 \x01(\t\x12\r\n\x05token\x18\x02 \x01(\r\x12\x11\n\treconnect\x18\x03 \x01(\x08\"&\n\x13ResponseVerifyToken\x12\x0f\n\x07\x65rrCode\x18\x01 \x01(\r\"&\n\x13RequestRoleNameList\x12\x0f\n\x07listNum\x18\x01 \x01(\r\"(\n\x14ResponseRoleNameList\x12\x10\n\x08nameList\x18\x01 \x03(\t\")\n\x15RequestCheckNameValid\x12\x10\n\x08roleName\x18\x01 \x01(\t\")\n\x16ResponseCheckNameValid\x12\x0f\n\x07\x65rrCode\x18\x01 \x01(\r\"5\n\x11RequestCreateRole\x12\x0e\n\x06ptName\x18\x01 \x01(\t\x12\x10\n\x08roleName\x18\x02 \x01(\t\"%\n\x12ResponseCreateRole\x12\x0f\n\x07\x65rrCode\x18\x01 \x01(\r\"!\n\x0fRequestRoleData\x12\x0e\n\x06ptName\x18\x01 \x01(\t\"P\n\x10ResponseRoleData\x12\x0f\n\x07\x65rrCode\x18\x01 \x01(\r\x12+\n\x08roleData\x18\x02 \x01(\x0b\x32\x19.roledata.PBRoleTotalInfo\"A\n\x10RequestEnterGate\x12\x0e\n\x06userId\x18\x01 \x01(\r\x12\x0e\n\x06gateId\x18\x02 \x01(\r\x12\r\n\x05heros\x18\x03 \x03(\x04\"$\n\x11ResponseEnterGate\x12\x0f\n\x07\x65rrCode\x18\x01 \x01(\r\"C\n\x11RequestFinishGate\x12\x0e\n\x06userId\x18\x01 \x01(\r\x12\x0e\n\x06gateId\x18\x02 \x01(\r\x12\x0e\n\x06result\x18\x03 \x01(\r\"J\n\x13ResponseFinishiGate\x12\x0f\n\x07\x65rrCode\x18\x01 \x01(\r\x12\x0e\n\x06\x65xpGet\x18\x02 \x01(\r\x12\x12\n\nheroExpGet\x18\x03 \x01(\r\"J\n\x15RequestHeroDressEquip\x12\x0e\n\x06userId\x18\x01 \x01(\r\x12\x10\n\x08heroUUID\x18\x02 \x01(\x04\x12\x0f\n\x07\x65quipId\x18\x03 \x01(\r\")\n\x16ResponseHeroDressEquip\x12\x0f\n\x07\x65rrCode\x18\x01 \x01(\r\"6\n\x12RequestUpgradeHero\x12\x0e\n\x06userId\x18\x01 \x01(\r\x12\x10\n\x08heroUUID\x18\x02 \x01(\r\"&\n\x13ResponseUpgradeHero\x12\x0f\n\x07\x65rrCode\x18\x01 \x01(\r\"=\n\x14RequestCompoundEquip\x12\x0e\n\x06userId\x18\x01 \x01(\r\x12\x15\n\rtargetEquipId\x18\x02 \x01(\r\"(\n\x15ResponseCompoundEquip\x12\x0f\n\x07\x65rrCode\x18\x01 \x01(\r\"&\n\x14RequestDrawPrizeList\x12\x0e\n\x06userId\x18\x01 \x01(\r\":\n\x15ResponseDrawPrizeList\x12\x0f\n\x07\x65rrCode\x18\x01 \x01(\r\x12\x10\n\x08\x64rawList\x18\x02 \x03(\r\"2\n\x10RequestDrawPrize\x12\x0e\n\x06userId\x18\x01 \x01(\r\x12\x0e\n\x06\x64rawId\x18\x02 \x01(\r\"0\n\x0bPBDrawPrize\x12\x0f\n\x07prizeId\x18\x01 \x01(\r\x12\x10\n\x08prizeNum\x18\x02 \x01(\r\"J\n\x11ResponseDrawPrize\x12\x0f\n\x07\x65rrCode\x18\x01 \x01(\r\x12$\n\tprizeList\x18\x02 \x03(\x0b\x32\x11.ctos.PBDrawPrize')
+  serialized_pb='\n\x12GameProtocol.proto\x12\x04\x63tos\x1a\x0eRoleData.proto\"\'\n\x11RequestGameGroups\x12\x12\n\nclientType\x18\x01 \x01(\r\"6\n\x0bPBGameGroup\x12\n\n\x02ip\x18\x01 \x01(\t\x12\x0c\n\x04port\x18\x02 \x01(\r\x12\r\n\x05index\x18\x03 \x01(\r\"7\n\x12ResponseGameGroups\x12!\n\x06groups\x18\x01 \x03(\x0b\x32\x11.ctos.PBGameGroup\"7\n\x14RequestProcGMCommand\x12\x0e\n\x06userId\x18\x01 \x01(\r\x12\x0f\n\x07\x63ommand\x18\x02 \x01(\t\"F\n\x12RequestVerifyToken\x12\x0e\n\x06ptName\x18\x01 \x01(\t\x12\r\n\x05token\x18\x02 \x01(\r\x12\x11\n\treconnect\x18\x03 \x01(\x08\"&\n\x13ResponseVerifyToken\x12\x0f\n\x07\x65rrCode\x18\x01 \x01(\r\"&\n\x13RequestRoleNameList\x12\x0f\n\x07listNum\x18\x01 \x01(\r\"(\n\x14ResponseRoleNameList\x12\x10\n\x08nameList\x18\x01 \x03(\t\")\n\x15RequestCheckNameValid\x12\x10\n\x08roleName\x18\x01 \x01(\t\")\n\x16ResponseCheckNameValid\x12\x0f\n\x07\x65rrCode\x18\x01 \x01(\r\"5\n\x11RequestCreateRole\x12\x0e\n\x06ptName\x18\x01 \x01(\t\x12\x10\n\x08roleName\x18\x02 \x01(\t\"%\n\x12ResponseCreateRole\x12\x0f\n\x07\x65rrCode\x18\x01 \x01(\r\"!\n\x0fRequestRoleData\x12\x0e\n\x06ptName\x18\x01 \x01(\t\"P\n\x10ResponseRoleData\x12\x0f\n\x07\x65rrCode\x18\x01 \x01(\r\x12+\n\x08roleData\x18\x02 \x01(\x0b\x32\x19.roledata.PBRoleTotalInfo\"A\n\x10RequestEnterGate\x12\x0e\n\x06userId\x18\x01 \x01(\r\x12\x0e\n\x06gateId\x18\x02 \x01(\r\x12\r\n\x05heros\x18\x03 \x03(\r\"$\n\x11ResponseEnterGate\x12\x0f\n\x07\x65rrCode\x18\x01 \x01(\r\"C\n\x11RequestFinishGate\x12\x0e\n\x06userId\x18\x01 \x01(\r\x12\x0e\n\x06gateId\x18\x02 \x01(\r\x12\x0e\n\x06result\x18\x03 \x01(\r\"J\n\x13ResponseFinishiGate\x12\x0f\n\x07\x65rrCode\x18\x01 \x01(\r\x12\x0e\n\x06\x65xpGet\x18\x02 \x01(\r\x12\x12\n\nheroExpGet\x18\x03 \x01(\r\"H\n\x15RequestHeroDressEquip\x12\x0e\n\x06userId\x18\x01 \x01(\r\x12\x0e\n\x06heroID\x18\x02 \x01(\r\x12\x0f\n\x07\x65quipId\x18\x03 \x01(\r\")\n\x16ResponseHeroDressEquip\x12\x0f\n\x07\x65rrCode\x18\x01 \x01(\r\"4\n\x12RequestUpgradeHero\x12\x0e\n\x06userId\x18\x01 \x01(\r\x12\x0e\n\x06heroID\x18\x02 \x01(\r\"&\n\x13ResponseUpgradeHero\x12\x0f\n\x07\x65rrCode\x18\x01 \x01(\r\"=\n\x14RequestCompoundEquip\x12\x0e\n\x06userId\x18\x01 \x01(\r\x12\x15\n\rtargetEquipId\x18\x02 \x01(\r\"(\n\x15ResponseCompoundEquip\x12\x0f\n\x07\x65rrCode\x18\x01 \x01(\r\"&\n\x14RequestDrawPrizeList\x12\x0e\n\x06userId\x18\x01 \x01(\r\":\n\x15ResponseDrawPrizeList\x12\x0f\n\x07\x65rrCode\x18\x01 \x01(\r\x12\x10\n\x08\x64rawList\x18\x02 \x03(\r\"2\n\x10RequestDrawPrize\x12\x0e\n\x06userId\x18\x01 \x01(\r\x12\x0e\n\x06\x64rawId\x18\x02 \x01(\r\"0\n\x0bPBDrawPrize\x12\x0f\n\x07prizeId\x18\x01 \x01(\r\x12\x10\n\x08prizeNum\x18\x02 \x01(\r\"J\n\x11ResponseDrawPrize\x12\x0f\n\x07\x65rrCode\x18\x01 \x01(\r\x12$\n\tprizeList\x18\x02 \x03(\x0b\x32\x11.ctos.PBDrawPrize')
 
 
 
@@ -481,7 +481,7 @@ _REQUESTENTERGATE = descriptor.Descriptor(
       options=None),
     descriptor.FieldDescriptor(
       name='heros', full_name='ctos.RequestEnterGate.heros', index=2,
-      number=3, type=4, cpp_type=4, label=3,
+      number=3, type=13, cpp_type=3, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -627,8 +627,8 @@ _REQUESTHERODRESSEQUIP = descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='heroUUID', full_name='ctos.RequestHeroDressEquip.heroUUID', index=1,
-      number=2, type=4, cpp_type=4, label=1,
+      name='heroID', full_name='ctos.RequestHeroDressEquip.heroID', index=1,
+      number=2, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -650,7 +650,7 @@ _REQUESTHERODRESSEQUIP = descriptor.Descriptor(
   is_extendable=False,
   extension_ranges=[],
   serialized_start=996,
-  serialized_end=1070,
+  serialized_end=1068,
 )
 
 
@@ -677,8 +677,8 @@ _RESPONSEHERODRESSEQUIP = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=1072,
-  serialized_end=1113,
+  serialized_start=1070,
+  serialized_end=1111,
 )
 
 
@@ -697,7 +697,7 @@ _REQUESTUPGRADEHERO = descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='heroUUID', full_name='ctos.RequestUpgradeHero.heroUUID', index=1,
+      name='heroID', full_name='ctos.RequestUpgradeHero.heroID', index=1,
       number=2, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -712,8 +712,8 @@ _REQUESTUPGRADEHERO = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=1115,
-  serialized_end=1169,
+  serialized_start=1113,
+  serialized_end=1165,
 )
 
 
@@ -740,8 +740,8 @@ _RESPONSEUPGRADEHERO = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=1171,
-  serialized_end=1209,
+  serialized_start=1167,
+  serialized_end=1205,
 )
 
 
@@ -775,8 +775,8 @@ _REQUESTCOMPOUNDEQUIP = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=1211,
-  serialized_end=1272,
+  serialized_start=1207,
+  serialized_end=1268,
 )
 
 
@@ -803,8 +803,8 @@ _RESPONSECOMPOUNDEQUIP = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=1274,
-  serialized_end=1314,
+  serialized_start=1270,
+  serialized_end=1310,
 )
 
 
@@ -831,8 +831,8 @@ _REQUESTDRAWPRIZELIST = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=1316,
-  serialized_end=1354,
+  serialized_start=1312,
+  serialized_end=1350,
 )
 
 
@@ -866,8 +866,8 @@ _RESPONSEDRAWPRIZELIST = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=1356,
-  serialized_end=1414,
+  serialized_start=1352,
+  serialized_end=1410,
 )
 
 
@@ -901,8 +901,8 @@ _REQUESTDRAWPRIZE = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=1416,
-  serialized_end=1466,
+  serialized_start=1412,
+  serialized_end=1462,
 )
 
 
@@ -936,8 +936,8 @@ _PBDRAWPRIZE = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=1468,
-  serialized_end=1516,
+  serialized_start=1464,
+  serialized_end=1512,
 )
 
 
@@ -971,8 +971,8 @@ _RESPONSEDRAWPRIZE = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=1518,
-  serialized_end=1592,
+  serialized_start=1514,
+  serialized_end=1588,
 )
 
 _RESPONSEGAMEGROUPS.fields_by_name['groups'].message_type = _PBGAMEGROUP

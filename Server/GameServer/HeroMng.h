@@ -48,8 +48,8 @@ public:
 	uint32_t GetNextRankFragment(uint32_t uCurRank);							// 获取下个rank需要的碎片
 
 	void AddHeroExp(uint32_t uExpAdd, uint32_t uCurLevel, uint32_t uCurExp, uint32_t& uNewLevel, uint32_t& uNewExp);		// 给英雄增加经验
-	int32_t HeroDressEquip(Player* pPlayer, uint64_t uHeroUUID, uint32_t uEquipId);											// 给英雄穿戴装备
-	int32_t HeroUpgrade(Player* pPlayer, uint64_t uHeroUUID);																// 英雄升品级
+	int32_t HeroDressEquip(Player* pPlayer, uint32_t uHeroID, uint32_t uEquipId);											// 给英雄穿戴装备
+	int32_t HeroUpgrade(Player* pPlayer, uint32_t uHeroID);																// 英雄升品级
 
 private:
 	HeroMng();

@@ -400,7 +400,7 @@ void protobuf_AssignDesc_GameProtocol_2eproto() {
   RequestHeroDressEquip_descriptor_ = file->message_type(18);
   static const int RequestHeroDressEquip_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RequestHeroDressEquip, userid_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RequestHeroDressEquip, herouuid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RequestHeroDressEquip, heroid_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RequestHeroDressEquip, equipid_),
   };
   RequestHeroDressEquip_reflection_ =
@@ -432,7 +432,7 @@ void protobuf_AssignDesc_GameProtocol_2eproto() {
   RequestUpgradeHero_descriptor_ = file->message_type(20);
   static const int RequestUpgradeHero_offsets_[2] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RequestUpgradeHero, userid_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RequestUpgradeHero, herouuid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RequestUpgradeHero, heroid_),
   };
   RequestUpgradeHero_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -733,26 +733,26 @@ void protobuf_AddDesc_GameProtocol_2eproto() {
     "ta\022\017\n\007errCode\030\001 \001(\r\022+\n\010roleData\030\002 \001(\0132\031."
     "roledata.PBRoleTotalInfo\"A\n\020RequestEnter"
     "Gate\022\016\n\006userId\030\001 \001(\r\022\016\n\006gateId\030\002 \001(\r\022\r\n\005"
-    "heros\030\003 \003(\004\"$\n\021ResponseEnterGate\022\017\n\007errC"
+    "heros\030\003 \003(\r\"$\n\021ResponseEnterGate\022\017\n\007errC"
     "ode\030\001 \001(\r\"C\n\021RequestFinishGate\022\016\n\006userId"
     "\030\001 \001(\r\022\016\n\006gateId\030\002 \001(\r\022\016\n\006result\030\003 \001(\r\"J"
     "\n\023ResponseFinishiGate\022\017\n\007errCode\030\001 \001(\r\022\016"
-    "\n\006expGet\030\002 \001(\r\022\022\n\nheroExpGet\030\003 \001(\r\"J\n\025Re"
-    "questHeroDressEquip\022\016\n\006userId\030\001 \001(\r\022\020\n\010h"
-    "eroUUID\030\002 \001(\004\022\017\n\007equipId\030\003 \001(\r\")\n\026Respon"
-    "seHeroDressEquip\022\017\n\007errCode\030\001 \001(\r\"6\n\022Req"
-    "uestUpgradeHero\022\016\n\006userId\030\001 \001(\r\022\020\n\010heroU"
-    "UID\030\002 \001(\r\"&\n\023ResponseUpgradeHero\022\017\n\007errC"
-    "ode\030\001 \001(\r\"=\n\024RequestCompoundEquip\022\016\n\006use"
-    "rId\030\001 \001(\r\022\025\n\rtargetEquipId\030\002 \001(\r\"(\n\025Resp"
-    "onseCompoundEquip\022\017\n\007errCode\030\001 \001(\r\"&\n\024Re"
-    "questDrawPrizeList\022\016\n\006userId\030\001 \001(\r\":\n\025Re"
-    "sponseDrawPrizeList\022\017\n\007errCode\030\001 \001(\r\022\020\n\010"
-    "drawList\030\002 \003(\r\"2\n\020RequestDrawPrize\022\016\n\006us"
-    "erId\030\001 \001(\r\022\016\n\006drawId\030\002 \001(\r\"0\n\013PBDrawPriz"
-    "e\022\017\n\007prizeId\030\001 \001(\r\022\020\n\010prizeNum\030\002 \001(\r\"J\n\021"
-    "ResponseDrawPrize\022\017\n\007errCode\030\001 \001(\r\022$\n\tpr"
-    "izeList\030\002 \003(\0132\021.ctos.PBDrawPrize", 1592);
+    "\n\006expGet\030\002 \001(\r\022\022\n\nheroExpGet\030\003 \001(\r\"H\n\025Re"
+    "questHeroDressEquip\022\016\n\006userId\030\001 \001(\r\022\016\n\006h"
+    "eroID\030\002 \001(\r\022\017\n\007equipId\030\003 \001(\r\")\n\026Response"
+    "HeroDressEquip\022\017\n\007errCode\030\001 \001(\r\"4\n\022Reque"
+    "stUpgradeHero\022\016\n\006userId\030\001 \001(\r\022\016\n\006heroID\030"
+    "\002 \001(\r\"&\n\023ResponseUpgradeHero\022\017\n\007errCode\030"
+    "\001 \001(\r\"=\n\024RequestCompoundEquip\022\016\n\006userId\030"
+    "\001 \001(\r\022\025\n\rtargetEquipId\030\002 \001(\r\"(\n\025Response"
+    "CompoundEquip\022\017\n\007errCode\030\001 \001(\r\"&\n\024Reques"
+    "tDrawPrizeList\022\016\n\006userId\030\001 \001(\r\":\n\025Respon"
+    "seDrawPrizeList\022\017\n\007errCode\030\001 \001(\r\022\020\n\010draw"
+    "List\030\002 \003(\r\"2\n\020RequestDrawPrize\022\016\n\006userId"
+    "\030\001 \001(\r\022\016\n\006drawId\030\002 \001(\r\"0\n\013PBDrawPrize\022\017\n"
+    "\007prizeId\030\001 \001(\r\022\020\n\010prizeNum\030\002 \001(\r\"J\n\021Resp"
+    "onseDrawPrize\022\017\n\007errCode\030\001 \001(\r\022$\n\tprizeL"
+    "ist\030\002 \003(\0132\021.ctos.PBDrawPrize", 1588);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "GameProtocol.proto", &protobuf_RegisterTypes);
   RequestGameGroups::default_instance_ = new RequestGameGroups();
@@ -4226,19 +4226,19 @@ bool RequestEnterGate::MergePartialFromCodedStream(
         break;
       }
       
-      // repeated uint64 heros = 3;
+      // repeated uint32 heros = 3;
       case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
          parse_heros:
           DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitive<
-                   ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
                  1, 24, input, this->mutable_heros())));
         } else if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag)
                    == ::google::protobuf::internal::WireFormatLite::
                       WIRETYPE_LENGTH_DELIMITED) {
           DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitiveNoInline<
-                   ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
                  input, this->mutable_heros())));
         } else {
           goto handle_uninterpreted;
@@ -4276,9 +4276,9 @@ void RequestEnterGate::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(2, this->gateid(), output);
   }
   
-  // repeated uint64 heros = 3;
+  // repeated uint32 heros = 3;
   for (int i = 0; i < this->heros_size(); i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt64(
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(
       3, this->heros(i), output);
   }
   
@@ -4300,10 +4300,10 @@ void RequestEnterGate::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(2, this->gateid(), target);
   }
   
-  // repeated uint64 heros = 3;
+  // repeated uint32 heros = 3;
   for (int i = 0; i < this->heros_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
-      WriteUInt64ToArray(3, this->heros(i), target);
+      WriteUInt32ToArray(3, this->heros(i), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -4332,12 +4332,12 @@ int RequestEnterGate::ByteSize() const {
     }
     
   }
-  // repeated uint64 heros = 3;
+  // repeated uint32 heros = 3;
   {
     int data_size = 0;
     for (int i = 0; i < this->heros_size(); i++) {
       data_size += ::google::protobuf::internal::WireFormatLite::
-        UInt64Size(this->heros(i));
+        UInt32Size(this->heros(i));
     }
     total_size += 1 * this->heros_size() + data_size;
   }
@@ -5201,7 +5201,7 @@ void ResponseFinishiGate::Swap(ResponseFinishiGate* other) {
 
 #ifndef _MSC_VER
 const int RequestHeroDressEquip::kUserIdFieldNumber;
-const int RequestHeroDressEquip::kHeroUUIDFieldNumber;
+const int RequestHeroDressEquip::kHeroIDFieldNumber;
 const int RequestHeroDressEquip::kEquipIdFieldNumber;
 #endif  // !_MSC_VER
 
@@ -5222,7 +5222,7 @@ RequestHeroDressEquip::RequestHeroDressEquip(const RequestHeroDressEquip& from)
 void RequestHeroDressEquip::SharedCtor() {
   _cached_size_ = 0;
   userid_ = 0u;
-  herouuid_ = GOOGLE_ULONGLONG(0);
+  heroid_ = 0u;
   equipid_ = 0u;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
@@ -5259,7 +5259,7 @@ RequestHeroDressEquip* RequestHeroDressEquip::New() const {
 void RequestHeroDressEquip::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     userid_ = 0u;
-    herouuid_ = GOOGLE_ULONGLONG(0);
+    heroid_ = 0u;
     equipid_ = 0u;
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -5283,19 +5283,19 @@ bool RequestHeroDressEquip::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(16)) goto parse_heroUUID;
+        if (input->ExpectTag(16)) goto parse_heroID;
         break;
       }
       
-      // optional uint64 heroUUID = 2;
+      // optional uint32 heroID = 2;
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-         parse_heroUUID:
+         parse_heroID:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
-                 input, &herouuid_)));
-          set_has_herouuid();
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &heroid_)));
+          set_has_heroid();
         } else {
           goto handle_uninterpreted;
         }
@@ -5342,9 +5342,9 @@ void RequestHeroDressEquip::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->userid(), output);
   }
   
-  // optional uint64 heroUUID = 2;
-  if (has_herouuid()) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt64(2, this->herouuid(), output);
+  // optional uint32 heroID = 2;
+  if (has_heroid()) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(2, this->heroid(), output);
   }
   
   // optional uint32 equipId = 3;
@@ -5365,9 +5365,9 @@ void RequestHeroDressEquip::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(1, this->userid(), target);
   }
   
-  // optional uint64 heroUUID = 2;
-  if (has_herouuid()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(2, this->herouuid(), target);
+  // optional uint32 heroID = 2;
+  if (has_heroid()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(2, this->heroid(), target);
   }
   
   // optional uint32 equipId = 3;
@@ -5393,11 +5393,11 @@ int RequestHeroDressEquip::ByteSize() const {
           this->userid());
     }
     
-    // optional uint64 heroUUID = 2;
-    if (has_herouuid()) {
+    // optional uint32 heroID = 2;
+    if (has_heroid()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt64Size(
-          this->herouuid());
+        ::google::protobuf::internal::WireFormatLite::UInt32Size(
+          this->heroid());
     }
     
     // optional uint32 equipId = 3;
@@ -5437,8 +5437,8 @@ void RequestHeroDressEquip::MergeFrom(const RequestHeroDressEquip& from) {
     if (from.has_userid()) {
       set_userid(from.userid());
     }
-    if (from.has_herouuid()) {
-      set_herouuid(from.herouuid());
+    if (from.has_heroid()) {
+      set_heroid(from.heroid());
     }
     if (from.has_equipid()) {
       set_equipid(from.equipid());
@@ -5467,7 +5467,7 @@ bool RequestHeroDressEquip::IsInitialized() const {
 void RequestHeroDressEquip::Swap(RequestHeroDressEquip* other) {
   if (other != this) {
     std::swap(userid_, other->userid_);
-    std::swap(herouuid_, other->herouuid_);
+    std::swap(heroid_, other->heroid_);
     std::swap(equipid_, other->equipid_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
@@ -5695,7 +5695,7 @@ void ResponseHeroDressEquip::Swap(ResponseHeroDressEquip* other) {
 
 #ifndef _MSC_VER
 const int RequestUpgradeHero::kUserIdFieldNumber;
-const int RequestUpgradeHero::kHeroUUIDFieldNumber;
+const int RequestUpgradeHero::kHeroIDFieldNumber;
 #endif  // !_MSC_VER
 
 RequestUpgradeHero::RequestUpgradeHero()
@@ -5715,7 +5715,7 @@ RequestUpgradeHero::RequestUpgradeHero(const RequestUpgradeHero& from)
 void RequestUpgradeHero::SharedCtor() {
   _cached_size_ = 0;
   userid_ = 0u;
-  herouuid_ = 0u;
+  heroid_ = 0u;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -5751,7 +5751,7 @@ RequestUpgradeHero* RequestUpgradeHero::New() const {
 void RequestUpgradeHero::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     userid_ = 0u;
-    herouuid_ = 0u;
+    heroid_ = 0u;
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
@@ -5774,19 +5774,19 @@ bool RequestUpgradeHero::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(16)) goto parse_heroUUID;
+        if (input->ExpectTag(16)) goto parse_heroID;
         break;
       }
       
-      // optional uint32 heroUUID = 2;
+      // optional uint32 heroID = 2;
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-         parse_heroUUID:
+         parse_heroID:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &herouuid_)));
-          set_has_herouuid();
+                 input, &heroid_)));
+          set_has_heroid();
         } else {
           goto handle_uninterpreted;
         }
@@ -5817,9 +5817,9 @@ void RequestUpgradeHero::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->userid(), output);
   }
   
-  // optional uint32 heroUUID = 2;
-  if (has_herouuid()) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(2, this->herouuid(), output);
+  // optional uint32 heroID = 2;
+  if (has_heroid()) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(2, this->heroid(), output);
   }
   
   if (!unknown_fields().empty()) {
@@ -5835,9 +5835,9 @@ void RequestUpgradeHero::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(1, this->userid(), target);
   }
   
-  // optional uint32 heroUUID = 2;
-  if (has_herouuid()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(2, this->herouuid(), target);
+  // optional uint32 heroID = 2;
+  if (has_heroid()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(2, this->heroid(), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -5858,11 +5858,11 @@ int RequestUpgradeHero::ByteSize() const {
           this->userid());
     }
     
-    // optional uint32 heroUUID = 2;
-    if (has_herouuid()) {
+    // optional uint32 heroID = 2;
+    if (has_heroid()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->herouuid());
+          this->heroid());
     }
     
   }
@@ -5895,8 +5895,8 @@ void RequestUpgradeHero::MergeFrom(const RequestUpgradeHero& from) {
     if (from.has_userid()) {
       set_userid(from.userid());
     }
-    if (from.has_herouuid()) {
-      set_herouuid(from.herouuid());
+    if (from.has_heroid()) {
+      set_heroid(from.heroid());
     }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
@@ -5922,7 +5922,7 @@ bool RequestUpgradeHero::IsInitialized() const {
 void RequestUpgradeHero::Swap(RequestUpgradeHero* other) {
   if (other != this) {
     std::swap(userid_, other->userid_);
-    std::swap(herouuid_, other->herouuid_);
+    std::swap(heroid_, other->heroid_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

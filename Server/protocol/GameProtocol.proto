@@ -94,7 +94,7 @@ message RequestEnterGate
 {
 	optional uint32 userId = 1;				// 玩家ID
 	optional uint32 gateId = 2;				// 关卡ID
-	repeated uint64 heros = 3;				// 进入关卡的英雄
+	repeated uint32 heros = 3;				// 进入关卡的英雄
 }
 
 // 返回请求进入关卡结果
@@ -123,7 +123,7 @@ message ResponseFinishiGate
 message RequestHeroDressEquip
 {
 	optional uint32 userId = 1;				// 玩家ID
-	optional uint64 heroUUID = 2;			// 英雄UUID
+	optional uint32 heroID = 2;				// 英雄UUID
 	optional uint32 equipId = 3;			// 装备ID
 }
 
@@ -137,7 +137,7 @@ message ResponseHeroDressEquip
 message RequestUpgradeHero
 {
 	optional uint32 userId = 1;				// 玩家ID
-	optional uint32 heroUUID = 2;			// 英雄UUID
+	optional uint32 heroID = 2;				// 英雄UUID
 }
 
 // 返回英雄升级结果

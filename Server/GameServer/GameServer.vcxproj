@@ -131,6 +131,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerDataGetter.h" />
     <ClInclude Include="PlayerMng.h" />
+    <ClInclude Include="PrizeMng.h" />
     <ClInclude Include="redis\anet.h" />
     <ClInclude Include="redis\fmacros.h" />
     <ClInclude Include="redis\redisclient.h" />
@@ -167,6 +168,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerDataGetter.cpp" />
     <ClCompile Include="PlayerMng.cpp" />
+    <ClCompile Include="PrizeMng.cpp" />
     <ClCompile Include="redis\anet.cpp" />
     <ClCompile Include="ReloadConfigure.cpp" />
     <ClCompile Include="ServerConfig.cpp" />

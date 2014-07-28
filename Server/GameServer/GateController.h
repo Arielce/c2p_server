@@ -13,8 +13,8 @@ typedef struct tagGateRecord
 
 	}
 	uint32_t uGateId;					// 关卡ID
-	boost::timer::cpu_timer m_timer;			// 关卡进入时间
-	vector<uint64_t> heroList;		// 英雄列表
+	boost::timer::cpu_timer m_timer;	// 关卡进入时间
+	vector<uint32_t> heroList;			// 英雄列表
 }GateRecord;
 
 // 关卡配置信息
@@ -89,7 +89,7 @@ public:
 	bool GetGateConf(uint32_t uGateId, GateConf& gateConf);
 
 	// 玩家请求进入某个关卡
-	void EnterGate(Player* pPlayer, uint32_t uGateId, const vector<uint64_t>& heroList);	
+	void EnterGate(Player* pPlayer, uint32_t uGateId, const vector<uint32_t>& heroList);	
 	// 玩家通知关卡结束
 	void FinishGate(Player* pPlayer, uint32_t uGateId, int32_t nResult);
 	// 玩家请求扫荡关卡
@@ -116,15 +116,15 @@ public:
 	// 判断关卡是否合法
 	bool IsGateValid(Player* pPlayer, uint32_t uGateId);
 	// 判断关卡中的英雄是否合法
-	bool IsHerosValid(Player* pPlayer, const vector<uint64_t>& heroList);
+	bool IsHerosValid(Player* pPlayer, const vector<uint32_t>& heroList);
 	// 玩家进入关卡
-	void EnterGate(Player* pPlayer, uint32_t uGateId, const vector<uint64_t>& heroList);
+	void EnterGate(Player* pPlayer, uint32_t uGateId, const vector<uint32_t>& heroList);
 	// 玩家是否有进入关卡记录
 	bool HasGateRecord(Player* pPlayer, uint32_t uGateId);
-	const vector<uint64_t>& GetHeroList(Player* pPlayer);
+	const vector<uint32_t>& GetHeroList(Player* pPlayer);
 private:
 	
-	void _RecordEnterGate(Player* pPlayer, uint32_t uGateId, const vector<uint64_t>& heroList);
+	void _RecordEnterGate(Player* pPlayer, uint32_t uGateId, const vector<uint32_t>& heroList);
 
 private:
 	map<string, GateRecord> m_enterRecordMap;							// 玩家进入关卡的记录，使用角色名，玩家可能进入关卡之后，很长时间才完成关卡
@@ -143,7 +143,7 @@ public:
 	// 判断是否合法完成了关卡
 	bool IsAchieveValid(Player* pPlayer, uint32_t uGateId, int32_t nResult);
 	// 给予玩家奖励
-	void GivePrize(Player* pPlayer, uint32_t uGateId, int32_t nResult, const vector<uint64_t>& heroList);
+	void GivePrize(Player* pPlayer, uint32_t uGateId, int32_t nResult, const vector<uint32_t>& heroList);
 };
 
 /*
@@ -156,7 +156,7 @@ public:
 	~NormalGate();
 
 	// 玩家请求进入某个关卡
-	void EnterGate(Player* pPlayer, uint32_t uGateId, const vector<uint64_t>& heroList);	
+	void EnterGate(Player* pPlayer, uint32_t uGateId, const vector<uint32_t>& heroList);	
 	// 玩家通知关卡结束
 	void FinishGate(Player* pPlayer, uint32_t uGateId, int32_t nResult);
 

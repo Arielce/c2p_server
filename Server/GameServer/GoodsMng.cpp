@@ -189,6 +189,16 @@ bool GoodsMng::GetEquipProp(uint32_t uEquipId, EquipProp& equipProp)
 	return true;
 }
 
+bool GoodsMng::IsGoodsExist(uint32_t uGoodsId)
+{
+	map<uint32_t, bool>::iterator findGoodsIt = m_totalMap.find(uGoodsId);
+	if (findGoodsIt == m_totalMap.end())
+	{
+		return false;
+	}
+	return true;
+}
+
 int32_t GoodsMng::CompoundEquip(Player* pPlayer, uint32_t uTargetEquipId)
 {
 	if (!pPlayer)

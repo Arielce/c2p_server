@@ -31,6 +31,11 @@ public:
 	Goods() : uId(0), uNum(1), uType(GOODS_INVALID)
 	{
 	}
+
+	Goods(uint32_t uGoodsId, uint32_t uGoodsNum) : uId(uGoodsId), uNum(uGoodsNum)
+	{
+
+	}
 };
 
 // 目前扫荡卷，合成卷轴，以及灵魂石是没有额外属性的

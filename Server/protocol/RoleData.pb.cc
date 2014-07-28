@@ -112,9 +112,8 @@ void protobuf_AssignDesc_RoleData_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(PBEquip));
   PBHero_descriptor_ = file->message_type(3);
-  static const int PBHero_offsets_[8] = {
+  static const int PBHero_offsets_[7] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PBHero, heroid_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PBHero, herouuid_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PBHero, level_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PBHero, exp_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PBHero, herorank_),
@@ -283,19 +282,18 @@ void protobuf_AddDesc_RoleData_2eproto() {
     "vipLevel\030\t \001(\r\022&\n\010heroList\030\n \001(\0132\024.roled"
     "ata.PBHeroList\0222\n\016battleGateList\030\013 \001(\0132\032"
     ".roledata.PBBattleGateList\",\n\007PBEquip\022\017\n"
-    "\007equipId\030\001 \001(\r\022\020\n\010equipNum\030\003 \001(\r\"\246\001\n\006PBH"
-    "ero\022\016\n\006heroId\030\001 \001(\r\022\020\n\010heroUUID\030\002 \001(\004\022\r\n"
-    "\005level\030\003 \001(\r\022\013\n\003exp\030\004 \001(\r\022\020\n\010heroRank\030\005 "
-    "\001(\r\022\024\n\014upgradeLevel\030\006 \001(\r\022\023\n\013fragmentNum"
-    "\030\007 \001(\r\022!\n\006equips\030\010 \003(\0132\021.roledata.PBEqui"
-    "p\"-\n\nPBHeroList\022\037\n\005heros\030\001 \003(\0132\020.roledat"
-    "a.PBHero\".\n\tPBRoleBag\022!\n\006equips\030\001 \003(\0132\021."
-    "roledata.PBEquip\"@\n\nPBGateInfo\022\016\n\006gateId"
-    "\030\001 \001(\r\022\020\n\010gateStar\030\002 \001(\r\022\020\n\010hasFight\030\003 \001"
-    "(\010\"E\n\014PBBattleInfo\022\020\n\010battleId\030\001 \001(\r\022#\n\005"
-    "gates\030\002 \003(\0132\024.roledata.PBGateInfo\"\?\n\020PBB"
-    "attleGateList\022+\n\013battleGates\030\001 \003(\0132\026.rol"
-    "edata.PBBattleInfo", 898);
+    "\007equipId\030\001 \001(\r\022\020\n\010equipNum\030\003 \001(\r\"\224\001\n\006PBH"
+    "ero\022\016\n\006heroId\030\001 \001(\r\022\r\n\005level\030\002 \001(\r\022\013\n\003ex"
+    "p\030\003 \001(\r\022\020\n\010heroRank\030\004 \001(\r\022\024\n\014upgradeLeve"
+    "l\030\005 \001(\r\022\023\n\013fragmentNum\030\006 \001(\r\022!\n\006equips\030\007"
+    " \003(\0132\021.roledata.PBEquip\"-\n\nPBHeroList\022\037\n"
+    "\005heros\030\001 \003(\0132\020.roledata.PBHero\".\n\tPBRole"
+    "Bag\022!\n\006equips\030\001 \003(\0132\021.roledata.PBEquip\"@"
+    "\n\nPBGateInfo\022\016\n\006gateId\030\001 \001(\r\022\020\n\010gateStar"
+    "\030\002 \001(\r\022\020\n\010hasFight\030\003 \001(\010\"E\n\014PBBattleInfo"
+    "\022\020\n\010battleId\030\001 \001(\r\022#\n\005gates\030\002 \003(\0132\024.role"
+    "data.PBGateInfo\"\?\n\020PBBattleGateList\022+\n\013b"
+    "attleGates\030\001 \003(\0132\026.roledata.PBBattleInfo", 880);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "RoleData.proto", &protobuf_RegisterTypes);
   PBRoleTotalInfo::default_instance_ = new PBRoleTotalInfo();
@@ -1492,7 +1490,6 @@ void PBEquip::Swap(PBEquip* other) {
 
 #ifndef _MSC_VER
 const int PBHero::kHeroIdFieldNumber;
-const int PBHero::kHeroUUIDFieldNumber;
 const int PBHero::kLevelFieldNumber;
 const int PBHero::kExpFieldNumber;
 const int PBHero::kHeroRankFieldNumber;
@@ -1518,7 +1515,6 @@ PBHero::PBHero(const PBHero& from)
 void PBHero::SharedCtor() {
   _cached_size_ = 0;
   heroid_ = 0u;
-  herouuid_ = GOOGLE_ULONGLONG(0);
   level_ = 0u;
   exp_ = 0u;
   herorank_ = 0u;
@@ -1559,7 +1555,6 @@ PBHero* PBHero::New() const {
 void PBHero::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     heroid_ = 0u;
-    herouuid_ = GOOGLE_ULONGLONG(0);
     level_ = 0u;
     exp_ = 0u;
     herorank_ = 0u;
@@ -1588,28 +1583,12 @@ bool PBHero::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(16)) goto parse_heroUUID;
+        if (input->ExpectTag(16)) goto parse_level;
         break;
       }
       
-      // optional uint64 heroUUID = 2;
+      // optional uint32 level = 2;
       case 2: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-         parse_heroUUID:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
-                 input, &herouuid_)));
-          set_has_herouuid();
-        } else {
-          goto handle_uninterpreted;
-        }
-        if (input->ExpectTag(24)) goto parse_level;
-        break;
-      }
-      
-      // optional uint32 level = 3;
-      case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
          parse_level:
@@ -1620,12 +1599,12 @@ bool PBHero::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(32)) goto parse_exp;
+        if (input->ExpectTag(24)) goto parse_exp;
         break;
       }
       
-      // optional uint32 exp = 4;
-      case 4: {
+      // optional uint32 exp = 3;
+      case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
          parse_exp:
@@ -1636,12 +1615,12 @@ bool PBHero::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(40)) goto parse_heroRank;
+        if (input->ExpectTag(32)) goto parse_heroRank;
         break;
       }
       
-      // optional uint32 heroRank = 5;
-      case 5: {
+      // optional uint32 heroRank = 4;
+      case 4: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
          parse_heroRank:
@@ -1652,12 +1631,12 @@ bool PBHero::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(48)) goto parse_upgradeLevel;
+        if (input->ExpectTag(40)) goto parse_upgradeLevel;
         break;
       }
       
-      // optional uint32 upgradeLevel = 6;
-      case 6: {
+      // optional uint32 upgradeLevel = 5;
+      case 5: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
          parse_upgradeLevel:
@@ -1668,12 +1647,12 @@ bool PBHero::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(56)) goto parse_fragmentNum;
+        if (input->ExpectTag(48)) goto parse_fragmentNum;
         break;
       }
       
-      // optional uint32 fragmentNum = 7;
-      case 7: {
+      // optional uint32 fragmentNum = 6;
+      case 6: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
          parse_fragmentNum:
@@ -1684,12 +1663,12 @@ bool PBHero::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(66)) goto parse_equips;
+        if (input->ExpectTag(58)) goto parse_equips;
         break;
       }
       
-      // repeated .roledata.PBEquip equips = 8;
-      case 8: {
+      // repeated .roledata.PBEquip equips = 7;
+      case 7: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
          parse_equips:
@@ -1698,7 +1677,7 @@ bool PBHero::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(66)) goto parse_equips;
+        if (input->ExpectTag(58)) goto parse_equips;
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -1726,40 +1705,35 @@ void PBHero::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->heroid(), output);
   }
   
-  // optional uint64 heroUUID = 2;
-  if (has_herouuid()) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt64(2, this->herouuid(), output);
-  }
-  
-  // optional uint32 level = 3;
+  // optional uint32 level = 2;
   if (has_level()) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(3, this->level(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(2, this->level(), output);
   }
   
-  // optional uint32 exp = 4;
+  // optional uint32 exp = 3;
   if (has_exp()) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(4, this->exp(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(3, this->exp(), output);
   }
   
-  // optional uint32 heroRank = 5;
+  // optional uint32 heroRank = 4;
   if (has_herorank()) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(5, this->herorank(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(4, this->herorank(), output);
   }
   
-  // optional uint32 upgradeLevel = 6;
+  // optional uint32 upgradeLevel = 5;
   if (has_upgradelevel()) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(6, this->upgradelevel(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(5, this->upgradelevel(), output);
   }
   
-  // optional uint32 fragmentNum = 7;
+  // optional uint32 fragmentNum = 6;
   if (has_fragmentnum()) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(7, this->fragmentnum(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(6, this->fragmentnum(), output);
   }
   
-  // repeated .roledata.PBEquip equips = 8;
+  // repeated .roledata.PBEquip equips = 7;
   for (int i = 0; i < this->equips_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      8, this->equips(i), output);
+      7, this->equips(i), output);
   }
   
   if (!unknown_fields().empty()) {
@@ -1775,41 +1749,36 @@ void PBHero::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(1, this->heroid(), target);
   }
   
-  // optional uint64 heroUUID = 2;
-  if (has_herouuid()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(2, this->herouuid(), target);
-  }
-  
-  // optional uint32 level = 3;
+  // optional uint32 level = 2;
   if (has_level()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(3, this->level(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(2, this->level(), target);
   }
   
-  // optional uint32 exp = 4;
+  // optional uint32 exp = 3;
   if (has_exp()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(4, this->exp(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(3, this->exp(), target);
   }
   
-  // optional uint32 heroRank = 5;
+  // optional uint32 heroRank = 4;
   if (has_herorank()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(5, this->herorank(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(4, this->herorank(), target);
   }
   
-  // optional uint32 upgradeLevel = 6;
+  // optional uint32 upgradeLevel = 5;
   if (has_upgradelevel()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(6, this->upgradelevel(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(5, this->upgradelevel(), target);
   }
   
-  // optional uint32 fragmentNum = 7;
+  // optional uint32 fragmentNum = 6;
   if (has_fragmentnum()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(7, this->fragmentnum(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(6, this->fragmentnum(), target);
   }
   
-  // repeated .roledata.PBEquip equips = 8;
+  // repeated .roledata.PBEquip equips = 7;
   for (int i = 0; i < this->equips_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
-        8, this->equips(i), target);
+        7, this->equips(i), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -1830,42 +1799,35 @@ int PBHero::ByteSize() const {
           this->heroid());
     }
     
-    // optional uint64 heroUUID = 2;
-    if (has_herouuid()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt64Size(
-          this->herouuid());
-    }
-    
-    // optional uint32 level = 3;
+    // optional uint32 level = 2;
     if (has_level()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::UInt32Size(
           this->level());
     }
     
-    // optional uint32 exp = 4;
+    // optional uint32 exp = 3;
     if (has_exp()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::UInt32Size(
           this->exp());
     }
     
-    // optional uint32 heroRank = 5;
+    // optional uint32 heroRank = 4;
     if (has_herorank()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::UInt32Size(
           this->herorank());
     }
     
-    // optional uint32 upgradeLevel = 6;
+    // optional uint32 upgradeLevel = 5;
     if (has_upgradelevel()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::UInt32Size(
           this->upgradelevel());
     }
     
-    // optional uint32 fragmentNum = 7;
+    // optional uint32 fragmentNum = 6;
     if (has_fragmentnum()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::UInt32Size(
@@ -1873,7 +1835,7 @@ int PBHero::ByteSize() const {
     }
     
   }
-  // repeated .roledata.PBEquip equips = 8;
+  // repeated .roledata.PBEquip equips = 7;
   total_size += 1 * this->equips_size();
   for (int i = 0; i < this->equips_size(); i++) {
     total_size +=
@@ -1910,9 +1872,6 @@ void PBHero::MergeFrom(const PBHero& from) {
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from.has_heroid()) {
       set_heroid(from.heroid());
-    }
-    if (from.has_herouuid()) {
-      set_herouuid(from.herouuid());
     }
     if (from.has_level()) {
       set_level(from.level());
@@ -1953,7 +1912,6 @@ bool PBHero::IsInitialized() const {
 void PBHero::Swap(PBHero* other) {
   if (other != this) {
     std::swap(heroid_, other->heroid_);
-    std::swap(herouuid_, other->herouuid_);
     std::swap(level_, other->level_);
     std::swap(exp_, other->exp_);
     std::swap(herorank_, other->herorank_);

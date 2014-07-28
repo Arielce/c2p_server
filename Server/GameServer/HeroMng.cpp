@@ -279,7 +279,7 @@ void HeroMng::AddHeroExp(uint32_t uExpAdd, uint32_t uCurLevel, uint32_t uCurExp,
 	return;
 }
 
-int32_t HeroMng::HeroDressEquip(Player* pPlayer, uint64_t uHeroUUID, uint32_t uEquipId)
+int32_t HeroMng::HeroDressEquip(Player* pPlayer, uint32_t uHeroID, uint32_t uEquipId)
 {
 	if (!pPlayer->HasGoods(uEquipId))
 	{
@@ -294,7 +294,7 @@ int32_t HeroMng::HeroDressEquip(Player* pPlayer, uint64_t uHeroUUID, uint32_t uE
 
 	// ¼ì²éÓ¢ÐÛÊÇ·ñ´æÔÚ
 	Hero hero;
-	if (!pPlayer->GetHero(uHeroUUID, hero))
+	if (!pPlayer->GetHero(uHeroID, hero))
 	{
 		return ERROR_HERO_NOT_EXIST;
 	}
@@ -311,11 +311,11 @@ int32_t HeroMng::HeroDressEquip(Player* pPlayer, uint64_t uHeroUUID, uint32_t uE
 	return ERROR_OP_SUCCESS;
 }
 
-int32_t HeroMng::HeroUpgrade(Player* pPlayer, uint64_t uHeroUUID)
+int32_t HeroMng::HeroUpgrade(Player* pPlayer, uint32_t uHeroID)
 {
 	// ¼ì²éÓ¢ÐÛÊÇ·ñ´æÔÚ
 	Hero hero;
-	if (!pPlayer->GetHero(uHeroUUID, hero))
+	if (!pPlayer->GetHero(uHeroID, hero))
 	{
 		return ERROR_HERO_NOT_EXIST;
 	}

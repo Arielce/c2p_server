@@ -1390,16 +1390,16 @@ class RequestEnterGate : public ::google::protobuf::Message {
   inline ::google::protobuf::uint32 gateid() const;
   inline void set_gateid(::google::protobuf::uint32 value);
   
-  // repeated uint64 heros = 3;
+  // repeated uint32 heros = 3;
   inline int heros_size() const;
   inline void clear_heros();
   static const int kHerosFieldNumber = 3;
-  inline ::google::protobuf::uint64 heros(int index) const;
-  inline void set_heros(int index, ::google::protobuf::uint64 value);
-  inline void add_heros(::google::protobuf::uint64 value);
-  inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint64 >&
+  inline ::google::protobuf::uint32 heros(int index) const;
+  inline void set_heros(int index, ::google::protobuf::uint32 value);
+  inline void add_heros(::google::protobuf::uint32 value);
+  inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
       heros() const;
-  inline ::google::protobuf::RepeatedField< ::google::protobuf::uint64 >*
+  inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
       mutable_heros();
   
   // @@protoc_insertion_point(class_scope:ctos.RequestEnterGate)
@@ -1413,7 +1413,7 @@ class RequestEnterGate : public ::google::protobuf::Message {
   
   ::google::protobuf::uint32 userid_;
   ::google::protobuf::uint32 gateid_;
-  ::google::protobuf::RepeatedField< ::google::protobuf::uint64 > heros_;
+  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > heros_;
   
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
@@ -1774,12 +1774,12 @@ class RequestHeroDressEquip : public ::google::protobuf::Message {
   inline ::google::protobuf::uint32 userid() const;
   inline void set_userid(::google::protobuf::uint32 value);
   
-  // optional uint64 heroUUID = 2;
-  inline bool has_herouuid() const;
-  inline void clear_herouuid();
-  static const int kHeroUUIDFieldNumber = 2;
-  inline ::google::protobuf::uint64 herouuid() const;
-  inline void set_herouuid(::google::protobuf::uint64 value);
+  // optional uint32 heroID = 2;
+  inline bool has_heroid() const;
+  inline void clear_heroid();
+  static const int kHeroIDFieldNumber = 2;
+  inline ::google::protobuf::uint32 heroid() const;
+  inline void set_heroid(::google::protobuf::uint32 value);
   
   // optional uint32 equipId = 3;
   inline bool has_equipid() const;
@@ -1792,15 +1792,15 @@ class RequestHeroDressEquip : public ::google::protobuf::Message {
  private:
   inline void set_has_userid();
   inline void clear_has_userid();
-  inline void set_has_herouuid();
-  inline void clear_has_herouuid();
+  inline void set_has_heroid();
+  inline void clear_has_heroid();
   inline void set_has_equipid();
   inline void clear_has_equipid();
   
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
-  ::google::protobuf::uint64 herouuid_;
   ::google::protobuf::uint32 userid_;
+  ::google::protobuf::uint32 heroid_;
   ::google::protobuf::uint32 equipid_;
   
   mutable int _cached_size_;
@@ -1958,24 +1958,24 @@ class RequestUpgradeHero : public ::google::protobuf::Message {
   inline ::google::protobuf::uint32 userid() const;
   inline void set_userid(::google::protobuf::uint32 value);
   
-  // optional uint32 heroUUID = 2;
-  inline bool has_herouuid() const;
-  inline void clear_herouuid();
-  static const int kHeroUUIDFieldNumber = 2;
-  inline ::google::protobuf::uint32 herouuid() const;
-  inline void set_herouuid(::google::protobuf::uint32 value);
+  // optional uint32 heroID = 2;
+  inline bool has_heroid() const;
+  inline void clear_heroid();
+  static const int kHeroIDFieldNumber = 2;
+  inline ::google::protobuf::uint32 heroid() const;
+  inline void set_heroid(::google::protobuf::uint32 value);
   
   // @@protoc_insertion_point(class_scope:ctos.RequestUpgradeHero)
  private:
   inline void set_has_userid();
   inline void clear_has_userid();
-  inline void set_has_herouuid();
-  inline void clear_has_herouuid();
+  inline void set_has_heroid();
+  inline void clear_has_heroid();
   
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
   ::google::protobuf::uint32 userid_;
-  ::google::protobuf::uint32 herouuid_;
+  ::google::protobuf::uint32 heroid_;
   
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
@@ -3552,27 +3552,27 @@ inline void RequestEnterGate::set_gateid(::google::protobuf::uint32 value) {
   gateid_ = value;
 }
 
-// repeated uint64 heros = 3;
+// repeated uint32 heros = 3;
 inline int RequestEnterGate::heros_size() const {
   return heros_.size();
 }
 inline void RequestEnterGate::clear_heros() {
   heros_.Clear();
 }
-inline ::google::protobuf::uint64 RequestEnterGate::heros(int index) const {
+inline ::google::protobuf::uint32 RequestEnterGate::heros(int index) const {
   return heros_.Get(index);
 }
-inline void RequestEnterGate::set_heros(int index, ::google::protobuf::uint64 value) {
+inline void RequestEnterGate::set_heros(int index, ::google::protobuf::uint32 value) {
   heros_.Set(index, value);
 }
-inline void RequestEnterGate::add_heros(::google::protobuf::uint64 value) {
+inline void RequestEnterGate::add_heros(::google::protobuf::uint32 value) {
   heros_.Add(value);
 }
-inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint64 >&
+inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
 RequestEnterGate::heros() const {
   return heros_;
 }
-inline ::google::protobuf::RepeatedField< ::google::protobuf::uint64 >*
+inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
 RequestEnterGate::mutable_heros() {
   return &heros_;
 }
@@ -3769,26 +3769,26 @@ inline void RequestHeroDressEquip::set_userid(::google::protobuf::uint32 value) 
   userid_ = value;
 }
 
-// optional uint64 heroUUID = 2;
-inline bool RequestHeroDressEquip::has_herouuid() const {
+// optional uint32 heroID = 2;
+inline bool RequestHeroDressEquip::has_heroid() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
-inline void RequestHeroDressEquip::set_has_herouuid() {
+inline void RequestHeroDressEquip::set_has_heroid() {
   _has_bits_[0] |= 0x00000002u;
 }
-inline void RequestHeroDressEquip::clear_has_herouuid() {
+inline void RequestHeroDressEquip::clear_has_heroid() {
   _has_bits_[0] &= ~0x00000002u;
 }
-inline void RequestHeroDressEquip::clear_herouuid() {
-  herouuid_ = GOOGLE_ULONGLONG(0);
-  clear_has_herouuid();
+inline void RequestHeroDressEquip::clear_heroid() {
+  heroid_ = 0u;
+  clear_has_heroid();
 }
-inline ::google::protobuf::uint64 RequestHeroDressEquip::herouuid() const {
-  return herouuid_;
+inline ::google::protobuf::uint32 RequestHeroDressEquip::heroid() const {
+  return heroid_;
 }
-inline void RequestHeroDressEquip::set_herouuid(::google::protobuf::uint64 value) {
-  set_has_herouuid();
-  herouuid_ = value;
+inline void RequestHeroDressEquip::set_heroid(::google::protobuf::uint32 value) {
+  set_has_heroid();
+  heroid_ = value;
 }
 
 // optional uint32 equipId = 3;
@@ -3865,26 +3865,26 @@ inline void RequestUpgradeHero::set_userid(::google::protobuf::uint32 value) {
   userid_ = value;
 }
 
-// optional uint32 heroUUID = 2;
-inline bool RequestUpgradeHero::has_herouuid() const {
+// optional uint32 heroID = 2;
+inline bool RequestUpgradeHero::has_heroid() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
-inline void RequestUpgradeHero::set_has_herouuid() {
+inline void RequestUpgradeHero::set_has_heroid() {
   _has_bits_[0] |= 0x00000002u;
 }
-inline void RequestUpgradeHero::clear_has_herouuid() {
+inline void RequestUpgradeHero::clear_has_heroid() {
   _has_bits_[0] &= ~0x00000002u;
 }
-inline void RequestUpgradeHero::clear_herouuid() {
-  herouuid_ = 0u;
-  clear_has_herouuid();
+inline void RequestUpgradeHero::clear_heroid() {
+  heroid_ = 0u;
+  clear_has_heroid();
 }
-inline ::google::protobuf::uint32 RequestUpgradeHero::herouuid() const {
-  return herouuid_;
+inline ::google::protobuf::uint32 RequestUpgradeHero::heroid() const {
+  return heroid_;
 }
-inline void RequestUpgradeHero::set_herouuid(::google::protobuf::uint32 value) {
-  set_has_herouuid();
-  herouuid_ = value;
+inline void RequestUpgradeHero::set_heroid(::google::protobuf::uint32 value) {
+  set_has_heroid();
+  heroid_ = value;
 }
 
 // -------------------------------------------------------------------

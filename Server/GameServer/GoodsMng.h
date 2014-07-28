@@ -29,9 +29,10 @@ public:
 
 	bool LoadGoodsConf();
 	bool LoadEquipCompound();
-	bool GetEquipProp(uint32_t uEquipId, EquipProp& equipProp);
+	bool GetEquipProp(uint32_t uEquipId, EquipProp& equipProp);				// 获取装备属性
+	bool IsGoodsExist(uint32_t uGoodsId);									// 判断物品是否存在
 
-	int32_t CompoundEquip(Player* pPlayer, uint32_t uTargetEquipId);
+	int32_t CompoundEquip(Player* pPlayer, uint32_t uTargetEquipId);		// 装备合成
 
 private:
 	GoodsMng();

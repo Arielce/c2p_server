@@ -35,13 +35,12 @@ message PBEquip
 message PBHero
 {
 	optional uint32 heroId = 1;				// 英雄编号
-	optional uint64 heroUUID = 2;			// 英雄实例编号
-	optional uint32 level = 3;				// 等级
-	optional uint32 exp = 4;				// 等级
-	optional uint32 heroRank = 5;			// 英雄星级
-	optional uint32 upgradeLevel = 6;		// 进化级别
-	optional uint32 fragmentNum = 7;		// 碎片数量
-	repeated PBEquip equips = 8;			// 英雄装备
+	optional uint32 level = 2;				// 等级
+	optional uint32 exp = 3;				// 等级
+	optional uint32 heroRank = 4;			// 英雄星级
+	optional uint32 upgradeLevel = 5;		// 进化级别
+	optional uint32 fragmentNum = 6;		// 碎片数量
+	repeated PBEquip equips = 7;			// 英雄装备
 }
 
 // 英雄列表

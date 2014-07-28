@@ -139,7 +139,7 @@ void ClientHandler::_RequestEnterGate(IConnection* pConn, MessageHeader* pMsgHea
 		return;
 	}
 
-	vector<uint64_t> heroList;
+	vector<uint32_t> heroList;
 	uint32_t uHeroNum = enterGateReq.heros_size();
 	for (uint32_t i=0; i<uHeroNum; i++)
 	{
@@ -189,7 +189,7 @@ void ClientHandler::_RequestHeroDressEquip(IConnection* pConn, MessageHeader* pM
 		return;
 	}
 	
-	int32_t nErrCode = gpHeroMng->HeroDressEquip(pPlayer, dressEquipReq.herouuid(), dressEquipReq.equipid());
+	int32_t nErrCode = gpHeroMng->HeroDressEquip(pPlayer, dressEquipReq.heroid(), dressEquipReq.equipid());
 
 	ctos::ResponseHeroDressEquip dressEquipAck;
 	dressEquipAck.set_errcode(nErrCode);
@@ -217,7 +217,7 @@ void ClientHandler::_RequestHeroUpgrade(IConnection* pConn, MessageHeader* pMsgH
 		return;
 	}
 
-	int32_t nErrCode = gpHeroMng->HeroUpgrade(pPlayer, upgradeHeroReq.herouuid());
+	int32_t nErrCode = gpHeroMng->HeroUpgrade(pPlayer, upgradeHeroReq.heroid());
 
 	ctos::ResponseHeroDressEquip upgradeHeroAck;
 	upgradeHeroAck.set_errcode(nErrCode);

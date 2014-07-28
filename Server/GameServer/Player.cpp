@@ -122,14 +122,13 @@ void Player::_SerializeRoleBaseInfo(roledata::PBRoleBaseInfo& roleBaseInfo)
 
 	// 玩家英雄信息
 	roledata::PBHeroList* pHeroList = roleBaseInfo.mutable_herolist();
-	map<uint64_t, Hero>::iterator heroIt = m_roleHeroMap.begin();
-	map<uint64_t, Hero>::iterator heroItEnd = m_roleHeroMap.end();
+	map<uint32_t, Hero>::iterator heroIt = m_roleHeroMap.begin();
+	map<uint32_t, Hero>::iterator heroItEnd = m_roleHeroMap.end();
 	for (; heroIt!=heroItEnd; heroIt++)
 	{
 		Hero& hero = heroIt->second;
 		roledata::PBHero* pPBHero = pHeroList->add_heros();
 		pPBHero->set_heroid(hero.GetHeroId());
-		pPBHero->set_herouuid(hero.GetHeroUUID());
 		pPBHero->set_level(hero.GetLevel());
 		pPBHero->set_exp(hero.GetExp());
 		pPBHero->set_herorank(hero.GetHeroRank());
@@ -273,7 +272,6 @@ void Player::_ParseRoleBaseInfo(const roledata::PBRoleBaseInfo& roleBaseInfo)
 		Hero hero;
 		const roledata::PBHero& pbHero = heroList.heros(i);
 		hero.SetHeroId(pbHero.heroid());
-		hero.SetHeroUUID(pbHero.herouuid());
 		hero.SetLevel(pbHero.level());
 		hero.SetExp(pbHero.exp());
 		hero.SetHeroRank(pbHero.herorank());
@@ -289,7 +287,7 @@ void Player::_ParseRoleBaseInfo(const roledata::PBRoleBaseInfo& roleBaseInfo)
 			equip.uNum = pbEquip.equipnum();
 			hero.GetMutableEquipList().push_back(equip);
 		}
-		m_roleHeroMap.insert(make_pair(hero.GetHeroUUID(), hero));
+		m_roleHeroMap.insert(make_pair(hero.GetHeroId(), hero));
 	}
 
 	// 解析玩家关卡信息
@@ -445,9 +443,9 @@ void Player::SetLevel(uint32_t uLevel)
 	m_uLevel = uLevel;
 }
 
-bool Player::GetHero(uint64_t uHeroUUID, Hero& hero)
+bool Player::GetHero(uint32_t uHeroID, Hero& hero)
 {
-	map<uint64_t, Hero>::iterator heroIt = m_roleHeroMap.find(uHeroUUID);
+	map<uint32_t, Hero>::iterator heroIt = m_roleHeroMap.find(uHeroID);
 	if (heroIt == m_roleHeroMap.end())
 	{
 		return false;
@@ -568,17 +566,16 @@ void Player::AddHero(uint32_t uHeroId, uint32_t uHeroRank/* =1 */, uint32_t uHer
 
 	Hero hero;
 	hero.SetHeroId(uHeroId);
-	hero.SetHeroUUID(uuidGen.generate());
 	hero.SetLevel(uHeroLevel);
 	hero.SetHeroRank(uHeroRank);
 
-	m_roleHeroMap.insert(make_pair(hero.GetHeroUUID(), hero));
+	m_roleHeroMap.insert(make_pair(hero.GetHeroId(), hero));
 	return;
 }
 
-bool Player::HasHero(uint64_t uHeroUUID)
+bool Player::HasHero(uint32_t uHeroID)
 {
-	map<uint64_t, Hero>::iterator heroIt = m_roleHeroMap.find(uHeroUUID);
+	map<uint32_t, Hero>::iterator heroIt = m_roleHeroMap.find(uHeroID);
 	if (heroIt == m_roleHeroMap.end())
 	{
 		return false;

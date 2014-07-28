@@ -5759,10 +5759,10 @@ public final class GameProtocol {
     boolean hasGateId();
     int getGateId();
     
-    // repeated uint64 heros = 3;
-    java.util.List<java.lang.Long> getHerosList();
+    // repeated uint32 heros = 3;
+    java.util.List<java.lang.Integer> getHerosList();
     int getHerosCount();
-    long getHeros(int index);
+    int getHeros(int index);
   }
   public static final class RequestEnterGate extends
       com.google.protobuf.GeneratedMessage
@@ -5813,17 +5813,17 @@ public final class GameProtocol {
       return gateId_;
     }
     
-    // repeated uint64 heros = 3;
+    // repeated uint32 heros = 3;
     public static final int HEROS_FIELD_NUMBER = 3;
-    private java.util.List<java.lang.Long> heros_;
-    public java.util.List<java.lang.Long>
+    private java.util.List<java.lang.Integer> heros_;
+    public java.util.List<java.lang.Integer>
         getHerosList() {
       return heros_;
     }
     public int getHerosCount() {
       return heros_.size();
     }
-    public long getHeros(int index) {
+    public int getHeros(int index) {
       return heros_.get(index);
     }
     
@@ -5851,7 +5851,7 @@ public final class GameProtocol {
         output.writeUInt32(2, gateId_);
       }
       for (int i = 0; i < heros_.size(); i++) {
-        output.writeUInt64(3, heros_.get(i));
+        output.writeUInt32(3, heros_.get(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -5874,7 +5874,7 @@ public final class GameProtocol {
         int dataSize = 0;
         for (int i = 0; i < heros_.size(); i++) {
           dataSize += com.google.protobuf.CodedOutputStream
-            .computeUInt64SizeNoTag(heros_.get(i));
+            .computeUInt32SizeNoTag(heros_.get(i));
         }
         size += dataSize;
         size += 1 * getHerosList().size();
@@ -6135,14 +6135,14 @@ public final class GameProtocol {
             }
             case 24: {
               ensureHerosIsMutable();
-              heros_.add(input.readUInt64());
+              heros_.add(input.readUInt32());
               break;
             }
             case 26: {
               int length = input.readRawVarint32();
               int limit = input.pushLimit(length);
               while (input.getBytesUntilLimit() > 0) {
-                addHeros(input.readUInt64());
+                addHeros(input.readUInt32());
               }
               input.popLimit(limit);
               break;
@@ -6195,39 +6195,39 @@ public final class GameProtocol {
         return this;
       }
       
-      // repeated uint64 heros = 3;
-      private java.util.List<java.lang.Long> heros_ = java.util.Collections.emptyList();;
+      // repeated uint32 heros = 3;
+      private java.util.List<java.lang.Integer> heros_ = java.util.Collections.emptyList();;
       private void ensureHerosIsMutable() {
         if (!((bitField0_ & 0x00000004) == 0x00000004)) {
-          heros_ = new java.util.ArrayList<java.lang.Long>(heros_);
+          heros_ = new java.util.ArrayList<java.lang.Integer>(heros_);
           bitField0_ |= 0x00000004;
          }
       }
-      public java.util.List<java.lang.Long>
+      public java.util.List<java.lang.Integer>
           getHerosList() {
         return java.util.Collections.unmodifiableList(heros_);
       }
       public int getHerosCount() {
         return heros_.size();
       }
-      public long getHeros(int index) {
+      public int getHeros(int index) {
         return heros_.get(index);
       }
       public Builder setHeros(
-          int index, long value) {
+          int index, int value) {
         ensureHerosIsMutable();
         heros_.set(index, value);
         onChanged();
         return this;
       }
-      public Builder addHeros(long value) {
+      public Builder addHeros(int value) {
         ensureHerosIsMutable();
         heros_.add(value);
         onChanged();
         return this;
       }
       public Builder addAllHeros(
-          java.lang.Iterable<? extends java.lang.Long> values) {
+          java.lang.Iterable<? extends java.lang.Integer> values) {
         ensureHerosIsMutable();
         super.addAll(values, heros_);
         onChanged();
@@ -7500,9 +7500,9 @@ public final class GameProtocol {
     boolean hasUserId();
     int getUserId();
     
-    // optional uint64 heroUUID = 2;
-    boolean hasHeroUUID();
-    long getHeroUUID();
+    // optional uint32 heroID = 2;
+    boolean hasHeroID();
+    int getHeroID();
     
     // optional uint32 equipId = 3;
     boolean hasEquipId();
@@ -7547,14 +7547,14 @@ public final class GameProtocol {
       return userId_;
     }
     
-    // optional uint64 heroUUID = 2;
-    public static final int HEROUUID_FIELD_NUMBER = 2;
-    private long heroUUID_;
-    public boolean hasHeroUUID() {
+    // optional uint32 heroID = 2;
+    public static final int HEROID_FIELD_NUMBER = 2;
+    private int heroID_;
+    public boolean hasHeroID() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    public long getHeroUUID() {
-      return heroUUID_;
+    public int getHeroID() {
+      return heroID_;
     }
     
     // optional uint32 equipId = 3;
@@ -7569,7 +7569,7 @@ public final class GameProtocol {
     
     private void initFields() {
       userId_ = 0;
-      heroUUID_ = 0L;
+      heroID_ = 0;
       equipId_ = 0;
     }
     private byte memoizedIsInitialized = -1;
@@ -7588,7 +7588,7 @@ public final class GameProtocol {
         output.writeUInt32(1, userId_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeUInt64(2, heroUUID_);
+        output.writeUInt32(2, heroID_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeUInt32(3, equipId_);
@@ -7608,7 +7608,7 @@ public final class GameProtocol {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt64Size(2, heroUUID_);
+          .computeUInt32Size(2, heroID_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
@@ -7740,7 +7740,7 @@ public final class GameProtocol {
         super.clear();
         userId_ = 0;
         bitField0_ = (bitField0_ & ~0x00000001);
-        heroUUID_ = 0L;
+        heroID_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
         equipId_ = 0;
         bitField0_ = (bitField0_ & ~0x00000004);
@@ -7789,7 +7789,7 @@ public final class GameProtocol {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.heroUUID_ = heroUUID_;
+        result.heroID_ = heroID_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
@@ -7813,8 +7813,8 @@ public final class GameProtocol {
         if (other.hasUserId()) {
           setUserId(other.getUserId());
         }
-        if (other.hasHeroUUID()) {
-          setHeroUUID(other.getHeroUUID());
+        if (other.hasHeroID()) {
+          setHeroID(other.getHeroID());
         }
         if (other.hasEquipId()) {
           setEquipId(other.getEquipId());
@@ -7857,7 +7857,7 @@ public final class GameProtocol {
             }
             case 16: {
               bitField0_ |= 0x00000002;
-              heroUUID_ = input.readUInt64();
+              heroID_ = input.readUInt32();
               break;
             }
             case 24: {
@@ -7892,23 +7892,23 @@ public final class GameProtocol {
         return this;
       }
       
-      // optional uint64 heroUUID = 2;
-      private long heroUUID_ ;
-      public boolean hasHeroUUID() {
+      // optional uint32 heroID = 2;
+      private int heroID_ ;
+      public boolean hasHeroID() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      public long getHeroUUID() {
-        return heroUUID_;
+      public int getHeroID() {
+        return heroID_;
       }
-      public Builder setHeroUUID(long value) {
+      public Builder setHeroID(int value) {
         bitField0_ |= 0x00000002;
-        heroUUID_ = value;
+        heroID_ = value;
         onChanged();
         return this;
       }
-      public Builder clearHeroUUID() {
+      public Builder clearHeroID() {
         bitField0_ = (bitField0_ & ~0x00000002);
-        heroUUID_ = 0L;
+        heroID_ = 0;
         onChanged();
         return this;
       }
@@ -8290,9 +8290,9 @@ public final class GameProtocol {
     boolean hasUserId();
     int getUserId();
     
-    // optional uint32 heroUUID = 2;
-    boolean hasHeroUUID();
-    int getHeroUUID();
+    // optional uint32 heroID = 2;
+    boolean hasHeroID();
+    int getHeroID();
   }
   public static final class RequestUpgradeHero extends
       com.google.protobuf.GeneratedMessage
@@ -8333,19 +8333,19 @@ public final class GameProtocol {
       return userId_;
     }
     
-    // optional uint32 heroUUID = 2;
-    public static final int HEROUUID_FIELD_NUMBER = 2;
-    private int heroUUID_;
-    public boolean hasHeroUUID() {
+    // optional uint32 heroID = 2;
+    public static final int HEROID_FIELD_NUMBER = 2;
+    private int heroID_;
+    public boolean hasHeroID() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    public int getHeroUUID() {
-      return heroUUID_;
+    public int getHeroID() {
+      return heroID_;
     }
     
     private void initFields() {
       userId_ = 0;
-      heroUUID_ = 0;
+      heroID_ = 0;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -8363,7 +8363,7 @@ public final class GameProtocol {
         output.writeUInt32(1, userId_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeUInt32(2, heroUUID_);
+        output.writeUInt32(2, heroID_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -8380,7 +8380,7 @@ public final class GameProtocol {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(2, heroUUID_);
+          .computeUInt32Size(2, heroID_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -8508,7 +8508,7 @@ public final class GameProtocol {
         super.clear();
         userId_ = 0;
         bitField0_ = (bitField0_ & ~0x00000001);
-        heroUUID_ = 0;
+        heroID_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
@@ -8555,7 +8555,7 @@ public final class GameProtocol {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.heroUUID_ = heroUUID_;
+        result.heroID_ = heroID_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -8575,8 +8575,8 @@ public final class GameProtocol {
         if (other.hasUserId()) {
           setUserId(other.getUserId());
         }
-        if (other.hasHeroUUID()) {
-          setHeroUUID(other.getHeroUUID());
+        if (other.hasHeroID()) {
+          setHeroID(other.getHeroID());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -8616,7 +8616,7 @@ public final class GameProtocol {
             }
             case 16: {
               bitField0_ |= 0x00000002;
-              heroUUID_ = input.readUInt32();
+              heroID_ = input.readUInt32();
               break;
             }
           }
@@ -8646,23 +8646,23 @@ public final class GameProtocol {
         return this;
       }
       
-      // optional uint32 heroUUID = 2;
-      private int heroUUID_ ;
-      public boolean hasHeroUUID() {
+      // optional uint32 heroID = 2;
+      private int heroID_ ;
+      public boolean hasHeroID() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      public int getHeroUUID() {
-        return heroUUID_;
+      public int getHeroID() {
+        return heroID_;
       }
-      public Builder setHeroUUID(int value) {
+      public Builder setHeroID(int value) {
         bitField0_ |= 0x00000002;
-        heroUUID_ = value;
+        heroID_ = value;
         onChanged();
         return this;
       }
-      public Builder clearHeroUUID() {
+      public Builder clearHeroID() {
         bitField0_ = (bitField0_ & ~0x00000002);
-        heroUUID_ = 0;
+        heroID_ = 0;
         onChanged();
         return this;
       }
@@ -12108,26 +12108,26 @@ public final class GameProtocol {
       "ta\022\017\n\007errCode\030\001 \001(\r\022+\n\010roleData\030\002 \001(\0132\031." +
       "roledata.PBRoleTotalInfo\"A\n\020RequestEnter" +
       "Gate\022\016\n\006userId\030\001 \001(\r\022\016\n\006gateId\030\002 \001(\r\022\r\n\005",
-      "heros\030\003 \003(\004\"$\n\021ResponseEnterGate\022\017\n\007errC" +
+      "heros\030\003 \003(\r\"$\n\021ResponseEnterGate\022\017\n\007errC" +
       "ode\030\001 \001(\r\"C\n\021RequestFinishGate\022\016\n\006userId" +
       "\030\001 \001(\r\022\016\n\006gateId\030\002 \001(\r\022\016\n\006result\030\003 \001(\r\"J" +
       "\n\023ResponseFinishiGate\022\017\n\007errCode\030\001 \001(\r\022\016" +
-      "\n\006expGet\030\002 \001(\r\022\022\n\nheroExpGet\030\003 \001(\r\"J\n\025Re" +
-      "questHeroDressEquip\022\016\n\006userId\030\001 \001(\r\022\020\n\010h" +
-      "eroUUID\030\002 \001(\004\022\017\n\007equipId\030\003 \001(\r\")\n\026Respon" +
-      "seHeroDressEquip\022\017\n\007errCode\030\001 \001(\r\"6\n\022Req" +
-      "uestUpgradeHero\022\016\n\006userId\030\001 \001(\r\022\020\n\010heroU" +
-      "UID\030\002 \001(\r\"&\n\023ResponseUpgradeHero\022\017\n\007errC",
-      "ode\030\001 \001(\r\"=\n\024RequestCompoundEquip\022\016\n\006use" +
-      "rId\030\001 \001(\r\022\025\n\rtargetEquipId\030\002 \001(\r\"(\n\025Resp" +
-      "onseCompoundEquip\022\017\n\007errCode\030\001 \001(\r\"&\n\024Re" +
-      "questDrawPrizeList\022\016\n\006userId\030\001 \001(\r\":\n\025Re" +
-      "sponseDrawPrizeList\022\017\n\007errCode\030\001 \001(\r\022\020\n\010" +
-      "drawList\030\002 \003(\r\"2\n\020RequestDrawPrize\022\016\n\006us" +
-      "erId\030\001 \001(\r\022\016\n\006drawId\030\002 \001(\r\"0\n\013PBDrawPriz" +
-      "e\022\017\n\007prizeId\030\001 \001(\r\022\020\n\010prizeNum\030\002 \001(\r\"J\n\021" +
-      "ResponseDrawPrize\022\017\n\007errCode\030\001 \001(\r\022$\n\tpr" +
-      "izeList\030\002 \003(\0132\021.ctos.PBDrawPrize"
+      "\n\006expGet\030\002 \001(\r\022\022\n\nheroExpGet\030\003 \001(\r\"H\n\025Re" +
+      "questHeroDressEquip\022\016\n\006userId\030\001 \001(\r\022\016\n\006h" +
+      "eroID\030\002 \001(\r\022\017\n\007equipId\030\003 \001(\r\")\n\026Response" +
+      "HeroDressEquip\022\017\n\007errCode\030\001 \001(\r\"4\n\022Reque" +
+      "stUpgradeHero\022\016\n\006userId\030\001 \001(\r\022\016\n\006heroID\030" +
+      "\002 \001(\r\"&\n\023ResponseUpgradeHero\022\017\n\007errCode\030",
+      "\001 \001(\r\"=\n\024RequestCompoundEquip\022\016\n\006userId\030" +
+      "\001 \001(\r\022\025\n\rtargetEquipId\030\002 \001(\r\"(\n\025Response" +
+      "CompoundEquip\022\017\n\007errCode\030\001 \001(\r\"&\n\024Reques" +
+      "tDrawPrizeList\022\016\n\006userId\030\001 \001(\r\":\n\025Respon" +
+      "seDrawPrizeList\022\017\n\007errCode\030\001 \001(\r\022\020\n\010draw" +
+      "List\030\002 \003(\r\"2\n\020RequestDrawPrize\022\016\n\006userId" +
+      "\030\001 \001(\r\022\016\n\006drawId\030\002 \001(\r\"0\n\013PBDrawPrize\022\017\n" +
+      "\007prizeId\030\001 \001(\r\022\020\n\010prizeNum\030\002 \001(\r\"J\n\021Resp" +
+      "onseDrawPrize\022\017\n\007errCode\030\001 \001(\r\022$\n\tprizeL" +
+      "ist\030\002 \003(\0132\021.ctos.PBDrawPrize"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -12283,7 +12283,7 @@ public final class GameProtocol {
           internal_static_ctos_RequestHeroDressEquip_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_ctos_RequestHeroDressEquip_descriptor,
-              new java.lang.String[] { "UserId", "HeroUUID", "EquipId", },
+              new java.lang.String[] { "UserId", "HeroID", "EquipId", },
               ctos.GameProtocol.RequestHeroDressEquip.class,
               ctos.GameProtocol.RequestHeroDressEquip.Builder.class);
           internal_static_ctos_ResponseHeroDressEquip_descriptor =
@@ -12299,7 +12299,7 @@ public final class GameProtocol {
           internal_static_ctos_RequestUpgradeHero_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_ctos_RequestUpgradeHero_descriptor,
-              new java.lang.String[] { "UserId", "HeroUUID", },
+              new java.lang.String[] { "UserId", "HeroID", },
               ctos.GameProtocol.RequestUpgradeHero.class,
               ctos.GameProtocol.RequestUpgradeHero.Builder.class);
           internal_static_ctos_ResponseUpgradeHero_descriptor =

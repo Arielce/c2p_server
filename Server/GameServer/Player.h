@@ -98,9 +98,9 @@ public:
 
 public:
 	// 英雄相关操作
-	bool GetHero(uint64_t uHeroUUID, Hero& hero);					// 获取英雄信息
+	bool GetHero(uint32_t uHeroID, Hero& hero);					// 获取英雄信息
 	void AddHero(uint32_t uHeroId, uint32_t uHeroRank=1, uint32_t uHeroLevel=1, uint32_t uHeroExp=0);
-	bool HasHero(uint64_t uHeroUUID);								// 是否有某个英雄
+	bool HasHero(uint32_t uHeroID);								// 是否有某个英雄
 
 private:
 	void _SetPlayerDataReady();
@@ -137,7 +137,7 @@ private:
 
 private:
 	map<uint32_t, Goods> m_roleBagMap;						// 玩家包裹信息[物品ID，物品信息]
-	map<uint64_t, Hero> m_roleHeroMap;						// 玩家英雄信息[英雄UUID，英雄属性]
+	map<uint32_t, Hero> m_roleHeroMap;						// 玩家英雄信息[英雄ID，英雄属性]
 	map<uint32_t, GateInfo> m_gateMap;						// 玩家关卡信息[关卡ID, 关卡信息]
 	map<uint32_t, BattleInfo> m_battleMap;					// 玩家大关卡信息[大关卡ID，大关卡信息]
 };

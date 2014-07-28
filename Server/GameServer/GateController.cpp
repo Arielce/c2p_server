@@ -7,6 +7,7 @@
 #include "../tinyxml/tinyxml.h"
 #include "HeroMng.h"
 #include "PlayerMng.h"
+#include "PrizeMng.h"
 
 
 GateController::GateController() : m_pNormalGate(NULL)
@@ -163,7 +164,7 @@ bool GateController::GetGateConf(uint32_t uGateId, GateConf& gateConf)
 }
 
 // 进入关卡
-void GateController::EnterGate(Player* pPlayer, uint32_t uGateId, const vector<uint64_t>& heroList)
+void GateController::EnterGate(Player* pPlayer, uint32_t uGateId, const vector<uint32_t>& heroList)
 {
 	if (!IsGateExist(uGateId))
 	{
@@ -233,10 +234,10 @@ bool GateChecker::IsGateValid(Player* pPlayer, uint32_t uGateId)
 	return true;
 }
 
-bool GateChecker::IsHerosValid(Player* pPlayer, const vector<uint64_t>& heroList)
+bool GateChecker::IsHerosValid(Player* pPlayer, const vector<uint32_t>& heroList)
 {
-	vector<uint64_t>::const_iterator heroIt = heroList.begin();
-	vector<uint64_t>::const_iterator heroItEnd = heroList.end();
+	vector<uint32_t>::const_iterator heroIt = heroList.begin();
+	vector<uint32_t>::const_iterator heroItEnd = heroList.end();
 	for (; heroIt != heroItEnd; heroIt++)
 	{
 		if (!pPlayer->HasHero(*heroIt))						// 这个英雄玩家没有拥有
@@ -249,7 +250,7 @@ bool GateChecker::IsHerosValid(Player* pPlayer, const vector<uint64_t>& heroList
 }
 
 // 进入关卡
-void GateChecker::EnterGate(Player* pPlayer, uint32_t uGateId, const vector<uint64_t>& heroList)
+void GateChecker::EnterGate(Player* pPlayer, uint32_t uGateId, const vector<uint32_t>& heroList)
 {
 	_RecordEnterGate(pPlayer, uGateId, heroList);
 }
@@ -272,14 +273,14 @@ bool GateChecker::HasGateRecord(Player* pPlayer, uint32_t uGateId)
 }
 
 // 获取英雄列表
-const vector<uint64_t>& GateChecker::GetHeroList(Player* pPlayer)
+const vector<uint32_t>& GateChecker::GetHeroList(Player* pPlayer)
 {
 	map<string, GateRecord>::iterator gateIt = m_enterRecordMap.find(pPlayer->RoleName());
 	return gateIt->second.heroList;
 }
 
 // 记录进入关卡的信息
-void GateChecker::_RecordEnterGate(Player* pPlayer, uint32_t uGateId, const vector<uint64_t>& heroList)
+void GateChecker::_RecordEnterGate(Player* pPlayer, uint32_t uGateId, const vector<uint32_t>& heroList)
 {
 	GateRecord gateRecord;
 	gateRecord.uGateId = uGateId;
@@ -301,7 +302,7 @@ GateAchieve::~GateAchieve()
 }
 
 // 给玩家发通关奖励
-void GateAchieve::GivePrize(Player* pPlayer, uint32_t uGateId, int32_t nResult, const vector<uint64_t>& heroList)
+void GateAchieve::GivePrize(Player* pPlayer, uint32_t uGateId, int32_t nResult, const vector<uint32_t>& heroList)
 {
 	if (!pPlayer)
 	{
@@ -314,25 +315,15 @@ void GateAchieve::GivePrize(Player* pPlayer, uint32_t uGateId, int32_t nResult, 
 		return;
 	}
 
-	uint32_t uNewLevel = pPlayer->GetLevel();
-	uint32_t uNewExp = pPlayer->GetExp();
-	gpPlayerMng->AddPlayerExp(gateConf.uExpGet, pPlayer->GetLevel(), pPlayer->GetExp(), uNewLevel, uNewExp);
-	pPlayer->SetLevel(uNewLevel);
-	pPlayer->SetExp(uNewExp);
+	// 给玩家发放经验
+	gpPrizeMng->GiveExp(pPlayer, gateConf.uExpGet);
 
-	vector<uint64_t>::const_iterator heroIt = heroList.begin();
-	vector<uint64_t>::const_iterator heroItEnd = heroList.end();
+	// 给玩家英雄们发放经验
+	vector<uint32_t>::const_iterator heroIt = heroList.begin();
+	vector<uint32_t>::const_iterator heroItEnd = heroList.end();
 	for (; heroIt != heroItEnd; heroIt++)
 	{
-		Hero hero;
-		if (pPlayer->GetHero(*heroIt, hero))
-		{
-			uint32_t uNewLevel = hero.GetLevel();
-			uint32_t uNewExp = hero.GetExp();
-			gpHeroMng->AddHeroExp(gateConf.uHeroExpGet, hero.GetLevel(), hero.GetExp(), uNewLevel, uNewExp);
-			hero.SetLevel(uNewLevel);
-			hero.SetExp(uNewExp);
-		}
+		gpPrizeMng->GiveHeroExp(pPlayer, *heroIt, gateConf.uHeroExpGet);
 	}
 
 	// give prize in pool
@@ -342,19 +333,17 @@ void GateAchieve::GivePrize(Player* pPlayer, uint32_t uGateId, int32_t nResult, 
 		return;
 	}
 
-
+	// 给玩家发放奖励
 	const GatePrizePool& prizePool = gpGateController->GetGatePrizePool(gateConf.uPrizePool);
 	vector<GatePrizePool::PrizeProp>::const_iterator prizeIt = prizePool.m_prizeList.begin();
 	vector<GatePrizePool::PrizeProp>::const_iterator prizeItEnd = prizePool.m_prizeList.end();
 	for (; prizeIt != prizeItEnd; prizeIt++)
-	{
+	{		
 		const GatePrizePool::PrizeProp& prizeProp = *prizeIt;
 		uint32_t uRand = GenRandom(0, MAX_GATE_PRIZE_PROB);
 		if (uRand < prizeProp.uProbability)					// 触发概率
 		{
-			Goods goods;
-			goods.uId = prizeProp.uPrizeId;
-			pPlayer->AddGoodsIntoBag(goods);
+			gpPrizeMng->GiveGoods(pPlayer, prizeProp.uPrizeId);
 		}
 	}
 
@@ -374,7 +363,7 @@ NormalGate::~NormalGate()
 
 }
 
-void NormalGate::EnterGate(Player* pPlayer, uint32_t uGateId, const vector<uint64_t>& heroList)
+void NormalGate::EnterGate(Player* pPlayer, uint32_t uGateId, const vector<uint32_t>& heroList)
 {
 	ctos::ResponseEnterGate enterGateAck;
 	if (!m_gateChecker.IsGateValid(pPlayer, uGateId))

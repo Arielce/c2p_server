@@ -8,7 +8,7 @@
 class Hero
 {
 public:
-	Hero() : m_uHeroId(0), m_uHeroUUID(0), m_uLevel(0), m_uExp(0), m_uHeroRank(0), m_uUpgradeLevel(0), m_uFragmentNum(0)
+	Hero() : m_uHeroId(0), m_uLevel(0), m_uExp(0), m_uHeroRank(0), m_uUpgradeLevel(0), m_uFragmentNum(0)
 	{
 	}
 
@@ -20,16 +20,6 @@ public:
 	inline void SetHeroId(uint32_t uHeroId)
 	{
 		m_uHeroId = uHeroId;
-	}
-
-	inline uint64_t GetHeroUUID()
-	{
-		return m_uHeroUUID;
-	}
-
-	inline void SetHeroUUID(uint64_t uHeroUUID)
-	{
-		m_uHeroUUID = uHeroUUID;
 	}
 
 	inline uint32_t GetLevel()
@@ -96,7 +86,6 @@ public:
 
 private:
 	uint32_t m_uHeroId;			// Ó¢ÐÛID
-	uint64_t m_uHeroUUID;		// Ó¢ÐÛUUID
 	uint32_t m_uLevel;			// Ó¢ÐÛµÈ¼¶
 	uint32_t m_uExp;			// Ó¢ÐÛ¾­Ñé
 	uint32_t m_uHeroRank;		// Ó¢ÐÛÆ·¼¶

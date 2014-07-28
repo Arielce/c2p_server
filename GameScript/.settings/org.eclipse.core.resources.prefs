@@ -1,5 +1,7 @@
 eclipse.preferences.version=1
 encoding//python/ClientProtocol.py=cp936
+encoding//python/ClientSimulator.py=cp936
+encoding//python/HttpLogin.py=cp936
 encoding//python/ReloadConf.py=cp936
 encoding//python/SendPackageTwoPart.py=cp936
 encoding//python/SendTowPkgOnce.py=cp936

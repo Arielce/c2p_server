@@ -483,52 +483,45 @@ class PBHero : public ::google::protobuf::Message {
   inline ::google::protobuf::uint32 heroid() const;
   inline void set_heroid(::google::protobuf::uint32 value);
   
-  // optional uint64 heroUUID = 2;
-  inline bool has_herouuid() const;
-  inline void clear_herouuid();
-  static const int kHeroUUIDFieldNumber = 2;
-  inline ::google::protobuf::uint64 herouuid() const;
-  inline void set_herouuid(::google::protobuf::uint64 value);
-  
-  // optional uint32 level = 3;
+  // optional uint32 level = 2;
   inline bool has_level() const;
   inline void clear_level();
-  static const int kLevelFieldNumber = 3;
+  static const int kLevelFieldNumber = 2;
   inline ::google::protobuf::uint32 level() const;
   inline void set_level(::google::protobuf::uint32 value);
   
-  // optional uint32 exp = 4;
+  // optional uint32 exp = 3;
   inline bool has_exp() const;
   inline void clear_exp();
-  static const int kExpFieldNumber = 4;
+  static const int kExpFieldNumber = 3;
   inline ::google::protobuf::uint32 exp() const;
   inline void set_exp(::google::protobuf::uint32 value);
   
-  // optional uint32 heroRank = 5;
+  // optional uint32 heroRank = 4;
   inline bool has_herorank() const;
   inline void clear_herorank();
-  static const int kHeroRankFieldNumber = 5;
+  static const int kHeroRankFieldNumber = 4;
   inline ::google::protobuf::uint32 herorank() const;
   inline void set_herorank(::google::protobuf::uint32 value);
   
-  // optional uint32 upgradeLevel = 6;
+  // optional uint32 upgradeLevel = 5;
   inline bool has_upgradelevel() const;
   inline void clear_upgradelevel();
-  static const int kUpgradeLevelFieldNumber = 6;
+  static const int kUpgradeLevelFieldNumber = 5;
   inline ::google::protobuf::uint32 upgradelevel() const;
   inline void set_upgradelevel(::google::protobuf::uint32 value);
   
-  // optional uint32 fragmentNum = 7;
+  // optional uint32 fragmentNum = 6;
   inline bool has_fragmentnum() const;
   inline void clear_fragmentnum();
-  static const int kFragmentNumFieldNumber = 7;
+  static const int kFragmentNumFieldNumber = 6;
   inline ::google::protobuf::uint32 fragmentnum() const;
   inline void set_fragmentnum(::google::protobuf::uint32 value);
   
-  // repeated .roledata.PBEquip equips = 8;
+  // repeated .roledata.PBEquip equips = 7;
   inline int equips_size() const;
   inline void clear_equips();
-  static const int kEquipsFieldNumber = 8;
+  static const int kEquipsFieldNumber = 7;
   inline const ::roledata::PBEquip& equips(int index) const;
   inline ::roledata::PBEquip* mutable_equips(int index);
   inline ::roledata::PBEquip* add_equips();
@@ -541,8 +534,6 @@ class PBHero : public ::google::protobuf::Message {
  private:
   inline void set_has_heroid();
   inline void clear_has_heroid();
-  inline void set_has_herouuid();
-  inline void clear_has_herouuid();
   inline void set_has_level();
   inline void clear_has_level();
   inline void set_has_exp();
@@ -556,7 +547,6 @@ class PBHero : public ::google::protobuf::Message {
   
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
-  ::google::protobuf::uint64 herouuid_;
   ::google::protobuf::uint32 heroid_;
   ::google::protobuf::uint32 level_;
   ::google::protobuf::uint32 exp_;
@@ -566,7 +556,7 @@ class PBHero : public ::google::protobuf::Message {
   ::google::protobuf::RepeatedPtrField< ::roledata::PBEquip > equips_;
   
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(8 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(7 + 31) / 32];
   
   friend void  protobuf_AddDesc_RoleData_2eproto();
   friend void protobuf_AssignDesc_RoleData_2eproto();
@@ -1498,37 +1488,15 @@ inline void PBHero::set_heroid(::google::protobuf::uint32 value) {
   heroid_ = value;
 }
 
-// optional uint64 heroUUID = 2;
-inline bool PBHero::has_herouuid() const {
+// optional uint32 level = 2;
+inline bool PBHero::has_level() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
-inline void PBHero::set_has_herouuid() {
+inline void PBHero::set_has_level() {
   _has_bits_[0] |= 0x00000002u;
 }
-inline void PBHero::clear_has_herouuid() {
-  _has_bits_[0] &= ~0x00000002u;
-}
-inline void PBHero::clear_herouuid() {
-  herouuid_ = GOOGLE_ULONGLONG(0);
-  clear_has_herouuid();
-}
-inline ::google::protobuf::uint64 PBHero::herouuid() const {
-  return herouuid_;
-}
-inline void PBHero::set_herouuid(::google::protobuf::uint64 value) {
-  set_has_herouuid();
-  herouuid_ = value;
-}
-
-// optional uint32 level = 3;
-inline bool PBHero::has_level() const {
-  return (_has_bits_[0] & 0x00000004u) != 0;
-}
-inline void PBHero::set_has_level() {
-  _has_bits_[0] |= 0x00000004u;
-}
 inline void PBHero::clear_has_level() {
-  _has_bits_[0] &= ~0x00000004u;
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline void PBHero::clear_level() {
   level_ = 0u;
@@ -1542,15 +1510,15 @@ inline void PBHero::set_level(::google::protobuf::uint32 value) {
   level_ = value;
 }
 
-// optional uint32 exp = 4;
+// optional uint32 exp = 3;
 inline bool PBHero::has_exp() const {
-  return (_has_bits_[0] & 0x00000008u) != 0;
+  return (_has_bits_[0] & 0x00000004u) != 0;
 }
 inline void PBHero::set_has_exp() {
-  _has_bits_[0] |= 0x00000008u;
+  _has_bits_[0] |= 0x00000004u;
 }
 inline void PBHero::clear_has_exp() {
-  _has_bits_[0] &= ~0x00000008u;
+  _has_bits_[0] &= ~0x00000004u;
 }
 inline void PBHero::clear_exp() {
   exp_ = 0u;
@@ -1564,15 +1532,15 @@ inline void PBHero::set_exp(::google::protobuf::uint32 value) {
   exp_ = value;
 }
 
-// optional uint32 heroRank = 5;
+// optional uint32 heroRank = 4;
 inline bool PBHero::has_herorank() const {
-  return (_has_bits_[0] & 0x00000010u) != 0;
+  return (_has_bits_[0] & 0x00000008u) != 0;
 }
 inline void PBHero::set_has_herorank() {
-  _has_bits_[0] |= 0x00000010u;
+  _has_bits_[0] |= 0x00000008u;
 }
 inline void PBHero::clear_has_herorank() {
-  _has_bits_[0] &= ~0x00000010u;
+  _has_bits_[0] &= ~0x00000008u;
 }
 inline void PBHero::clear_herorank() {
   herorank_ = 0u;
@@ -1586,15 +1554,15 @@ inline void PBHero::set_herorank(::google::protobuf::uint32 value) {
   herorank_ = value;
 }
 
-// optional uint32 upgradeLevel = 6;
+// optional uint32 upgradeLevel = 5;
 inline bool PBHero::has_upgradelevel() const {
-  return (_has_bits_[0] & 0x00000020u) != 0;
+  return (_has_bits_[0] & 0x00000010u) != 0;
 }
 inline void PBHero::set_has_upgradelevel() {
-  _has_bits_[0] |= 0x00000020u;
+  _has_bits_[0] |= 0x00000010u;
 }
 inline void PBHero::clear_has_upgradelevel() {
-  _has_bits_[0] &= ~0x00000020u;
+  _has_bits_[0] &= ~0x00000010u;
 }
 inline void PBHero::clear_upgradelevel() {
   upgradelevel_ = 0u;
@@ -1608,15 +1576,15 @@ inline void PBHero::set_upgradelevel(::google::protobuf::uint32 value) {
   upgradelevel_ = value;
 }
 
-// optional uint32 fragmentNum = 7;
+// optional uint32 fragmentNum = 6;
 inline bool PBHero::has_fragmentnum() const {
-  return (_has_bits_[0] & 0x00000040u) != 0;
+  return (_has_bits_[0] & 0x00000020u) != 0;
 }
 inline void PBHero::set_has_fragmentnum() {
-  _has_bits_[0] |= 0x00000040u;
+  _has_bits_[0] |= 0x00000020u;
 }
 inline void PBHero::clear_has_fragmentnum() {
-  _has_bits_[0] &= ~0x00000040u;
+  _has_bits_[0] &= ~0x00000020u;
 }
 inline void PBHero::clear_fragmentnum() {
   fragmentnum_ = 0u;
@@ -1630,7 +1598,7 @@ inline void PBHero::set_fragmentnum(::google::protobuf::uint32 value) {
   fragmentnum_ = value;
 }
 
-// repeated .roledata.PBEquip equips = 8;
+// repeated .roledata.PBEquip equips = 7;
 inline int PBHero::equips_size() const {
   return equips_.size();
 }

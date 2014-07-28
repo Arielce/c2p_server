@@ -2131,31 +2131,27 @@ public final class RoleData {
     boolean hasHeroId();
     int getHeroId();
     
-    // optional uint64 heroUUID = 2;
-    boolean hasHeroUUID();
-    long getHeroUUID();
-    
-    // optional uint32 level = 3;
+    // optional uint32 level = 2;
     boolean hasLevel();
     int getLevel();
     
-    // optional uint32 exp = 4;
+    // optional uint32 exp = 3;
     boolean hasExp();
     int getExp();
     
-    // optional uint32 heroRank = 5;
+    // optional uint32 heroRank = 4;
     boolean hasHeroRank();
     int getHeroRank();
     
-    // optional uint32 upgradeLevel = 6;
+    // optional uint32 upgradeLevel = 5;
     boolean hasUpgradeLevel();
     int getUpgradeLevel();
     
-    // optional uint32 fragmentNum = 7;
+    // optional uint32 fragmentNum = 6;
     boolean hasFragmentNum();
     int getFragmentNum();
     
-    // repeated .roledata.PBEquip equips = 8;
+    // repeated .roledata.PBEquip equips = 7;
     java.util.List<roledata.RoleData.PBEquip> 
         getEquipsList();
     roledata.RoleData.PBEquip getEquips(int index);
@@ -2204,68 +2200,58 @@ public final class RoleData {
       return heroId_;
     }
     
-    // optional uint64 heroUUID = 2;
-    public static final int HEROUUID_FIELD_NUMBER = 2;
-    private long heroUUID_;
-    public boolean hasHeroUUID() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    public long getHeroUUID() {
-      return heroUUID_;
-    }
-    
-    // optional uint32 level = 3;
-    public static final int LEVEL_FIELD_NUMBER = 3;
+    // optional uint32 level = 2;
+    public static final int LEVEL_FIELD_NUMBER = 2;
     private int level_;
     public boolean hasLevel() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
+      return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     public int getLevel() {
       return level_;
     }
     
-    // optional uint32 exp = 4;
-    public static final int EXP_FIELD_NUMBER = 4;
+    // optional uint32 exp = 3;
+    public static final int EXP_FIELD_NUMBER = 3;
     private int exp_;
     public boolean hasExp() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     public int getExp() {
       return exp_;
     }
     
-    // optional uint32 heroRank = 5;
-    public static final int HERORANK_FIELD_NUMBER = 5;
+    // optional uint32 heroRank = 4;
+    public static final int HERORANK_FIELD_NUMBER = 4;
     private int heroRank_;
     public boolean hasHeroRank() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
+      return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     public int getHeroRank() {
       return heroRank_;
     }
     
-    // optional uint32 upgradeLevel = 6;
-    public static final int UPGRADELEVEL_FIELD_NUMBER = 6;
+    // optional uint32 upgradeLevel = 5;
+    public static final int UPGRADELEVEL_FIELD_NUMBER = 5;
     private int upgradeLevel_;
     public boolean hasUpgradeLevel() {
-      return ((bitField0_ & 0x00000020) == 0x00000020);
+      return ((bitField0_ & 0x00000010) == 0x00000010);
     }
     public int getUpgradeLevel() {
       return upgradeLevel_;
     }
     
-    // optional uint32 fragmentNum = 7;
-    public static final int FRAGMENTNUM_FIELD_NUMBER = 7;
+    // optional uint32 fragmentNum = 6;
+    public static final int FRAGMENTNUM_FIELD_NUMBER = 6;
     private int fragmentNum_;
     public boolean hasFragmentNum() {
-      return ((bitField0_ & 0x00000040) == 0x00000040);
+      return ((bitField0_ & 0x00000020) == 0x00000020);
     }
     public int getFragmentNum() {
       return fragmentNum_;
     }
     
-    // repeated .roledata.PBEquip equips = 8;
-    public static final int EQUIPS_FIELD_NUMBER = 8;
+    // repeated .roledata.PBEquip equips = 7;
+    public static final int EQUIPS_FIELD_NUMBER = 7;
     private java.util.List<roledata.RoleData.PBEquip> equips_;
     public java.util.List<roledata.RoleData.PBEquip> getEquipsList() {
       return equips_;
@@ -2287,7 +2273,6 @@ public final class RoleData {
     
     private void initFields() {
       heroId_ = 0;
-      heroUUID_ = 0L;
       level_ = 0;
       exp_ = 0;
       heroRank_ = 0;
@@ -2311,25 +2296,22 @@ public final class RoleData {
         output.writeUInt32(1, heroId_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeUInt64(2, heroUUID_);
+        output.writeUInt32(2, level_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeUInt32(3, level_);
+        output.writeUInt32(3, exp_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeUInt32(4, exp_);
+        output.writeUInt32(4, heroRank_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeUInt32(5, heroRank_);
+        output.writeUInt32(5, upgradeLevel_);
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeUInt32(6, upgradeLevel_);
-      }
-      if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        output.writeUInt32(7, fragmentNum_);
+        output.writeUInt32(6, fragmentNum_);
       }
       for (int i = 0; i < equips_.size(); i++) {
-        output.writeMessage(8, equips_.get(i));
+        output.writeMessage(7, equips_.get(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -2346,31 +2328,27 @@ public final class RoleData {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt64Size(2, heroUUID_);
+          .computeUInt32Size(2, level_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(3, level_);
+          .computeUInt32Size(3, exp_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(4, exp_);
+          .computeUInt32Size(4, heroRank_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(5, heroRank_);
+          .computeUInt32Size(5, upgradeLevel_);
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(6, upgradeLevel_);
-      }
-      if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(7, fragmentNum_);
+          .computeUInt32Size(6, fragmentNum_);
       }
       for (int i = 0; i < equips_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(8, equips_.get(i));
+          .computeMessageSize(7, equips_.get(i));
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -2499,21 +2477,19 @@ public final class RoleData {
         super.clear();
         heroId_ = 0;
         bitField0_ = (bitField0_ & ~0x00000001);
-        heroUUID_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00000002);
         level_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000002);
         exp_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000004);
         heroRank_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000008);
         upgradeLevel_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000010);
         fragmentNum_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000040);
+        bitField0_ = (bitField0_ & ~0x00000020);
         if (equipsBuilder_ == null) {
           equips_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000080);
+          bitField0_ = (bitField0_ & ~0x00000040);
         } else {
           equipsBuilder_.clear();
         }
@@ -2562,31 +2538,27 @@ public final class RoleData {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.heroUUID_ = heroUUID_;
+        result.level_ = level_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.level_ = level_;
+        result.exp_ = exp_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
-        result.exp_ = exp_;
+        result.heroRank_ = heroRank_;
         if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
           to_bitField0_ |= 0x00000010;
         }
-        result.heroRank_ = heroRank_;
+        result.upgradeLevel_ = upgradeLevel_;
         if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
           to_bitField0_ |= 0x00000020;
         }
-        result.upgradeLevel_ = upgradeLevel_;
-        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
-          to_bitField0_ |= 0x00000040;
-        }
         result.fragmentNum_ = fragmentNum_;
         if (equipsBuilder_ == null) {
-          if (((bitField0_ & 0x00000080) == 0x00000080)) {
+          if (((bitField0_ & 0x00000040) == 0x00000040)) {
             equips_ = java.util.Collections.unmodifiableList(equips_);
-            bitField0_ = (bitField0_ & ~0x00000080);
+            bitField0_ = (bitField0_ & ~0x00000040);
           }
           result.equips_ = equips_;
         } else {
@@ -2611,9 +2583,6 @@ public final class RoleData {
         if (other.hasHeroId()) {
           setHeroId(other.getHeroId());
         }
-        if (other.hasHeroUUID()) {
-          setHeroUUID(other.getHeroUUID());
-        }
         if (other.hasLevel()) {
           setLevel(other.getLevel());
         }
@@ -2633,7 +2602,7 @@ public final class RoleData {
           if (!other.equips_.isEmpty()) {
             if (equips_.isEmpty()) {
               equips_ = other.equips_;
-              bitField0_ = (bitField0_ & ~0x00000080);
+              bitField0_ = (bitField0_ & ~0x00000040);
             } else {
               ensureEquipsIsMutable();
               equips_.addAll(other.equips_);
@@ -2646,7 +2615,7 @@ public final class RoleData {
               equipsBuilder_.dispose();
               equipsBuilder_ = null;
               equips_ = other.equips_;
-              bitField0_ = (bitField0_ & ~0x00000080);
+              bitField0_ = (bitField0_ & ~0x00000040);
               equipsBuilder_ = 
                 com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
                    getEquipsFieldBuilder() : null;
@@ -2693,35 +2662,30 @@ public final class RoleData {
             }
             case 16: {
               bitField0_ |= 0x00000002;
-              heroUUID_ = input.readUInt64();
+              level_ = input.readUInt32();
               break;
             }
             case 24: {
               bitField0_ |= 0x00000004;
-              level_ = input.readUInt32();
+              exp_ = input.readUInt32();
               break;
             }
             case 32: {
               bitField0_ |= 0x00000008;
-              exp_ = input.readUInt32();
+              heroRank_ = input.readUInt32();
               break;
             }
             case 40: {
               bitField0_ |= 0x00000010;
-              heroRank_ = input.readUInt32();
+              upgradeLevel_ = input.readUInt32();
               break;
             }
             case 48: {
               bitField0_ |= 0x00000020;
-              upgradeLevel_ = input.readUInt32();
-              break;
-            }
-            case 56: {
-              bitField0_ |= 0x00000040;
               fragmentNum_ = input.readUInt32();
               break;
             }
-            case 66: {
+            case 58: {
               roledata.RoleData.PBEquip.Builder subBuilder = roledata.RoleData.PBEquip.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addEquips(subBuilder.buildPartial());
@@ -2754,139 +2718,118 @@ public final class RoleData {
         return this;
       }
       
-      // optional uint64 heroUUID = 2;
-      private long heroUUID_ ;
-      public boolean hasHeroUUID() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      public long getHeroUUID() {
-        return heroUUID_;
-      }
-      public Builder setHeroUUID(long value) {
-        bitField0_ |= 0x00000002;
-        heroUUID_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearHeroUUID() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        heroUUID_ = 0L;
-        onChanged();
-        return this;
-      }
-      
-      // optional uint32 level = 3;
+      // optional uint32 level = 2;
       private int level_ ;
       public boolean hasLevel() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       public int getLevel() {
         return level_;
       }
       public Builder setLevel(int value) {
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000002;
         level_ = value;
         onChanged();
         return this;
       }
       public Builder clearLevel() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000002);
         level_ = 0;
         onChanged();
         return this;
       }
       
-      // optional uint32 exp = 4;
+      // optional uint32 exp = 3;
       private int exp_ ;
       public boolean hasExp() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       public int getExp() {
         return exp_;
       }
       public Builder setExp(int value) {
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000004;
         exp_ = value;
         onChanged();
         return this;
       }
       public Builder clearExp() {
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000004);
         exp_ = 0;
         onChanged();
         return this;
       }
       
-      // optional uint32 heroRank = 5;
+      // optional uint32 heroRank = 4;
       private int heroRank_ ;
       public boolean hasHeroRank() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       public int getHeroRank() {
         return heroRank_;
       }
       public Builder setHeroRank(int value) {
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000008;
         heroRank_ = value;
         onChanged();
         return this;
       }
       public Builder clearHeroRank() {
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000008);
         heroRank_ = 0;
         onChanged();
         return this;
       }
       
-      // optional uint32 upgradeLevel = 6;
+      // optional uint32 upgradeLevel = 5;
       private int upgradeLevel_ ;
       public boolean hasUpgradeLevel() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
+        return ((bitField0_ & 0x00000010) == 0x00000010);
       }
       public int getUpgradeLevel() {
         return upgradeLevel_;
       }
       public Builder setUpgradeLevel(int value) {
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000010;
         upgradeLevel_ = value;
         onChanged();
         return this;
       }
       public Builder clearUpgradeLevel() {
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000010);
         upgradeLevel_ = 0;
         onChanged();
         return this;
       }
       
-      // optional uint32 fragmentNum = 7;
+      // optional uint32 fragmentNum = 6;
       private int fragmentNum_ ;
       public boolean hasFragmentNum() {
-        return ((bitField0_ & 0x00000040) == 0x00000040);
+        return ((bitField0_ & 0x00000020) == 0x00000020);
       }
       public int getFragmentNum() {
         return fragmentNum_;
       }
       public Builder setFragmentNum(int value) {
-        bitField0_ |= 0x00000040;
+        bitField0_ |= 0x00000020;
         fragmentNum_ = value;
         onChanged();
         return this;
       }
       public Builder clearFragmentNum() {
-        bitField0_ = (bitField0_ & ~0x00000040);
+        bitField0_ = (bitField0_ & ~0x00000020);
         fragmentNum_ = 0;
         onChanged();
         return this;
       }
       
-      // repeated .roledata.PBEquip equips = 8;
+      // repeated .roledata.PBEquip equips = 7;
       private java.util.List<roledata.RoleData.PBEquip> equips_ =
         java.util.Collections.emptyList();
       private void ensureEquipsIsMutable() {
-        if (!((bitField0_ & 0x00000080) == 0x00000080)) {
+        if (!((bitField0_ & 0x00000040) == 0x00000040)) {
           equips_ = new java.util.ArrayList<roledata.RoleData.PBEquip>(equips_);
-          bitField0_ |= 0x00000080;
+          bitField0_ |= 0x00000040;
          }
       }
       
@@ -3002,7 +2945,7 @@ public final class RoleData {
       public Builder clearEquips() {
         if (equipsBuilder_ == null) {
           equips_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000080);
+          bitField0_ = (bitField0_ & ~0x00000040);
           onChanged();
         } else {
           equipsBuilder_.clear();
@@ -3058,7 +3001,7 @@ public final class RoleData {
           equipsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
               roledata.RoleData.PBEquip, roledata.RoleData.PBEquip.Builder, roledata.RoleData.PBEquipOrBuilder>(
                   equips_,
-                  ((bitField0_ & 0x00000080) == 0x00000080),
+                  ((bitField0_ & 0x00000040) == 0x00000040),
                   getParentForChildren(),
                   isClean());
           equips_ = null;
@@ -5857,19 +5800,18 @@ public final class RoleData {
       "vipLevel\030\t \001(\r\022&\n\010heroList\030\n \001(\0132\024.roled" +
       "ata.PBHeroList\0222\n\016battleGateList\030\013 \001(\0132\032" +
       ".roledata.PBBattleGateList\",\n\007PBEquip\022\017\n",
-      "\007equipId\030\001 \001(\r\022\020\n\010equipNum\030\003 \001(\r\"\246\001\n\006PBH" +
-      "ero\022\016\n\006heroId\030\001 \001(\r\022\020\n\010heroUUID\030\002 \001(\004\022\r\n" +
-      "\005level\030\003 \001(\r\022\013\n\003exp\030\004 \001(\r\022\020\n\010heroRank\030\005 " +
-      "\001(\r\022\024\n\014upgradeLevel\030\006 \001(\r\022\023\n\013fragmentNum" +
-      "\030\007 \001(\r\022!\n\006equips\030\010 \003(\0132\021.roledata.PBEqui" +
-      "p\"-\n\nPBHeroList\022\037\n\005heros\030\001 \003(\0132\020.roledat" +
-      "a.PBHero\".\n\tPBRoleBag\022!\n\006equips\030\001 \003(\0132\021." +
-      "roledata.PBEquip\"@\n\nPBGateInfo\022\016\n\006gateId" +
-      "\030\001 \001(\r\022\020\n\010gateStar\030\002 \001(\r\022\020\n\010hasFight\030\003 \001" +
-      "(\010\"E\n\014PBBattleInfo\022\020\n\010battleId\030\001 \001(\r\022#\n\005",
-      "gates\030\002 \003(\0132\024.roledata.PBGateInfo\"?\n\020PBB" +
-      "attleGateList\022+\n\013battleGates\030\001 \003(\0132\026.rol" +
-      "edata.PBBattleInfo"
+      "\007equipId\030\001 \001(\r\022\020\n\010equipNum\030\003 \001(\r\"\224\001\n\006PBH" +
+      "ero\022\016\n\006heroId\030\001 \001(\r\022\r\n\005level\030\002 \001(\r\022\013\n\003ex" +
+      "p\030\003 \001(\r\022\020\n\010heroRank\030\004 \001(\r\022\024\n\014upgradeLeve" +
+      "l\030\005 \001(\r\022\023\n\013fragmentNum\030\006 \001(\r\022!\n\006equips\030\007" +
+      " \003(\0132\021.roledata.PBEquip\"-\n\nPBHeroList\022\037\n" +
+      "\005heros\030\001 \003(\0132\020.roledata.PBHero\".\n\tPBRole" +
+      "Bag\022!\n\006equips\030\001 \003(\0132\021.roledata.PBEquip\"@" +
+      "\n\nPBGateInfo\022\016\n\006gateId\030\001 \001(\r\022\020\n\010gateStar" +
+      "\030\002 \001(\r\022\020\n\010hasFight\030\003 \001(\010\"E\n\014PBBattleInfo" +
+      "\022\020\n\010battleId\030\001 \001(\r\022#\n\005gates\030\002 \003(\0132\024.role",
+      "data.PBGateInfo\"?\n\020PBBattleGateList\022+\n\013b" +
+      "attleGates\030\001 \003(\0132\026.roledata.PBBattleInfo"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -5905,7 +5847,7 @@ public final class RoleData {
           internal_static_roledata_PBHero_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_roledata_PBHero_descriptor,
-              new java.lang.String[] { "HeroId", "HeroUUID", "Level", "Exp", "HeroRank", "UpgradeLevel", "FragmentNum", "Equips", },
+              new java.lang.String[] { "HeroId", "Level", "Exp", "HeroRank", "UpgradeLevel", "FragmentNum", "Equips", },
               roledata.RoleData.PBHero.class,
               roledata.RoleData.PBHero.Builder.class);
           internal_static_roledata_PBHeroList_descriptor =
