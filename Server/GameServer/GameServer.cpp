@@ -8,48 +8,70 @@
 #include "PlayerMng.h"
 #include "LoginAgentHandler.h"
 
+GameServer::~GameServer()
+{
+	// ÇåÀíÄÚ´æ
+	if (m_pClientHandler)
+		delete m_pClientHandler;
+	if (m_pClientMsgParser)
+		delete m_pClientMsgParser;
+	if (m_pCmdHandler)
+		delete m_pCmdHandler;
+	if (m_pDsHandler)
+		delete m_pDsHandler;
+	if (m_pLobbyHandler)
+		delete m_pLobbyHandler;
+	if (m_pLoginHandler)
+		delete m_pLoginHandler;
+}
+
+
 bool GameServer::Init(const char* pConfPath)
 {
-	if (!InitLog4cpp())
+	if (!_InitHandlers())
 	{
 		return false;
 	}
-	if (!InitServerConf(pConfPath))
+	if (!_InitLog4cpp())
+	{
+		return false;
+	}
+	if (!_InitServerConf(pConfPath))
 	{
 		TRACELOG("init server conf failed.");
 		return false;
 	}
-	if (!InitServerApp())
+	if (!_InitServerApp())
 	{
 		TRACELOG("init server app failed.");
 		return false;
 	}
-	if (!InitCmdListen())
+	if (!_InitCmdListen())
 	{
 		TRACELOG("init cmd listen failed.");
 		return false;
 	}
-	if (!InitDataServer())
+	if (!_InitDataServer())
 	{
 		TRACELOG("init data server failed.");
 		return false;
 	}
-	if (!InitLobbyServer())
+	if (!_InitLobbyServer())
 	{
 		TRACELOG("init lobby server failed.");
 		return false;
 	}
-	if (!InitLoginServerAgent())
+	if (!_InitLoginServerAgent())
 	{
 		TRACELOG("init login server agent failed.");
 		return false;
 	}
-	if (!InitTimerTrigger())
+	if (!_InitTimerTrigger())
 	{
 		TRACELOG("init timer trigger failed.");
 		return false;
 	}
-	if (!InitLoadConf())
+	if (!_InitLoadConf())
 	{
 		return false;
 	}
@@ -68,8 +90,48 @@ void GameServer::Stop()
 	m_pNetCluster->Stop();
 }
 
+bool GameServer::_InitHandlers()
+{
+	m_pClientHandler = new ClientHandler();
+	if (!m_pClientHandler)
+	{
+		return false;
+	}
 
-bool GameServer::InitLog4cpp()
+	m_pClientMsgParser = new ClientMsgParser();
+	if (!m_pClientMsgParser)
+	{
+		return false;
+	}
+
+	m_pCmdHandler = new CmdHandler();
+	if (!m_pCmdHandler)
+	{
+		return false;
+	}
+
+	m_pDsHandler = new DsHandler();
+	if (!m_pDsHandler)
+	{
+		return false;
+	}
+
+	m_pLobbyHandler = new LobbyHandler();
+	if (!m_pLobbyHandler)
+	{
+		return false;
+	}
+
+	m_pLoginHandler = new LoginAgentHandler();
+	if (!m_pLoginHandler)
+	{
+		return false;
+	}
+
+	return true;
+}
+
+bool GameServer::_InitLog4cpp()
 {
 	PropertyConfigurator::doConfigure(LOG4CPLUS_TEXT("./log.properties"));
 	Logger root = Logger::getRoot();
@@ -77,12 +139,12 @@ bool GameServer::InitLog4cpp()
 	return true;
 }
 
-bool GameServer::InitServerConf(const char* pConfPath)
+bool GameServer::_InitServerConf(const char* pConfPath)
 {
 	return gpServerConfig->LoadServerConf(pConfPath);
 }
 
-bool GameServer::InitServerApp()
+bool GameServer::_InitServerApp()
 {
 	m_pNetCluster = CreateNetCluster();
 	if (!m_pNetCluster)
@@ -102,33 +164,30 @@ bool GameServer::InitServerApp()
 		return false;
 	}
 
-	ClientHandler* clientHandler = new ClientHandler;
-	ClientMsgParser* clientMsgParser = new ClientMsgParser;
-	m_pServerSession->SetMsgParser(clientMsgParser);
-	m_pServerSession->SetMsgHandler(clientHandler);
+	m_pServerSession->SetMsgParser(m_pClientMsgParser);
+	m_pServerSession->SetMsgHandler(m_pClientHandler);
 	m_pServerSession->SetBufSize(12, 40960);
 	m_pServerSession->Listen(gpServerConfig->GetGsBindIp(), gpServerConfig->GetGsBindPort());
 	return true;
 }
 
-bool GameServer::InitCmdListen()
+bool GameServer::_InitCmdListen()
 {
 	m_pCmdSession = m_pNetCluster->CreateServerSession();
 	if (!m_pServerSession)
 	{
 		return false;
 	}
-	CmdHandler* pCmdHandler = new CmdHandler();
-	pCmdHandler->SetGameServer(this);
-	ClientMsgParser* pClientMsgParser = new ClientMsgParser();
-	m_pCmdSession->SetMsgParser(pClientMsgParser);
-	m_pCmdSession->SetMsgHandler(pCmdHandler);
+
+	m_pCmdHandler->SetGameServer(this);
+	m_pCmdSession->SetMsgParser(m_pClientMsgParser);
+	m_pCmdSession->SetMsgHandler(m_pCmdHandler);
 	m_pCmdSession->SetBufSize(12, 40960);
 	m_pCmdSession->Listen(gpServerConfig->GetCmdIp(), gpServerConfig->GetCmdPort());
 	return true;
 }
 
-bool GameServer::InitDataServer()
+bool GameServer::_InitDataServer()
 {
 	m_pDsSession = m_pNetCluster->CreateClientSession();
 	if (!m_pDsSession)
@@ -136,10 +195,8 @@ bool GameServer::InitDataServer()
 		return false;
 	}
 
-	DsHandler* pDsHandler = new DsHandler;
-	ClientMsgParser* clientMsgParser = new ClientMsgParser;
-	m_pDsSession->SetMsgParser(clientMsgParser);
-	m_pDsSession->SetMsgHandler(pDsHandler);
+	m_pDsSession->SetMsgParser(m_pClientMsgParser);
+	m_pDsSession->SetMsgHandler(m_pDsHandler);
 	m_pDsSession->SetBufSize(12, 40960);
 
 	m_pDsSession->Connect(gpServerConfig->GetDsIp(), gpServerConfig->GetDsPort());
@@ -147,7 +204,7 @@ bool GameServer::InitDataServer()
 	return true;
 }
 
-bool GameServer::InitLobbyServer()
+bool GameServer::_InitLobbyServer()
 {
 	m_pLobbySession = m_pNetCluster->CreateClientSession();
 	if (!m_pLobbySession)
@@ -155,10 +212,8 @@ bool GameServer::InitLobbyServer()
 		return false;
 	}
 
-	LobbyHandler* pLobbyHandler = new LobbyHandler;
-	ClientMsgParser* clientMsgParser = new ClientMsgParser;
-	m_pLobbySession->SetMsgParser(clientMsgParser);
-	m_pLobbySession->SetMsgHandler(pLobbyHandler);
+	m_pLobbySession->SetMsgParser(m_pClientMsgParser);
+	m_pLobbySession->SetMsgHandler(m_pLobbyHandler);
 	m_pLobbySession->SetBufSize(12, 40960);
 
 	m_pLobbySession->Connect(gpServerConfig->GetLobbyIp(), gpServerConfig->GetLobbyPort());
@@ -166,7 +221,7 @@ bool GameServer::InitLobbyServer()
 	return true;
 }
 
-bool GameServer::InitLoginServerAgent()
+bool GameServer::_InitLoginServerAgent()
 {
 	m_pLoginAgentSession = m_pNetCluster->CreateClientSession();
 	if (!m_pLoginAgentSession)
@@ -174,10 +229,8 @@ bool GameServer::InitLoginServerAgent()
 		return false;
 	}
 
-	LoginAgentHandler* pLoginHandler = new LoginAgentHandler;
-	ClientMsgParser* pClientMsgParser = new ClientMsgParser;
-	m_pLoginAgentSession->SetMsgParser(pClientMsgParser);
-	m_pLoginAgentSession->SetMsgHandler(pLoginHandler);
+	m_pLoginAgentSession->SetMsgParser(m_pClientMsgParser);
+	m_pLoginAgentSession->SetMsgHandler(m_pLoginHandler);
 	m_pLoginAgentSession->SetBufSize(12, 40960);
 
 	m_pLoginAgentSession->Connect(gpServerConfig->GetLoginIp(), gpServerConfig->GetLoginPort());
@@ -185,7 +238,7 @@ bool GameServer::InitLoginServerAgent()
 	return true;
 }
 
-bool GameServer::InitTimerTrigger()
+bool GameServer::_InitTimerTrigger()
 {
 	m_pTimerTrigger = m_pNetCluster->CreateTimerTrigger();
 	if (!m_pTimerTrigger)
@@ -197,7 +250,7 @@ bool GameServer::InitTimerTrigger()
 	return true;
 }
 
-bool GameServer::InitLoadConf()
+bool GameServer::_InitLoadConf()
 {
 	ConfigureReloador reloador;
 	if (!reloador.ReloadConf())

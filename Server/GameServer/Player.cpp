@@ -92,12 +92,17 @@ void Player::ClientDisconnect()
 
 void Player::SerializeToPB(roledata::PBRoleTotalInfo& roleTotalInfo)
 {
-	roledata::PBRoleBaseInfo* pBaseInfo = roleTotalInfo.mutable_baseinfo();
-	roledata::PBRoleBag* pRoleBag = roleTotalInfo.mutable_baginfo();
 	// 序列化玩家基本信息
+	roledata::PBRoleBaseInfo* pBaseInfo = roleTotalInfo.mutable_baseinfo();
 	_SerializeRoleBaseInfo(*pBaseInfo);
+
 	// 序列化玩家包裹信息
+	roledata::PBRoleBag* pRoleBag = roleTotalInfo.mutable_baginfo();
 	_SerializeRoleBagInfo(*pRoleBag);
+
+	// 序列号阵容信息
+	roledata::PBHeroLineupList* pLineupList = roleTotalInfo.mutable_lineuplist();
+	_SerializeHeroLineup(*pLineupList);
 
 #ifdef DEBUG_SERVER
 	string strOutput;
@@ -186,11 +191,33 @@ void Player::_SerializeRoleBagInfo(roledata::PBRoleBag& roleBag)
 		pPBEquip->set_equipid(goods.uId);
 		pPBEquip->set_equipnum(goods.uNum);
 	}
+
+	return;
 }
 
+// 序列号玩家阵容信息
+void Player::_SerializeHeroLineup(roledata::PBHeroLineupList& lineupList)
+{
+	map<uint32_t, HeroLineup>::iterator lineupIt = m_heroLineupMap.begin();
+	map<uint32_t, HeroLineup>::iterator lineupItEnd = m_heroLineupMap.end();
+	for (; lineupIt != lineupItEnd; lineupIt++)
+	{
+		roledata::PBHeroLineup* pPBHeroLineup = lineupList.add_lineuplist();
+		pPBHeroLineup->set_lineupid(lineupIt->first);
+
+		vector<uint32_t>::iterator heroIt = lineupIt->second.heroList.begin();
+		vector<uint32_t>::iterator heroItEnd = lineupIt->second.heroList.end();
+		pPBHeroLineup->add_heroid(*heroIt);
+	}
+
+	return;
+}
+
+// 设置已经从服务器验证过token了
 void Player::SetHasVerifyFromServer()
 {
 	m_bHasVerifyFromServer = true;
+	m_bHasVerifyToken = true;
 }
 
 bool Player::HasVerifyFromServer()
@@ -232,15 +259,19 @@ void Player::SendMsg(const void* pData, uint32_t uLen)
 	return;
 }
 
+// 解析玩家数据
 void Player::GetRoleTotalInfo(const roledata::PBRoleTotalInfo& roleTotalInfo)
 {
-	const roledata::PBRoleBaseInfo& roleBaseInfo = roleTotalInfo.baseinfo();
+	const roledata::PBRoleBaseInfo& pbRoleBaseInfo = roleTotalInfo.baseinfo();
 	const roledata::PBRoleBag& pbRoleBag = roleTotalInfo.baginfo();
+	const roledata::PBHeroLineupList& pbLineupList = roleTotalInfo.lineuplist();
 
 	// 解析玩家基础数据
-	_ParseRoleBaseInfo(roleBaseInfo);
+	_ParseRoleBaseInfo(pbRoleBaseInfo);
 	// 解析玩家包裹数据
 	_ParseRoleBagInfo(pbRoleBag);
+	// 解析玩家阵容列表
+	_ParseHeroLineup(pbLineupList);
 
 	// 设置玩家数据已经准备好
 	_SetPlayerDataReady();
@@ -329,6 +360,28 @@ void Player::_ParseRoleBagInfo(const roledata::PBRoleBag& roleBag)
 	}
 }
 
+// 解析玩家阵容信息
+void Player::_ParseHeroLineup(const roledata::PBHeroLineupList& lineupList)
+{
+	uint32_t uLineupNum = lineupList.lineuplist_size();
+	for (uint32_t i=0; i<uLineupNum; i++)
+	{
+		// 解析每个阵容的阵容ID，和阵容中的英雄数据
+		HeroLineup heroLineup;
+		const roledata::PBHeroLineup pbHeroLineup = lineupList.lineuplist(i);
+
+		heroLineup.uLineupId = pbHeroLineup.lineupid();
+		uint32_t uHeroNum = pbHeroLineup.heroid_size();
+		for (uint32_t n=0; n<uHeroNum; n++)
+		{
+			heroLineup.AddHero(pbHeroLineup.heroid(n));
+		}
+
+		m_heroLineupMap.insert(make_pair(heroLineup.uLineupId, heroLineup));
+	}
+	return;
+}
+
 void Player::_SetPlayerDataReady()
 {
 	m_bDataReady = true;
@@ -356,6 +409,12 @@ void Player::_InitPlayerData()
 
 	// 初始化英雄信息
 	_InitPlayerHero();
+
+	// 初始化阵容信息
+	_InitHeroLineup();
+
+	TRACELOG("init player data, player name=[" << m_strPtName << "]");
+	return;
 }
 
 // 初始化玩家英雄信息
@@ -367,13 +426,34 @@ void Player::_InitPlayerHero()
 	for (uint32_t i=0; i<uHeroNum; i++)
 	{
 		HeroConf heroConf;
-		if (!gpHeroMng->GetHeroConf(playerInitData.heroList[i], heroConf))
+		if (!gpHeroMng->GetHeroConf(playerInitData.heroList[i], heroConf))				// 检查英雄是否存在
 		{
 			ERRORLOG("cannot get hero configure id=[" << playerInitData.heroList[i] << "]");
 			break;
 		}
 		AddHero(heroConf.uHeroId, heroConf.uInitRank, heroConf.uInitLevel);
 	}
+}
+
+// 初始化阵容信息
+void Player::_InitHeroLineup()
+{
+	const PlayerInitData& playerInitData = gpPlayerMng->GetPlayerInitData();
+
+	HeroLineup heroLineup;
+	uint32_t uHeroNum = playerInitData.heroList.size();
+	for (uint32_t i=0; i<uHeroNum; i++)
+	{
+		HeroConf heroConf;
+		if (!gpHeroMng->GetHeroConf(playerInitData.heroList[i], heroConf))					// 检查英雄是否存在
+		{
+			ERRORLOG("cannot get hero configure id=[" << playerInitData.heroList[i] << "]");
+			break;
+		}
+		heroLineup.AddHero(playerInitData.heroList[i]);										// 添加到阵容列表，(需要初始化的英雄数据是阵容相关的, 后面可能需要修改)
+	}
+	m_heroLineupMap.insert(make_pair(heroLineup.uLineupId, heroLineup));
+	return;
 }
 
 void Player::AddGold(uint32_t uGold)
@@ -581,4 +661,24 @@ bool Player::HasHero(uint32_t uHeroID)
 		return false;
 	}
 	return true;
+}
+
+// 获取阵容信息
+bool Player::GetHeroLineup(uint32_t uLineupID, HeroLineup& lineup)
+{
+	map<uint32_t, HeroLineup>::iterator lineupIt = m_heroLineupMap.find(uLineupID);
+	if (lineupIt == m_heroLineupMap.end())
+	{
+		return false;
+	}
+
+	lineup = lineupIt->second;
+	return true;
+}
+
+// 设置阵容信息
+void Player::SetHeroLineup(uint32_t uLineupID, HeroLineup& lineup)
+{
+	// 如果没有就插入，如果有已经存在则更新
+	m_heroLineupMap[uLineupID] = lineup;
 }

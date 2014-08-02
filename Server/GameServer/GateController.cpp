@@ -164,7 +164,7 @@ bool GateController::GetGateConf(uint32_t uGateId, GateConf& gateConf)
 }
 
 // 进入关卡
-void GateController::EnterGate(Player* pPlayer, uint32_t uGateId, const vector<uint32_t>& heroList)
+void GateController::EnterGate(Player* pPlayer, uint32_t uGateId)
 {
 	if (!IsGateExist(uGateId))
 	{
@@ -178,7 +178,7 @@ void GateController::EnterGate(Player* pPlayer, uint32_t uGateId, const vector<u
 	}
 	if (gateConf.uGateType == NORMAL_GATE || gateConf.uGateType == BOSS_GATE)
 	{
-		m_pNormalGate->EnterGate(pPlayer, uGateId, heroList);
+		m_pNormalGate->EnterGate(pPlayer, uGateId);
 	}
 	return;
 }
@@ -234,25 +234,10 @@ bool GateChecker::IsGateValid(Player* pPlayer, uint32_t uGateId)
 	return true;
 }
 
-bool GateChecker::IsHerosValid(Player* pPlayer, const vector<uint32_t>& heroList)
-{
-	vector<uint32_t>::const_iterator heroIt = heroList.begin();
-	vector<uint32_t>::const_iterator heroItEnd = heroList.end();
-	for (; heroIt != heroItEnd; heroIt++)
-	{
-		if (!pPlayer->HasHero(*heroIt))						// 这个英雄玩家没有拥有
-		{
-			return false;
-		}
-	}
-
-	return true;
-}
-
 // 进入关卡
-void GateChecker::EnterGate(Player* pPlayer, uint32_t uGateId, const vector<uint32_t>& heroList)
+void GateChecker::EnterGate(Player* pPlayer, uint32_t uGateId)
 {
-	_RecordEnterGate(pPlayer, uGateId, heroList);
+	_RecordEnterGate(pPlayer, uGateId);
 }
 
 // 判断是否有进入关卡记录
@@ -272,19 +257,11 @@ bool GateChecker::HasGateRecord(Player* pPlayer, uint32_t uGateId)
 	return true;
 }
 
-// 获取英雄列表
-const vector<uint32_t>& GateChecker::GetHeroList(Player* pPlayer)
-{
-	map<string, GateRecord>::iterator gateIt = m_enterRecordMap.find(pPlayer->RoleName());
-	return gateIt->second.heroList;
-}
-
 // 记录进入关卡的信息
-void GateChecker::_RecordEnterGate(Player* pPlayer, uint32_t uGateId, const vector<uint32_t>& heroList)
+void GateChecker::_RecordEnterGate(Player* pPlayer, uint32_t uGateId)
 {
 	GateRecord gateRecord;
 	gateRecord.uGateId = uGateId;
-	gateRecord.heroList = heroList;
 
 	m_enterRecordMap.insert(make_pair(pPlayer->RoleName(), gateRecord));
 }
@@ -302,7 +279,7 @@ GateAchieve::~GateAchieve()
 }
 
 // 给玩家发通关奖励
-void GateAchieve::GivePrize(Player* pPlayer, uint32_t uGateId, int32_t nResult, const vector<uint32_t>& heroList)
+void GateAchieve::GivePrize(Player* pPlayer, uint32_t uGateId, int32_t nResult)
 {
 	if (!pPlayer)
 	{
@@ -318,7 +295,16 @@ void GateAchieve::GivePrize(Player* pPlayer, uint32_t uGateId, int32_t nResult, 
 	// 给玩家发放经验
 	gpPrizeMng->GiveExp(pPlayer, gateConf.uExpGet);
 
+	// 获取战斗阵容
+	HeroLineup heroLineup;
+	uint32_t uLineupId = 0;												// 后面从配置表中获取
+	if (!pPlayer->GetHeroLineup(uLineupId, heroLineup))
+	{
+		ERRORLOG("cannot find hero lineup, lineup id=[" << uLineupId << "]");
+		return;
+	}
 	// 给玩家英雄们发放经验
+	const vector<uint32_t>& heroList = heroLineup.heroList;
 	vector<uint32_t>::const_iterator heroIt = heroList.begin();
 	vector<uint32_t>::const_iterator heroItEnd = heroList.end();
 	for (; heroIt != heroItEnd; heroIt++)
@@ -363,20 +349,16 @@ NormalGate::~NormalGate()
 
 }
 
-void NormalGate::EnterGate(Player* pPlayer, uint32_t uGateId, const vector<uint32_t>& heroList)
+void NormalGate::EnterGate(Player* pPlayer, uint32_t uGateId)
 {
 	ctos::ResponseEnterGate enterGateAck;
 	if (!m_gateChecker.IsGateValid(pPlayer, uGateId))
 	{
 		enterGateAck.set_errcode(ERROR_PLAYER_CAN_NOT_ENTER);
 	}
-	else if (!m_gateChecker.IsHerosValid(pPlayer, heroList))
-	{
-		enterGateAck.set_errcode(ERROR_HERO_NOT_EXIST);
-	}
 	else
 	{
-		m_gateChecker.EnterGate(pPlayer, uGateId, heroList);
+		m_gateChecker.EnterGate(pPlayer, uGateId);
 	}
 
 	IConnection* pClientConnection = pPlayer->GetPlayerConnection();
@@ -408,7 +390,7 @@ void NormalGate::FinishGate(Player* pPlayer, uint32_t uGateId, int32_t nResult)
 			return;
 		}
 
-		m_gateAchieve.GivePrize(pPlayer, uGateId, nResult, m_gateChecker.GetHeroList(pPlayer));
+		m_gateAchieve.GivePrize(pPlayer, uGateId, nResult);
 	}
 
 	IConnection* pClientConnection = pPlayer->GetPlayerConnection();

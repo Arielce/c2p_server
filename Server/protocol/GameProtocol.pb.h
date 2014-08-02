@@ -33,6 +33,8 @@ void  protobuf_AddDesc_GameProtocol_2eproto();
 void protobuf_AssignDesc_GameProtocol_2eproto();
 void protobuf_ShutdownFile_GameProtocol_2eproto();
 
+class RequestTestProto;
+class ResponseTestProto;
 class RequestGameGroups;
 class PBGameGroup;
 class ResponseGameGroups;
@@ -55,6 +57,8 @@ class RequestHeroDressEquip;
 class ResponseHeroDressEquip;
 class RequestUpgradeHero;
 class ResponseUpgradeHero;
+class RequestSetHeroLineup;
+class ResponseSetHeroLineup;
 class RequestCompoundEquip;
 class ResponseCompoundEquip;
 class RequestDrawPrizeList;
@@ -64,6 +68,178 @@ class PBDrawPrize;
 class ResponseDrawPrize;
 
 // ===================================================================
+
+class RequestTestProto : public ::google::protobuf::Message {
+ public:
+  RequestTestProto();
+  virtual ~RequestTestProto();
+  
+  RequestTestProto(const RequestTestProto& from);
+  
+  inline RequestTestProto& operator=(const RequestTestProto& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const RequestTestProto& default_instance();
+  
+  void Swap(RequestTestProto* other);
+  
+  // implements Message ----------------------------------------------
+  
+  RequestTestProto* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const RequestTestProto& from);
+  void MergeFrom(const RequestTestProto& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // optional string desc = 1;
+  inline bool has_desc() const;
+  inline void clear_desc();
+  static const int kDescFieldNumber = 1;
+  inline const ::std::string& desc() const;
+  inline void set_desc(const ::std::string& value);
+  inline void set_desc(const char* value);
+  inline void set_desc(const char* value, size_t size);
+  inline ::std::string* mutable_desc();
+  inline ::std::string* release_desc();
+  
+  // @@protoc_insertion_point(class_scope:ctos.RequestTestProto)
+ private:
+  inline void set_has_desc();
+  inline void clear_has_desc();
+  
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  
+  ::std::string* desc_;
+  
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+  
+  friend void  protobuf_AddDesc_GameProtocol_2eproto();
+  friend void protobuf_AssignDesc_GameProtocol_2eproto();
+  friend void protobuf_ShutdownFile_GameProtocol_2eproto();
+  
+  void InitAsDefaultInstance();
+  static RequestTestProto* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class ResponseTestProto : public ::google::protobuf::Message {
+ public:
+  ResponseTestProto();
+  virtual ~ResponseTestProto();
+  
+  ResponseTestProto(const ResponseTestProto& from);
+  
+  inline ResponseTestProto& operator=(const ResponseTestProto& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const ResponseTestProto& default_instance();
+  
+  void Swap(ResponseTestProto* other);
+  
+  // implements Message ----------------------------------------------
+  
+  ResponseTestProto* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const ResponseTestProto& from);
+  void MergeFrom(const ResponseTestProto& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // optional string ret = 1;
+  inline bool has_ret() const;
+  inline void clear_ret();
+  static const int kRetFieldNumber = 1;
+  inline const ::std::string& ret() const;
+  inline void set_ret(const ::std::string& value);
+  inline void set_ret(const char* value);
+  inline void set_ret(const char* value, size_t size);
+  inline ::std::string* mutable_ret();
+  inline ::std::string* release_ret();
+  
+  // @@protoc_insertion_point(class_scope:ctos.ResponseTestProto)
+ private:
+  inline void set_has_ret();
+  inline void clear_has_ret();
+  
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  
+  ::std::string* ret_;
+  
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+  
+  friend void  protobuf_AddDesc_GameProtocol_2eproto();
+  friend void protobuf_AssignDesc_GameProtocol_2eproto();
+  friend void protobuf_ShutdownFile_GameProtocol_2eproto();
+  
+  void InitAsDefaultInstance();
+  static ResponseTestProto* default_instance_;
+};
+// -------------------------------------------------------------------
 
 class RequestGameGroups : public ::google::protobuf::Message {
  public:
@@ -1390,18 +1566,6 @@ class RequestEnterGate : public ::google::protobuf::Message {
   inline ::google::protobuf::uint32 gateid() const;
   inline void set_gateid(::google::protobuf::uint32 value);
   
-  // repeated uint32 heros = 3;
-  inline int heros_size() const;
-  inline void clear_heros();
-  static const int kHerosFieldNumber = 3;
-  inline ::google::protobuf::uint32 heros(int index) const;
-  inline void set_heros(int index, ::google::protobuf::uint32 value);
-  inline void add_heros(::google::protobuf::uint32 value);
-  inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
-      heros() const;
-  inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
-      mutable_heros();
-  
   // @@protoc_insertion_point(class_scope:ctos.RequestEnterGate)
  private:
   inline void set_has_userid();
@@ -1413,10 +1577,9 @@ class RequestEnterGate : public ::google::protobuf::Message {
   
   ::google::protobuf::uint32 userid_;
   ::google::protobuf::uint32 gateid_;
-  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > heros_;
   
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
   
   friend void  protobuf_AddDesc_GameProtocol_2eproto();
   friend void protobuf_AssignDesc_GameProtocol_2eproto();
@@ -2071,6 +2234,193 @@ class ResponseUpgradeHero : public ::google::protobuf::Message {
 };
 // -------------------------------------------------------------------
 
+class RequestSetHeroLineup : public ::google::protobuf::Message {
+ public:
+  RequestSetHeroLineup();
+  virtual ~RequestSetHeroLineup();
+  
+  RequestSetHeroLineup(const RequestSetHeroLineup& from);
+  
+  inline RequestSetHeroLineup& operator=(const RequestSetHeroLineup& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const RequestSetHeroLineup& default_instance();
+  
+  void Swap(RequestSetHeroLineup* other);
+  
+  // implements Message ----------------------------------------------
+  
+  RequestSetHeroLineup* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const RequestSetHeroLineup& from);
+  void MergeFrom(const RequestSetHeroLineup& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // optional uint32 userId = 1;
+  inline bool has_userid() const;
+  inline void clear_userid();
+  static const int kUserIdFieldNumber = 1;
+  inline ::google::protobuf::uint32 userid() const;
+  inline void set_userid(::google::protobuf::uint32 value);
+  
+  // optional uint32 lineupId = 2;
+  inline bool has_lineupid() const;
+  inline void clear_lineupid();
+  static const int kLineupIdFieldNumber = 2;
+  inline ::google::protobuf::uint32 lineupid() const;
+  inline void set_lineupid(::google::protobuf::uint32 value);
+  
+  // repeated uint32 heroId = 3;
+  inline int heroid_size() const;
+  inline void clear_heroid();
+  static const int kHeroIdFieldNumber = 3;
+  inline ::google::protobuf::uint32 heroid(int index) const;
+  inline void set_heroid(int index, ::google::protobuf::uint32 value);
+  inline void add_heroid(::google::protobuf::uint32 value);
+  inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+      heroid() const;
+  inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+      mutable_heroid();
+  
+  // @@protoc_insertion_point(class_scope:ctos.RequestSetHeroLineup)
+ private:
+  inline void set_has_userid();
+  inline void clear_has_userid();
+  inline void set_has_lineupid();
+  inline void clear_has_lineupid();
+  
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  
+  ::google::protobuf::uint32 userid_;
+  ::google::protobuf::uint32 lineupid_;
+  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > heroid_;
+  
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
+  
+  friend void  protobuf_AddDesc_GameProtocol_2eproto();
+  friend void protobuf_AssignDesc_GameProtocol_2eproto();
+  friend void protobuf_ShutdownFile_GameProtocol_2eproto();
+  
+  void InitAsDefaultInstance();
+  static RequestSetHeroLineup* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class ResponseSetHeroLineup : public ::google::protobuf::Message {
+ public:
+  ResponseSetHeroLineup();
+  virtual ~ResponseSetHeroLineup();
+  
+  ResponseSetHeroLineup(const ResponseSetHeroLineup& from);
+  
+  inline ResponseSetHeroLineup& operator=(const ResponseSetHeroLineup& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const ResponseSetHeroLineup& default_instance();
+  
+  void Swap(ResponseSetHeroLineup* other);
+  
+  // implements Message ----------------------------------------------
+  
+  ResponseSetHeroLineup* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const ResponseSetHeroLineup& from);
+  void MergeFrom(const ResponseSetHeroLineup& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // optional uint32 errCode = 1;
+  inline bool has_errcode() const;
+  inline void clear_errcode();
+  static const int kErrCodeFieldNumber = 1;
+  inline ::google::protobuf::uint32 errcode() const;
+  inline void set_errcode(::google::protobuf::uint32 value);
+  
+  // @@protoc_insertion_point(class_scope:ctos.ResponseSetHeroLineup)
+ private:
+  inline void set_has_errcode();
+  inline void clear_has_errcode();
+  
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  
+  ::google::protobuf::uint32 errcode_;
+  
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+  
+  friend void  protobuf_AddDesc_GameProtocol_2eproto();
+  friend void protobuf_AssignDesc_GameProtocol_2eproto();
+  friend void protobuf_ShutdownFile_GameProtocol_2eproto();
+  
+  void InitAsDefaultInstance();
+  static ResponseSetHeroLineup* default_instance_;
+};
+// -------------------------------------------------------------------
+
 class RequestCompoundEquip : public ::google::protobuf::Message {
  public:
   RequestCompoundEquip();
@@ -2703,6 +3053,130 @@ class ResponseDrawPrize : public ::google::protobuf::Message {
 
 
 // ===================================================================
+
+// RequestTestProto
+
+// optional string desc = 1;
+inline bool RequestTestProto::has_desc() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void RequestTestProto::set_has_desc() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void RequestTestProto::clear_has_desc() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void RequestTestProto::clear_desc() {
+  if (desc_ != &::google::protobuf::internal::kEmptyString) {
+    desc_->clear();
+  }
+  clear_has_desc();
+}
+inline const ::std::string& RequestTestProto::desc() const {
+  return *desc_;
+}
+inline void RequestTestProto::set_desc(const ::std::string& value) {
+  set_has_desc();
+  if (desc_ == &::google::protobuf::internal::kEmptyString) {
+    desc_ = new ::std::string;
+  }
+  desc_->assign(value);
+}
+inline void RequestTestProto::set_desc(const char* value) {
+  set_has_desc();
+  if (desc_ == &::google::protobuf::internal::kEmptyString) {
+    desc_ = new ::std::string;
+  }
+  desc_->assign(value);
+}
+inline void RequestTestProto::set_desc(const char* value, size_t size) {
+  set_has_desc();
+  if (desc_ == &::google::protobuf::internal::kEmptyString) {
+    desc_ = new ::std::string;
+  }
+  desc_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* RequestTestProto::mutable_desc() {
+  set_has_desc();
+  if (desc_ == &::google::protobuf::internal::kEmptyString) {
+    desc_ = new ::std::string;
+  }
+  return desc_;
+}
+inline ::std::string* RequestTestProto::release_desc() {
+  clear_has_desc();
+  if (desc_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
+  } else {
+    ::std::string* temp = desc_;
+    desc_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
+}
+
+// -------------------------------------------------------------------
+
+// ResponseTestProto
+
+// optional string ret = 1;
+inline bool ResponseTestProto::has_ret() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void ResponseTestProto::set_has_ret() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void ResponseTestProto::clear_has_ret() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void ResponseTestProto::clear_ret() {
+  if (ret_ != &::google::protobuf::internal::kEmptyString) {
+    ret_->clear();
+  }
+  clear_has_ret();
+}
+inline const ::std::string& ResponseTestProto::ret() const {
+  return *ret_;
+}
+inline void ResponseTestProto::set_ret(const ::std::string& value) {
+  set_has_ret();
+  if (ret_ == &::google::protobuf::internal::kEmptyString) {
+    ret_ = new ::std::string;
+  }
+  ret_->assign(value);
+}
+inline void ResponseTestProto::set_ret(const char* value) {
+  set_has_ret();
+  if (ret_ == &::google::protobuf::internal::kEmptyString) {
+    ret_ = new ::std::string;
+  }
+  ret_->assign(value);
+}
+inline void ResponseTestProto::set_ret(const char* value, size_t size) {
+  set_has_ret();
+  if (ret_ == &::google::protobuf::internal::kEmptyString) {
+    ret_ = new ::std::string;
+  }
+  ret_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* ResponseTestProto::mutable_ret() {
+  set_has_ret();
+  if (ret_ == &::google::protobuf::internal::kEmptyString) {
+    ret_ = new ::std::string;
+  }
+  return ret_;
+}
+inline ::std::string* ResponseTestProto::release_ret() {
+  clear_has_ret();
+  if (ret_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
+  } else {
+    ::std::string* temp = ret_;
+    ret_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
+}
+
+// -------------------------------------------------------------------
 
 // RequestGameGroups
 
@@ -3552,31 +4026,6 @@ inline void RequestEnterGate::set_gateid(::google::protobuf::uint32 value) {
   gateid_ = value;
 }
 
-// repeated uint32 heros = 3;
-inline int RequestEnterGate::heros_size() const {
-  return heros_.size();
-}
-inline void RequestEnterGate::clear_heros() {
-  heros_.Clear();
-}
-inline ::google::protobuf::uint32 RequestEnterGate::heros(int index) const {
-  return heros_.Get(index);
-}
-inline void RequestEnterGate::set_heros(int index, ::google::protobuf::uint32 value) {
-  heros_.Set(index, value);
-}
-inline void RequestEnterGate::add_heros(::google::protobuf::uint32 value) {
-  heros_.Add(value);
-}
-inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
-RequestEnterGate::heros() const {
-  return heros_;
-}
-inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
-RequestEnterGate::mutable_heros() {
-  return &heros_;
-}
-
 // -------------------------------------------------------------------
 
 // ResponseEnterGate
@@ -3909,6 +4358,105 @@ inline ::google::protobuf::uint32 ResponseUpgradeHero::errcode() const {
   return errcode_;
 }
 inline void ResponseUpgradeHero::set_errcode(::google::protobuf::uint32 value) {
+  set_has_errcode();
+  errcode_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// RequestSetHeroLineup
+
+// optional uint32 userId = 1;
+inline bool RequestSetHeroLineup::has_userid() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void RequestSetHeroLineup::set_has_userid() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void RequestSetHeroLineup::clear_has_userid() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void RequestSetHeroLineup::clear_userid() {
+  userid_ = 0u;
+  clear_has_userid();
+}
+inline ::google::protobuf::uint32 RequestSetHeroLineup::userid() const {
+  return userid_;
+}
+inline void RequestSetHeroLineup::set_userid(::google::protobuf::uint32 value) {
+  set_has_userid();
+  userid_ = value;
+}
+
+// optional uint32 lineupId = 2;
+inline bool RequestSetHeroLineup::has_lineupid() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void RequestSetHeroLineup::set_has_lineupid() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void RequestSetHeroLineup::clear_has_lineupid() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void RequestSetHeroLineup::clear_lineupid() {
+  lineupid_ = 0u;
+  clear_has_lineupid();
+}
+inline ::google::protobuf::uint32 RequestSetHeroLineup::lineupid() const {
+  return lineupid_;
+}
+inline void RequestSetHeroLineup::set_lineupid(::google::protobuf::uint32 value) {
+  set_has_lineupid();
+  lineupid_ = value;
+}
+
+// repeated uint32 heroId = 3;
+inline int RequestSetHeroLineup::heroid_size() const {
+  return heroid_.size();
+}
+inline void RequestSetHeroLineup::clear_heroid() {
+  heroid_.Clear();
+}
+inline ::google::protobuf::uint32 RequestSetHeroLineup::heroid(int index) const {
+  return heroid_.Get(index);
+}
+inline void RequestSetHeroLineup::set_heroid(int index, ::google::protobuf::uint32 value) {
+  heroid_.Set(index, value);
+}
+inline void RequestSetHeroLineup::add_heroid(::google::protobuf::uint32 value) {
+  heroid_.Add(value);
+}
+inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+RequestSetHeroLineup::heroid() const {
+  return heroid_;
+}
+inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+RequestSetHeroLineup::mutable_heroid() {
+  return &heroid_;
+}
+
+// -------------------------------------------------------------------
+
+// ResponseSetHeroLineup
+
+// optional uint32 errCode = 1;
+inline bool ResponseSetHeroLineup::has_errcode() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void ResponseSetHeroLineup::set_has_errcode() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void ResponseSetHeroLineup::clear_has_errcode() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void ResponseSetHeroLineup::clear_errcode() {
+  errcode_ = 0u;
+  clear_has_errcode();
+}
+inline ::google::protobuf::uint32 ResponseSetHeroLineup::errcode() const {
+  return errcode_;
+}
+inline void ResponseSetHeroLineup::set_errcode(::google::protobuf::uint32 value) {
   set_has_errcode();
   errcode_ = value;
 }

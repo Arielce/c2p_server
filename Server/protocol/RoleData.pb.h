@@ -38,6 +38,8 @@ class PBEquip;
 class PBHero;
 class PBHeroList;
 class PBRoleBag;
+class PBHeroLineup;
+class PBHeroLineupList;
 class PBGateInfo;
 class PBBattleInfo;
 class PBBattleGateList;
@@ -114,20 +116,31 @@ class PBRoleTotalInfo : public ::google::protobuf::Message {
   inline ::roledata::PBRoleBag* mutable_baginfo();
   inline ::roledata::PBRoleBag* release_baginfo();
   
+  // optional .roledata.PBHeroLineupList lineupList = 3;
+  inline bool has_lineuplist() const;
+  inline void clear_lineuplist();
+  static const int kLineupListFieldNumber = 3;
+  inline const ::roledata::PBHeroLineupList& lineuplist() const;
+  inline ::roledata::PBHeroLineupList* mutable_lineuplist();
+  inline ::roledata::PBHeroLineupList* release_lineuplist();
+  
   // @@protoc_insertion_point(class_scope:roledata.PBRoleTotalInfo)
  private:
   inline void set_has_baseinfo();
   inline void clear_has_baseinfo();
   inline void set_has_baginfo();
   inline void clear_has_baginfo();
+  inline void set_has_lineuplist();
+  inline void clear_has_lineuplist();
   
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
   ::roledata::PBRoleBaseInfo* baseinfo_;
   ::roledata::PBRoleBag* baginfo_;
+  ::roledata::PBHeroLineupList* lineuplist_;
   
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
   
   friend void  protobuf_AddDesc_RoleData_2eproto();
   friend void protobuf_AssignDesc_RoleData_2eproto();
@@ -737,6 +750,186 @@ class PBRoleBag : public ::google::protobuf::Message {
 };
 // -------------------------------------------------------------------
 
+class PBHeroLineup : public ::google::protobuf::Message {
+ public:
+  PBHeroLineup();
+  virtual ~PBHeroLineup();
+  
+  PBHeroLineup(const PBHeroLineup& from);
+  
+  inline PBHeroLineup& operator=(const PBHeroLineup& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const PBHeroLineup& default_instance();
+  
+  void Swap(PBHeroLineup* other);
+  
+  // implements Message ----------------------------------------------
+  
+  PBHeroLineup* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const PBHeroLineup& from);
+  void MergeFrom(const PBHeroLineup& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // optional uint32 lineupId = 1;
+  inline bool has_lineupid() const;
+  inline void clear_lineupid();
+  static const int kLineupIdFieldNumber = 1;
+  inline ::google::protobuf::uint32 lineupid() const;
+  inline void set_lineupid(::google::protobuf::uint32 value);
+  
+  // repeated uint32 heroId = 2;
+  inline int heroid_size() const;
+  inline void clear_heroid();
+  static const int kHeroIdFieldNumber = 2;
+  inline ::google::protobuf::uint32 heroid(int index) const;
+  inline void set_heroid(int index, ::google::protobuf::uint32 value);
+  inline void add_heroid(::google::protobuf::uint32 value);
+  inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+      heroid() const;
+  inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+      mutable_heroid();
+  
+  // @@protoc_insertion_point(class_scope:roledata.PBHeroLineup)
+ private:
+  inline void set_has_lineupid();
+  inline void clear_has_lineupid();
+  
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  
+  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > heroid_;
+  ::google::protobuf::uint32 lineupid_;
+  
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
+  
+  friend void  protobuf_AddDesc_RoleData_2eproto();
+  friend void protobuf_AssignDesc_RoleData_2eproto();
+  friend void protobuf_ShutdownFile_RoleData_2eproto();
+  
+  void InitAsDefaultInstance();
+  static PBHeroLineup* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class PBHeroLineupList : public ::google::protobuf::Message {
+ public:
+  PBHeroLineupList();
+  virtual ~PBHeroLineupList();
+  
+  PBHeroLineupList(const PBHeroLineupList& from);
+  
+  inline PBHeroLineupList& operator=(const PBHeroLineupList& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const PBHeroLineupList& default_instance();
+  
+  void Swap(PBHeroLineupList* other);
+  
+  // implements Message ----------------------------------------------
+  
+  PBHeroLineupList* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const PBHeroLineupList& from);
+  void MergeFrom(const PBHeroLineupList& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // repeated .roledata.PBHeroLineup lineupList = 1;
+  inline int lineuplist_size() const;
+  inline void clear_lineuplist();
+  static const int kLineupListFieldNumber = 1;
+  inline const ::roledata::PBHeroLineup& lineuplist(int index) const;
+  inline ::roledata::PBHeroLineup* mutable_lineuplist(int index);
+  inline ::roledata::PBHeroLineup* add_lineuplist();
+  inline const ::google::protobuf::RepeatedPtrField< ::roledata::PBHeroLineup >&
+      lineuplist() const;
+  inline ::google::protobuf::RepeatedPtrField< ::roledata::PBHeroLineup >*
+      mutable_lineuplist();
+  
+  // @@protoc_insertion_point(class_scope:roledata.PBHeroLineupList)
+ private:
+  
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  
+  ::google::protobuf::RepeatedPtrField< ::roledata::PBHeroLineup > lineuplist_;
+  
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+  
+  friend void  protobuf_AddDesc_RoleData_2eproto();
+  friend void protobuf_AssignDesc_RoleData_2eproto();
+  friend void protobuf_ShutdownFile_RoleData_2eproto();
+  
+  void InitAsDefaultInstance();
+  static PBHeroLineupList* default_instance_;
+};
+// -------------------------------------------------------------------
+
 class PBGateInfo : public ::google::protobuf::Message {
  public:
   PBGateInfo();
@@ -1079,6 +1272,35 @@ inline ::roledata::PBRoleBag* PBRoleTotalInfo::release_baginfo() {
   clear_has_baginfo();
   ::roledata::PBRoleBag* temp = baginfo_;
   baginfo_ = NULL;
+  return temp;
+}
+
+// optional .roledata.PBHeroLineupList lineupList = 3;
+inline bool PBRoleTotalInfo::has_lineuplist() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void PBRoleTotalInfo::set_has_lineuplist() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void PBRoleTotalInfo::clear_has_lineuplist() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void PBRoleTotalInfo::clear_lineuplist() {
+  if (lineuplist_ != NULL) lineuplist_->::roledata::PBHeroLineupList::Clear();
+  clear_has_lineuplist();
+}
+inline const ::roledata::PBHeroLineupList& PBRoleTotalInfo::lineuplist() const {
+  return lineuplist_ != NULL ? *lineuplist_ : *default_instance_->lineuplist_;
+}
+inline ::roledata::PBHeroLineupList* PBRoleTotalInfo::mutable_lineuplist() {
+  set_has_lineuplist();
+  if (lineuplist_ == NULL) lineuplist_ = new ::roledata::PBHeroLineupList;
+  return lineuplist_;
+}
+inline ::roledata::PBHeroLineupList* PBRoleTotalInfo::release_lineuplist() {
+  clear_has_lineuplist();
+  ::roledata::PBHeroLineupList* temp = lineuplist_;
+  lineuplist_ = NULL;
   return temp;
 }
 
@@ -1679,6 +1901,86 @@ PBRoleBag::equips() const {
 inline ::google::protobuf::RepeatedPtrField< ::roledata::PBEquip >*
 PBRoleBag::mutable_equips() {
   return &equips_;
+}
+
+// -------------------------------------------------------------------
+
+// PBHeroLineup
+
+// optional uint32 lineupId = 1;
+inline bool PBHeroLineup::has_lineupid() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void PBHeroLineup::set_has_lineupid() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void PBHeroLineup::clear_has_lineupid() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void PBHeroLineup::clear_lineupid() {
+  lineupid_ = 0u;
+  clear_has_lineupid();
+}
+inline ::google::protobuf::uint32 PBHeroLineup::lineupid() const {
+  return lineupid_;
+}
+inline void PBHeroLineup::set_lineupid(::google::protobuf::uint32 value) {
+  set_has_lineupid();
+  lineupid_ = value;
+}
+
+// repeated uint32 heroId = 2;
+inline int PBHeroLineup::heroid_size() const {
+  return heroid_.size();
+}
+inline void PBHeroLineup::clear_heroid() {
+  heroid_.Clear();
+}
+inline ::google::protobuf::uint32 PBHeroLineup::heroid(int index) const {
+  return heroid_.Get(index);
+}
+inline void PBHeroLineup::set_heroid(int index, ::google::protobuf::uint32 value) {
+  heroid_.Set(index, value);
+}
+inline void PBHeroLineup::add_heroid(::google::protobuf::uint32 value) {
+  heroid_.Add(value);
+}
+inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+PBHeroLineup::heroid() const {
+  return heroid_;
+}
+inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+PBHeroLineup::mutable_heroid() {
+  return &heroid_;
+}
+
+// -------------------------------------------------------------------
+
+// PBHeroLineupList
+
+// repeated .roledata.PBHeroLineup lineupList = 1;
+inline int PBHeroLineupList::lineuplist_size() const {
+  return lineuplist_.size();
+}
+inline void PBHeroLineupList::clear_lineuplist() {
+  lineuplist_.Clear();
+}
+inline const ::roledata::PBHeroLineup& PBHeroLineupList::lineuplist(int index) const {
+  return lineuplist_.Get(index);
+}
+inline ::roledata::PBHeroLineup* PBHeroLineupList::mutable_lineuplist(int index) {
+  return lineuplist_.Mutable(index);
+}
+inline ::roledata::PBHeroLineup* PBHeroLineupList::add_lineuplist() {
+  return lineuplist_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::roledata::PBHeroLineup >&
+PBHeroLineupList::lineuplist() const {
+  return lineuplist_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::roledata::PBHeroLineup >*
+PBHeroLineupList::mutable_lineuplist() {
+  return &lineuplist_;
 }
 
 // -------------------------------------------------------------------

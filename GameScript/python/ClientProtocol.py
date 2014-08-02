@@ -53,6 +53,14 @@ def RequestCreateRole(sock, ptname, rolename):
     body = createRoleReq.SerializeToString()
     header = struct.pack('iiI', 12+len(body), 0x1001, 0xA1B2C3D4)
     sock.send(header+body)
+    
+    pbstr = sock.recv(1024)
+    createRoleAck = GameProtocol_pb2.ResponseCreateRole()
+    try:
+        createRoleAck.ParseFromString(str(pbstr[12:]))           
+    except Exception as e:
+        print e
+    return createRoleAck
 
 # 请求角色数据
 def RequestRoleData(sock, ptname):
@@ -86,6 +94,41 @@ def RequestVerifyToken(sock, ptname, token):
         print e
     return verifyTokenAck
 
+# 请求进入关卡
+def RequestEnterGate(sock, userId, gateId):
+    enterGateReq = GameProtocol_pb2.RequestEnterGate()
+    enterGateReq.userId = userId
+    enterGateReq.gateId = gateId
+    body = enterGateReq.SerializeToString()
+    header = struct.pack('iiI', 12+len(body), 0x1100, 0xA1B2C3D4)
+    sock.send(header+body)
+    
+    pbstr = sock.recv(1024)
+    enterGateAck = GameProtocol_pb2.ResponseEnterGate()
+    try:
+        enterGateAck.ParseFromString(str(pbstr[12:]))           
+    except Exception as e:
+        print e
+    return enterGateAck
+
+# 请求关卡奖励
+def RequestFinishGate(sock, userId, gateId, result):
+    finishGateReq = GameProtocol_pb2.RequestFinishGate()
+    finishGateReq.userId = userId
+    finishGateReq.gateId = gateId
+    finishGateReq.result = result
+    body = finishGateReq.SerializeToString()
+    header = struct.pack('iiI', 12+len(body), 0x1101, 0xA1B2C3D4)
+    sock.send(header+body)
+    
+    pbstr = sock.recv(1024)
+    finishGateAck = GameProtocol_pb2.ResponseFinishiGate()
+    try:
+        finishGateAck.ParseFromString(str(pbstr[12:]))           
+    except Exception as e:
+        print e
+    return finishGateAck
+
 # 请求抽奖列表
 def RequestDrawList(sock, userId):
     drawListReq = GameProtocol_pb2.RequestDrawPrizeList()
@@ -109,7 +152,7 @@ def RequestDrawPrize(sock, userId, drawId):
     drawPrizeReq.userId = userId
     drawPrizeReq.drawId = drawId
     body = drawPrizeReq.SerializeToString()
-    header = struct.pack('iiI', 12+len(body), 0x1301, 0)
+    header = struct.pack('iiI', 12+len(body), 0x1301, 0xA1B2C3D4)
     sock.send(header+body)
    
     pbstr = sock.recv(1024)
@@ -120,3 +163,23 @@ def RequestDrawPrize(sock, userId, drawId):
     except Exception as e:
         print e
     return drawPrizeAck
+
+# 设置战斗阵容
+def RequestSetHeroLineup(sock, userId, lineupId, heroList):
+    setLineupReq = GameProtocol_pb2.RequestSetHeroLineup()
+    setLineupReq.userId = userId
+    setLineupReq.lineupId = lineupId
+    for h in heroList:
+        setLineupReq.heroId.append(h)
+    body = setLineupReq.SerializeToString()
+    header = struct.pack('iiI', 12+len(body), 0x1400, 0xA1B2C3D4)
+    sock.send(header+body)
+    
+    pbstr = sock.recv(1024)
+    
+    setLineupAck = GameProtocol_pb2.ResponseSetHeroLineup()
+    try:
+        setLineupAck.ParseFromString(str(pbstr[12:]))           
+    except Exception as e:
+        print e
+    return setLineupAck

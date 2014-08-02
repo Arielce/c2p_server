@@ -49,7 +49,9 @@ public:
 
 	void AddHeroExp(uint32_t uExpAdd, uint32_t uCurLevel, uint32_t uCurExp, uint32_t& uNewLevel, uint32_t& uNewExp);		// 给英雄增加经验
 	int32_t HeroDressEquip(Player* pPlayer, uint32_t uHeroID, uint32_t uEquipId);											// 给英雄穿戴装备
-	int32_t HeroUpgrade(Player* pPlayer, uint32_t uHeroID);																// 英雄升品级
+	int32_t HeroUpgrade(Player* pPlayer, uint32_t uHeroID);																	// 英雄升品级
+
+	int32_t SetHeroLineup(Player* pPlayer, uint32_t uLineupId, vector<uint32_t>& heroList);									// 设置英雄阵容
 
 private:
 	HeroMng();

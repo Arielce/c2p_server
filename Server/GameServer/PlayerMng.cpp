@@ -542,7 +542,6 @@ void PlayerMng::_RequestVerifyToken(IConnection* pConn, MessageHeader* pMsgHeade
 		return;
 	}
 
-
 	ctos::RequestVerifyToken verifyTokenReq;
 	verifyTokenReq.ParseFromString(GetProtoData(pMsgHeader));
 	TRACELOG("ptname=[" << verifyTokenReq.ptname() << "] request verify token, token=[" << verifyTokenReq.token() << "]");
@@ -578,7 +577,7 @@ void PlayerMng::_RequestVerifyToken(IConnection* pConn, MessageHeader* pMsgHeade
 	BuildResponseProto<ctos::ResponseVerifyToken>(verifyTokenAck, strMessage, ID_ACK_ResponseVerifyToken);
 
 	pConn->SendMsg(strMessage.c_str(), strMessage.size());
-	return;
+	return; 
 }
 
 // 请求创建角色

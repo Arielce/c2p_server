@@ -125,11 +125,16 @@ vector<uint32_t> DrawPrizeMng::GetDrawList()
 // 玩家进行抽奖
 void DrawPrizeMng::Draw(Player* pPlayer, uint32_t uDrawId)
 {
-	ctos::ResponseDrawPrize drawPrizeAck;
+	if (!pPlayer)
+	{
+		return;
+	}
+	
 
 	map<uint32_t, DrawConf>::iterator drawIt = m_drawConfMap.find(uDrawId);
 	if (drawIt == m_drawConfMap.end())
 	{
+		ERRORLOG("player name=[" << pPlayer->PtName() << "] cannot find draw id=[" << uDrawId << "]");
 		return;
 	}
 
@@ -157,6 +162,7 @@ void DrawPrizeMng::Draw(Player* pPlayer, uint32_t uDrawId)
 		return;
 	}
 
+	ctos::ResponseDrawPrize drawPrizeAck;
 	vector<Goods> prizeList;
 	int32_t nError = pDrawPrize->Draw(pPlayer, prizeList);			// 返回抽奖结果
 	drawPrizeAck.set_errcode(nError);

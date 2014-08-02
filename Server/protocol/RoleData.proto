@@ -3,8 +3,9 @@ package roledata;
 // 玩家所有数据信息
 message PBRoleTotalInfo
 {
-	optional PBRoleBaseInfo baseInfo = 1;	// 玩家级别数据
-	optional PBRoleBag bagInfo = 2;			// 玩家包裹信息
+	optional PBRoleBaseInfo baseInfo = 1;		// 玩家级别数据
+	optional PBRoleBag bagInfo = 2;				// 玩家包裹信息
+	optional PBHeroLineupList lineupList = 3;	// 阵容列表
 	// to add new data here
 }
 
@@ -52,7 +53,20 @@ message PBHeroList
 // 玩家包裹信息
 message PBRoleBag
 {
-	repeated PBEquip equips = 1;		// 装备
+	repeated PBEquip equips = 1;			// 装备
+}
+
+// 玩家英雄阵容
+message PBHeroLineup
+{
+	optional uint32 lineupId = 1;			// 阵容ID(0表示基础阵容，如果其他阵容一开始没有，全部默认使用0号阵容)
+	repeated uint32 heroId = 2;				// 阵容中的英雄列表
+}
+
+// 玩家英雄阵容信息汇总
+message PBHeroLineupList
+{
+	repeated PBHeroLineup lineupList = 1;	// 所有阵容列表
 }
 
 // 关卡信息

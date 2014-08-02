@@ -42,6 +42,10 @@ enum
 	ID_REQ_RequestDrawPrizeList		= 0x1300,		// 请求抽奖列表
 	ID_REQ_RequestDrawPrize,						// 请求抽奖
 
+	// 阵容相关操作
+	ID_REQ_RequestSetHeroLineup		= 0x1400,		// 请求设置阵容
+
+
 	// ======================服务器消息返回==========================
 	// 登录注册相关协议
 	ID_ACK_Lobby_ResponseGameGroups	= 0x0100,		// 用户请求区组列表
@@ -66,6 +70,9 @@ enum
 	// 抽奖相关操作
 	ID_ACK_ResponseDrawPrizeList	= 0x1300,		// 请求抽奖列表
 	ID_ACK_ReponseDrawPrize,						// 请求抽奖
+
+	// 阵容相关操作
+	ID_ACK_ResponseSetHeroLineup	= 0x1400,		// 请求设置阵容
 
 
 	// ======================服务器通知消息==========================

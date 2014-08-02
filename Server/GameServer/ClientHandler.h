@@ -20,6 +20,7 @@ public:
 		{
 			return 0;
 		}
+
 		return *pMsgSize;
 	}
 	virtual size_t CheckMsgBody(void* pMsg, size_t nBytesTransfered)
@@ -56,6 +57,7 @@ private:
 	void _RequestCompoundEquip(IConnection* pConn, MessageHeader* pMsgHeader);
 	void _RequestDrawPrizeList(IConnection* pConn, MessageHeader* pMsgHeader);
 	void _RequestDrawPrize(IConnection* pConn, MessageHeader* pMsgHeader);
+	void _RequestSetHeroLineup(IConnection* pConn, MessageHeader* pMsgHeader);
 };
 
 #endif

@@ -11,7 +11,7 @@ from google.protobuf import descriptor_pb2
 DESCRIPTOR = descriptor.FileDescriptor(
   name='RoleData.proto',
   package='roledata',
-  serialized_pb='\n\x0eRoleData.proto\x12\x08roledata\"c\n\x0fPBRoleTotalInfo\x12*\n\x08\x62\x61seInfo\x18\x01 \x01(\x0b\x32\x18.roledata.PBRoleBaseInfo\x12$\n\x07\x62\x61gInfo\x18\x02 \x01(\x0b\x32\x13.roledata.PBRoleBag\"\x80\x02\n\x0ePBRoleBaseInfo\x12\x0e\n\x06userId\x18\x01 \x01(\r\x12\x13\n\x0b\x64\x61taVersion\x18\x02 \x01(\r\x12\x10\n\x08roleName\x18\x03 \x01(\t\x12\x0e\n\x06ptName\x18\x04 \x01(\t\x12\r\n\x05level\x18\x05 \x01(\r\x12\x0b\n\x03\x65xp\x18\x06 \x01(\r\x12\x0f\n\x07\x64iamond\x18\x07 \x01(\r\x12\x0c\n\x04gold\x18\x08 \x01(\r\x12\x10\n\x08vipLevel\x18\t \x01(\r\x12&\n\x08heroList\x18\n \x01(\x0b\x32\x14.roledata.PBHeroList\x12\x32\n\x0e\x62\x61ttleGateList\x18\x0b \x01(\x0b\x32\x1a.roledata.PBBattleGateList\",\n\x07PBEquip\x12\x0f\n\x07\x65quipId\x18\x01 \x01(\r\x12\x10\n\x08\x65quipNum\x18\x03 \x01(\r\"\xa6\x01\n\x06PBHero\x12\x0e\n\x06heroId\x18\x01 \x01(\r\x12\x10\n\x08heroUUID\x18\x02 \x01(\x04\x12\r\n\x05level\x18\x03 \x01(\r\x12\x0b\n\x03\x65xp\x18\x04 \x01(\r\x12\x10\n\x08heroRank\x18\x05 \x01(\r\x12\x14\n\x0cupgradeLevel\x18\x06 \x01(\r\x12\x13\n\x0b\x66ragmentNum\x18\x07 \x01(\r\x12!\n\x06\x65quips\x18\x08 \x03(\x0b\x32\x11.roledata.PBEquip\"-\n\nPBHeroList\x12\x1f\n\x05heros\x18\x01 \x03(\x0b\x32\x10.roledata.PBHero\".\n\tPBRoleBag\x12!\n\x06\x65quips\x18\x01 \x03(\x0b\x32\x11.roledata.PBEquip\"@\n\nPBGateInfo\x12\x0e\n\x06gateId\x18\x01 \x01(\r\x12\x10\n\x08gateStar\x18\x02 \x01(\r\x12\x10\n\x08hasFight\x18\x03 \x01(\x08\"E\n\x0cPBBattleInfo\x12\x10\n\x08\x62\x61ttleId\x18\x01 \x01(\r\x12#\n\x05gates\x18\x02 \x03(\x0b\x32\x14.roledata.PBGateInfo\"?\n\x10PBBattleGateList\x12+\n\x0b\x62\x61ttleGates\x18\x01 \x03(\x0b\x32\x16.roledata.PBBattleInfo')
+  serialized_pb='\n\x0eRoleData.proto\x12\x08roledata\"\x93\x01\n\x0fPBRoleTotalInfo\x12*\n\x08\x62\x61seInfo\x18\x01 \x01(\x0b\x32\x18.roledata.PBRoleBaseInfo\x12$\n\x07\x62\x61gInfo\x18\x02 \x01(\x0b\x32\x13.roledata.PBRoleBag\x12.\n\nlineupList\x18\x03 \x01(\x0b\x32\x1a.roledata.PBHeroLineupList\"\x80\x02\n\x0ePBRoleBaseInfo\x12\x0e\n\x06userId\x18\x01 \x01(\r\x12\x13\n\x0b\x64\x61taVersion\x18\x02 \x01(\r\x12\x10\n\x08roleName\x18\x03 \x01(\t\x12\x0e\n\x06ptName\x18\x04 \x01(\t\x12\r\n\x05level\x18\x05 \x01(\r\x12\x0b\n\x03\x65xp\x18\x06 \x01(\r\x12\x0f\n\x07\x64iamond\x18\x07 \x01(\r\x12\x0c\n\x04gold\x18\x08 \x01(\r\x12\x10\n\x08vipLevel\x18\t \x01(\r\x12&\n\x08heroList\x18\n \x01(\x0b\x32\x14.roledata.PBHeroList\x12\x32\n\x0e\x62\x61ttleGateList\x18\x0b \x01(\x0b\x32\x1a.roledata.PBBattleGateList\",\n\x07PBEquip\x12\x0f\n\x07\x65quipId\x18\x01 \x01(\r\x12\x10\n\x08\x65quipNum\x18\x03 \x01(\r\"\x94\x01\n\x06PBHero\x12\x0e\n\x06heroId\x18\x01 \x01(\r\x12\r\n\x05level\x18\x02 \x01(\r\x12\x0b\n\x03\x65xp\x18\x03 \x01(\r\x12\x10\n\x08heroRank\x18\x04 \x01(\r\x12\x14\n\x0cupgradeLevel\x18\x05 \x01(\r\x12\x13\n\x0b\x66ragmentNum\x18\x06 \x01(\r\x12!\n\x06\x65quips\x18\x07 \x03(\x0b\x32\x11.roledata.PBEquip\"-\n\nPBHeroList\x12\x1f\n\x05heros\x18\x01 \x03(\x0b\x32\x10.roledata.PBHero\".\n\tPBRoleBag\x12!\n\x06\x65quips\x18\x01 \x03(\x0b\x32\x11.roledata.PBEquip\"0\n\x0cPBHeroLineup\x12\x10\n\x08lineupId\x18\x01 \x01(\r\x12\x0e\n\x06heroId\x18\x02 \x03(\r\">\n\x10PBHeroLineupList\x12*\n\nlineupList\x18\x01 \x03(\x0b\x32\x16.roledata.PBHeroLineup\"@\n\nPBGateInfo\x12\x0e\n\x06gateId\x18\x01 \x01(\r\x12\x10\n\x08gateStar\x18\x02 \x01(\r\x12\x10\n\x08hasFight\x18\x03 \x01(\x08\"E\n\x0cPBBattleInfo\x12\x10\n\x08\x62\x61ttleId\x18\x01 \x01(\r\x12#\n\x05gates\x18\x02 \x03(\x0b\x32\x14.roledata.PBGateInfo\"?\n\x10PBBattleGateList\x12+\n\x0b\x62\x61ttleGates\x18\x01 \x03(\x0b\x32\x16.roledata.PBBattleInfo')
 
 
 
@@ -37,6 +37,13 @@ _PBROLETOTALINFO = descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    descriptor.FieldDescriptor(
+      name='lineupList', full_name='roledata.PBRoleTotalInfo.lineupList', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -46,8 +53,8 @@ _PBROLETOTALINFO = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=28,
-  serialized_end=127,
+  serialized_start=29,
+  serialized_end=176,
 )
 
 
@@ -144,8 +151,8 @@ _PBROLEBASEINFO = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=130,
-  serialized_end=386,
+  serialized_start=179,
+  serialized_end=435,
 )
 
 
@@ -179,8 +186,8 @@ _PBEQUIP = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=388,
-  serialized_end=432,
+  serialized_start=437,
+  serialized_end=481,
 )
 
 
@@ -199,50 +206,43 @@ _PBHERO = descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='heroUUID', full_name='roledata.PBHero.heroUUID', index=1,
-      number=2, type=4, cpp_type=4, label=1,
+      name='level', full_name='roledata.PBHero.level', index=1,
+      number=2, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='level', full_name='roledata.PBHero.level', index=2,
+      name='exp', full_name='roledata.PBHero.exp', index=2,
       number=3, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='exp', full_name='roledata.PBHero.exp', index=3,
+      name='heroRank', full_name='roledata.PBHero.heroRank', index=3,
       number=4, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='heroRank', full_name='roledata.PBHero.heroRank', index=4,
+      name='upgradeLevel', full_name='roledata.PBHero.upgradeLevel', index=4,
       number=5, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='upgradeLevel', full_name='roledata.PBHero.upgradeLevel', index=5,
+      name='fragmentNum', full_name='roledata.PBHero.fragmentNum', index=5,
       number=6, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='fragmentNum', full_name='roledata.PBHero.fragmentNum', index=6,
-      number=7, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    descriptor.FieldDescriptor(
-      name='equips', full_name='roledata.PBHero.equips', index=7,
-      number=8, type=11, cpp_type=10, label=3,
+      name='equips', full_name='roledata.PBHero.equips', index=6,
+      number=7, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -256,8 +256,8 @@ _PBHERO = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=435,
-  serialized_end=601,
+  serialized_start=484,
+  serialized_end=632,
 )
 
 
@@ -284,8 +284,8 @@ _PBHEROLIST = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=603,
-  serialized_end=648,
+  serialized_start=634,
+  serialized_end=679,
 )
 
 
@@ -312,8 +312,71 @@ _PBROLEBAG = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=650,
-  serialized_end=696,
+  serialized_start=681,
+  serialized_end=727,
+)
+
+
+_PBHEROLINEUP = descriptor.Descriptor(
+  name='PBHeroLineup',
+  full_name='roledata.PBHeroLineup',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    descriptor.FieldDescriptor(
+      name='lineupId', full_name='roledata.PBHeroLineup.lineupId', index=0,
+      number=1, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    descriptor.FieldDescriptor(
+      name='heroId', full_name='roledata.PBHeroLineup.heroId', index=1,
+      number=2, type=13, cpp_type=3, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  serialized_start=729,
+  serialized_end=777,
+)
+
+
+_PBHEROLINEUPLIST = descriptor.Descriptor(
+  name='PBHeroLineupList',
+  full_name='roledata.PBHeroLineupList',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    descriptor.FieldDescriptor(
+      name='lineupList', full_name='roledata.PBHeroLineupList.lineupList', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  serialized_start=779,
+  serialized_end=841,
 )
 
 
@@ -354,8 +417,8 @@ _PBGATEINFO = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=698,
-  serialized_end=762,
+  serialized_start=843,
+  serialized_end=907,
 )
 
 
@@ -389,8 +452,8 @@ _PBBATTLEINFO = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=764,
-  serialized_end=833,
+  serialized_start=909,
+  serialized_end=978,
 )
 
 
@@ -417,17 +480,19 @@ _PBBATTLEGATELIST = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=835,
-  serialized_end=898,
+  serialized_start=980,
+  serialized_end=1043,
 )
 
 _PBROLETOTALINFO.fields_by_name['baseInfo'].message_type = _PBROLEBASEINFO
 _PBROLETOTALINFO.fields_by_name['bagInfo'].message_type = _PBROLEBAG
+_PBROLETOTALINFO.fields_by_name['lineupList'].message_type = _PBHEROLINEUPLIST
 _PBROLEBASEINFO.fields_by_name['heroList'].message_type = _PBHEROLIST
 _PBROLEBASEINFO.fields_by_name['battleGateList'].message_type = _PBBATTLEGATELIST
 _PBHERO.fields_by_name['equips'].message_type = _PBEQUIP
 _PBHEROLIST.fields_by_name['heros'].message_type = _PBHERO
 _PBROLEBAG.fields_by_name['equips'].message_type = _PBEQUIP
+_PBHEROLINEUPLIST.fields_by_name['lineupList'].message_type = _PBHEROLINEUP
 _PBBATTLEINFO.fields_by_name['gates'].message_type = _PBGATEINFO
 _PBBATTLEGATELIST.fields_by_name['battleGates'].message_type = _PBBATTLEINFO
 DESCRIPTOR.message_types_by_name['PBRoleTotalInfo'] = _PBROLETOTALINFO
@@ -436,6 +501,8 @@ DESCRIPTOR.message_types_by_name['PBEquip'] = _PBEQUIP
 DESCRIPTOR.message_types_by_name['PBHero'] = _PBHERO
 DESCRIPTOR.message_types_by_name['PBHeroList'] = _PBHEROLIST
 DESCRIPTOR.message_types_by_name['PBRoleBag'] = _PBROLEBAG
+DESCRIPTOR.message_types_by_name['PBHeroLineup'] = _PBHEROLINEUP
+DESCRIPTOR.message_types_by_name['PBHeroLineupList'] = _PBHEROLINEUPLIST
 DESCRIPTOR.message_types_by_name['PBGateInfo'] = _PBGATEINFO
 DESCRIPTOR.message_types_by_name['PBBattleInfo'] = _PBBATTLEINFO
 DESCRIPTOR.message_types_by_name['PBBattleGateList'] = _PBBATTLEGATELIST
@@ -475,6 +542,18 @@ class PBRoleBag(message.Message):
   DESCRIPTOR = _PBROLEBAG
   
   # @@protoc_insertion_point(class_scope:roledata.PBRoleBag)
+
+class PBHeroLineup(message.Message):
+  __metaclass__ = reflection.GeneratedProtocolMessageType
+  DESCRIPTOR = _PBHEROLINEUP
+  
+  # @@protoc_insertion_point(class_scope:roledata.PBHeroLineup)
+
+class PBHeroLineupList(message.Message):
+  __metaclass__ = reflection.GeneratedProtocolMessageType
+  DESCRIPTOR = _PBHEROLINEUPLIST
+  
+  # @@protoc_insertion_point(class_scope:roledata.PBHeroLineupList)
 
 class PBGateInfo(message.Message):
   __metaclass__ = reflection.GeneratedProtocolMessageType

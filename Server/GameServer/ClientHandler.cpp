@@ -39,6 +39,19 @@ void ClientHandler::HandleRecv(IConnection* pConn, const char* pBuf, uint32_t uL
 	MessageHeader* pMsgHeader = (MessageHeader*)pBuf;
 	switch (pMsgHeader->uMsgCmd)
 	{
+	case 0x0010:													// 和客户端测试protobuf通信，后面删除
+		{
+			ctos::RequestTestProto testProtoReq;
+			testProtoReq.ParseFromString(GetProtoData(pMsgHeader));
+			cout << "test proto, msg=" << testProtoReq.desc() << endl;
+
+			ctos::ResponseTestProto testProtoAck;
+			testProtoAck.set_ret(testProtoReq.desc());
+			string strMessage;
+			BuildResponseProto<ctos::ResponseTestProto>(testProtoAck, strMessage, 0x0010);
+
+			pConn->SendMsg(strMessage.c_str(), strMessage.size());
+		}
 	case ID_REQ_Test_PingPong:										// 测试使用的ping-pong协议, 简单的将数据包返回
 		{
 			pConn->SendMsg(pBuf, uLen);
@@ -83,12 +96,17 @@ void ClientHandler::HandleRecv(IConnection* pConn, const char* pBuf, uint32_t uL
 		break;
 	case ID_REQ_RequestDrawPrizeList:								// 请求抽奖列表
 		{
-			_RequestDrawPrizeList(pConn, pMsgHeader);
+			 _RequestDrawPrizeList(pConn, pMsgHeader);
 		}
 		break;
 	case ID_REQ_RequestDrawPrize:									// 请求抽奖
 		{
 			_RequestDrawPrize(pConn, pMsgHeader);
+		}
+		break;
+	case ID_REQ_RequestSetHeroLineup:								// 请求设置阵容
+		{
+			_RequestSetHeroLineup(pConn, pMsgHeader);
 		}
 		break;
 	default:
@@ -139,13 +157,7 @@ void ClientHandler::_RequestEnterGate(IConnection* pConn, MessageHeader* pMsgHea
 		return;
 	}
 
-	vector<uint32_t> heroList;
-	uint32_t uHeroNum = enterGateReq.heros_size();
-	for (uint32_t i=0; i<uHeroNum; i++)
-	{
-		heroList.push_back(enterGateReq.heros(i));
-	}
-	gpGateController->EnterGate(pPlayer, enterGateReq.gateid(), heroList);
+	gpGateController->EnterGate(pPlayer, enterGateReq.gateid());
 	return;
 }
 
@@ -200,6 +212,7 @@ void ClientHandler::_RequestHeroDressEquip(IConnection* pConn, MessageHeader* pM
 	return;
 }
 
+// 请求英雄品质提升
 void ClientHandler::_RequestHeroUpgrade(IConnection* pConn, MessageHeader* pMsgHeader)
 {
 	if (!pConn || !pMsgHeader)
@@ -228,6 +241,7 @@ void ClientHandler::_RequestHeroUpgrade(IConnection* pConn, MessageHeader* pMsgH
 	return;
 }
 
+// 请求合成装备
 void ClientHandler::_RequestCompoundEquip(IConnection* pConn, MessageHeader* pMsgHeader)
 {
 	if (!pConn || !pMsgHeader)
@@ -246,9 +260,19 @@ void ClientHandler::_RequestCompoundEquip(IConnection* pConn, MessageHeader* pMs
 	}
 
 	int32_t nErrCode = gpGoodsMng->CompoundEquip(pPlayer, compoundEquipReq.targetequipid());
+	
+	// 合成装备返回
+	ctos::ResponseCompoundEquip compoundEquipAck;
+	compoundEquipAck.set_errcode(nErrCode);
+
+	string strMessage;
+	BuildResponseProto<ctos::ResponseCompoundEquip>(compoundEquipAck, strMessage, ID_ACK_ResponseCompoundEquip);
+
+	pConn->SendMsg(strMessage.c_str(), strMessage.size());
 	return;
 }
 
+// 请求抽奖列表
 void ClientHandler::_RequestDrawPrizeList(IConnection* pConn, MessageHeader* pMsgHeader)
 {
 	if (!pConn || !pMsgHeader)
@@ -283,6 +307,7 @@ void ClientHandler::_RequestDrawPrizeList(IConnection* pConn, MessageHeader* pMs
 	return;
 }
 
+// 请求抽奖
 void ClientHandler::_RequestDrawPrize(IConnection* pConn, MessageHeader* pMsgHeader)
 {
 	if (!pConn || !pMsgHeader)
@@ -301,5 +326,42 @@ void ClientHandler::_RequestDrawPrize(IConnection* pConn, MessageHeader* pMsgHea
 	}
 
 	gpDrawPrizeMng->Draw(pPlayer, drawPrizeReq.drawid());
+	return;
+}
+
+// 设置英雄阵容
+void ClientHandler::_RequestSetHeroLineup(IConnection* pConn, MessageHeader* pMsgHeader)
+{
+	if (!pConn || !pMsgHeader)
+	{
+		return;
+	}
+
+	ctos::RequestSetHeroLineup setLineupReq;
+	setLineupReq.ParseFromString(GetProtoData(pMsgHeader));
+
+	Player* pPlayer = gpPlayerMng->GetValidPlayer(setLineupReq.userid(), pConn);
+	if (!pPlayer)
+	{
+		ERRORLOG("cannot find user id=[" << setLineupReq.userid() << "]");
+		return;
+	}
+
+	vector<uint32_t> heroList;
+	uint32_t uHeroNum = setLineupReq.heroid_size();
+	for (uint32_t i=0; i<uHeroNum; i++)
+	{
+		heroList.push_back(setLineupReq.heroid(i));
+	}
+
+	// 设置英雄阵容
+	ctos::ResponseSetHeroLineup setLineupAck;
+	int32_t uErrorCode = gpHeroMng->SetHeroLineup(pPlayer, setLineupReq.lineupid(), heroList);
+	setLineupAck.set_errcode(uErrorCode);
+
+	string strMessage;
+	BuildResponseProto<ctos::ResponseSetHeroLineup>(setLineupAck, strMessage, ID_ACK_ResponseSetHeroLineup);
+
+	pConn->SendMsg(strMessage.c_str(), strMessage.size());
 	return;
 }

@@ -98,20 +98,28 @@ public:
 
 public:
 	// 英雄相关操作
-	bool GetHero(uint32_t uHeroID, Hero& hero);					// 获取英雄信息
-	void AddHero(uint32_t uHeroId, uint32_t uHeroRank=1, uint32_t uHeroLevel=1, uint32_t uHeroExp=0);
-	bool HasHero(uint32_t uHeroID);								// 是否有某个英雄
+	bool GetHero(uint32_t uHeroID, Hero& hero);						// 获取英雄信息
+	void AddHero(uint32_t uHeroId, uint32_t uHeroRank=1, uint32_t uHeroLevel=1, uint32_t uHeroExp=0);	// 给玩家添加一个指定英雄
+	bool HasHero(uint32_t uHeroID);									// 是否有某个英雄
+	bool GetHeroLineup(uint32_t uLineupID, HeroLineup& lineup);		// 获取阵容信息
+	void SetHeroLineup(uint32_t uLineupID, HeroLineup& lineup);		// 设置阵容信息
 
 private:
 	void _SetPlayerDataReady();
 
 	void _InitPlayerData();											// 初始化玩家数据
 	void _InitPlayerHero();											// 初始化玩家英雄数据
+	void _InitHeroLineup();											// 初始化阵容信息
 
+	// 玩家数据解析
 	void _ParseRoleBaseInfo(const roledata::PBRoleBaseInfo& roleBaseInfo);					// 解析玩家基础数据
 	void _ParseRoleBagInfo(const roledata::PBRoleBag& roleBag);								// 解析玩家包裹数据
+	void _ParseHeroLineup(const roledata::PBHeroLineupList& lineupList);					// 解析玩家阵容数据
+
+	// 玩家数据序列号
 	void _SerializeRoleBaseInfo(roledata::PBRoleBaseInfo& roleBaseInfo);					// 序列化玩家基础数据
 	void _SerializeRoleBagInfo(roledata::PBRoleBag& roleBag);								// 序列化玩家包裹信息
+	void _SerializeHeroLineup(roledata::PBHeroLineupList& lineupList);						// 序列号玩家阵容信息
 
 	void _AddNextGateAvailable(uint32_t nNextGateId);
 
@@ -137,9 +145,11 @@ private:
 
 private:
 	map<uint32_t, Goods> m_roleBagMap;						// 玩家包裹信息[物品ID，物品信息]
-	map<uint32_t, Hero> m_roleHeroMap;						// 玩家英雄信息[英雄ID，英雄属性]
 	map<uint32_t, GateInfo> m_gateMap;						// 玩家关卡信息[关卡ID, 关卡信息]
 	map<uint32_t, BattleInfo> m_battleMap;					// 玩家大关卡信息[大关卡ID，大关卡信息]
+
+	map<uint32_t, Hero> m_roleHeroMap;						// 玩家英雄信息[英雄ID，英雄属性]
+	map<uint32_t, HeroLineup> m_heroLineupMap;				// 玩家阵容信息[阵容ID，阵容信息]
 };
 
 #endif

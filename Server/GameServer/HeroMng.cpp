@@ -342,11 +342,42 @@ int32_t HeroMng::HeroUpgrade(Player* pPlayer, uint32_t uHeroID)
 				break;
 			}
 		}
-		if (!bFind)								// 在英雄装备里面没有找个需要的装备，说明装备不够
+		if (!bFind)								// 在英雄装备里面没有找到需要的装备，说明装备不够
 		{
 			return ERROR_EQUIP_NOT_ENOUGHT;
 		}
 	}
 
+	return ERROR_OP_SUCCESS;
+}
+
+int32_t HeroMng::SetHeroLineup(Player* pPlayer, uint32_t uLineupId, vector<uint32_t>& heroList)
+{
+	if (!pPlayer)
+	{
+		return ERROR_PLAYER_NOT_FOUND;
+	}
+	HeroLineup lineup;
+	if (!pPlayer->GetHeroLineup(uLineupId, lineup))			// 如果阵容信息不存在, 则说明之前没有设置过这个阵容信息
+	{
+		lineup.uLineupId = uLineupId;
+	}
+
+	// 检查阵容中的所有英雄，玩家是否拥有
+	vector<uint32_t>::iterator heroIt = heroList.begin();
+	vector<uint32_t>::iterator heroItEnd = heroList.end();
+	for (; heroIt != heroItEnd; heroIt++)
+	{
+		if (!pPlayer->HasHero(*heroIt))
+		{
+			ERRORLOG("player name=[" << pPlayer->PtName() << "] do not have hero id=[" << *heroIt << "]");
+			return ERROR_HERO_NOT_EXIST;
+		}
+	}
+
+	// 设置英雄阵容
+	lineup.SetHeroList(heroList);
+	// 保存玩家阵容信息
+	pPlayer->SetHeroLineup(uLineupId, lineup);
 	return ERROR_OP_SUCCESS;
 }

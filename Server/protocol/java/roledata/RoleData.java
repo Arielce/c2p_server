@@ -20,6 +20,11 @@ public final class RoleData {
     boolean hasBagInfo();
     roledata.RoleData.PBRoleBag getBagInfo();
     roledata.RoleData.PBRoleBagOrBuilder getBagInfoOrBuilder();
+    
+    // optional .roledata.PBHeroLineupList lineupList = 3;
+    boolean hasLineupList();
+    roledata.RoleData.PBHeroLineupList getLineupList();
+    roledata.RoleData.PBHeroLineupListOrBuilder getLineupListOrBuilder();
   }
   public static final class PBRoleTotalInfo extends
       com.google.protobuf.GeneratedMessage
@@ -76,9 +81,23 @@ public final class RoleData {
       return bagInfo_;
     }
     
+    // optional .roledata.PBHeroLineupList lineupList = 3;
+    public static final int LINEUPLIST_FIELD_NUMBER = 3;
+    private roledata.RoleData.PBHeroLineupList lineupList_;
+    public boolean hasLineupList() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public roledata.RoleData.PBHeroLineupList getLineupList() {
+      return lineupList_;
+    }
+    public roledata.RoleData.PBHeroLineupListOrBuilder getLineupListOrBuilder() {
+      return lineupList_;
+    }
+    
     private void initFields() {
       baseInfo_ = roledata.RoleData.PBRoleBaseInfo.getDefaultInstance();
       bagInfo_ = roledata.RoleData.PBRoleBag.getDefaultInstance();
+      lineupList_ = roledata.RoleData.PBHeroLineupList.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -98,6 +117,9 @@ public final class RoleData {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeMessage(2, bagInfo_);
       }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeMessage(3, lineupList_);
+      }
       getUnknownFields().writeTo(output);
     }
     
@@ -114,6 +136,10 @@ public final class RoleData {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, bagInfo_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, lineupList_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -233,6 +259,7 @@ public final class RoleData {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
           getBaseInfoFieldBuilder();
           getBagInfoFieldBuilder();
+          getLineupListFieldBuilder();
         }
       }
       private static Builder create() {
@@ -253,6 +280,12 @@ public final class RoleData {
           bagInfoBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000002);
+        if (lineupListBuilder_ == null) {
+          lineupList_ = roledata.RoleData.PBHeroLineupList.getDefaultInstance();
+        } else {
+          lineupListBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
       
@@ -307,6 +340,14 @@ public final class RoleData {
         } else {
           result.bagInfo_ = bagInfoBuilder_.build();
         }
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        if (lineupListBuilder_ == null) {
+          result.lineupList_ = lineupList_;
+        } else {
+          result.lineupList_ = lineupListBuilder_.build();
+        }
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -328,6 +369,9 @@ public final class RoleData {
         }
         if (other.hasBagInfo()) {
           mergeBagInfo(other.getBagInfo());
+        }
+        if (other.hasLineupList()) {
+          mergeLineupList(other.getLineupList());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -376,6 +420,15 @@ public final class RoleData {
               }
               input.readMessage(subBuilder, extensionRegistry);
               setBagInfo(subBuilder.buildPartial());
+              break;
+            }
+            case 26: {
+              roledata.RoleData.PBHeroLineupList.Builder subBuilder = roledata.RoleData.PBHeroLineupList.newBuilder();
+              if (hasLineupList()) {
+                subBuilder.mergeFrom(getLineupList());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setLineupList(subBuilder.buildPartial());
               break;
             }
           }
@@ -562,6 +615,96 @@ public final class RoleData {
           bagInfo_ = null;
         }
         return bagInfoBuilder_;
+      }
+      
+      // optional .roledata.PBHeroLineupList lineupList = 3;
+      private roledata.RoleData.PBHeroLineupList lineupList_ = roledata.RoleData.PBHeroLineupList.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          roledata.RoleData.PBHeroLineupList, roledata.RoleData.PBHeroLineupList.Builder, roledata.RoleData.PBHeroLineupListOrBuilder> lineupListBuilder_;
+      public boolean hasLineupList() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public roledata.RoleData.PBHeroLineupList getLineupList() {
+        if (lineupListBuilder_ == null) {
+          return lineupList_;
+        } else {
+          return lineupListBuilder_.getMessage();
+        }
+      }
+      public Builder setLineupList(roledata.RoleData.PBHeroLineupList value) {
+        if (lineupListBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          lineupList_ = value;
+          onChanged();
+        } else {
+          lineupListBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000004;
+        return this;
+      }
+      public Builder setLineupList(
+          roledata.RoleData.PBHeroLineupList.Builder builderForValue) {
+        if (lineupListBuilder_ == null) {
+          lineupList_ = builderForValue.build();
+          onChanged();
+        } else {
+          lineupListBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000004;
+        return this;
+      }
+      public Builder mergeLineupList(roledata.RoleData.PBHeroLineupList value) {
+        if (lineupListBuilder_ == null) {
+          if (((bitField0_ & 0x00000004) == 0x00000004) &&
+              lineupList_ != roledata.RoleData.PBHeroLineupList.getDefaultInstance()) {
+            lineupList_ =
+              roledata.RoleData.PBHeroLineupList.newBuilder(lineupList_).mergeFrom(value).buildPartial();
+          } else {
+            lineupList_ = value;
+          }
+          onChanged();
+        } else {
+          lineupListBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000004;
+        return this;
+      }
+      public Builder clearLineupList() {
+        if (lineupListBuilder_ == null) {
+          lineupList_ = roledata.RoleData.PBHeroLineupList.getDefaultInstance();
+          onChanged();
+        } else {
+          lineupListBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000004);
+        return this;
+      }
+      public roledata.RoleData.PBHeroLineupList.Builder getLineupListBuilder() {
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return getLineupListFieldBuilder().getBuilder();
+      }
+      public roledata.RoleData.PBHeroLineupListOrBuilder getLineupListOrBuilder() {
+        if (lineupListBuilder_ != null) {
+          return lineupListBuilder_.getMessageOrBuilder();
+        } else {
+          return lineupList_;
+        }
+      }
+      private com.google.protobuf.SingleFieldBuilder<
+          roledata.RoleData.PBHeroLineupList, roledata.RoleData.PBHeroLineupList.Builder, roledata.RoleData.PBHeroLineupListOrBuilder> 
+          getLineupListFieldBuilder() {
+        if (lineupListBuilder_ == null) {
+          lineupListBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              roledata.RoleData.PBHeroLineupList, roledata.RoleData.PBHeroLineupList.Builder, roledata.RoleData.PBHeroLineupListOrBuilder>(
+                  lineupList_,
+                  getParentForChildren(),
+                  isClean());
+          lineupList_ = null;
+        }
+        return lineupListBuilder_;
       }
       
       // @@protoc_insertion_point(builder_scope:roledata.PBRoleTotalInfo)
@@ -4122,6 +4265,1003 @@ public final class RoleData {
     // @@protoc_insertion_point(class_scope:roledata.PBRoleBag)
   }
   
+  public interface PBHeroLineupOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // optional uint32 lineupId = 1;
+    boolean hasLineupId();
+    int getLineupId();
+    
+    // repeated uint32 heroId = 2;
+    java.util.List<java.lang.Integer> getHeroIdList();
+    int getHeroIdCount();
+    int getHeroId(int index);
+  }
+  public static final class PBHeroLineup extends
+      com.google.protobuf.GeneratedMessage
+      implements PBHeroLineupOrBuilder {
+    // Use PBHeroLineup.newBuilder() to construct.
+    private PBHeroLineup(Builder builder) {
+      super(builder);
+    }
+    private PBHeroLineup(boolean noInit) {}
+    
+    private static final PBHeroLineup defaultInstance;
+    public static PBHeroLineup getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public PBHeroLineup getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return roledata.RoleData.internal_static_roledata_PBHeroLineup_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return roledata.RoleData.internal_static_roledata_PBHeroLineup_fieldAccessorTable;
+    }
+    
+    private int bitField0_;
+    // optional uint32 lineupId = 1;
+    public static final int LINEUPID_FIELD_NUMBER = 1;
+    private int lineupId_;
+    public boolean hasLineupId() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public int getLineupId() {
+      return lineupId_;
+    }
+    
+    // repeated uint32 heroId = 2;
+    public static final int HEROID_FIELD_NUMBER = 2;
+    private java.util.List<java.lang.Integer> heroId_;
+    public java.util.List<java.lang.Integer>
+        getHeroIdList() {
+      return heroId_;
+    }
+    public int getHeroIdCount() {
+      return heroId_.size();
+    }
+    public int getHeroId(int index) {
+      return heroId_.get(index);
+    }
+    
+    private void initFields() {
+      lineupId_ = 0;
+      heroId_ = java.util.Collections.emptyList();;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeUInt32(1, lineupId_);
+      }
+      for (int i = 0; i < heroId_.size(); i++) {
+        output.writeUInt32(2, heroId_.get(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(1, lineupId_);
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < heroId_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeUInt32SizeNoTag(heroId_.get(i));
+        }
+        size += dataSize;
+        size += 1 * getHeroIdList().size();
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static roledata.RoleData.PBHeroLineup parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static roledata.RoleData.PBHeroLineup parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static roledata.RoleData.PBHeroLineup parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static roledata.RoleData.PBHeroLineup parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static roledata.RoleData.PBHeroLineup parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static roledata.RoleData.PBHeroLineup parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static roledata.RoleData.PBHeroLineup parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static roledata.RoleData.PBHeroLineup parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static roledata.RoleData.PBHeroLineup parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static roledata.RoleData.PBHeroLineup parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(roledata.RoleData.PBHeroLineup prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements roledata.RoleData.PBHeroLineupOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return roledata.RoleData.internal_static_roledata_PBHeroLineup_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return roledata.RoleData.internal_static_roledata_PBHeroLineup_fieldAccessorTable;
+      }
+      
+      // Construct using roledata.RoleData.PBHeroLineup.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        lineupId_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        heroId_ = java.util.Collections.emptyList();;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return roledata.RoleData.PBHeroLineup.getDescriptor();
+      }
+      
+      public roledata.RoleData.PBHeroLineup getDefaultInstanceForType() {
+        return roledata.RoleData.PBHeroLineup.getDefaultInstance();
+      }
+      
+      public roledata.RoleData.PBHeroLineup build() {
+        roledata.RoleData.PBHeroLineup result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private roledata.RoleData.PBHeroLineup buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        roledata.RoleData.PBHeroLineup result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public roledata.RoleData.PBHeroLineup buildPartial() {
+        roledata.RoleData.PBHeroLineup result = new roledata.RoleData.PBHeroLineup(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.lineupId_ = lineupId_;
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          heroId_ = java.util.Collections.unmodifiableList(heroId_);
+          bitField0_ = (bitField0_ & ~0x00000002);
+        }
+        result.heroId_ = heroId_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof roledata.RoleData.PBHeroLineup) {
+          return mergeFrom((roledata.RoleData.PBHeroLineup)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(roledata.RoleData.PBHeroLineup other) {
+        if (other == roledata.RoleData.PBHeroLineup.getDefaultInstance()) return this;
+        if (other.hasLineupId()) {
+          setLineupId(other.getLineupId());
+        }
+        if (!other.heroId_.isEmpty()) {
+          if (heroId_.isEmpty()) {
+            heroId_ = other.heroId_;
+            bitField0_ = (bitField0_ & ~0x00000002);
+          } else {
+            ensureHeroIdIsMutable();
+            heroId_.addAll(other.heroId_);
+          }
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              lineupId_ = input.readUInt32();
+              break;
+            }
+            case 16: {
+              ensureHeroIdIsMutable();
+              heroId_.add(input.readUInt32());
+              break;
+            }
+            case 18: {
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
+              while (input.getBytesUntilLimit() > 0) {
+                addHeroId(input.readUInt32());
+              }
+              input.popLimit(limit);
+              break;
+            }
+          }
+        }
+      }
+      
+      private int bitField0_;
+      
+      // optional uint32 lineupId = 1;
+      private int lineupId_ ;
+      public boolean hasLineupId() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public int getLineupId() {
+        return lineupId_;
+      }
+      public Builder setLineupId(int value) {
+        bitField0_ |= 0x00000001;
+        lineupId_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearLineupId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        lineupId_ = 0;
+        onChanged();
+        return this;
+      }
+      
+      // repeated uint32 heroId = 2;
+      private java.util.List<java.lang.Integer> heroId_ = java.util.Collections.emptyList();;
+      private void ensureHeroIdIsMutable() {
+        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+          heroId_ = new java.util.ArrayList<java.lang.Integer>(heroId_);
+          bitField0_ |= 0x00000002;
+         }
+      }
+      public java.util.List<java.lang.Integer>
+          getHeroIdList() {
+        return java.util.Collections.unmodifiableList(heroId_);
+      }
+      public int getHeroIdCount() {
+        return heroId_.size();
+      }
+      public int getHeroId(int index) {
+        return heroId_.get(index);
+      }
+      public Builder setHeroId(
+          int index, int value) {
+        ensureHeroIdIsMutable();
+        heroId_.set(index, value);
+        onChanged();
+        return this;
+      }
+      public Builder addHeroId(int value) {
+        ensureHeroIdIsMutable();
+        heroId_.add(value);
+        onChanged();
+        return this;
+      }
+      public Builder addAllHeroId(
+          java.lang.Iterable<? extends java.lang.Integer> values) {
+        ensureHeroIdIsMutable();
+        super.addAll(values, heroId_);
+        onChanged();
+        return this;
+      }
+      public Builder clearHeroId() {
+        heroId_ = java.util.Collections.emptyList();;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      
+      // @@protoc_insertion_point(builder_scope:roledata.PBHeroLineup)
+    }
+    
+    static {
+      defaultInstance = new PBHeroLineup(true);
+      defaultInstance.initFields();
+    }
+    
+    // @@protoc_insertion_point(class_scope:roledata.PBHeroLineup)
+  }
+  
+  public interface PBHeroLineupListOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // repeated .roledata.PBHeroLineup lineupList = 1;
+    java.util.List<roledata.RoleData.PBHeroLineup> 
+        getLineupListList();
+    roledata.RoleData.PBHeroLineup getLineupList(int index);
+    int getLineupListCount();
+    java.util.List<? extends roledata.RoleData.PBHeroLineupOrBuilder> 
+        getLineupListOrBuilderList();
+    roledata.RoleData.PBHeroLineupOrBuilder getLineupListOrBuilder(
+        int index);
+  }
+  public static final class PBHeroLineupList extends
+      com.google.protobuf.GeneratedMessage
+      implements PBHeroLineupListOrBuilder {
+    // Use PBHeroLineupList.newBuilder() to construct.
+    private PBHeroLineupList(Builder builder) {
+      super(builder);
+    }
+    private PBHeroLineupList(boolean noInit) {}
+    
+    private static final PBHeroLineupList defaultInstance;
+    public static PBHeroLineupList getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public PBHeroLineupList getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return roledata.RoleData.internal_static_roledata_PBHeroLineupList_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return roledata.RoleData.internal_static_roledata_PBHeroLineupList_fieldAccessorTable;
+    }
+    
+    // repeated .roledata.PBHeroLineup lineupList = 1;
+    public static final int LINEUPLIST_FIELD_NUMBER = 1;
+    private java.util.List<roledata.RoleData.PBHeroLineup> lineupList_;
+    public java.util.List<roledata.RoleData.PBHeroLineup> getLineupListList() {
+      return lineupList_;
+    }
+    public java.util.List<? extends roledata.RoleData.PBHeroLineupOrBuilder> 
+        getLineupListOrBuilderList() {
+      return lineupList_;
+    }
+    public int getLineupListCount() {
+      return lineupList_.size();
+    }
+    public roledata.RoleData.PBHeroLineup getLineupList(int index) {
+      return lineupList_.get(index);
+    }
+    public roledata.RoleData.PBHeroLineupOrBuilder getLineupListOrBuilder(
+        int index) {
+      return lineupList_.get(index);
+    }
+    
+    private void initFields() {
+      lineupList_ = java.util.Collections.emptyList();
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      for (int i = 0; i < lineupList_.size(); i++) {
+        output.writeMessage(1, lineupList_.get(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      for (int i = 0; i < lineupList_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, lineupList_.get(i));
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static roledata.RoleData.PBHeroLineupList parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static roledata.RoleData.PBHeroLineupList parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static roledata.RoleData.PBHeroLineupList parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static roledata.RoleData.PBHeroLineupList parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static roledata.RoleData.PBHeroLineupList parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static roledata.RoleData.PBHeroLineupList parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static roledata.RoleData.PBHeroLineupList parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static roledata.RoleData.PBHeroLineupList parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static roledata.RoleData.PBHeroLineupList parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static roledata.RoleData.PBHeroLineupList parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(roledata.RoleData.PBHeroLineupList prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements roledata.RoleData.PBHeroLineupListOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return roledata.RoleData.internal_static_roledata_PBHeroLineupList_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return roledata.RoleData.internal_static_roledata_PBHeroLineupList_fieldAccessorTable;
+      }
+      
+      // Construct using roledata.RoleData.PBHeroLineupList.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getLineupListFieldBuilder();
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        if (lineupListBuilder_ == null) {
+          lineupList_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          lineupListBuilder_.clear();
+        }
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return roledata.RoleData.PBHeroLineupList.getDescriptor();
+      }
+      
+      public roledata.RoleData.PBHeroLineupList getDefaultInstanceForType() {
+        return roledata.RoleData.PBHeroLineupList.getDefaultInstance();
+      }
+      
+      public roledata.RoleData.PBHeroLineupList build() {
+        roledata.RoleData.PBHeroLineupList result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private roledata.RoleData.PBHeroLineupList buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        roledata.RoleData.PBHeroLineupList result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public roledata.RoleData.PBHeroLineupList buildPartial() {
+        roledata.RoleData.PBHeroLineupList result = new roledata.RoleData.PBHeroLineupList(this);
+        int from_bitField0_ = bitField0_;
+        if (lineupListBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+            lineupList_ = java.util.Collections.unmodifiableList(lineupList_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.lineupList_ = lineupList_;
+        } else {
+          result.lineupList_ = lineupListBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof roledata.RoleData.PBHeroLineupList) {
+          return mergeFrom((roledata.RoleData.PBHeroLineupList)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(roledata.RoleData.PBHeroLineupList other) {
+        if (other == roledata.RoleData.PBHeroLineupList.getDefaultInstance()) return this;
+        if (lineupListBuilder_ == null) {
+          if (!other.lineupList_.isEmpty()) {
+            if (lineupList_.isEmpty()) {
+              lineupList_ = other.lineupList_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureLineupListIsMutable();
+              lineupList_.addAll(other.lineupList_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.lineupList_.isEmpty()) {
+            if (lineupListBuilder_.isEmpty()) {
+              lineupListBuilder_.dispose();
+              lineupListBuilder_ = null;
+              lineupList_ = other.lineupList_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              lineupListBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getLineupListFieldBuilder() : null;
+            } else {
+              lineupListBuilder_.addAllMessages(other.lineupList_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 10: {
+              roledata.RoleData.PBHeroLineup.Builder subBuilder = roledata.RoleData.PBHeroLineup.newBuilder();
+              input.readMessage(subBuilder, extensionRegistry);
+              addLineupList(subBuilder.buildPartial());
+              break;
+            }
+          }
+        }
+      }
+      
+      private int bitField0_;
+      
+      // repeated .roledata.PBHeroLineup lineupList = 1;
+      private java.util.List<roledata.RoleData.PBHeroLineup> lineupList_ =
+        java.util.Collections.emptyList();
+      private void ensureLineupListIsMutable() {
+        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+          lineupList_ = new java.util.ArrayList<roledata.RoleData.PBHeroLineup>(lineupList_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+      
+      private com.google.protobuf.RepeatedFieldBuilder<
+          roledata.RoleData.PBHeroLineup, roledata.RoleData.PBHeroLineup.Builder, roledata.RoleData.PBHeroLineupOrBuilder> lineupListBuilder_;
+      
+      public java.util.List<roledata.RoleData.PBHeroLineup> getLineupListList() {
+        if (lineupListBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(lineupList_);
+        } else {
+          return lineupListBuilder_.getMessageList();
+        }
+      }
+      public int getLineupListCount() {
+        if (lineupListBuilder_ == null) {
+          return lineupList_.size();
+        } else {
+          return lineupListBuilder_.getCount();
+        }
+      }
+      public roledata.RoleData.PBHeroLineup getLineupList(int index) {
+        if (lineupListBuilder_ == null) {
+          return lineupList_.get(index);
+        } else {
+          return lineupListBuilder_.getMessage(index);
+        }
+      }
+      public Builder setLineupList(
+          int index, roledata.RoleData.PBHeroLineup value) {
+        if (lineupListBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureLineupListIsMutable();
+          lineupList_.set(index, value);
+          onChanged();
+        } else {
+          lineupListBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      public Builder setLineupList(
+          int index, roledata.RoleData.PBHeroLineup.Builder builderForValue) {
+        if (lineupListBuilder_ == null) {
+          ensureLineupListIsMutable();
+          lineupList_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          lineupListBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addLineupList(roledata.RoleData.PBHeroLineup value) {
+        if (lineupListBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureLineupListIsMutable();
+          lineupList_.add(value);
+          onChanged();
+        } else {
+          lineupListBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      public Builder addLineupList(
+          int index, roledata.RoleData.PBHeroLineup value) {
+        if (lineupListBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureLineupListIsMutable();
+          lineupList_.add(index, value);
+          onChanged();
+        } else {
+          lineupListBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      public Builder addLineupList(
+          roledata.RoleData.PBHeroLineup.Builder builderForValue) {
+        if (lineupListBuilder_ == null) {
+          ensureLineupListIsMutable();
+          lineupList_.add(builderForValue.build());
+          onChanged();
+        } else {
+          lineupListBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addLineupList(
+          int index, roledata.RoleData.PBHeroLineup.Builder builderForValue) {
+        if (lineupListBuilder_ == null) {
+          ensureLineupListIsMutable();
+          lineupList_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          lineupListBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllLineupList(
+          java.lang.Iterable<? extends roledata.RoleData.PBHeroLineup> values) {
+        if (lineupListBuilder_ == null) {
+          ensureLineupListIsMutable();
+          super.addAll(values, lineupList_);
+          onChanged();
+        } else {
+          lineupListBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      public Builder clearLineupList() {
+        if (lineupListBuilder_ == null) {
+          lineupList_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          lineupListBuilder_.clear();
+        }
+        return this;
+      }
+      public Builder removeLineupList(int index) {
+        if (lineupListBuilder_ == null) {
+          ensureLineupListIsMutable();
+          lineupList_.remove(index);
+          onChanged();
+        } else {
+          lineupListBuilder_.remove(index);
+        }
+        return this;
+      }
+      public roledata.RoleData.PBHeroLineup.Builder getLineupListBuilder(
+          int index) {
+        return getLineupListFieldBuilder().getBuilder(index);
+      }
+      public roledata.RoleData.PBHeroLineupOrBuilder getLineupListOrBuilder(
+          int index) {
+        if (lineupListBuilder_ == null) {
+          return lineupList_.get(index);  } else {
+          return lineupListBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      public java.util.List<? extends roledata.RoleData.PBHeroLineupOrBuilder> 
+           getLineupListOrBuilderList() {
+        if (lineupListBuilder_ != null) {
+          return lineupListBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(lineupList_);
+        }
+      }
+      public roledata.RoleData.PBHeroLineup.Builder addLineupListBuilder() {
+        return getLineupListFieldBuilder().addBuilder(
+            roledata.RoleData.PBHeroLineup.getDefaultInstance());
+      }
+      public roledata.RoleData.PBHeroLineup.Builder addLineupListBuilder(
+          int index) {
+        return getLineupListFieldBuilder().addBuilder(
+            index, roledata.RoleData.PBHeroLineup.getDefaultInstance());
+      }
+      public java.util.List<roledata.RoleData.PBHeroLineup.Builder> 
+           getLineupListBuilderList() {
+        return getLineupListFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          roledata.RoleData.PBHeroLineup, roledata.RoleData.PBHeroLineup.Builder, roledata.RoleData.PBHeroLineupOrBuilder> 
+          getLineupListFieldBuilder() {
+        if (lineupListBuilder_ == null) {
+          lineupListBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              roledata.RoleData.PBHeroLineup, roledata.RoleData.PBHeroLineup.Builder, roledata.RoleData.PBHeroLineupOrBuilder>(
+                  lineupList_,
+                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  getParentForChildren(),
+                  isClean());
+          lineupList_ = null;
+        }
+        return lineupListBuilder_;
+      }
+      
+      // @@protoc_insertion_point(builder_scope:roledata.PBHeroLineupList)
+    }
+    
+    static {
+      defaultInstance = new PBHeroLineupList(true);
+      defaultInstance.initFields();
+    }
+    
+    // @@protoc_insertion_point(class_scope:roledata.PBHeroLineupList)
+  }
+  
   public interface PBGateInfoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
@@ -5767,6 +6907,16 @@ public final class RoleData {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_roledata_PBRoleBag_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_roledata_PBHeroLineup_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_roledata_PBHeroLineup_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_roledata_PBHeroLineupList_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_roledata_PBHeroLineupList_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_roledata_PBGateInfo_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -5790,28 +6940,33 @@ public final class RoleData {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\016RoleData.proto\022\010roledata\"c\n\017PBRoleTota" +
-      "lInfo\022*\n\010baseInfo\030\001 \001(\0132\030.roledata.PBRol" +
-      "eBaseInfo\022$\n\007bagInfo\030\002 \001(\0132\023.roledata.PB" +
-      "RoleBag\"\200\002\n\016PBRoleBaseInfo\022\016\n\006userId\030\001 \001" +
-      "(\r\022\023\n\013dataVersion\030\002 \001(\r\022\020\n\010roleName\030\003 \001(" +
-      "\t\022\016\n\006ptName\030\004 \001(\t\022\r\n\005level\030\005 \001(\r\022\013\n\003exp\030" +
-      "\006 \001(\r\022\017\n\007diamond\030\007 \001(\r\022\014\n\004gold\030\010 \001(\r\022\020\n\010" +
-      "vipLevel\030\t \001(\r\022&\n\010heroList\030\n \001(\0132\024.roled" +
-      "ata.PBHeroList\0222\n\016battleGateList\030\013 \001(\0132\032" +
-      ".roledata.PBBattleGateList\",\n\007PBEquip\022\017\n",
-      "\007equipId\030\001 \001(\r\022\020\n\010equipNum\030\003 \001(\r\"\224\001\n\006PBH" +
-      "ero\022\016\n\006heroId\030\001 \001(\r\022\r\n\005level\030\002 \001(\r\022\013\n\003ex" +
-      "p\030\003 \001(\r\022\020\n\010heroRank\030\004 \001(\r\022\024\n\014upgradeLeve" +
-      "l\030\005 \001(\r\022\023\n\013fragmentNum\030\006 \001(\r\022!\n\006equips\030\007" +
-      " \003(\0132\021.roledata.PBEquip\"-\n\nPBHeroList\022\037\n" +
-      "\005heros\030\001 \003(\0132\020.roledata.PBHero\".\n\tPBRole" +
-      "Bag\022!\n\006equips\030\001 \003(\0132\021.roledata.PBEquip\"@" +
-      "\n\nPBGateInfo\022\016\n\006gateId\030\001 \001(\r\022\020\n\010gateStar" +
-      "\030\002 \001(\r\022\020\n\010hasFight\030\003 \001(\010\"E\n\014PBBattleInfo" +
-      "\022\020\n\010battleId\030\001 \001(\r\022#\n\005gates\030\002 \003(\0132\024.role",
-      "data.PBGateInfo\"?\n\020PBBattleGateList\022+\n\013b" +
-      "attleGates\030\001 \003(\0132\026.roledata.PBBattleInfo"
+      "\n\016RoleData.proto\022\010roledata\"\223\001\n\017PBRoleTot" +
+      "alInfo\022*\n\010baseInfo\030\001 \001(\0132\030.roledata.PBRo" +
+      "leBaseInfo\022$\n\007bagInfo\030\002 \001(\0132\023.roledata.P" +
+      "BRoleBag\022.\n\nlineupList\030\003 \001(\0132\032.roledata." +
+      "PBHeroLineupList\"\200\002\n\016PBRoleBaseInfo\022\016\n\006u" +
+      "serId\030\001 \001(\r\022\023\n\013dataVersion\030\002 \001(\r\022\020\n\010role" +
+      "Name\030\003 \001(\t\022\016\n\006ptName\030\004 \001(\t\022\r\n\005level\030\005 \001(" +
+      "\r\022\013\n\003exp\030\006 \001(\r\022\017\n\007diamond\030\007 \001(\r\022\014\n\004gold\030" +
+      "\010 \001(\r\022\020\n\010vipLevel\030\t \001(\r\022&\n\010heroList\030\n \001(" +
+      "\0132\024.roledata.PBHeroList\0222\n\016battleGateLis",
+      "t\030\013 \001(\0132\032.roledata.PBBattleGateList\",\n\007P" +
+      "BEquip\022\017\n\007equipId\030\001 \001(\r\022\020\n\010equipNum\030\003 \001(" +
+      "\r\"\224\001\n\006PBHero\022\016\n\006heroId\030\001 \001(\r\022\r\n\005level\030\002 " +
+      "\001(\r\022\013\n\003exp\030\003 \001(\r\022\020\n\010heroRank\030\004 \001(\r\022\024\n\014up" +
+      "gradeLevel\030\005 \001(\r\022\023\n\013fragmentNum\030\006 \001(\r\022!\n" +
+      "\006equips\030\007 \003(\0132\021.roledata.PBEquip\"-\n\nPBHe" +
+      "roList\022\037\n\005heros\030\001 \003(\0132\020.roledata.PBHero\"" +
+      ".\n\tPBRoleBag\022!\n\006equips\030\001 \003(\0132\021.roledata." +
+      "PBEquip\"0\n\014PBHeroLineup\022\020\n\010lineupId\030\001 \001(" +
+      "\r\022\016\n\006heroId\030\002 \003(\r\">\n\020PBHeroLineupList\022*\n",
+      "\nlineupList\030\001 \003(\0132\026.roledata.PBHeroLineu" +
+      "p\"@\n\nPBGateInfo\022\016\n\006gateId\030\001 \001(\r\022\020\n\010gateS" +
+      "tar\030\002 \001(\r\022\020\n\010hasFight\030\003 \001(\010\"E\n\014PBBattleI" +
+      "nfo\022\020\n\010battleId\030\001 \001(\r\022#\n\005gates\030\002 \003(\0132\024.r" +
+      "oledata.PBGateInfo\"?\n\020PBBattleGateList\022+" +
+      "\n\013battleGates\030\001 \003(\0132\026.roledata.PBBattleI" +
+      "nfo"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -5823,7 +6978,7 @@ public final class RoleData {
           internal_static_roledata_PBRoleTotalInfo_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_roledata_PBRoleTotalInfo_descriptor,
-              new java.lang.String[] { "BaseInfo", "BagInfo", },
+              new java.lang.String[] { "BaseInfo", "BagInfo", "LineupList", },
               roledata.RoleData.PBRoleTotalInfo.class,
               roledata.RoleData.PBRoleTotalInfo.Builder.class);
           internal_static_roledata_PBRoleBaseInfo_descriptor =
@@ -5866,8 +7021,24 @@ public final class RoleData {
               new java.lang.String[] { "Equips", },
               roledata.RoleData.PBRoleBag.class,
               roledata.RoleData.PBRoleBag.Builder.class);
-          internal_static_roledata_PBGateInfo_descriptor =
+          internal_static_roledata_PBHeroLineup_descriptor =
             getDescriptor().getMessageTypes().get(6);
+          internal_static_roledata_PBHeroLineup_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_roledata_PBHeroLineup_descriptor,
+              new java.lang.String[] { "LineupId", "HeroId", },
+              roledata.RoleData.PBHeroLineup.class,
+              roledata.RoleData.PBHeroLineup.Builder.class);
+          internal_static_roledata_PBHeroLineupList_descriptor =
+            getDescriptor().getMessageTypes().get(7);
+          internal_static_roledata_PBHeroLineupList_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_roledata_PBHeroLineupList_descriptor,
+              new java.lang.String[] { "LineupList", },
+              roledata.RoleData.PBHeroLineupList.class,
+              roledata.RoleData.PBHeroLineupList.Builder.class);
+          internal_static_roledata_PBGateInfo_descriptor =
+            getDescriptor().getMessageTypes().get(8);
           internal_static_roledata_PBGateInfo_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_roledata_PBGateInfo_descriptor,
@@ -5875,7 +7046,7 @@ public final class RoleData {
               roledata.RoleData.PBGateInfo.class,
               roledata.RoleData.PBGateInfo.Builder.class);
           internal_static_roledata_PBBattleInfo_descriptor =
-            getDescriptor().getMessageTypes().get(7);
+            getDescriptor().getMessageTypes().get(9);
           internal_static_roledata_PBBattleInfo_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_roledata_PBBattleInfo_descriptor,
@@ -5883,7 +7054,7 @@ public final class RoleData {
               roledata.RoleData.PBBattleInfo.class,
               roledata.RoleData.PBBattleInfo.Builder.class);
           internal_static_roledata_PBBattleGateList_descriptor =
-            getDescriptor().getMessageTypes().get(8);
+            getDescriptor().getMessageTypes().get(10);
           internal_static_roledata_PBBattleGateList_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_roledata_PBBattleGateList_descriptor,

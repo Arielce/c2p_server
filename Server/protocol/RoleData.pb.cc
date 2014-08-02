@@ -35,6 +35,12 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* PBRoleBag_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   PBRoleBag_reflection_ = NULL;
+const ::google::protobuf::Descriptor* PBHeroLineup_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  PBHeroLineup_reflection_ = NULL;
+const ::google::protobuf::Descriptor* PBHeroLineupList_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  PBHeroLineupList_reflection_ = NULL;
 const ::google::protobuf::Descriptor* PBGateInfo_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   PBGateInfo_reflection_ = NULL;
@@ -55,9 +61,10 @@ void protobuf_AssignDesc_RoleData_2eproto() {
       "RoleData.proto");
   GOOGLE_CHECK(file != NULL);
   PBRoleTotalInfo_descriptor_ = file->message_type(0);
-  static const int PBRoleTotalInfo_offsets_[2] = {
+  static const int PBRoleTotalInfo_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PBRoleTotalInfo, baseinfo_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PBRoleTotalInfo, baginfo_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PBRoleTotalInfo, lineuplist_),
   };
   PBRoleTotalInfo_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -162,7 +169,38 @@ void protobuf_AssignDesc_RoleData_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(PBRoleBag));
-  PBGateInfo_descriptor_ = file->message_type(6);
+  PBHeroLineup_descriptor_ = file->message_type(6);
+  static const int PBHeroLineup_offsets_[2] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PBHeroLineup, lineupid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PBHeroLineup, heroid_),
+  };
+  PBHeroLineup_reflection_ =
+    new ::google::protobuf::internal::GeneratedMessageReflection(
+      PBHeroLineup_descriptor_,
+      PBHeroLineup::default_instance_,
+      PBHeroLineup_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PBHeroLineup, _has_bits_[0]),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PBHeroLineup, _unknown_fields_),
+      -1,
+      ::google::protobuf::DescriptorPool::generated_pool(),
+      ::google::protobuf::MessageFactory::generated_factory(),
+      sizeof(PBHeroLineup));
+  PBHeroLineupList_descriptor_ = file->message_type(7);
+  static const int PBHeroLineupList_offsets_[1] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PBHeroLineupList, lineuplist_),
+  };
+  PBHeroLineupList_reflection_ =
+    new ::google::protobuf::internal::GeneratedMessageReflection(
+      PBHeroLineupList_descriptor_,
+      PBHeroLineupList::default_instance_,
+      PBHeroLineupList_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PBHeroLineupList, _has_bits_[0]),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PBHeroLineupList, _unknown_fields_),
+      -1,
+      ::google::protobuf::DescriptorPool::generated_pool(),
+      ::google::protobuf::MessageFactory::generated_factory(),
+      sizeof(PBHeroLineupList));
+  PBGateInfo_descriptor_ = file->message_type(8);
   static const int PBGateInfo_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PBGateInfo, gateid_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PBGateInfo, gatestar_),
@@ -179,7 +217,7 @@ void protobuf_AssignDesc_RoleData_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(PBGateInfo));
-  PBBattleInfo_descriptor_ = file->message_type(7);
+  PBBattleInfo_descriptor_ = file->message_type(9);
   static const int PBBattleInfo_offsets_[2] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PBBattleInfo, battleid_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PBBattleInfo, gates_),
@@ -195,7 +233,7 @@ void protobuf_AssignDesc_RoleData_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(PBBattleInfo));
-  PBBattleGateList_descriptor_ = file->message_type(8);
+  PBBattleGateList_descriptor_ = file->message_type(10);
   static const int PBBattleGateList_offsets_[1] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PBBattleGateList, battlegates_),
   };
@@ -235,6 +273,10 @@ void protobuf_RegisterTypes(const ::std::string&) {
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     PBRoleBag_descriptor_, &PBRoleBag::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+    PBHeroLineup_descriptor_, &PBHeroLineup::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+    PBHeroLineupList_descriptor_, &PBHeroLineupList::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     PBGateInfo_descriptor_, &PBGateInfo::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     PBBattleInfo_descriptor_, &PBBattleInfo::default_instance());
@@ -257,6 +299,10 @@ void protobuf_ShutdownFile_RoleData_2eproto() {
   delete PBHeroList_reflection_;
   delete PBRoleBag::default_instance_;
   delete PBRoleBag_reflection_;
+  delete PBHeroLineup::default_instance_;
+  delete PBHeroLineup_reflection_;
+  delete PBHeroLineupList::default_instance_;
+  delete PBHeroLineupList_reflection_;
   delete PBGateInfo::default_instance_;
   delete PBGateInfo_reflection_;
   delete PBBattleInfo::default_instance_;
@@ -272,28 +318,33 @@ void protobuf_AddDesc_RoleData_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\016RoleData.proto\022\010roledata\"c\n\017PBRoleTota"
-    "lInfo\022*\n\010baseInfo\030\001 \001(\0132\030.roledata.PBRol"
-    "eBaseInfo\022$\n\007bagInfo\030\002 \001(\0132\023.roledata.PB"
-    "RoleBag\"\200\002\n\016PBRoleBaseInfo\022\016\n\006userId\030\001 \001"
-    "(\r\022\023\n\013dataVersion\030\002 \001(\r\022\020\n\010roleName\030\003 \001("
-    "\t\022\016\n\006ptName\030\004 \001(\t\022\r\n\005level\030\005 \001(\r\022\013\n\003exp\030"
-    "\006 \001(\r\022\017\n\007diamond\030\007 \001(\r\022\014\n\004gold\030\010 \001(\r\022\020\n\010"
-    "vipLevel\030\t \001(\r\022&\n\010heroList\030\n \001(\0132\024.roled"
-    "ata.PBHeroList\0222\n\016battleGateList\030\013 \001(\0132\032"
-    ".roledata.PBBattleGateList\",\n\007PBEquip\022\017\n"
-    "\007equipId\030\001 \001(\r\022\020\n\010equipNum\030\003 \001(\r\"\224\001\n\006PBH"
-    "ero\022\016\n\006heroId\030\001 \001(\r\022\r\n\005level\030\002 \001(\r\022\013\n\003ex"
-    "p\030\003 \001(\r\022\020\n\010heroRank\030\004 \001(\r\022\024\n\014upgradeLeve"
-    "l\030\005 \001(\r\022\023\n\013fragmentNum\030\006 \001(\r\022!\n\006equips\030\007"
-    " \003(\0132\021.roledata.PBEquip\"-\n\nPBHeroList\022\037\n"
-    "\005heros\030\001 \003(\0132\020.roledata.PBHero\".\n\tPBRole"
-    "Bag\022!\n\006equips\030\001 \003(\0132\021.roledata.PBEquip\"@"
-    "\n\nPBGateInfo\022\016\n\006gateId\030\001 \001(\r\022\020\n\010gateStar"
-    "\030\002 \001(\r\022\020\n\010hasFight\030\003 \001(\010\"E\n\014PBBattleInfo"
-    "\022\020\n\010battleId\030\001 \001(\r\022#\n\005gates\030\002 \003(\0132\024.role"
-    "data.PBGateInfo\"\?\n\020PBBattleGateList\022+\n\013b"
-    "attleGates\030\001 \003(\0132\026.roledata.PBBattleInfo", 880);
+    "\n\016RoleData.proto\022\010roledata\"\223\001\n\017PBRoleTot"
+    "alInfo\022*\n\010baseInfo\030\001 \001(\0132\030.roledata.PBRo"
+    "leBaseInfo\022$\n\007bagInfo\030\002 \001(\0132\023.roledata.P"
+    "BRoleBag\022.\n\nlineupList\030\003 \001(\0132\032.roledata."
+    "PBHeroLineupList\"\200\002\n\016PBRoleBaseInfo\022\016\n\006u"
+    "serId\030\001 \001(\r\022\023\n\013dataVersion\030\002 \001(\r\022\020\n\010role"
+    "Name\030\003 \001(\t\022\016\n\006ptName\030\004 \001(\t\022\r\n\005level\030\005 \001("
+    "\r\022\013\n\003exp\030\006 \001(\r\022\017\n\007diamond\030\007 \001(\r\022\014\n\004gold\030"
+    "\010 \001(\r\022\020\n\010vipLevel\030\t \001(\r\022&\n\010heroList\030\n \001("
+    "\0132\024.roledata.PBHeroList\0222\n\016battleGateLis"
+    "t\030\013 \001(\0132\032.roledata.PBBattleGateList\",\n\007P"
+    "BEquip\022\017\n\007equipId\030\001 \001(\r\022\020\n\010equipNum\030\003 \001("
+    "\r\"\224\001\n\006PBHero\022\016\n\006heroId\030\001 \001(\r\022\r\n\005level\030\002 "
+    "\001(\r\022\013\n\003exp\030\003 \001(\r\022\020\n\010heroRank\030\004 \001(\r\022\024\n\014up"
+    "gradeLevel\030\005 \001(\r\022\023\n\013fragmentNum\030\006 \001(\r\022!\n"
+    "\006equips\030\007 \003(\0132\021.roledata.PBEquip\"-\n\nPBHe"
+    "roList\022\037\n\005heros\030\001 \003(\0132\020.roledata.PBHero\""
+    ".\n\tPBRoleBag\022!\n\006equips\030\001 \003(\0132\021.roledata."
+    "PBEquip\"0\n\014PBHeroLineup\022\020\n\010lineupId\030\001 \001("
+    "\r\022\016\n\006heroId\030\002 \003(\r\">\n\020PBHeroLineupList\022*\n"
+    "\nlineupList\030\001 \003(\0132\026.roledata.PBHeroLineu"
+    "p\"@\n\nPBGateInfo\022\016\n\006gateId\030\001 \001(\r\022\020\n\010gateS"
+    "tar\030\002 \001(\r\022\020\n\010hasFight\030\003 \001(\010\"E\n\014PBBattleI"
+    "nfo\022\020\n\010battleId\030\001 \001(\r\022#\n\005gates\030\002 \003(\0132\024.r"
+    "oledata.PBGateInfo\"\?\n\020PBBattleGateList\022+"
+    "\n\013battleGates\030\001 \003(\0132\026.roledata.PBBattleI"
+    "nfo", 1043);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "RoleData.proto", &protobuf_RegisterTypes);
   PBRoleTotalInfo::default_instance_ = new PBRoleTotalInfo();
@@ -302,6 +353,8 @@ void protobuf_AddDesc_RoleData_2eproto() {
   PBHero::default_instance_ = new PBHero();
   PBHeroList::default_instance_ = new PBHeroList();
   PBRoleBag::default_instance_ = new PBRoleBag();
+  PBHeroLineup::default_instance_ = new PBHeroLineup();
+  PBHeroLineupList::default_instance_ = new PBHeroLineupList();
   PBGateInfo::default_instance_ = new PBGateInfo();
   PBBattleInfo::default_instance_ = new PBBattleInfo();
   PBBattleGateList::default_instance_ = new PBBattleGateList();
@@ -311,6 +364,8 @@ void protobuf_AddDesc_RoleData_2eproto() {
   PBHero::default_instance_->InitAsDefaultInstance();
   PBHeroList::default_instance_->InitAsDefaultInstance();
   PBRoleBag::default_instance_->InitAsDefaultInstance();
+  PBHeroLineup::default_instance_->InitAsDefaultInstance();
+  PBHeroLineupList::default_instance_->InitAsDefaultInstance();
   PBGateInfo::default_instance_->InitAsDefaultInstance();
   PBBattleInfo::default_instance_->InitAsDefaultInstance();
   PBBattleGateList::default_instance_->InitAsDefaultInstance();
@@ -330,6 +385,7 @@ struct StaticDescriptorInitializer_RoleData_2eproto {
 #ifndef _MSC_VER
 const int PBRoleTotalInfo::kBaseInfoFieldNumber;
 const int PBRoleTotalInfo::kBagInfoFieldNumber;
+const int PBRoleTotalInfo::kLineupListFieldNumber;
 #endif  // !_MSC_VER
 
 PBRoleTotalInfo::PBRoleTotalInfo()
@@ -340,6 +396,7 @@ PBRoleTotalInfo::PBRoleTotalInfo()
 void PBRoleTotalInfo::InitAsDefaultInstance() {
   baseinfo_ = const_cast< ::roledata::PBRoleBaseInfo*>(&::roledata::PBRoleBaseInfo::default_instance());
   baginfo_ = const_cast< ::roledata::PBRoleBag*>(&::roledata::PBRoleBag::default_instance());
+  lineuplist_ = const_cast< ::roledata::PBHeroLineupList*>(&::roledata::PBHeroLineupList::default_instance());
 }
 
 PBRoleTotalInfo::PBRoleTotalInfo(const PBRoleTotalInfo& from)
@@ -352,6 +409,7 @@ void PBRoleTotalInfo::SharedCtor() {
   _cached_size_ = 0;
   baseinfo_ = NULL;
   baginfo_ = NULL;
+  lineuplist_ = NULL;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -363,6 +421,7 @@ void PBRoleTotalInfo::SharedDtor() {
   if (this != default_instance_) {
     delete baseinfo_;
     delete baginfo_;
+    delete lineuplist_;
   }
 }
 
@@ -393,6 +452,9 @@ void PBRoleTotalInfo::Clear() {
     }
     if (has_baginfo()) {
       if (baginfo_ != NULL) baginfo_->::roledata::PBRoleBag::Clear();
+    }
+    if (has_lineuplist()) {
+      if (lineuplist_ != NULL) lineuplist_->::roledata::PBHeroLineupList::Clear();
     }
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -425,6 +487,20 @@ bool PBRoleTotalInfo::MergePartialFromCodedStream(
          parse_bagInfo:
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
                input, mutable_baginfo()));
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(26)) goto parse_lineupList;
+        break;
+      }
+      
+      // optional .roledata.PBHeroLineupList lineupList = 3;
+      case 3: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+         parse_lineupList:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_lineuplist()));
         } else {
           goto handle_uninterpreted;
         }
@@ -462,6 +538,12 @@ void PBRoleTotalInfo::SerializeWithCachedSizes(
       2, this->baginfo(), output);
   }
   
+  // optional .roledata.PBHeroLineupList lineupList = 3;
+  if (has_lineuplist()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      3, this->lineuplist(), output);
+  }
+  
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -482,6 +564,13 @@ void PBRoleTotalInfo::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         2, this->baginfo(), target);
+  }
+  
+  // optional .roledata.PBHeroLineupList lineupList = 3;
+  if (has_lineuplist()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        3, this->lineuplist(), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -507,6 +596,13 @@ int PBRoleTotalInfo::ByteSize() const {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
           this->baginfo());
+    }
+    
+    // optional .roledata.PBHeroLineupList lineupList = 3;
+    if (has_lineuplist()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->lineuplist());
     }
     
   }
@@ -542,6 +638,9 @@ void PBRoleTotalInfo::MergeFrom(const PBRoleTotalInfo& from) {
     if (from.has_baginfo()) {
       mutable_baginfo()->::roledata::PBRoleBag::MergeFrom(from.baginfo());
     }
+    if (from.has_lineuplist()) {
+      mutable_lineuplist()->::roledata::PBHeroLineupList::MergeFrom(from.lineuplist());
+    }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
@@ -567,6 +666,7 @@ void PBRoleTotalInfo::Swap(PBRoleTotalInfo* other) {
   if (other != this) {
     std::swap(baseinfo_, other->baseinfo_);
     std::swap(baginfo_, other->baginfo_);
+    std::swap(lineuplist_, other->lineuplist_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
@@ -2333,6 +2433,463 @@ void PBRoleBag::Swap(PBRoleBag* other) {
   ::google::protobuf::Metadata metadata;
   metadata.descriptor = PBRoleBag_descriptor_;
   metadata.reflection = PBRoleBag_reflection_;
+  return metadata;
+}
+
+
+// ===================================================================
+
+#ifndef _MSC_VER
+const int PBHeroLineup::kLineupIdFieldNumber;
+const int PBHeroLineup::kHeroIdFieldNumber;
+#endif  // !_MSC_VER
+
+PBHeroLineup::PBHeroLineup()
+  : ::google::protobuf::Message() {
+  SharedCtor();
+}
+
+void PBHeroLineup::InitAsDefaultInstance() {
+}
+
+PBHeroLineup::PBHeroLineup(const PBHeroLineup& from)
+  : ::google::protobuf::Message() {
+  SharedCtor();
+  MergeFrom(from);
+}
+
+void PBHeroLineup::SharedCtor() {
+  _cached_size_ = 0;
+  lineupid_ = 0u;
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+}
+
+PBHeroLineup::~PBHeroLineup() {
+  SharedDtor();
+}
+
+void PBHeroLineup::SharedDtor() {
+  if (this != default_instance_) {
+  }
+}
+
+void PBHeroLineup::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* PBHeroLineup::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return PBHeroLineup_descriptor_;
+}
+
+const PBHeroLineup& PBHeroLineup::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_RoleData_2eproto();  return *default_instance_;
+}
+
+PBHeroLineup* PBHeroLineup::default_instance_ = NULL;
+
+PBHeroLineup* PBHeroLineup::New() const {
+  return new PBHeroLineup;
+}
+
+void PBHeroLineup::Clear() {
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    lineupid_ = 0u;
+  }
+  heroid_.Clear();
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+  mutable_unknown_fields()->Clear();
+}
+
+bool PBHeroLineup::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!(EXPRESSION)) return false
+  ::google::protobuf::uint32 tag;
+  while ((tag = input->ReadTag()) != 0) {
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // optional uint32 lineupId = 1;
+      case 1: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &lineupid_)));
+          set_has_lineupid();
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(16)) goto parse_heroId;
+        break;
+      }
+      
+      // repeated uint32 heroId = 2;
+      case 2: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_heroId:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 1, 16, input, this->mutable_heroid())));
+        } else if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag)
+                   == ::google::protobuf::internal::WireFormatLite::
+                      WIRETYPE_LENGTH_DELIMITED) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitiveNoInline<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, this->mutable_heroid())));
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(16)) goto parse_heroId;
+        if (input->ExpectAtEnd()) return true;
+        break;
+      }
+      
+      default: {
+      handle_uninterpreted:
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          return true;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+  return true;
+#undef DO_
+}
+
+void PBHeroLineup::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // optional uint32 lineupId = 1;
+  if (has_lineupid()) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->lineupid(), output);
+  }
+  
+  // repeated uint32 heroId = 2;
+  for (int i = 0; i < this->heroid_size(); i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(
+      2, this->heroid(i), output);
+  }
+  
+  if (!unknown_fields().empty()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        unknown_fields(), output);
+  }
+}
+
+::google::protobuf::uint8* PBHeroLineup::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // optional uint32 lineupId = 1;
+  if (has_lineupid()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(1, this->lineupid(), target);
+  }
+  
+  // repeated uint32 heroId = 2;
+  for (int i = 0; i < this->heroid_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteUInt32ToArray(2, this->heroid(i), target);
+  }
+  
+  if (!unknown_fields().empty()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        unknown_fields(), target);
+  }
+  return target;
+}
+
+int PBHeroLineup::ByteSize() const {
+  int total_size = 0;
+  
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    // optional uint32 lineupId = 1;
+    if (has_lineupid()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::UInt32Size(
+          this->lineupid());
+    }
+    
+  }
+  // repeated uint32 heroId = 2;
+  {
+    int data_size = 0;
+    for (int i = 0; i < this->heroid_size(); i++) {
+      data_size += ::google::protobuf::internal::WireFormatLite::
+        UInt32Size(this->heroid(i));
+    }
+    total_size += 1 * this->heroid_size() + data_size;
+  }
+  
+  if (!unknown_fields().empty()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        unknown_fields());
+  }
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void PBHeroLineup::MergeFrom(const ::google::protobuf::Message& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  const PBHeroLineup* source =
+    ::google::protobuf::internal::dynamic_cast_if_available<const PBHeroLineup*>(
+      &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
+}
+
+void PBHeroLineup::MergeFrom(const PBHeroLineup& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  heroid_.MergeFrom(from.heroid_);
+  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    if (from.has_lineupid()) {
+      set_lineupid(from.lineupid());
+    }
+  }
+  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
+}
+
+void PBHeroLineup::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void PBHeroLineup::CopyFrom(const PBHeroLineup& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool PBHeroLineup::IsInitialized() const {
+  
+  return true;
+}
+
+void PBHeroLineup::Swap(PBHeroLineup* other) {
+  if (other != this) {
+    std::swap(lineupid_, other->lineupid_);
+    heroid_.Swap(&other->heroid_);
+    std::swap(_has_bits_[0], other->_has_bits_[0]);
+    _unknown_fields_.Swap(&other->_unknown_fields_);
+    std::swap(_cached_size_, other->_cached_size_);
+  }
+}
+
+::google::protobuf::Metadata PBHeroLineup::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = PBHeroLineup_descriptor_;
+  metadata.reflection = PBHeroLineup_reflection_;
+  return metadata;
+}
+
+
+// ===================================================================
+
+#ifndef _MSC_VER
+const int PBHeroLineupList::kLineupListFieldNumber;
+#endif  // !_MSC_VER
+
+PBHeroLineupList::PBHeroLineupList()
+  : ::google::protobuf::Message() {
+  SharedCtor();
+}
+
+void PBHeroLineupList::InitAsDefaultInstance() {
+}
+
+PBHeroLineupList::PBHeroLineupList(const PBHeroLineupList& from)
+  : ::google::protobuf::Message() {
+  SharedCtor();
+  MergeFrom(from);
+}
+
+void PBHeroLineupList::SharedCtor() {
+  _cached_size_ = 0;
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+}
+
+PBHeroLineupList::~PBHeroLineupList() {
+  SharedDtor();
+}
+
+void PBHeroLineupList::SharedDtor() {
+  if (this != default_instance_) {
+  }
+}
+
+void PBHeroLineupList::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* PBHeroLineupList::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return PBHeroLineupList_descriptor_;
+}
+
+const PBHeroLineupList& PBHeroLineupList::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_RoleData_2eproto();  return *default_instance_;
+}
+
+PBHeroLineupList* PBHeroLineupList::default_instance_ = NULL;
+
+PBHeroLineupList* PBHeroLineupList::New() const {
+  return new PBHeroLineupList;
+}
+
+void PBHeroLineupList::Clear() {
+  lineuplist_.Clear();
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+  mutable_unknown_fields()->Clear();
+}
+
+bool PBHeroLineupList::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!(EXPRESSION)) return false
+  ::google::protobuf::uint32 tag;
+  while ((tag = input->ReadTag()) != 0) {
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // repeated .roledata.PBHeroLineup lineupList = 1;
+      case 1: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+         parse_lineupList:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+                input, add_lineuplist()));
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(10)) goto parse_lineupList;
+        if (input->ExpectAtEnd()) return true;
+        break;
+      }
+      
+      default: {
+      handle_uninterpreted:
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          return true;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+  return true;
+#undef DO_
+}
+
+void PBHeroLineupList::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // repeated .roledata.PBHeroLineup lineupList = 1;
+  for (int i = 0; i < this->lineuplist_size(); i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      1, this->lineuplist(i), output);
+  }
+  
+  if (!unknown_fields().empty()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        unknown_fields(), output);
+  }
+}
+
+::google::protobuf::uint8* PBHeroLineupList::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // repeated .roledata.PBHeroLineup lineupList = 1;
+  for (int i = 0; i < this->lineuplist_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        1, this->lineuplist(i), target);
+  }
+  
+  if (!unknown_fields().empty()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        unknown_fields(), target);
+  }
+  return target;
+}
+
+int PBHeroLineupList::ByteSize() const {
+  int total_size = 0;
+  
+  // repeated .roledata.PBHeroLineup lineupList = 1;
+  total_size += 1 * this->lineuplist_size();
+  for (int i = 0; i < this->lineuplist_size(); i++) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        this->lineuplist(i));
+  }
+  
+  if (!unknown_fields().empty()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        unknown_fields());
+  }
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void PBHeroLineupList::MergeFrom(const ::google::protobuf::Message& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  const PBHeroLineupList* source =
+    ::google::protobuf::internal::dynamic_cast_if_available<const PBHeroLineupList*>(
+      &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
+}
+
+void PBHeroLineupList::MergeFrom(const PBHeroLineupList& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  lineuplist_.MergeFrom(from.lineuplist_);
+  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
+}
+
+void PBHeroLineupList::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void PBHeroLineupList::CopyFrom(const PBHeroLineupList& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool PBHeroLineupList::IsInitialized() const {
+  
+  return true;
+}
+
+void PBHeroLineupList::Swap(PBHeroLineupList* other) {
+  if (other != this) {
+    lineuplist_.Swap(&other->lineuplist_);
+    std::swap(_has_bits_[0], other->_has_bits_[0]);
+    _unknown_fields_.Swap(&other->_unknown_fields_);
+    std::swap(_cached_size_, other->_cached_size_);
+  }
+}
+
+::google::protobuf::Metadata PBHeroLineupList::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = PBHeroLineupList_descriptor_;
+  metadata.reflection = PBHeroLineupList_reflection_;
   return metadata;
 }
 

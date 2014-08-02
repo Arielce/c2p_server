@@ -43,7 +43,7 @@ bool ConfigureReloador::ReloadConf(const char* pFileName)
 			ERRORLOG("load EquipCompound.xml failed.");
 			return false;
 		}
-		else if ((strFileName == "BattleGate.xml" || bLoadAll) && !gpGateController->LoadGatePrizePool())
+		else if ((strFileName == "BattleGate.xml" || bLoadAll) && !gpGateController->LoadBattleGateConf())
 		{
 			ERRORLOG("load BattleGate.xml failed.");
 			return false;

@@ -13,6 +13,7 @@ ClientConnectionMng::~ClientConnectionMng()
 	m_playerToConnMap.clear();
 }
 
+// 判断此连接是否已经被使用了
 bool ClientConnectionMng::IsConnectionUsed(const string& strPtName, IConnection* pClientConn)
 {
 	map<IConnection*, string>::iterator connIt = m_connToPlayerMap.find(pClientConn);
@@ -28,6 +29,7 @@ bool ClientConnectionMng::IsConnectionUsed(const string& strPtName, IConnection*
 	return false;
 }
 
+// 设置玩家网络连接
 void ClientConnectionMng::SetPlayerConnection(Player* pPlayer, IConnection* pClientConn)
 {
 	if (!pPlayer || !pClientConn)
@@ -41,6 +43,7 @@ void ClientConnectionMng::SetPlayerConnection(Player* pPlayer, IConnection* pCli
 	return;
 }
 
+// 客户端断开连接
 void ClientConnectionMng::ClientDisconnect(IConnection* pClientConn)
 {
 	if (!pClientConn)

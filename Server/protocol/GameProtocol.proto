@@ -1,6 +1,17 @@
 package ctos;
 import "RoleData.proto";
 
+// 测试使用，后面删除, 协议号0x0010
+message RequestTestProto
+{
+	optional string desc = 1;			// 客户端填写的随意字符串
+}
+// 协议号0x0010
+message ResponseTestProto
+{
+	optional string ret = 1;			// 返回客户端发送的字符串
+}
+
 // 玩家请求区组列表
 message RequestGameGroups
 {
@@ -94,7 +105,6 @@ message RequestEnterGate
 {
 	optional uint32 userId = 1;				// 玩家ID
 	optional uint32 gateId = 2;				// 关卡ID
-	repeated uint32 heros = 3;				// 进入关卡的英雄
 }
 
 // 返回请求进入关卡结果
@@ -142,6 +152,19 @@ message RequestUpgradeHero
 
 // 返回英雄升级结果
 message ResponseUpgradeHero
+{
+	optional uint32 errCode = 1;			// 错误码
+}
+
+// 请求设置英雄阵容
+message RequestSetHeroLineup
+{
+	optional uint32 userId = 1;				// 玩家ID
+	optional uint32 lineupId = 2;			// 阵容ID (需要客户端维护不同战斗界面对于阵容ID的对应关系)
+	repeated uint32 heroId = 3;				// 英雄列表
+}
+
+message ResponseSetHeroLineup
 {
 	optional uint32 errCode = 1;			// 错误码
 }

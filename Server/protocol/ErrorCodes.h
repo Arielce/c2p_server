@@ -30,6 +30,7 @@ enum
 
 	// 英雄类错误
 	ERROR_HERO_NOT_EXIST,					// 英雄不存在
+	ERROR_LINEUP_NOT_EXIST,					// 英雄阵容不存在
 
 	// 关卡类错误
 	ERROR_PLAYER_CAN_NOT_ENTER,				// 玩家不能进入指定关卡
